@@ -1,0 +1,191 @@
+<script type="text/x-jquery-tmpl" id="search" title="Post list" data-url="search">
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <header class="sidebar-header">
+                <h1 class="sidebar-header-title">Related Tags</h1>
+                <!-- <h2 class="brand-tagline">Check out more:</h2> -->
+
+                <nav class="nav" id="nav-list"></nav>
+            </header>
+        </div>
+
+        <div class="pure-u-1">
+
+            <div class="content">
+            <form class="pure-form main-search">
+                <input type="text" class="pure-input js-search-input js-search-input-interactive" placeholder="Search next..." tabindex="1" value="{{getParams}}" autofocus>
+                <button type="submit" class="pure-button js-search-button"><i class="fa fa-search" title="Find!"></i></button>
+            </form>
+                <div class="posts" id="posts-output">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/x-jquery-tmpl" id="search-output">
+    <h1 class="content-subhead">Results {{total}}</h1>
+
+    <ul class="article-list">
+        {{#resultList}}
+        <li class="article-item js-vote-item" data-id="{{id}}">
+            {{#author-mail-hash}}
+            <a href="{{author-link}}" class="article-author-link" title="About {{author}}" target="_blank">
+                <img class="article-avatar" alt="{{author}}" height="48" width="48" src="http://www.gravatar.com/avatar/{{author-mail-hash}}">
+            </a>
+            {{/author-mail-hash}}
+
+            <h2 class="article-title"><a class="article-title-link" href="{{url}}" target="_blank" >{{title}}</a></h2>
+
+            <p class="article-meta">
+                {{#author}}
+                    {{#author-link}}
+                        By <a href="{{author-link}}" class="article-author" target="_blank">{{author}}</a>
+                    {{/author-link}}
+                {{/author}}
+
+                under tags
+
+                {{#tags}}
+                <a class="article-category article-category-js" href="/#!/search/{{.}}">{{.}}</a>
+                {{/tags}}
+            </p>
+
+            <p class="article-voting">
+                <button class="pure-button js-vote" title="Vote Up+" data-vote-type="plus">
+                    <i class="fa fa-thumbs-up"></i>
+                </button>
+                <span class="article-rating positive js-vote-result">{{votes}}</span>
+                <button class="pure-button js-vote" title="Vote Down-" data-vote-type="minus">
+                    <i class="fa fa-thumbs-down"></i>
+                </button>
+            </p>
+        </li>
+        {{/resultList}}
+    </ul>
+</script>
+
+<script type="text/x-jquery-tmpl" id="nav-panel">
+    <ul class="nav-list tag-sidebar">
+        {{#navList}}
+        <li class="nav-item">
+            <a class="nav-item-link" href="{{navLink}}">{{navTitle}}</a>
+        </li>
+        {{/navList}}
+    </ul>
+</script>
+
+<script type="text/x-jquery-tmpl" id="menu-logined">
+    <li class="user-login_item">
+        <span class="user-name"><i class="fa fa-user"></i> {{username}}</span>
+    </li>
+    <li class="user-login_item">
+        <a href="/logout" class="user-logout js-logout"><i class="fa fa-umbrella"></i> Log out</a>
+    </li>
+</script>
+
+<script type="text/x-jquery-tmpl" id="menu-not-logined">
+    <li class="user-login_item">
+        <a href="#" class="user-login js-login"><i class="fa fa-user"></i> Log in</a>
+    </li>
+</script>
+
+<script type="text/x-jquery-tmpl" id="about" data-url="about" title="About">
+    <div class="content">
+        <div class="pure-g-r content-ribbon">
+            <div class="pure-u-2-3">
+                <div class="l-box">
+                    <h4 class="content-subhead">About the project</h4>
+
+                    <h3>Two Days &mdash; One Project</h3>
+                    <p>
+                        After two extremely hard working days, during the hackaton (plus few commits after) we happy to introduce&nbsp;our project&nbsp;&mdash;&nbsp;<strong>DevShelf.us</strong>. It's modern, cutting the edge web application, which collect only best and well rated articles about <strong>HTML5</strong> stack of technologies. We provide intelligence search engine and base for <strong>your contributed data</strong> inside our application, to provide you only best and relevant information about that new technologies which are you looking for.
+                    </p>
+                    <p>Check out our team below.</p>
+                </div>
+            </div>
+
+            <div class="pure-u-1-3">
+                <div class="l-box">
+                    <img src="/build/img/about_us.jpg" alt="damn good code" class="about-us_img">
+                </div>
+            </div>
+        </div>
+
+        <div class="pure-g-r content-ribbon last">
+            <div class="pure-u-1">
+                <div class="l-box">
+                    <h4 class="content-subhead">About the team</h4>
+                </div></div>
+
+            <div class="pure-u-1-5">
+                <div class="l-box">
+                    <h3>Robert Haritonov</h3>
+                    <p>
+                        <a href="http://twitter.com/operatino_en">@operatino</a>, <a href="http://rhr.me">rhr.me</a>
+                    </p>
+                    <p>
+                        Idea, organization, voting and launch.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pure-u-1-5">
+                <div class="l-box">
+                    <h3>Ivan Metelev</h3>
+                    <p>
+                        <a href="http://twitter.com/from_anywhere">@from_anywhere</a>, <a href="http://welovehtml.ru/">welovehtml.ru</a>
+                    </p>
+                    <p>
+                        Templating structure and navigation.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pure-u-1-5">
+                <div class="l-box">
+                    <h3>Juris Pukitis</h3>
+                    <p>
+                        <a href="http://twitter.com/jur4eg">@jur4eg</a>
+                    </p>
+                    <p>
+                        Node JS back-end supplier, data caching.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pure-u-1-5">
+                <div class="l-box">
+                    <h3>Dmitry Lapynov</h3>
+                    <p>
+                        <a href="http://twitter.com/lapynow">@lapynow</a>
+                    </p>
+                    <p>
+                        Search engine and layout.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pure-u-1-5">
+                <div class="l-box">
+                    <h3>Andrew Ivashkevich</h3>
+                    <p>
+                        Layout solutions.
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="l-box ribbon">
+            <h2><a href="mailto:r@rhr.me" class="pure-button pure-button-primary"><i class="fa fa-envelope"></i> Stay in touch</a></h2>
+        </div>
+    </div>
+
+    <div class="footer">
+        {{{copy}}}
+    </div>
+</script>

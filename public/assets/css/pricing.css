@@ -1,0 +1,328 @@
+/*
+ * -- BASE STYLES --
+ * Most of these are inherited from Base, but I want to change a few.
+ */
+body {
+    color: #526066;
+}
+
+h2, h3 {
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+p {
+    line-height: 1.6em;
+}
+
+
+/*
+ * -- Layout Styles --
+ */
+.l-content {
+    margin: 0 auto;
+}
+
+.l-box {
+    padding: 0.5em 2em;
+}
+
+/*
+ * -- MENU STYLES --
+ * Make the menu have a very faint box-shadow.
+ */
+.pure-menu {
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+}
+
+
+/*
+ * -- BANNER --
+ * The top banner with the headings. By using a combination
+ * of `display: table;` and `display: table-cell;`, we can
+ * vertically center the text.
+ */
+.banner {
+    background: transparent url('../img/code.jpg') 0 0 repeat-y fixed;
+    text-align: center;
+    background-size: 100%;
+    width: 100%;
+    margin:38px 0 3em 0;
+    border-bottom: 1px solid #b7b7b7;
+
+}
+
+    .banner-inner {
+        background: rgba(0,0,0,.65);
+        padding: 4em 0;
+        -webkit-transition: background 0.9s ease;
+-moz-transition: background 0.9s ease;
+-o-transition: background 0.9s ease;
+-ms-transition: background 0.9s ease;
+transition: background 0.9s ease;
+        }
+        .banner-inner:hover {
+            background: rgba(0,0,0,.9);
+        }
+
+    .banner-head {
+        font-size: 3em;
+        color: white;
+        font-weight: 500;
+        text-shadow: 0 1px 1px black;
+        text-transform: uppercase;
+	    margin-bottom: .7em;
+
+    }
+
+    .banner-head.sub-title {
+        text-transform: none;
+        letter-spacing: 1px;
+        font-size: 3em;
+        margin-bottom: .5em;
+
+    }
+
+.home-search {
+	margin-bottom: .7em;
+	}
+
+	.home-search .pure-button {
+		padding-top: .6em;
+		padding-bottom: .55em;
+		}
+
+/*
+button[type=submit]::before {
+    content: '';
+    display:inline-block;
+    vertical-align: baseline;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+
+}*/
+
+
+/*
+ * -- PRICING TABLE WRAPPER --
+ * This element wraps up all the pricing table elements
+ */
+ .pricing-tables,
+ .information {
+    max-width: 90%;
+    margin: 0 auto;
+ }
+.pricing-tables {
+    margin-bottom: 3.125em;
+    text-align: center;
+}
+
+/*
+ * -- PRICING TABLE  --
+ * Every pricing table has the .pricing-table class
+ */
+.pricing-table {
+    border: 1px solid #ddd;
+	border-bottom: none;
+    margin: 0 0.5em;
+    opacity: .85;
+
+}
+    .pricing-table:hover {
+        opacity: 1;
+    }
+
+    .pricing-table .pricing-table-header a {
+            color:#fff;
+    }
+
+/*
+ * -- PRICING TABLE HEADER COLORS --
+ * Choose a different color based on the type of pricing table.
+ */
+
+.column-title {
+    background: #000;
+}
+
+.column-html5 .column-title {
+    background: #749E6E;
+}
+
+.column-css3 .column-title  {
+    background: #523A52;
+}
+
+.column-other .column-title  {
+    background: #A84734;
+}
+
+.column-jsapi .column-title  {
+    background: #CB7B34;
+}
+
+
+/*
+ * -- PRICING TABLE HEADER --
+ * By default, a header is black/white, and has some styles for its <h2 class="column-title"> name.
+ */
+.pricing-table-header {
+    background: #111;
+    color: #fff;
+}
+/*    .pricing-table-header h2 {
+        margin: 0;
+        padding-top: 2em;
+        font-size: 1em;
+        font-weight: normal;
+
+    }*/
+
+    .column-title {
+        margin: 0;
+        padding: 15px 0;
+        font-size: 3em;
+        font-weight: normal;
+        letter-spacing: 0;
+        color:#fff;
+
+		min-height: 55px;
+		line-height: 58px;
+        }
+
+        .column-title a {
+            color:#fff;
+        }
+
+
+/*
+ * -- PRICING TABLE PRICE --
+ * Styles for the price and the corresponding <span>per month</span>
+ */
+.pricing-table-price {
+    font-size: 4em;
+    margin: 0.2em 0 0;
+    font-weight: 100;
+    white-space: nowrap;
+    text-transform: uppercase;
+
+}
+    .pricing-table-price span {
+        display: block;
+        text-transform: uppercase;
+        font-size: 0.2em;
+        padding-bottom: 2em;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.5);
+        *color: #fff;
+    }
+
+
+
+/*
+ * -- PRICING TABLE LIST --
+ * Each pricing table has a <ul> which is denoted by the .pricing-table-list class
+ */
+.pricing-table-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+
+/*
+ * -- PRICING TABLE LIST ELEMENTS --
+ * Styles for the individual list elements within each pricing table
+ */
+.pricing-table-list li {
+    padding: 0.8em 0;
+    background: #f7f7f7;
+    border-bottom: 1px solid #e7e7e7;
+}
+.pricing-table-list li:hover {
+    background: #eee;
+}
+
+/*
+ * -- PRICING TABLE BUTTON --
+ * Styles for the "Choose" button at the bottom of a pricing table.
+ * This inherits from Pure Button.
+ */
+.button-more {
+/*    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;*/
+    /*border-radius: 2em;*/
+    font-weight: bold;
+    position: relative;
+    bottom: -1.5em;
+}
+
+.information-head {
+    color: black;
+    font-weight: 500;
+}
+
+.footer {
+    background: black;
+    color: #888;
+    text-align: center;
+}
+    .footer a {
+        color: #ddd;
+    }
+
+
+
+/*
+ * -- TABLET MEDIA QUERIES --
+ * On tablets, we want to slightly adjust the size of the banner
+ * text and add some vertical space between the various pricing tables
+ */
+@media(max-width: 767px) {
+	.banner {
+	    background-size: auto;
+	}
+
+    .banner-head {
+        font-size: 3em;
+    }
+    .pricing-table {
+        margin-bottom: 2em;
+    }
+
+    .pure-form.home-search .pure-input {
+        width:80%;
+        margin-bottom: 1em;
+    }
+    .user-login {
+        border-bottom: 1px solid darkgray;
+    }
+
+}
+
+/*
+ * -- PHONE MEDIA QUERIES --
+ * On phones, we want to reduce the height and font-size of the banner further
+ */
+@media (max-width: 480px) {
+    .banner {
+        /*height: 200px;*/
+    }
+    .banner-head {
+        font-size: 2em;
+    }
+
+    .user-login {
+        width:100%;
+        text-align: center;
+    }
+
+    .pure-form.home-search .pure-input {
+        width: 90%;
+        margin:0 auto;
+	}
+}

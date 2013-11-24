@@ -1,0 +1,30 @@
+{
+    "description": {
+        "main": "all basic settigns are stored in options.json, also you can store secure settings in special secure-options.json file that will extend basic settings"
+    },
+
+    "pullRepo": "github.com/sourcejs/articles-hub",
+    "pullUserName": "user for pulling data",
+    "pullPassword": "password",
+
+    "app": {
+      "port":80,
+      "devPort":8888
+    },
+
+    "remoteDB": "mongodb://127.0.0.1",
+
+    "cookieSecret": "secret",
+
+    "votingDataCron": "60000",
+
+    "articlesDataCron": "60000",
+
+    "github": {
+        "devAppID": "github devAppID",
+        "devAppSecret": "github devAppSecret",
+
+        "appID": "github appID",
+        "appSecret": "github appSecret"
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "title": "DevShelf.us - Community driven reading shelf",
+    "logo": "DevShelf",
+    "bannerText": "Community driven reading shelf",
+    "searchBtn": "Search",
+    "searchExample": "For example: box-shadow",
+    "copy": "DevShelf.us 2013. Thanks to <a href='http://corp.mail.ru/en/communications/odnoklassniki'>OK.ru</a> front-end development team",
+
+    "menu": [{
+        "name":"Home",
+        "link": "/"
+    },{
+        "name":"About",
+        "link": "#!/about"
+    }],
+
+    "footerSections": [{
+        "sectionTitle": "About",
+        "sectionText": "Modern web application made for community, to collect most relevant information about development technologies. With community rating, you'll get only the best content that exists in open web."
+    },{
+        "sectionTitle": "How to support",
+        "sectionText": "Project is fully open source, you can contribute links to best articles, ideas and improve web application source code just leaving your pull requests."
+    }]
+}

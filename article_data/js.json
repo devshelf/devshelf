@@ -1,0 +1,31 @@
+{
+    "ecmascript": [
+        {
+            "url": "http://www.2ality.com/2013/07/es6-modules.html",
+            "title": "ECMAScript 6 modules: the future is now"
+        }
+    ],
+
+    "jquery": [
+        {
+            "url": "http://ejohn.org/apps/workshop/adv-talk/#0",
+            "title": "Things You Might Not Know About jQuery",
+            "tags": [
+                "slides"
+            ]
+        }
+    ],
+
+    "patterns": [
+        {
+            "url": "http://addyosmani.com/resources/essentialjsdesignpatterns/book/",
+            "title": "Learning JavaScript Design Patterns",
+            "author": "Addy Osmani"
+        },
+
+        {
+            "url": "http://shamansir.github.io/JavaScript-Garden/",
+            "title": "JavaScript Garden"
+        }
+    ]
+}

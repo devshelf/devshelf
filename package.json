@@ -1,0 +1,27 @@
+{
+  "name": "DevCommunityLibrary",
+  "description": "Dev Community Library",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "~3.4.4",
+    "mongoose": "~3.8.0",
+    "colors": "~0.6.2",
+    "extend": "~1.2.1",
+    "mustache": "~0.7.3",
+    "everyauth": "~0.4.5",
+    "connect-mongostore": "0.0.10",
+    "deep-extend": "~0.2.6",
+    "MD5": "~1.2.0",
+    "gzippo": "0.2.0",
+    "shorthash": "0.0.2"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-csso": "~0.5.0",
+    "grunt-htmlcompressor": "~0.1.8",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1"
+  }
+}

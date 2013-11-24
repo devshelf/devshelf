@@ -1,0 +1,11 @@
+.*
+*.iml
+!.gitignore
+
+node_modules
+
+public/output
+public/build
+
+# Custom options
+core/options/secure-options.json

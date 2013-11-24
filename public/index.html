@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+{{#records}}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a responsive pricing table.">
+
+    <title>{{title}}</title>
+
+    <link rel="stylesheet" href="/build/css/all.min.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/build/js/jquery-2.0.3.min.js"><\/script>')</script>
+    <script src="/build/js/all.min.js"></script>
+</head>
+<body>
+    <div class="pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+        <ul class="user-login" id="user-login">
+            <li class="user-login_item" style="display: none">
+            	<a href="#" class="user-login js-login"><i class="fa fa-user"></i> Log in</a>
+            </li>
+        </ul>
+
+        <a href="/" class="pure-menu-heading">{{logo}}</a>
+
+        <ul>
+            {{#menu}}
+                <li><a href="{{link}}">{{name}}</a></li>
+            {{/menu}}
+        </ul>
+    </div>
+
+	<!-- content area -->
+	<div id="main-content"></div>
+	<!-- /content area -->
+
+	<!-- main page template -->
+	<script type="text/x-jquery-tmpl" id="main-page" title="Main page" data-url="">
+	<div class="banner">
+		<div class="banner-inner">
+			<h1 class="banner-head">
+				{{bannerText}}
+			</h1>
+			<!--<h2 class="banner-head sub-title">{{searchText}}</h2>-->
+			<form class="pure-form home-search">
+				<input type="text" class="pure-input pure-input-1-3 js-search-input" placeholder="For example: box-shadow" tabindex="1" autofocus>
+				<button type="submit" class="pure-button js-search-button"><i class="fa fa-search fa-lg"></i> Search</button>
+			</form>
+		</div>
+	</div>
+
+	<div class="l-content">
+		<div class="pricing-tables pure-g-r">
+			<div class="pure-u-1-4">
+				<div class="pricing-table column-html5">
+                    <a href="#!/search/html">
+					    <h2 class="column-title">HTML5</h2>
+                    </a>
+
+					<ul class="pricing-table-list">
+						{{#html}}
+						<li><a href="{{linkHref}}">{{linkTitle}}</a></li>
+						{{/html}}
+					</ul>
+
+					<!--<button class="pure-button button-more"><i class="fa fa-angle-double-down fa-lg"></i> More</button>-->
+				</div>
+			</div>
+
+			<div class="pure-u-1-4">
+				<div class="pricing-table column-css3">
+                    <a href="#!/search/css">
+					    <h2 class="column-title">CSS3</h2>
+                    </a>
+
+					<ul class="pricing-table-list">
+						{{#css}}
+						<li><a href="{{linkHref}}">{{linkTitle}}</a></li>
+						{{/css}}
+					</ul>
+				</div>
+			</div>
+
+			<div class="pure-u-1-4">
+				<div class="pricing-table column-svg">
+
+                    <a href="#!/search/js">
+					    <h2 class="column-title">JS</h2>
+                    </a>
+
+					<ul class="pricing-table-list">
+						{{#js}}
+						<li><a href="{{linkHref}}">{{linkTitle}}</a></li>
+						{{/js}}
+					</ul>
+				</div>
+			</div>
+			<div class="pure-u-1-4">
+				<div class="pricing-table column-other">
+
+                    <a href="#!/search/other">
+                		<h2 class="column-title">Other</h2>
+                    </a>
+
+					<ul class="pricing-table-list">
+						{{#other}}
+						<li><a href="{{linkHref}}">{{linkTitle}}</a></li>
+						{{/other}}
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="information pure-g-r">
+            {{#footerSections}}
+                <div class="pure-u-1-2">
+                    <div class="l-box">
+                        <h3 class="information-head">{{sectionTitle}}</h3>
+                        <p>
+                            {{{sectionText}}}
+                        </p>
+                    </div>
+                </div>
+            {{/footerSections}}
+		</div> <!-- end information -->
+	</div>
+	<div class="footer">
+        &copy; {{{copy}}}
+	</div>
+	</script>
+	<!-- /main page template -->
+
+    <div id="login-popup" class="login-popup">
+        <div class="pure-g-r">
+            <div class="pure-u-1">
+
+                <header class="login-popup-header login-popup-padding">
+                    <h3 class="login-popup-title main">Authorization required</h3>
+                    <span class="login-popup-close js-login-popup-close" title="Close me"><i class="fa fa-times-circle"></i></span>
+                </header>
+
+                <div class="login-popup-desc login-popup-padding">
+                    <p>We use your account details to accept the votes</p>
+                    <p class="login-popup-buttons-set">
+                        <span>Please login through</span>
+                        <a class="pure-button js-login" href="#"><i class="fa fa-github-alt" title="GitHub"></i> GitHub</a>
+                    </p>
+                </div>
+
+             </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">var indexJson = {{{indexJson}}};</script>
+
+</body>
+{{/records}}
+
+</html>

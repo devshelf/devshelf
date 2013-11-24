@@ -1,0 +1,67 @@
+{
+    "box-shadow": [
+        {
+        "url": "http://www.css3.info/preview/box-shadow/",
+        "title": "Box-shadow, one of CSS3′s best new features"
+        },
+        {
+        "url": "http://css3gen.com/box-shadow/",
+        "title": "CSS3 Box Shadow Generator"
+        }
+    ],
+
+    "transition": [
+        {
+            "url": "http://alistapart.com/article/understanding-css3-transitions/",
+            "title": "Understanding CSS3 Transitions",
+            "tags": [
+                "animation"
+            ]
+        },
+        {
+            "url": "http://www.css3.info/preview/css3-transitions/",
+            "title": "An Introduction to CSS3 Transitions",
+            "tags": [
+                "animation"
+            ]
+        },
+        {
+            "url": "https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions",
+            "title": "Using CSS transitions",
+            "tags": [
+                "animation",
+                "mdn"
+            ]
+        }
+    ],
+
+    "specificity": [
+    	{
+    		"url": "http://coding.smashingmagazine.com/2007/07/27/css-specificity-things-you-should-know/",
+    		"title": "CSS Specificity: Things You Should Know",
+    		"author": "Vitaly Friedman"
+    	}
+    ],
+
+    "@font-face": [
+    	{
+    		"url": "http://www.paulirish.com/2009/fighting-the-font-face-fout/",
+    		"title": "Fighting the @font-face FOUT",
+    		"author": "Paul Irish",
+    		"tags": [
+    			"fonts"
+    		]
+    	}
+    ],
+
+    "clearfix": [
+    	{
+    		"url": "http://nicolasgallagher.com/micro-clearfix-hack/",
+    		"title": "A new micro clearfix hack",
+    		"author": "Nicolas Gallagher",
+    		"tags": [
+    			"float"
+    		]
+    	}
+    ]
+}
