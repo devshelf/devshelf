@@ -7,8 +7,8 @@
     "copy": "DevShelf.us 2013. Thanks to <a href='http://corp.mail.ru/en/communications/odnoklassniki'>OK.ru</a> front-end development team",
 
     "menu": [{
-        "name":"Home",
-        "link": "/"
+        "name":"Add new article",
+        "link": "https://github.com/sourcejs/devshelf"
     },{
         "name":"About",
         "link": "#!/about"

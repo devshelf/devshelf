@@ -105,6 +105,7 @@ a {
     color: #fff;
     background: #999;
     font-size: 80%;
+    white-space: nowrap;
 }
     .article-category-design {
         background: #5aba59;
