@@ -431,13 +431,7 @@ var mainApp = function() {
         })[1]; // 1 - liteMode
 
         if (!!resultList) {
-            for (var i = 0; i < resultList.length; i++ ) {
-                if ( !!voteData[resultList[i].id] ) {
-                    resultList[i].votes = voteData[resultList[i].id].plusVotes - voteData[resultList[i].id].minusVotes;
-                } else {
-                    resultList[i].votes = 0;
-                }
-            }
+			templateEngine.attachVotes(resultList);
 
             templateEngine.insertTemplate( {
                 target: 'posts-output',
