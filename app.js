@@ -122,7 +122,7 @@ arr.map(function(item) {
 
         indexJson.indexJson = JSON.stringify(indexJson);
 
-        var indexPage = fs.readFileSync('public/index.html', "utf8");
+        var indexPage = fs.readFileSync('public/build/index.html', "utf8");
         var htmlToSend = mustache.to_html(indexPage, indexJson);
         res.send(htmlToSend);
     });

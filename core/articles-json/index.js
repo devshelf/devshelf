@@ -6,72 +6,85 @@ var fs = require('fs')
     , extend = require('extend');
 
 var dir = "article_data/";
-var filesArr = fs.readdirSync(dir);
-var fileCount = filesArr.length;
 
 var outputJson = {};
 var i = 0;
 
-filesArr.map(function(file){
-    var fileName = path.basename(file, ".json");
-    var fileJson = JSON.parse(fs.readFileSync(dir+file, "utf8"));
+fs.readdir(dir, function(err, files){
+    var filesArr = [];
 
-    for (tag in fileJson) {
-        var targetDataArr = fileJson[tag];
+    files.map(function(file){
+        var fileExtension = file.split('.');
 
-        var i2=0;
-        while(i2<targetDataArr.length){
-            var targetObj = targetDataArr[i2],
-                targetEmail = targetObj["author-mail"],
-                targetUrl = targetObj["url"];
+        fileExtension = fileExtension[fileExtension.length -1];
+        fileExtension.toLowerCase();
 
-            if(typeof targetEmail === 'string') {
-                var authorMailHash = md5(targetEmail);
+        if (fileExtension === 'json'){
+            filesArr.push(file);
+        }
+    });
 
-                targetObj["author-mail-hash"] = authorMailHash;
-            }
+    var fileCount = filesArr.length;
 
-            if(typeof targetUrl === 'string') {
-                var targetID = targetObj["id"];
+    filesArr.map(function(file){
+        var fileName = path.basename(file, ".json");
+        var fileJson = JSON.parse(fs.readFileSync(dir+file, "utf8"));
 
-                if (typeof targetID !== 'string') {
-                    var authorUrlHash = sh.unique(targetUrl);
+        for (tag in fileJson) {
+            var targetDataArr = fileJson[tag];
 
-                    targetObj["id"] = authorUrlHash;
+            var i2=0;
+            while(i2<targetDataArr.length){
+                var targetObj = targetDataArr[i2],
+                    targetEmail = targetObj["author-mail"],
+                    targetUrl = targetObj["url"];
+
+                if(typeof targetEmail === 'string') {
+                    var authorMailHash = md5(targetEmail);
+
+                    targetObj["author-mail-hash"] = authorMailHash;
                 }
 
+                if(typeof targetUrl === 'string') {
+                    var targetID = targetObj["id"];
+
+                    if (typeof targetID !== 'string') {
+                        var authorUrlHash = sh.unique(targetUrl);
+
+                        targetObj["id"] = authorUrlHash;
+                    }
+
+                }
+
+                i2++;
             }
 
-            i2++;
         }
 
-    }
-
-    outputJson[fileName] = extend(fileJson);
-    i++;
-    if (i === fileCount) {
-        fs.readdir('public/output',function(e){
-            if(!e || (e && e.code === 'EEXIST')){
-                generateJSON();
-            } else if (e.code === 'ENOENT') {
-                fs.mkdir('public/output');
-                generateJSON();
-            } else {
-                console.log(e);
-            }
-        });
-
-        // function for write json file
-        var generateJSON = function() {
-            fs.writeFile("public/output/all-data.json", JSON.stringify(outputJson), function (err) {
-                if (err) {
-                    console.log(err);
+        outputJson[fileName] = extend(fileJson);
+        i++;
+        if (i === fileCount) {
+            fs.readdir('public/output',function(e){
+                if(!e || (e && e.code === 'EEXIST')){
+                    generateJSON();
+                } else if (e.code === 'ENOENT') {
+                    fs.mkdir('public/output');
+                    generateJSON();
                 } else {
-                    console.log("Generatind articles data - DONE".green);
+                    console.log(e);
                 }
             });
-        };
-    }
+
+            // function for write json file
+            var generateJSON = function() {
+                fs.writeFile("public/output/all-data.json", JSON.stringify(outputJson), function (err) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log("Generatind articles data - DONE".green);
+                    }
+                });
+            };
+        }
+    });
 });
-
-
