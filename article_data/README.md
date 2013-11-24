@@ -9,6 +9,7 @@ First object in `.json` file is a `tag` name, that will be searchable through [D
 Available additional information about links that you contribute could be easily added with nested objects:
 
 ```json
+{
 "css methodologies": [
         {
             "url": "http://operatino.github.io/MCSS/en/",
@@ -24,6 +25,7 @@ Available additional information about links that you contribute could be easily
             ]
         }
     ]
+}
 ```
 
 Where,
