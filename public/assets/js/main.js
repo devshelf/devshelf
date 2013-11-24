@@ -17,7 +17,7 @@ var templateEngine = (function() {
          */
         fuzzySearch: function(opt) {
             var
-                query = opt.q,
+                query = opt.q.toLowerCase(),
                 qRegExp = new RegExp(query),
                 allData = opt.allData,
                 result = {},
