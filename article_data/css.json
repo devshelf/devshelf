@@ -63,5 +63,14 @@
     			"float"
     		]
     	}
+    ],
+
+    "flexbox": [
+    	{
+    		"url": "http://philipwalton.github.io/solved-by-flexbox/",
+    		"title": "Solved by Flexbox",
+    		"author": "Philip Walton"
+    	}
+
     ]
 }
