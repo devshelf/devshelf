@@ -21,7 +21,7 @@ var articlesJson = require('./core/articles-json');
 require('./core/gitPull');
 
 // Preparing initial data till cron
-fs.readFile('./public/output/all-data.json', function(err, data) {
+fs.readFile(__dirname + '/public/output/all-data.json', function(err, data) {
     if (err) {
         articlesJson.generateData();
     }
@@ -85,13 +85,13 @@ app
 var arr = ['/','/index','/index.html','/home'];
 
 //mustache generate index page
-var indexData = JSON.parse(fs.readFileSync('./public/index.json', "utf8"));
+var indexData = JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8"));
 
 //TODO: check and generate file on first start
 var sectionData;
 
 try {
-    sectionData = JSON.parse(fs.readFileSync('./public/output/all-data.json', "utf8")) || {};
+    sectionData = JSON.parse(fs.readFileSync(__dirname + '/public/output/all-data.json', "utf8")) || {};
 } catch (e) {
     if (e.code === 'ENOENT') {
         sectionData = {};
@@ -118,7 +118,7 @@ arr.map(function(item) {
 
         indexJson.indexJson = JSON.stringify(indexJson);
 
-        var indexPage = fs.readFileSync('./public/build/index.html', "utf8");
+        var indexPage = fs.readFileSync(__dirname + '/public/build/index.html', "utf8");
         var htmlToSend = mustache.to_html(indexPage, indexJson);
         res.send(htmlToSend);
     });
@@ -135,7 +135,7 @@ app.get('/getAllVotes', voting.getAllVotes);
 
 
 // Preparing initial data till cron
-fs.readFile('./public/output/all-votes.json', function(err, data) {
+fs.readFile(__dirname + '/public/output/all-votes.json', function(err, data) {
     if (err) {
         voting.generateVotingData();
     }

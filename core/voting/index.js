@@ -185,11 +185,11 @@ var generateVotingData = function() {
     Vote.find(function (err, votes) {
         if (!err) {
 
-            fs.readdir('./public/output',function(e){
+            fs.readdir(__dirname + '/public/output',function(e){
                 if(!e || (e && e.code === 'EEXIST')){
                     generateJSON();
                 } else if (e.code === 'ENOENT') {
-                    fs.mkdir('./public/output');
+                    fs.mkdir(__dirname + '/public/output');
                     generateJSON();
                 } else {
                     console.log(e);
@@ -197,7 +197,7 @@ var generateVotingData = function() {
             });
 
             var generateJSON = function() {
-                fs.writeFile("./public/output/all-votes.json", JSON.stringify(votes), function (err) {
+                fs.writeFile(__dirname + "/public/output/all-votes.json", JSON.stringify(votes), function (err) {
                     if (err) {
                         console.log(err);
                     }
