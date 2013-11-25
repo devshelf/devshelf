@@ -26,6 +26,10 @@
         {
             "url": "http://shamansir.github.io/JavaScript-Garden/",
             "title": "JavaScript Garden"
+        },
+        {
+        	"url": "http://shichuan.github.io/javascript-patterns/",
+        	"title": "JS Patterns"
         }
     ]
 }

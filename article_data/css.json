@@ -70,7 +70,37 @@
     		"url": "http://philipwalton.github.io/solved-by-flexbox/",
     		"title": "Solved by Flexbox",
     		"author": "Philip Walton"
+    	},
+    	{
+    		"url": "http://dev.opera.com/articles/view/advanced-cross-browser-flexbox/",
+    		"title": "Advanced cross-browser flexbox",
+    		"author": "Chris Mills"
     	}
 
+    ],
+
+    "css3": [
+    	{
+    		"url": "http://coding.smashingmagazine.com/2010/04/28/css3-solutions-for-internet-explorer/",
+    		"title": "CSS3 Solutions for Internet Explorer",
+    		"author": "Louis Lazaris",
+    		"tags": [
+    			"opacity",
+    			"border-radius",
+    			"box-shadow",
+    			"text-shadow",
+    			"rgba",
+    			"transform",
+    			"ie"
+    		]
+    	},
+    	{
+    		"url": "http://www.useragentman.com/IETransformsTranslator/",
+    		"title": "IE's CSS3 Transforms Translator",
+    		"tags": [
+    			"transform",
+    			"ie"
+    		]
+    	}
     ]
 }
