@@ -65,6 +65,7 @@ module.exports = function(grunt) {
             main: {
                 files: [
                         'public/assets/**/*',
+                        'public/templates.html',
                         'public/index.html'
                         ],
                 tasks: ['csso:main','htmlcompressor:main'],

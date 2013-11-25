@@ -1,6 +1,6 @@
 {
     "title": "DevShelf.us - Community driven reading shelf",
-    "logo": "DevShelf",
+    "logo": "DevShelf <sup class='beta'>beta</sup>",
     "bannerText": "Community driven reading shelf",
     "searchBtn": "Search",
     "searchExample": "For example: box-shadow",
@@ -16,9 +16,9 @@
 
     "footerSections": [{
         "sectionTitle": "About",
-        "sectionText": "Modern web application made for community, to collect most relevant information about development technologies. With community rating, you'll get only the best content that exists in open web."
+        "sectionText": "<p>Modern web application made for community (for US), by the community, to collect most relevant information about development technologies.</p> <p>With community rating, you'll get only the best content that exists in the open web.</p>"
     },{
         "sectionTitle": "How to support",
-        "sectionText": "Project is fully open source, you can contribute links to best articles, ideas and improve web application source code just leaving your pull requests."
+        "sectionText": "<p>Project is fully <a href='http://github.com/sourcejs/devshelf'>open source</a>, you can <a href='http://github.com/sourcejs/devshelf/tree/master/article_data'>contribute links</a> to best articles, ideas and improve web application source code just leaving your pull requests.</p> <p>Just remember, DevShelf is <strong>about storing best articles and tools</strong>, not documentation, for documentation searching use <a href='http://devdocs.io'>devdocs.io</a>.</p>"
     }]
 }

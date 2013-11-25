@@ -32,6 +32,7 @@ Where,
 
 * *`url` - link to the article or interesting material
 * *`title` - its title
+* `description` - article description, not vital but usefull
 * `auhtor-*` - author name, link to info about him and email for gravatar
 * `id` - ID's are optional, will be generated automatically
 * `tags` - array with additional tags, that also will be searchable

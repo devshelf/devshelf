@@ -12,7 +12,8 @@
       "devPort":8888
     },
 
-    "remoteDB": "mongodb://127.0.0.1",
+    "remoteDBhost": "127.0.0.1",
+    "remoteDBport": "27017",
 
     "cookieSecret": "secret",
 

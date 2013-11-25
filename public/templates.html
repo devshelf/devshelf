@@ -53,6 +53,10 @@
                 {{/tags}}
             </p>
 
+            {{#description}}
+            <p class="article-description">{{{description}}}</p>
+            {{/description}}
+
             <p class="article-voting">
                 <button class="pure-button js-vote" title="Vote Up+" data-vote-type="plus">
                     <i class="fa fa-thumbs-up"></i>
@@ -101,8 +105,17 @@
 
                     <h3>Two Days &mdash; One Project</h3>
                     <p>
-                        After two extremely hard working days, during the hackaton (plus few commits after) we happy to introduce&nbsp;our project&nbsp;&mdash;&nbsp;<strong>DevShelf.us</strong>. It's modern, cutting the edge web application, which collect only best and well rated articles about <strong>HTML5</strong> stack of technologies. We provide intelligence search engine and base for <strong>your contributed data</strong> inside our application, to provide you only best and relevant information about that new technologies which are you looking for.
+                        After two extremely hard working days, during the hackaton (plus few commits after) we happy to introduce&nbsp;our project&nbsp;&mdash;&nbsp;<strong>DevShelf.us</strong>. It's modern, cutting the edge web application, which collect only best and well rated articles about <strong>HTML5</strong> stack of technologies.
                     </p>
+
+                    <p>
+                        We provide intelligence search engine and base for <strong>your <a href="http://github.com/sourcejs/devshelf/tree/master/article_data">contributed data</a></strong> inside our application, to present you only best and relevant information about that new technologies which are you looking for.
+                    </p>
+
+                    <p>
+                        Project was developed and now supported by <a href='http://corp.mail.ru/en/communications/odnoklassniki'>OK.ru</a> front-end development team (creators of <a href="http://sourcejs.com">Source</a> and <a href="http://operatino.github.io/MCSS/en/">MCSS</a>), but as we're fully <a href="http://github.com/sourcejs/devshelf/tree/master/article_data">open source</a>, everybody could join us and <strong>make web a better place.</strong>
+                    </p>
+
                     <p>Check out our team below.</p>
                 </div>
             </div>
@@ -181,7 +194,7 @@
         </div>
 
         <div class="l-box ribbon">
-            <h2><a href="mailto:r@rhr.me" class="pure-button pure-button-primary"><i class="fa fa-envelope"></i> Stay in touch</a></h2>
+            <h2><a href="https://github.com/sourcejs/devshelf/issues" class="pure-button pure-button-primary"><i class="fa fa-envelope"></i> Stay in touch</a></h2>
         </div>
     </div>
 

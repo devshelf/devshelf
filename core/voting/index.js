@@ -2,7 +2,7 @@ var colors = require('colors'),
     mongoose = require('mongoose');
 
 /* Connect to DB */
-var dbAdress = opts.remoteDB+'/votes';
+var dbAdress = 'mongodb://' + opts.remoteDBhost + ':' + opts.remoteDBport +'/votes';
 
 mongoose.connection.on("connecting", function() {
     return console.log("Started connection on " + (dbAdress).cyan + ", waiting for it to open...".grey);

@@ -44,7 +44,7 @@ p {
  * vertically center the text.
  */
 .banner {
-    background: transparent url('../img/code.jpg') 0 0 repeat-y fixed;
+    background: transparent url('../img/code.png') 0 0 repeat-y fixed;
     text-align: center;
     background-size: 100%;
     width: 100%;

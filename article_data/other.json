@@ -3,6 +3,7 @@
         {
             "url": "http://operatino.github.io/MCSS/en/",
             "title": "Multilayer CSS",
+            "description": "<p>Multilayer CSS organization methodology is based on <a href='http://bem.info/'>BEM</a>) and <a href='http://oocss.org/'>OOCSS</a> principles. It was invented in <a href='http://corp.mail.ru/en/communications/odnoklassniki'>Odnoklassniki.ru</a> (Top 10 world social network) developers team and is recommended for other developers as core for own documentation and team based methodologies.</p>",
             "author": "Robert Haritonov",
             "author-link": "http://rhr.me",
             "author-mail": "r@rhr.me",

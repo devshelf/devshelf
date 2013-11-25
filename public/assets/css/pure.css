@@ -1332,6 +1332,10 @@ this the same font stack that Normalize.css sets for the `body`.
 
 .pure-menu li { position: relative; }
 
+.beta {
+	font-size: .7em;
+	}
+
 .pure-menu a,
 .pure-menu .pure-menu-heading {
     display: block;

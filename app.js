@@ -37,7 +37,11 @@ app.use(express.bodyParser())
 
 app.use(express.session({
     secret: opts.cookieSecret,
-    store: new MongoStore({'db': 'sessions'})
+    store: new MongoStore({
+        'db': 'sessions',
+        host: opts.remoteDBhost,
+        port: opts.remoteDBport
+    })
   })
 );
 app.use(everyauth.middleware());
