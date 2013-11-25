@@ -1,13 +1,13 @@
-var exec = require('child_process').exec;
+var exec = require('child_process').exec,
+    articlesJson = require('../articles-json');
+
+var userName = opts.pullUserName,
+    password = opts.pullPassword;
 
 // for waiting when function finished
 var NOT_RUNNING = true;
-
-var userName = opts.pullUserName;
-var password = opts.pullPassword;
-
 // user who have permissions for git pull from repository;
-setTimeout(function() {
+setInterval(function() {
     if (NOT_RUNNING) {
 
         NOT_RUNNING = false;
@@ -17,7 +17,8 @@ setTimeout(function() {
             if (error !== null) {
                 console.log('exec error: ' + error);
             }
-            require('../../core/articles-json');
+
+            articlesJson.generateData();
             NOT_RUNNING = true;
         }
         console.log("Git Pull Process");

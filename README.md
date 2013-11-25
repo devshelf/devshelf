@@ -1,7 +1,7 @@
 # DevShelf.us - Community driven reading shelf
 
 ___
-[DevShelf homepage](http://devshelf.us)
+[DevShelf homepage](http://devshelf.us) || [Contribute interesting articles](http://github.com/sourcejs/devshelf/tree/master/article_data)
 ___
 
 Modern web application made for community, to collect most relevant information about development technologies. With community rating, you'll get only the best content that exists in open web.

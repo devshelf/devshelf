@@ -15,25 +15,17 @@ global.opts = require('./core/options/'); //Global options
 
 
 /*
-* update local information from git hub
+* Update local information from git hub and regenerate all-data.json
 * */
+var articlesJson = require('./core/articles-json');
 require('./core/gitPull');
 
-/*
-* Preparing initial data till cron
-* */
+// Preparing initial data till cron
 fs.readFile('public/output/all-data.json', function(err, data) {
     if (err) {
-        require('./core/articles-json');
+        articlesJson.generateData();
     }
 });
-
-fs.readFile('public/output/all-votes.json', function(err, data) {
-    if (err) {
-        voting.generateVotingData();
-    }
-});
-
 
 /*
 * auth module
@@ -136,6 +128,14 @@ app.get('/plusVotes', voting.plusVotes); // (id, user)
 app.get('/minusVotes', voting.minusVotes); // (id, user)
 app.get('/getVotes', voting.getVotes); // (id)
 app.get('/getAllVotes', voting.getAllVotes);
+
+
+// Preparing initial data till cron
+fs.readFile('public/output/all-votes.json', function(err, data) {
+    if (err) {
+        voting.generateVotingData();
+    }
+});
 
 /*
 * error hadnling

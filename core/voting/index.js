@@ -215,7 +215,7 @@ var generateVotingData = function() {
 // for waiting when function finished
 var NOT_RUNNING = true;
 
-setTimeout(function() {
+setInterval(function() {
     if (NOT_RUNNING) {
 
         NOT_RUNNING = false;

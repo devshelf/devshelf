@@ -10,21 +10,21 @@ Available additional information about links that you contribute could be easily
 
 ```json
 {
-"css methodologies": [
-        {
-            "url": "http://operatino.github.io/MCSS/en/",
-            "title": "Multilayer CSS",
-            "author": "Robert Haritonov",
-            "author-link": "http://rhr.me",
-            "author-mail": "r@rhr.me",
-            "author-mail-hash": "r@rhr.me",
-            "id":"mcss",
-            "tags": [
-                "css",
-                "best practises"
-            ]
-        }
-    ]
+    "css methodologies": [
+            {
+                "url": "http://operatino.github.io/MCSS/en/",
+                "title": "Multilayer CSS",
+                "author": "Robert Haritonov",
+                "author-link": "http://rhr.me",
+                "author-mail": "r@rhr.me",
+                "author-mail-hash": "r@rhr.me",
+                "id":"mcss",
+                "tags": [
+                    "css",
+                    "best practises"
+                ]
+            }
+        ]
 }
 ```
 

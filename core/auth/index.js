@@ -2,10 +2,11 @@ var everyauth = require('everyauth');
 
 //everyauth.debug = true;
 
-var usersById = {};
-var nextUserId = 0;
+var usersById = {},
+    usersByGhId = {},
+    nextUserId = 0;
 
-function addUser (source, sourceUser) {
+var addUser = function (source, sourceUser) {
   var user;
   if (arguments.length === 1) { // password-based
     user = sourceUser = source;
@@ -16,17 +17,15 @@ function addUser (source, sourceUser) {
     user[source] = sourceUser;
   }
   return user;
-}
+};
 
-var usersByGhId = {};
+var GHappID = MODE === 'development' ? opts.github.devAppID : opts.github.appID,
+    GHappSecret =  MODE === 'development' ? opts.github.devAppSecret : opts.github.appSecret;
 
 everyauth.everymodule
   .findUserById( function (id, callback) {
     callback(null, usersById[id]);
   });
-
-var GHappID = MODE === 'development' ? opts.github.devAppID : opts.github.appID;
-var GHappSecret =  MODE === 'development' ? opts.github.devAppSecret : opts.github.appSecret;
 
 everyauth.github
   .appId(GHappID)
