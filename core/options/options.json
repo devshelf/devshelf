@@ -16,9 +16,9 @@
 
     "cookieSecret": "secret",
 
-    "votingDataCron": "20000",
+    "votingDataCron": "180000",
 
-    "articlesDataCron": "20000",
+    "articlesDataCron": "180000",
 
     "github": {
         "devAppID": "github devAppID",
