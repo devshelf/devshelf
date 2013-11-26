@@ -5,8 +5,11 @@ var express = require('express')
     , fs = require('fs')
     , mustache = require('mustache')
     , everyauth = require('everyauth')
+    , path = require('path')
     , MongoStore = require('connect-mongostore')(express)
     ;
+
+global.appDir = path.dirname(require.main.filename);
 
 global.MODE = process.env.NODE_ENV || 'development';
 
