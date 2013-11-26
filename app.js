@@ -58,7 +58,7 @@ app.get('/auth/done', function (req, res) {
         user: userData
     };
 
-    var authPage = fs.readFileSync('views/auth-done.html', "utf8");
+    var authPage = fs.readFileSync(__dirname+'/views/auth-done.html', "utf8");
     var htmlToSend = mustache.to_html(authPage, authData);
 
     res.send(htmlToSend);
