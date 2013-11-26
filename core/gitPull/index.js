@@ -11,7 +11,7 @@ setInterval(function() {
     if (NOT_RUNNING) {
 
         NOT_RUNNING = false;
-        function commandLog(error, stdout, stderr) {
+        function callback(error, stdout, stderr) {
             console.log('stdout: ' + stdout);
 
             if (error !== null) {
@@ -21,7 +21,8 @@ setInterval(function() {
             articlesJson.generateData();
             NOT_RUNNING = true;
         }
-        console.log("Git Pull Process");
-        exec('git pull https://'+userName+':'+password+'@'+opts.pullRepo, commandLog);
+        console.log("Git pull from reposity...");
+
+        exec('git --work-tree='+ appDir +' --git-dir='+ appDir +'/.git pull https://'+userName+':'+password+'@'+opts.pullRepo, callback);
     }
 },opts.articlesDataCron);
