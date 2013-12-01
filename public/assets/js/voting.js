@@ -20,6 +20,8 @@ var sendVote = function(that){
                 $("#login-popup").simpleModal().trigger( "show" );
 
                 voteCache = that;
+            } else if (data === 'incorrect ID') {
+                console.log('incorrect ID');
             } else {
                 getVotes(that);
             }

@@ -1,6 +1,7 @@
 var colors = require('colors'),
     mongoose = require('mongoose');
 
+
 /* Connect to DB */
 var dbAdress = 'mongodb://' + opts.remoteDBhost + ':' + opts.remoteDBport +'/votes';
 
@@ -46,6 +47,44 @@ var removeFromArray = function removeA(arr) {
     }
     return arr;
 };
+
+var checkVotesId = function(id) {
+    var currentID = id,
+        response = false,
+        sectionData = {},
+        existingIDs = [];
+
+    // Getting actual data for existing ID lookup
+    try {
+        sectionData = JSON.parse(fs.readFileSync(appDir + '/public/output/all-data.json', "utf8")) || {};
+    } catch (e) {
+        console.log("voting/index.js, can't find all-data.json".red);
+    }
+
+    // Preparing existing IDs list
+    for(var cat in sectionData) {
+        var currentCat = sectionData[cat];
+
+        for(var obj in currentCat) {
+            var targetArr = currentCat[obj];
+
+            var i=0;
+            while(i<targetArr.length){
+
+                existingIDs.push(targetArr[i].id)
+
+                i++;
+            }
+        }
+    }
+
+    // Check if our ID exists
+    if (existingIDs.indexOf(currentID) !== -1) {
+        response = true;
+    }
+
+    return response;
+}
 /* /Common */
 
 
@@ -63,15 +102,19 @@ var vote = mongoose.Schema({
 //Model
 var Vote = mongoose.model('Votes', vote);
 
+/* /Mongo model */
+
+
+/* Module methods */
 //Add positive vote
 var makeVote = function(req, res, voteType){
     var id = req.query._id,
         user = typeof req.user === 'undefined' ?  undefined : req.user.github.login,
         oppositeVotesType;
 
-    if (user === undefined) {
+    if (user === undefined) { // Check user auth
         res.jsonp('unauthorized');
-    } else {
+    } else if ( checkVotesId(id) ) { // Validate ID
         if (voteType === 'plusVotes') {
             oppositeVotesType = 'minusVotes';
         } else if (voteType === 'minusVotes') {
@@ -139,6 +182,8 @@ var makeVote = function(req, res, voteType){
                 }
             }
         })
+    } else {
+        res.jsonp('incorrect ID');
     }
 };
 
@@ -175,7 +220,25 @@ var checkVoting = function(data, voteType, oppositeVotesType, username){
     }
 
 };
-/* /Mongo model */
+
+var getVotes = function(req, res) {
+    var id = req.query._id;
+
+    Vote.findById(id, function (err, data) {
+        if(!err) {
+            res.jsonp(data);
+        }
+    })
+};
+
+var getAllVotes = function(req, res) {
+    Vote.find(function (err, votes) {
+        if(!err) {
+            res.jsonp(votes);
+        }
+    });
+};
+/* /Module methods */
 
 
 /* All votes to json */
@@ -226,6 +289,7 @@ setInterval(function() {
 
     }
 }, opts.votingDataCron);
+/* /All votes to json */
 
 
 /* Export */
@@ -239,21 +303,11 @@ module.exports = {
     },
 
     getVotes: function(req, res){
-        var id = req.query._id;
-
-        Vote.findById(id, function (err, data) {
-            if(!err) {
-                res.jsonp(data);
-            }
-        })
+        getVotes(req, res);
     },
 
     getAllVotes: function(req, res){
-        Vote.find(function (err, votes) {
-            if(!err) {
-                res.jsonp(votes);
-            }
-        });
+        getAllVotes(req, res);
     },
 
     generateVotingData: function(){
