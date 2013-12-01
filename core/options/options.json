@@ -3,10 +3,6 @@
         "main": "all basic settigns are stored in options.json, also you can store secure settings in special secure-options.json file that will extend basic settings"
     },
 
-    "pullRepo": "github.com/sourcejs/articles-hub",
-    "pullUserName": "user for pulling data",
-    "pullPassword": "password",
-
     "app": {
       "port":80,
       "devPort":8888
