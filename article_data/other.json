@@ -7,10 +7,123 @@
             "author": "Robert Haritonov",
             "author-link": "http://rhr.me",
             "author-mail": "r@rhr.me",
-            "author-mail-hash": "r@rhr.me",
             "id":"mcss",
             "tags": [
                 "css",
+                "best practises"
+            ]
+        },
+        {
+            "url": "http://smacss.com/",
+            "title": "Scalable and Modular Architecture for CSS",
+            "description": "SMACSS is a way to examine your design process and as a way to fit those rigid frameworks into a flexible thought process. It is an attempt to document a consistent approach to site development when using CSS.",
+            "author": "Jonathan Snook",
+            "author-link": "http://snook.ca/",
+            "tags": [
+                "css",
+                "best practises"
+            ]
+        }
+    ],
+    "css best practises": [
+        {
+            "url": "http://github.com/necolas/idiomatic-css",
+            "title": "Principles of writing consistent, idiomatic CSS",
+            "description": "The following document outlines a reasonable style guide for CSS development. These guidelines strongly encourage the use of existing, common, sensible patterns. They should be adapted as needed to create your own style guide.",
+            "author": "Nicolas Gallagher",
+            "author-link": "http://nicolasgallagher.com",
+            "author-mail": "nicolas@nicolasgallagher.com",
+            "tags": [
+                "css",
+                "best practises"
+            ]
+        },
+        {
+            "url": "http://csswizardry.com/2013/07/writing-dryer-vanilla-css/",
+            "title": "Writing DRYer vanilla CSS",
+            "author-link": "http://csswizardry.com",
+            "author-mail": "harry@csswizardry.com",
+            "tags": [
+                "css",
+                "best practises"
+            ]
+        },
+        {
+            "url": "http://csswizardry.com/2013/05/scope-in-css/",
+            "title": "‘Scope’ in CSS",
+            "author-link": "http://csswizardry.com",
+            "author-mail": "harry@csswizardry.com",
+            "tags": [
+                "css",
+                "best practises"
+            ]
+        },
+        {
+            "url": "http://csswizardry.com/2012/11/code-smells-in-css/",
+            "title": "Code smells in CSS",
+            "author-link": "http://csswizardry.com",
+            "author-mail": "harry@csswizardry.com",
+            "tags": [
+                "css",
+                "best practises"
+            ]
+        },
+        {
+            "url": "http://csswizardry.com/2012/07/shoot-to-kill-css-selector-intent/",
+            "title": "Shoot to kill; CSS selector intent",
+            "description": "A great article about writing efficient selectors in CSS.",
+            "author-link": "http://csswizardry.com",
+            "author-mail": "harry@csswizardry.com",
+            "tags": [
+                "css",
+                "best practises"
+            ]
+        },
+        {
+            "url": "http://csswizardry.com/2012/04/the-single-responsibility-principle-applied-to-css/",
+            "title": "The single responsibility principle applied to CSS",
+            "description": "Taking best practises from OO programming.",
+            "author-link": "http://csswizardry.com",
+            "author-mail": "harry@csswizardry.com",
+            "tags": [
+                "css",
+                "best practises"
+            ]
+        }
+    ],
+    "html best practises": [
+        {
+            "url": "http://github.com/necolas/idiomatic-html",
+            "title": "Principles of writing consistent, idiomatic HTML",
+            "description": "The following document outlines a reasonable style guide for HTML development. These guidelines strongly encourage the use of existing, common, sensible patterns. They should be adapted as needed to create your own style guide.",
+            "author": "Nicolas Gallagher",
+            "author-link": "http://nicolasgallagher.com",
+            "author-mail": "nicolas@nicolasgallagher.com",
+            "tags": [
+                "html",
+                "best practises"
+            ]
+        },
+        {
+            "url": "http://html5boilerplate.com/",
+            "title": "HTML5 Boilerplate - The web’s most popular front-end template",
+            "description": "HTML5 Boilerplate helps you build fast, robust, and adaptable web apps or sites. Kick-start your project with the combined knowledge and effort of 100s of developers, all in one little package.",
+            "tags": [
+                "html",
+                "bootstraps",
+                "best practises"
+            ]
+        }
+    ],
+    "full stack": [
+        {
+            "url": "http://bem.info/",
+            "title": "BEM",
+            "description": "BEM stands for Block, Element, Modifier. Full stack technology and methodology for creating web applications.",
+            "tags": [
+                "html",
+                "css",
+                "js",
                 "best practises"
             ]
         }
