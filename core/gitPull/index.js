@@ -23,6 +23,9 @@ setInterval(function() {
         }
         console.log("Git pull from reposity...");
 
-        exec('git --work-tree='+ appDir +' --git-dir='+ appDir +'/.git pull https://'+userName+':'+password+'@'+opts.pullRepo, callback);
+        exec('git --work-tree='+ appDir +' --git-dir='+ appDir +'/.git pull --rebase', callback);
+
+        //TODO: add possibility to optionally use auth for repo update
+//        exec('git --work-tree='+ appDir +' --git-dir='+ appDir +'/.git pull https://'+userName+':'+password+'@'+opts.pullRepo, callback);
     }
 },opts.articlesDataCron);
