@@ -8,13 +8,19 @@ var express = require('express')
     , path = require('path')
     , MongoStore = require('connect-mongostore')(express)
     ;
+/* /Module dependencies */
 
-global.appDir = path.dirname(require.main.filename);
+
+/* Global vars */
+global.articlesData = {}; //all-data.json obj
+
+global.appDir = path.dirname(require.main.filename); //path to project dir
 
 global.MODE = process.env.NODE_ENV || 'development';
 
 global.app = express();
 global.opts = require('./core/options/'); //Global options
+/* /Global vars */
 
 
 /*
@@ -23,12 +29,16 @@ global.opts = require('./core/options/'); //Global options
 var articlesJson = require('./core/articles-json');
 require('./core/gitPull');
 
-// Preparing initial data till cron
-fs.readFile(__dirname + '/public/output/all-data.json', function(err, data) {
-    if (err) {
+//TODO: check and generate file on first start
+try {
+    articlesData = JSON.parse(fs.readFileSync(__dirname + '/public/output/all-data.json', "utf8")) || {};
+} catch (e) {
+    if (e.code === 'ENOENT') {
         articlesJson.generateData();
+
+        console.log('All-data.json is not generated yet, please re-run application.'.red);
     }
-});
+}
 
 /*
 * auth module
@@ -90,28 +100,16 @@ var arr = ['/','/index','/index.html','/home'];
 //mustache generate index page
 var indexData = JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8"));
 
-//TODO: check and generate file on first start
-var sectionData;
-
-try {
-    sectionData = JSON.parse(fs.readFileSync(__dirname + '/public/output/all-data.json', "utf8")) || {};
-} catch (e) {
-    if (e.code === 'ENOENT') {
-        sectionData = {};
-        console.log('All-data.json is not generated yet, please re-run application.'.red);
-    }
-}
-
 arr.map(function(item) {
     app.get(item, function(req, res) {
         var indexJson = {records:indexData};
 
-        for (section in sectionData) {
+        for (var section in articlesData) {
         	if (indexJson[section] === undefined) {
         		indexJson[section] = [];
         	}
 
-			for (articles in sectionData[section]) {
+			for (var articles in articlesData[section]) {
 				indexJson[section].push({
 					linkTitle: articles,
 					linkHref: '/#!/search/' + articles

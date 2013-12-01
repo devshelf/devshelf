@@ -51,19 +51,16 @@ var removeFromArray = function removeA(arr) {
 var checkVotesId = function(id) {
     var currentID = id,
         response = false,
-        sectionData = {},
         existingIDs = [];
 
     // Getting actual data for existing ID lookup
-    try {
-        sectionData = JSON.parse(fs.readFileSync(appDir + '/public/output/all-data.json', "utf8")) || {};
-    } catch (e) {
-        console.log("voting/index.js, can't find all-data.json".red);
+    if (JSON.stringify(articlesData) === '{}') { //from global var or from file
+        articlesData = JSON.parse(fs.readFileSync(appDir + '/public/output/all-data.json', "utf8")) || {};
     }
 
     // Preparing existing IDs list
-    for(var cat in sectionData) {
-        var currentCat = sectionData[cat];
+    for(var cat in articlesData) {
+        var currentCat = articlesData[cat];
 
         for(var obj in currentCat) {
             var targetArr = currentCat[obj];
