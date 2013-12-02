@@ -3,39 +3,47 @@
  * Most of these are inherited from Base, but I want to change a few.
  */
 body {
-    color: #526066;
-}
+	color: #526066;
+	}
 
 h2, h3 {
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    font-weight: 600;
-}
+	/*letter-spacing: 0.25em;*/
+	text-transform: uppercase;
+	font-weight: 600;
+	}
 
 p {
-    line-height: 1.6em;
-}
+	line-height: 1.6em;
+	}
 
 
 /*
  * -- Layout Styles --
  */
 .l-content {
-    margin: 0 auto;
-}
+	margin: 0 auto;
+	}
 
 .l-box {
-    padding: 0.5em 2em;
-}
+	padding: 0.5em 2em;
+	}
 
 /*
  * -- MENU STYLES --
  * Make the menu have a very faint box-shadow.
  */
 .pure-menu {
-    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
-}
+	box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+	}
 
+.mobile-menu-toggle {
+	display: none;
+	}
+
+.show-related {
+	display: none;
+	cursor: pointer;
+	}
 
 /*
  * -- BANNER --
@@ -44,54 +52,54 @@ p {
  * vertically center the text.
  */
 .banner {
-    background: transparent url('../img/code.png') 0 0 repeat-y fixed;
-    text-align: center;
-    background-size: 100%;
-    width: 100%;
-    margin:38px 0 3em 0;
-    border-bottom: 1px solid #b7b7b7;
+	background: transparent url('../img/code.png') 0 0 repeat-y fixed;
+	text-align: center;
+	background-size: 100%;
+	width: 100%;
+	margin:38px 0 3em 0;
+	border-bottom: 1px solid #b7b7b7;
 
-}
+	}
 
-    .banner-inner {
-        background: rgba(0,0,0,.65);
-        padding: 4em 0;
-        -webkit-transition: background 0.9s ease;
--moz-transition: background 0.9s ease;
--o-transition: background 0.9s ease;
--ms-transition: background 0.9s ease;
-transition: background 0.9s ease;
-        }
-        .banner-inner:hover {
-            background: rgba(0,0,0,.9);
-        }
+.banner-inner {
+	background: rgba(0,0,0,.65);
+	padding: 4em 0;
+	-webkit-transition: background 0.9s ease;
+	-moz-transition: background 0.9s ease;
+	-o-transition: background 0.9s ease;
+	-ms-transition: background 0.9s ease;
+	transition: background 0.9s ease;
+	}
+.banner-inner:hover {
+	background: rgba(0,0,0,.9);
+	}
 
-    .banner-head {
-        font-size: 3em;
-        color: white;
-        font-weight: 500;
-        text-shadow: 0 1px 1px black;
-        text-transform: uppercase;
-	    margin-bottom: .7em;
+.banner-head {
+	font-size: 3em;
+	color: white;
+	font-weight: 500;
+	text-shadow: 0 1px 1px black;
+	text-transform: uppercase;
+	margin-bottom: .7em;
 
-    }
+	}
 
-    .banner-head.sub-title {
-        text-transform: none;
-        letter-spacing: 1px;
-        font-size: 3em;
-        margin-bottom: .5em;
+.banner-head.sub-title {
+	text-transform: none;
+	letter-spacing: 1px;
+	font-size: 3em;
+	margin-bottom: .5em;
 
-    }
+	}
 
 .home-search {
 	margin-bottom: .7em;
 	}
 
-	.home-search .pure-button {
-		padding-top: .6em;
-		padding-bottom: .55em;
-		}
+.home-search .pure-button {
+	padding-top: .6em;
+	padding-bottom: .55em;
+	}
 
 /*
 button[type=submit]::before {
@@ -109,34 +117,34 @@ button[type=submit]::before {
  * -- PRICING TABLE WRAPPER --
  * This element wraps up all the pricing table elements
  */
- .pricing-tables,
- .information {
-    max-width: 90%;
-    margin: 0 auto;
- }
+.pricing-tables,
+.information {
+	max-width: 90%;
+	margin: 0 auto;
+	}
 .pricing-tables {
-    margin-bottom: 3.125em;
-    text-align: center;
-}
+	margin-bottom: 3.125em;
+	text-align: center;
+	}
 
 /*
  * -- PRICING TABLE  --
  * Every pricing table has the .pricing-table class
  */
 .pricing-table {
-    border: 1px solid #ddd;
+	border: 1px solid #ddd;
 	border-bottom: none;
-    margin: 0 0.5em;
-    opacity: .85;
+	margin: 0 0.5em;
+	opacity: .85;
 
-}
-    .pricing-table:hover {
-        opacity: 1;
-    }
+	}
+.pricing-table:hover {
+	opacity: 1;
+	}
 
-    .pricing-table .pricing-table-header a {
-            color:#fff;
-    }
+.pricing-table .pricing-table-header a {
+	color:#fff;
+	}
 
 /*
  * -- PRICING TABLE HEADER COLORS --
@@ -144,24 +152,24 @@ button[type=submit]::before {
  */
 
 .column-title {
-    background: #000;
-}
+	background: #000;
+	}
 
 .column-html5 .column-title {
-    background: #749E6E;
-}
+	background: #749E6E;
+	}
 
 .column-css3 .column-title  {
-    background: #523A52;
-}
+	background: #523A52;
+	}
 
 .column-other .column-title  {
-    background: #A84734;
-}
+	background: #A84734;
+	}
 
 .column-jsapi .column-title  {
-    background: #CB7B34;
-}
+	background: #CB7B34;
+	}
 
 
 /*
@@ -169,9 +177,9 @@ button[type=submit]::before {
  * By default, a header is black/white, and has some styles for its <h2 class="column-title"> name.
  */
 .pricing-table-header {
-    background: #111;
-    color: #fff;
-}
+	background: #111;
+	color: #fff;
+	}
 /*    .pricing-table-header h2 {
         margin: 0;
         padding-top: 2em;
@@ -180,21 +188,21 @@ button[type=submit]::before {
 
     }*/
 
-    .column-title {
-        margin: 0;
-        padding: 15px 0;
-        font-size: 3em;
-        font-weight: normal;
-        letter-spacing: 0;
-        color:#fff;
+.column-title {
+	margin: 0;
+	padding: 15px 0;
+	font-size: 3em;
+	font-weight: normal;
+	letter-spacing: 0;
+	color:#fff;
 
-		min-height: 55px;
-		line-height: 58px;
-        }
+	min-height: 55px;
+	line-height: 58px;
+	}
 
-        .column-title a {
-            color:#fff;
-        }
+.column-title a {
+	color:#fff;
+	}
 
 
 /*
@@ -202,22 +210,22 @@ button[type=submit]::before {
  * Styles for the price and the corresponding <span>per month</span>
  */
 .pricing-table-price {
-    font-size: 4em;
-    margin: 0.2em 0 0;
-    font-weight: 100;
-    white-space: nowrap;
-    text-transform: uppercase;
+	font-size: 4em;
+	margin: 0.2em 0 0;
+	font-weight: 100;
+	white-space: nowrap;
+	text-transform: uppercase;
 
-}
-    .pricing-table-price span {
-        display: block;
-        text-transform: uppercase;
-        font-size: 0.2em;
-        padding-bottom: 2em;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.5);
-        *color: #fff;
-    }
+	}
+.pricing-table-price span {
+	display: block;
+	text-transform: uppercase;
+	font-size: 0.2em;
+	padding-bottom: 2em;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 0.5);
+	*color: #fff;
+	}
 
 
 
@@ -226,11 +234,11 @@ button[type=submit]::before {
  * Each pricing table has a <ul> which is denoted by the .pricing-table-list class
  */
 .pricing-table-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	}
 
 
 /*
@@ -238,13 +246,16 @@ button[type=submit]::before {
  * Styles for the individual list elements within each pricing table
  */
 .pricing-table-list li {
-    padding: 0.8em 0;
-    background: #f7f7f7;
-    border-bottom: 1px solid #e7e7e7;
-}
+	background: #f7f7f7;
+	border-bottom: 1px solid #e7e7e7;
+	}
 .pricing-table-list li:hover {
-    background: #eee;
-}
+	background: #eee;
+	}
+.pricing-table-list li a {
+	display: block;
+	padding: 0.8em 0;
+	}
 
 /*
  * -- PRICING TABLE BUTTON --
@@ -252,28 +263,28 @@ button[type=submit]::before {
  * This inherits from Pure Button.
  */
 .button-more {
-/*    border: 1px solid #ccc;
-    background: #fff;
-    color: #333;*/
-    /*border-radius: 2em;*/
-    font-weight: bold;
-    position: relative;
-    bottom: -1.5em;
-}
+	/*    border: 1px solid #ccc;
+		background: #fff;
+		color: #333;*/
+	/*border-radius: 2em;*/
+	font-weight: bold;
+	position: relative;
+	bottom: -1.5em;
+	}
 
 .information-head {
-    color: black;
-    font-weight: 500;
-}
+	color: black;
+	font-weight: 500;
+	}
 
 .footer {
-    background: black;
-    color: #888;
-    text-align: center;
-}
-    .footer a {
-        color: #ddd;
-    }
+	background: black;
+	color: #888;
+	text-align: center;
+	}
+.footer a {
+	color: #ddd;
+	}
 
 
 
@@ -284,45 +295,124 @@ button[type=submit]::before {
  */
 @media(max-width: 767px) {
 	.banner {
-	    background-size: auto;
+		background-size: auto;
+		}
+
+	.banner-head {
+		font-size: 3em;
+		}
+	.pricing-table {
+		margin-bottom: 2em;
+		}
+
+	.pure-form.home-search .pure-input {
+		width:80%;
+		margin-bottom: 1em;
+		}
+	.user-login {
+		border-bottom: 1px solid darkgray;
+		}
+
 	}
 
-    .banner-head {
-        font-size: 3em;
-    }
-    .pricing-table {
-        margin-bottom: 2em;
-    }
+@media(max-width: 620px) {
+	.banner-inner:hover,
+	.banner-inner {
+		background: rgba(0,0,0,.8);
+		}
 
-    .pure-form.home-search .pure-input {
-        width:80%;
-        margin-bottom: 1em;
-    }
-    .user-login {
-        border-bottom: 1px solid darkgray;
-    }
+	.pure-menu-fixed {
+		height: 32px;
+		}
 
-}
+	.sidebar-header,
+    .banner {
+	    margin-top: 32px;
+	    }
+
+	.banner-inner {
+		padding-top: 1em;
+		padding-bottom: 1.5em;
+		}
+
+	.pricing-tables {
+		margin-bottom: 0;
+		}
+
+    .pure-menu.pure-menu-horizontal .pure-menu-heading {
+	    position: relative;
+	    top: 1px;
+	    }
+
+	.pure-menu.pure-menu-horizontal>ul {
+		display: block;
+		height: auto;
+		}
+	.pure-menu.pure-menu-horizontal>ul>li {
+		display: block;
+		}
+	.user-login {
+		float: none;
+		height: auto;
+		text-align: left;
+		border-top: 1px solid darkgray;
+		}
+
+	.show-related {
+		display: inline-block;
+		}
+
+	.mobile-menu-toggle {
+		position: relative;
+		top:2px;
+		display: inline-block;
+		vertical-align: middle;
+		font-size: .8em;
+		cursor: pointer;
+		}
+
+		.mobile-menu-toggle.related {
+			position: relative;
+			top: -1px;
+			padding: .25em;
+			}
+
+		.pure-menu .mobile-menu-toggle {
+			position: absolute;
+			right: 20px;
+			}
+
+	.mobile-menu-part {
+		display: none!important;
+		}
+		.pure-menu .mobile-menu-part {
+			background-color: #fff;
+			}
+
+		.mobile-menu-part.__active {
+			display: block!important;
+			}
+
+    .pure-form.main-search {
+	    margin-bottom: 1em;
+	    }
+
+	}
 
 /*
  * -- PHONE MEDIA QUERIES --
  * On phones, we want to reduce the height and font-size of the banner further
  */
 @media (max-width: 480px) {
-    .banner {
-        /*height: 200px;*/
-    }
-    .banner-head {
-        font-size: 2em;
-    }
+	.banner {
+		/*height: 200px;*/
+		}
+	.banner-head {
+		font-size: 2em;
+		}
 
-    .user-login {
-        width:100%;
-        text-align: center;
-    }
-
-    .pure-form.home-search .pure-input {
-        width: 90%;
-        margin:0 auto;
+	.pure-form.home-search .pure-input {
+		width: 90%;
+		margin:0 auto;
+		}
 	}
-}

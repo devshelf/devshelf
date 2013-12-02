@@ -2,49 +2,48 @@
 <html lang="en">
 {{#records}}
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A layout example that shows off a responsive pricing table.">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A layout example that shows off a responsive pricing table.">
 
-    <title>{{title}}</title>
+	<title>{{title}}</title>
 
-    <link rel="stylesheet" href="/build/css/all.min.css">
+	<link rel="stylesheet" href="/build/css/all.min.css">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/build/js/jquery-2.0.3.min.js"><\/script>')</script>
-    <script src="/build/js/all.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/build/js/jquery-2.0.3.min.js"><\/script>')</script>
+	<script src="/build/js/all.min.js"></script>
 </head>
 <body>
-    <div class="pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-        <ul class="user-login" id="user-login">
-            <li class="user-login_item" style="display: none">
-            	<a href="#" class="user-login js-login"><i class="fa fa-user"></i> Log in</a>
-            </li>
-        </ul>
+<div class="pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+	<a href="/#!/home" class="pure-menu-heading">{{{logo}}}</a>
+	<span class="pure-button pure-button-small mobile-menu-toggle"><i class="fa fa-bars"></i></span>
+	<ul class="mobile-menu-part">
+		{{#menu}}
+		<li><a href="{{link}}">{{name}}</a></li>
+		{{/menu}}
+	</ul>
+	<ul class="user-login mobile-menu-part" id="user-login">
+		<li class="user-login_item" style="display: none">
+			<a href="#" class="user-login js-login"><i class="fa fa-user"></i> Log in</a>
+		</li>
+	</ul>
+</div>
 
-        <a href="/#!/home" class="pure-menu-heading">{{{logo}}}</a>
+<!-- content area -->
+<div id="main-content"></div>
+<!-- /content area -->
 
-        <ul>
-            {{#menu}}
-                <li><a href="{{link}}">{{name}}</a></li>
-            {{/menu}}
-        </ul>
-    </div>
-
-	<!-- content area -->
-	<div id="main-content"></div>
-	<!-- /content area -->
-
-	<!-- main page template -->
-	<script type="text/x-jquery-tmpl" id="main-page" title="Main page" data-url="">
+<!-- main page template -->
+<script type="text/x-jquery-tmpl" id="main-page" title="Main page" data-url="">
 	<div class="banner">
 		<div class="banner-inner">
 			<h1 class="banner-head">
-				{{bannerText}}
+				{{bannerText}} <span class="show-related">V</span>
 			</h1>
 			<!--<h2 class="banner-head sub-title">{{searchText}}</h2>-->
 			<form class="pure-form home-search">
-				<input type="text" class="pure-input pure-input-1-3 js-search-input" placeholder="For example: box-shadow" tabindex="1" autofocus>
+				<input type="text" class="pure-input pure-input-1-3 js-search-input" placeholder="For example: box-shadow" tabindex="1">
 				<button type="submit" class="pure-button js-search-button"><i class="fa fa-search fa-lg"></i> Search</button>
 			</form>
 		</div>
@@ -129,42 +128,42 @@
         &copy; {{{copy}}}
 	</div>
 	</script>
-	<!-- /main page template -->
+<!-- /main page template -->
 
-    <div id="login-popup" class="login-popup">
-        <div class="pure-g-r">
-            <div class="pure-u-1">
+<div id="login-popup" class="login-popup">
+	<div class="pure-g-r">
+		<div class="pure-u-1">
 
-                <header class="login-popup-header login-popup-padding">
-                    <h3 class="login-popup-title main">Authorization required</h3>
-                    <span class="login-popup-close js-login-popup-close" title="Close me"><i class="fa fa-times-circle"></i></span>
-                </header>
+			<header class="login-popup-header login-popup-padding">
+				<h3 class="login-popup-title main">Authorization required</h3>
+				<span class="login-popup-close js-login-popup-close" title="Close me"><i class="fa fa-times-circle"></i></span>
+			</header>
 
-                <div class="login-popup-desc login-popup-padding">
-                    <p>We use your account details to accept the votes</p>
-                    <p class="login-popup-buttons-set">
-                        <span>Please login through</span>
-                        <a class="pure-button js-login" href="#"><i class="fa fa-github-alt" title="GitHub"></i> GitHub</a>
-                    </p>
-                </div>
+			<div class="login-popup-desc login-popup-padding">
+				<p>We use your account details to accept the votes</p>
+				<p class="login-popup-buttons-set">
+					<span>Please login through</span>
+					<a class="pure-button js-login" href="#"><i class="fa fa-github-alt" title="GitHub"></i> GitHub</a>
+				</p>
+			</div>
 
-             </div>
-        </div>
-    </div>
+		</div>
+	</div>
+</div>
 
-    <script type="text/javascript">var indexJson = {{{indexJson}}};</script>
+<script type="text/javascript">var indexJson = {{{indexJson}}};</script>
 <script type="text/javascript">
-  var _gauges = _gauges || [];
-  (function() {
-    var t   = document.createElement('script');
-    t.type  = 'text/javascript';
-    t.async = true;
-    t.id    = 'gauges-tracker';
-    t.setAttribute('data-site-id', '52925f61108d7b6a80000041');
-    t.src = '//secure.gaug.es/track.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(t, s);
-  })();
+	var _gauges = _gauges || [];
+	(function() {
+		var t   = document.createElement('script');
+		t.type  = 'text/javascript';
+		t.async = true;
+		t.id    = 'gauges-tracker';
+		t.setAttribute('data-site-id', '52925f61108d7b6a80000041');
+		t.src = '//secure.gaug.es/track.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(t, s);
+	})();
 </script>
 </body>
 {{/records}}

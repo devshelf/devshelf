@@ -3,6 +3,8 @@ var TARGET_CONT = 'main-content',
     searchTagList = {},
     voteData = {};
 
+var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
+
 var templateEngine = (function() {
     var hashStruct = {};
 
@@ -273,6 +275,11 @@ var templateEngine = (function() {
 
             }
 
+            //TODO: move to custom callback
+            if (!isTouch) {
+                $('.js-search-input').focus();
+            }
+
             return this;
         },
 
@@ -541,4 +548,21 @@ alldata = searchTagList;
             prepateTemplates();
         })
     })
-})
+});
+
+/**
+ * Mobile UI: hidden menus togglers
+ */
+
+$(function(){
+	//var mobileParts = $('.mobile-menu-part');
+
+	$('.pure-menu, #main-content').on('click', '.mobile-menu-toggle', function(){
+		var _this = $(this);
+
+		_this.toggleClass('pure-button-active');
+		_this.parents('div').find('.mobile-menu-part').toggleClass('__active');
+
+	});
+
+});

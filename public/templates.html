@@ -2,10 +2,10 @@
     <div class="pure-g-r" id="layout">
         <div class="sidebar pure-u">
             <header class="sidebar-header">
-                <h1 class="sidebar-header-title">Related Tags</h1>
+                <h1 class="sidebar-header-title">Related Tags <span class="mobile-menu-toggle related"><i class="fa fa-toggle-down"></i></span></h1>
                 <!-- <h2 class="brand-tagline">Check out more:</h2> -->
 
-                <nav class="nav" id="nav-list"></nav>
+                <nav class="nav mobile-menu-part" id="nav-list"></nav>
             </header>
         </div>
 
@@ -13,7 +13,7 @@
 
             <div class="content">
             <form class="pure-form main-search">
-                <input type="text" class="pure-input js-search-input js-search-input-interactive" placeholder="Search next..." tabindex="1" value="{{getParams}}" autofocus>
+                <input type="text" class="pure-input js-search-input js-search-input-interactive" placeholder="Search next..." tabindex="1" value="{{getParams}}">
                 <button type="submit" class="pure-button js-search-button"><i class="fa fa-search" title="Find!"></i></button>
             </form>
                 <div class="posts" id="posts-output">
@@ -137,7 +137,7 @@
                 <div class="l-box">
                     <h3>Robert Haritonov</h3>
                     <p>
-                        <a href="http://twitter.com/operatino_en">@operatino</a>, <a href="http://rhr.me">rhr.me</a>
+                        <a href="http://twitter.com/operatino_en" target="_blank">@operatino</a>, <a href="http://rhr.me" target="_blank">rhr.me</a>
                     </p>
                     <p>
                         Idea, organization, voting and launch.
@@ -149,7 +149,7 @@
                 <div class="l-box">
                     <h3>Ivan Metelev</h3>
                     <p>
-                        <a href="http://twitter.com/from_anywhere">@from_anywhere</a>, <a href="http://welovehtml.ru/">welovehtml.ru</a>
+                        <a href="http://twitter.com/from_anywhere" target="_blank">@from_anywhere</a>, <a href="http://welovehtml.ru/" target="_blank">welovehtml.ru</a>
                     </p>
                     <p>
                         Templating structure and navigation.
@@ -161,7 +161,7 @@
                 <div class="l-box">
                     <h3>Juris Pukitis</h3>
                     <p>
-                        <a href="http://twitter.com/jur4eg">@jur4eg</a>
+                        <a href="http://twitter.com/jur4eg" target="_blank">@jur4eg</a>
                     </p>
                     <p>
                         Node JS back-end supplier, data caching.
@@ -173,7 +173,7 @@
                 <div class="l-box">
                     <h3>Dmitry Lapynov</h3>
                     <p>
-                        <a href="http://twitter.com/lapynow">@lapynow</a>
+                        <a href="http://twitter.com/lapynow" target="_blank">@lapynow</a>
                     </p>
                     <p>
                         Search engine and layout.
@@ -185,7 +185,10 @@
                 <div class="l-box">
                     <h3>Andrew Ivashkevich</h3>
                     <p>
-                        Layout solutions.
+                        <a href="http://twitter.com/ymaz_x0" target="_blank">@ymaz_x0</a>
+                    </p>
+                    <p>
+                        Layout ideas and solutions.
                     </p>
                 </div>
             </div>
@@ -194,11 +197,13 @@
         </div>
 
         <div class="l-box ribbon">
-            <h2><a href="https://github.com/sourcejs/devshelf/issues" class="pure-button pure-button-primary"><i class="fa fa-envelope"></i> Stay in touch</a></h2>
+            <h2 class="about-us_btn"><a href="https://github.com/sourcejs/devshelf/issues" class="pure-button pure-button-primary"><i class="fa fa-envelope"></i> Stay in touch</a></h2>
         </div>
     </div>
 
-    <div class="footer">
-        {{{copy}}}
+    <div class="pure-g-r">
+        <div class="footer pure-u-1">
+            {{{copy}}}
+        </div>
     </div>
 </script>
