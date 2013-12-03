@@ -127,5 +127,19 @@
                 "best practises"
             ]
         }
+    ],
+    "rookie": [
+        {
+            "url": "http://www.impressivewebs.com/skills-front-end-developers/",
+            "title": "Skills for front-end developer",
+            "description": "List containing a wide variety of skills and technologies that front-end developers should be working on learning.",
+            "tags": [
+                "html",
+                "css",
+                "js",
+                "best practises",
+                "howto"
+            ]
+        }    
     ]
 }
