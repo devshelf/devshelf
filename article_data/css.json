@@ -102,5 +102,18 @@
     			"ie"
     		]
     	}
-    ]
+    ],
+
+    "media rules": [
+        {
+                "url": "http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/",
+                "title": "How to unprefix -webkit-device-pixel-ratio",
+                "author": "W3C",
+		"tags": [
+			"best-practices",
+			"media-queries",
+			"responsive"
+		]
+        }
+     ]
 }
