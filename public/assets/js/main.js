@@ -172,34 +172,58 @@ var templateEngine = (function() {
                 hash = p.hash,
                 callback = p.callback || function(p) {},
                 getParams = p.hash.split('/')[1],
-                resultList,
+                resultList = [],
                 target;
 
             if (!!getParams) {
-                hash = p.hash.split('/')[0]
+                hash = p.hash.split('/')[0];
+            } else {
+                getParams = '';
             }
 
-            if ((hash !== '') && (!!hashStruct[hash])) {
-                targetCont = hashStruct[hash];
+            if (hash !== '') {
+            	if (!!hashStruct[hash]) {
+                	targetCont = hashStruct[hash];
+                } else {
+                	var hashToSpaces = hash.replace(/\s+/g, '_');
+                	if ( (hash.indexOf('_') !== -1) && (!!hashStruct[hashToSpaces]) ) {
+               			targetCont = hashStruct[hashToSpaces];
+                	}
+                }
             }
 
             /**
              * Case of search is more complicated than others
              */
             if ((targetCont == 'search') && (!!getParams)) {
-                resultList = templateEngine.fuzzySearch({
-                    q: getParams,
+            	// Create a local copy of resultList
+                $.extend(true, resultList, templateEngine.fuzzySearch({
+                    q: getParams.replace(/_/g, ' '),
                     allData: searchTagList
-                })[1];
+                })[1]);
 
-                if (!!resultList) {
+                for (var resultInstance = 0; resultInstance < resultList.length; resultInstance++) {
+                	var resultItem = resultList[resultInstance];
+
+					for (var resultTags = 0; resultTags < resultItem.tags.length; resultTags++) {
+						var title = resultItem.tags[resultTags],
+							link = title.replace(/\s+/g, '_');
+
+						resultItem.tags[resultTags] = {
+							tagTitle: title,
+							tagLink:link
+						}
+					}
+                }
+
+                if (resultList.length) {
                     templateEngine.attachVotes(resultList);
                 }
 
                 templateEngine.insertTemplate( {
                     template: 'search',
                     params: {
-                        getParams: getParams,
+                        getParams: getParams.replace(/_/g, ' '),
                         resultList: resultList
                     }
                 });
@@ -208,7 +232,7 @@ var templateEngine = (function() {
                  * Render search categories template
                  */
                 templateEngine.getCategoryByArticle({
-                    query: getParams,
+                    query: getParams.replace(/_/g, ' '),
                     callback: function(p) {
                         templateEngine.insertTemplate(p);
                     }
@@ -229,7 +253,7 @@ var templateEngine = (function() {
                 template: targetCont,
                 target: target,
                 params: {
-                    getParams: getParams,
+                    getParams: getParams.replace(/_/g, ' '),
                     resultList: resultList,
                     copy: indexJson.records.copy
                 }
@@ -262,7 +286,7 @@ var templateEngine = (function() {
                 actualTitle = actualParams.title || $template.attr('title') || document.title,
                 cleanHash = '/',
                 getParams = !!actualParams.getParams
-                    ? '/'+actualParams.getParams
+                    ? '/'+actualParams.getParams.replace(/\s+/gi, '_')
                     : '';
 
             if (!!actualParams.replaceHistory && actualParams.replaceHistory) {
@@ -314,7 +338,7 @@ var templateEngine = (function() {
                         var currentArticleArray = totalTagList[currentCategory][articleInCategory];
 
                         navList.push( {
-                            navLink: '/#!/search/' + articleInCategory,
+                            navLink: '/#!/search/' + articleInCategory.replace(/\s+/g, '_'),
                             navTitle: articleInCategory
                         } );
 
@@ -356,8 +380,6 @@ var templateEngine = (function() {
                 return 0;
             });
 
-//            console.log(resultList);
-
             return this;
         }
     }
@@ -373,7 +395,7 @@ var mainApp = function() {
      * On Back/Forward buttons press template render
      */
     window.addEventListener('popstate', function(e) {
-        templateEngine.checkHash();
+    	templateEngine.checkHash();
     })
 
     /**
@@ -382,15 +404,29 @@ var mainApp = function() {
     $('#main-content').on('click', '.js-search-button', function(e) {
          e.preventDefault();
 
-         var searchQuery = $('.js-search-input').val(),
-             resultList;
+         var searchQuery = $.trim($('.js-search-input').val()),
+             resultList = [];
 
-        resultList = templateEngine.fuzzySearch({
+        $.extend(true, resultList, templateEngine.fuzzySearch({
             q: searchQuery,
             allData: searchTagList
-        })[1];
+        })[1]);
 
-        if (!!resultList) {
+		for (var resultInstance = 0; resultInstance < resultList.length; resultInstance++) {
+			var resultItem = resultList[resultInstance];
+
+			for (var resultTags = 0; resultTags < resultItem.tags.length; resultTags++) {
+				var title = resultItem.tags[resultTags],
+					link = title.replace(/\s+/g, '_');
+
+				resultItem.tags[resultTags] = {
+					tagTitle: title,
+					tagLink:link
+				}
+			}
+		}
+
+        if (resultList.length) {
             templateEngine.attachVotes(resultList);
         }
 
@@ -429,15 +465,29 @@ var mainApp = function() {
      */
     $('#main-content').on('keyup', '.js-search-input-interactive', function() {
 
-        var searchQuery = $('.js-search-input').val(),
-            resultList;
+        var searchQuery = $.trim($('.js-search-input').val()),
+            resultList = [];
 
-        resultList = templateEngine.fuzzySearch({
+        $.extend(true, resultList, templateEngine.fuzzySearch({
             q: searchQuery,
             allData: searchTagList
-        })[1]; // 1 - liteMode
+        })[1]); // 1 - liteMode
 
-        if (!!resultList) {
+		for (var resultInstance = 0; resultInstance < resultList.length; resultInstance++) {
+			var resultItem = resultList[resultInstance];
+
+			for (var resultTags = 0; resultTags < resultItem.tags.length; resultTags++) {
+				var title = resultItem.tags[resultTags],
+					link = title.replace(/\s+/g, '_');
+
+				resultItem.tags[resultTags] = {
+					tagTitle: title,
+					tagLink:link
+				}
+			}
+		}
+
+        if (resultList.length) {
 			templateEngine.attachVotes(resultList);
 
             templateEngine.insertTemplate( {

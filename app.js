@@ -112,7 +112,7 @@ arr.map(function(item) {
 			for (var articles in articlesData[section]) {
 				indexJson[section].push({
 					linkTitle: articles,
-					linkHref: '/#!/search/' + articles
+					linkHref: '/#!/search/' + articles.replace(/\s+/g, '_')
 				})
 			}
         }
