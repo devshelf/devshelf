@@ -140,6 +140,29 @@
                 "best practises",
                 "howto"
             ]
-        }    
+        },
+        {
+            "url": "http://speckyboy.com/2013/11/13/node-js-for-front-end-developers/",
+            "title": "An Introduction to Node.js for Front-End Developers",
+            "tags": [
+                "nodeJS",
+                "js",
+                "howto"
+            ],
+            "author": "Nathan Smith",
+            "author-link": "http://sonspring.com"
+        },
+        {
+            "url": "http://24ways.org/2013/grunt-is-not-weird-and-hard/",
+            "title": "Grunt for People Who Think Things Like Grunt are Weird and Hard",
+            "tags": [
+                "nodeJS",
+                "js",
+                "grunt"
+            ],
+            "author": "Chris Coyier",
+            "author-link": "http://css-tricks.com/",
+            "author-mail": "chriscoyier@gmail.com"
+        }
     ]
 }
