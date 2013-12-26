@@ -31,5 +31,14 @@
         	"url": "http://shichuan.github.io/javascript-patterns/",
         	"title": "JS Patterns"
         }
+    ],
+    "meteor": [
+        {
+            "url": "http://moduscreate.com/diving-into-meteorjs/",
+            "title": "Diving into MeteorJS",
+            "tags": [
+                "nodejs"
+            ]
+        }
     ]
 }
