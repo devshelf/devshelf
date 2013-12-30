@@ -104,6 +104,7 @@ arr.map(function(item) {
     app.get(item, function(req, res) {
         var indexJson = {records:indexData};
 
+        //Generating links to all sections
         for (var section in articlesData) {
         	if (indexJson[section] === undefined) {
         		indexJson[section] = [];

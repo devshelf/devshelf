@@ -58,6 +58,7 @@ var checkVotesId = function(id) {
         articlesData = JSON.parse(fs.readFileSync(appDir + '/public/output/all-data.json', "utf8")) || {};
     }
 
+    //TODO: optimize existingIDs generation
     // Preparing existing IDs list
     for(var cat in articlesData) {
         var currentCat = articlesData[cat];

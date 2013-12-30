@@ -80,7 +80,7 @@ var generateData = function() {
 
                 // function for write json file
                 var generateJSON = function() {
-                    articlesData = JSON.stringify(outputJson) || {}; // Updating global object
+                    articlesData = outputJson || {}; // Updating global object
 
                     fs.writeFile(appDir+"/public/output/all-data.json", JSON.stringify(outputJson), function (err) {
                         if (err) {
