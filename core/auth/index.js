@@ -19,8 +19,8 @@ var addUser = function (source, sourceUser) {
   return user;
 };
 
-var GHappID = MODE === 'development' ? opts.github.devAppID : opts.github.appID,
-    GHappSecret =  MODE === 'development' ? opts.github.devAppSecret : opts.github.appSecret;
+var GHappID = MODE === 'development' ? global.opts.github.devAppID : global.opts.github.appID,
+    GHappSecret =  MODE === 'development' ? global.opts.github.devAppSecret : global.opts.github.appSecret;
 
 everyauth.everymodule
   .findUserById( function (id, callback) {

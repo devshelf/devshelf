@@ -20,6 +20,6 @@ setInterval(function() {
         }
         console.log("Git pull from reposity...");
 
-        exec('git --work-tree='+ appDir +' --git-dir='+ appDir +'/.git pull --rebase', callback);
+        exec('git --work-tree='+ global.appDir +' --git-dir='+ global.appDir +'/.git pull --rebase', callback);
     }
-},opts.articlesDataCron);
+},global.opts.articlesDataCron);

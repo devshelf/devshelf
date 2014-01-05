@@ -46,14 +46,14 @@ try {
 require('./core/auth');
 
 app.use(express.bodyParser())
-    .use(express.cookieParser(opts.cookieSecret));
+    .use(express.cookieParser(global.opts.cookieSecret));
 
 app.use(express.session({
-    secret: opts.cookieSecret,
+    secret: global.opts.cookieSecret,
     store: new MongoStore({
         'db': 'sessions',
-        host: opts.remoteDBhost,
-        port: opts.remoteDBport
+        host: global.opts.remoteDBhost,
+        port: global.opts.remoteDBport
     })
   })
 );
@@ -154,7 +154,8 @@ app.use(function(err, req, res, next) {
     res.send(500, '500');
 });
 
-var appPort = MODE === 'development' ? opts.app.devPort : opts.app.port;
+var appPort = MODE === 'development' ? global.opts.app.devPort : global.opts.app.port;
 
 app.listen(appPort);
-console.log('It is alive! On port '.green + appPort );
+var appPortString = appPort.toString();
+console.log('[DevShelf] is working on '.blue + appPortString.blue + ' port in '.blue + MODE.blue + ' mode...'.blue);

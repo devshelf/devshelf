@@ -3,7 +3,7 @@ var colors = require('colors'),
 
 
 /* Connect to DB */
-var dbAdress = 'mongodb://' + opts.remoteDBhost + ':' + opts.remoteDBport +'/votes';
+var dbAdress = 'mongodb://' + global.opts.remoteDBhost + ':' + global.opts.remoteDBport +'/votes';
 
 mongoose.connection.on("connecting", function() {
     return console.log("Started connection on " + (dbAdress).cyan + ", waiting for it to open...".grey);
@@ -286,7 +286,7 @@ setInterval(function() {
         NOT_RUNNING = true;
 
     }
-}, opts.votingDataCron);
+}, global.global.opts.votingDataCron);
 /* /All votes to json */
 
 
