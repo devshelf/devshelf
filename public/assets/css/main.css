@@ -24,7 +24,7 @@ a {
 .user-login {
 	float: right;
 	overflow: hidden;
-	height: 38px;
+	/*height: 38px;*/
 	background: #dadada url(../img/hd-bg.png) repeat;
 	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
 	border-left: 1px solid darkgray;
@@ -52,6 +52,21 @@ a {
 	}
 
 /* /USER LOGIN PART */
+
+/* LANGUAGE */
+
+.user-language {
+	display: inline-block;
+	line-height: 1.5em;
+	padding: 0 0.4em;
+	cursor: pointer;
+}
+
+.user-language + .user-language {
+	margin-left: 1em;
+}
+
+/* /LANGUAGE */
 
 /* HOMEPAGE SEARCH */
 

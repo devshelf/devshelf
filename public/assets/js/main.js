@@ -255,7 +255,8 @@ var templateEngine = (function() {
                 params: {
                     getParams: getParams.replace(/_/g, ' '),
                     resultList: resultList,
-                    copy: indexJson.records.copy
+                    copy: indexJson.records.copy,
+	                total: resultList.length
                 }
             });
 
@@ -360,6 +361,10 @@ var templateEngine = (function() {
             return this;
         },
 
+        /**
+        * Extending articles list with votes data and sorting list by desc
+        * @param {Array} resultList
+        */
         attachVotes: function(resultList) {
             //var outResult = [];
 
@@ -396,6 +401,34 @@ var mainApp = function() {
      */
     window.addEventListener('popstate', function(e) {
     	templateEngine.checkHash();
+    })
+
+    /**
+    * Language buttons events
+    */
+    $('.pure-menu').on('click', '.js-language', function() {
+    	var lang = 'en';
+
+    	var makeRedirect = function() {
+    		$.ajax({
+    			url: '/',
+    			type: 'post',
+    			data: {
+    				curr: window.location.hash,
+    				lang: lang
+    			},
+    			success: function() {
+    				window.location.reload();
+    			}
+    		})
+    	}
+
+    	if ($(this).hasClass('__ru')) {
+    		lang = 'ru';
+    	}
+
+    	makeRedirect();
+
     })
 
     /**
@@ -512,19 +545,34 @@ var mainApp = function() {
 }
 
 /**
- * Onstart routines
- */
-$(function() {
+* Localization module on client
+* Getting articles and voting data for specific language
+*/
+var getJsonData = function(p) {
+	var currentLanguage,
+		languages = {
+			en: {
+				data: 'output/all-data.json',
+				votes: 'output/all-votes.json'
+			},
+			ru: {
+				data: 'output/ru-all-data.json',
+				votes: 'output/ru-all-votes.json'
+			}
+		},
+		callback = p.callback || function() {};
 
     /**
      * Getting actual articles data
-     * @param callback
+     * @param {Object} p
+     * @param {Function} p.callback
+     * @param {String} p.jsonData — path to json articles data
      */
-    var getAllData = function(callback) {
-        var callback = callback || function() {};
+    var getAllData = function(p) {
+        var callback = p.callback || function() {};
 
         $.ajax({
-            url: 'output/all-data.json',
+            url: p.jsonData,
             success: function(data) {
                 totalTagList = $.extend(true, totalTagList, data);
 
@@ -533,8 +581,7 @@ $(function() {
                 }
 
                 templateEngine.extendingTags();
-//debug
-alldata = searchTagList;
+
                 callback();
             }
         })
@@ -542,12 +589,14 @@ alldata = searchTagList;
 
     /**
      * Getting actual voting data
-     * @param callback
+     * @param {Object} p
+     * @param {String} p.jsonData — path to json votes data
+     * @param {String} p.language — setting for database output
      */
-    var getVoteData = function(callback) {
-        var callback = callback || function() {};
+    var getVoteData = function(p) {
+        var callback = p.callback || function() {};
 
-        var dataUrl = 'output/all-votes.json',
+        var dataUrl = p.jsonData,
             cacheNeeded = true;
 
         //If logged, give latest info
@@ -559,6 +608,7 @@ alldata = searchTagList;
         //If not logged, give cached latest info
         $.ajax({
             cache: cacheNeeded,
+            data: p.language,
             url: dataUrl,
                 success: function(data) {
                     var votesJSON = data;
@@ -573,6 +623,33 @@ alldata = searchTagList;
         })
 
     }
+
+	// if p.lang not set, it equals to 'en'
+	currentLanguage = (languages[p.lang] === undefined)
+		? 'en'
+		: p.lang;
+
+	// Execution getting operations
+    getAllData({
+    	jsonData: languages[currentLanguage]['data'],
+    	callback: function() {
+			getVoteData({
+				jsonData: languages[currentLanguage]['votes'],
+				language: {
+					lang: currentLanguage
+				},
+				callback: function() {
+					callback();
+				}
+			})
+    	}
+    })
+}
+
+/**
+ * Onstart routines
+ */
+$(function() {
 
     /**
      * Getting templates and starts The App
@@ -591,12 +668,13 @@ alldata = searchTagList;
     }
 
     /**
-     * Trigger all those greats functions
+     * Getting data and rendering templates
      */
-    getAllData(function() {
-        getVoteData(function() {
-            prepateTemplates();
-        })
+    getJsonData({
+    	lang: 'en',
+    	callback: function() {
+	    	prepateTemplates();
+    	}
     })
 });
 
