@@ -1,0 +1,17 @@
+{
+    "css methodologies": [
+        {
+            "url": "http://operatino.github.io/MCSS/",
+            "title": "Многослойный CSS",
+            "description": "<p>Многослойная система организации CSS основана на принципах <a href='http://oocss.org/'>OOCSS</a> и <a href='http://bem.info/'>БЭМ</a>. Методология родилась и развивается в команде разработчиков <a href='http://corp.mail.ru/communications/odnoklassniki'>OK.ru</a> и рекомендуется к использованию как основа для собственного свода правил и документаций.</p>",
+            "author": "Robert Haritonov",
+            "author-link": "http://rhr.me",
+            "author-mail": "r@rhr.me",
+            "id":"mcssru",
+            "tags": [
+                "css",
+                "best practises"
+            ]
+        }
+    ]
+}

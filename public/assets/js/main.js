@@ -556,8 +556,8 @@ var getJsonData = function(p) {
 				votes: 'output/all-votes.json'
 			},
 			ru: {
-				data: 'output/ru-all-data.json',
-				votes: 'output/ru-all-votes.json'
+				data: 'output/ru/all-data.json',
+				votes: 'output/ru/all-votes.json'
 			}
 		},
 		callback = p.callback || function() {};

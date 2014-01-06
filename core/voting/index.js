@@ -54,14 +54,14 @@ var checkVotesId = function(id) {
         existingIDs = [];
 
     // Getting actual data for existing ID lookup
-    if (JSON.stringify(articlesData) === '{}') { //from global var or from file
-        articlesData = JSON.parse(fs.readFileSync(appDir + '/public/output/all-data.json', "utf8")) || {};
+    if (JSON.stringify(global.articlesData[global.opts.langDefault]) === '{}') { //from global var or from file
+        global.articlesData[global.opts.langDefault] = JSON.parse(fs.readFileSync(global.appDir + '/public/output/all-data.json', "utf8")) || {};
     }
 
     //TODO: optimize existingIDs generation
     // Preparing existing IDs list
-    for(var cat in articlesData) {
-        var currentCat = articlesData[cat];
+    for(var cat in global.articlesData[global.opts.langDefault]) {
+        var currentCat = global.articlesData[global.opts.langDefault][cat];
 
         for(var obj in currentCat) {
             var targetArr = currentCat[obj];
@@ -82,7 +82,7 @@ var checkVotesId = function(id) {
     }
 
     return response;
-}
+};
 /* /Common */
 
 
@@ -246,11 +246,11 @@ var generateVotingData = function() {
     Vote.find(function (err, votes) {
         if (!err) {
 
-            fs.readdir(appDir+'/public/output/',function(e){
+            fs.readdir(global.appDir+'/public/output/',function(e){
                 if(!e || (e && e.code === 'EEXIST')){
                     generateJSON();
                 } else if (e.code === 'ENOENT') {
-                    fs.mkdir(appDir+'/public/output/');
+                    fs.mkdir(global.appDir+'/public/output/');
                     generateJSON();
                 } else {
                     console.log(e);
@@ -258,7 +258,7 @@ var generateVotingData = function() {
             });
 
             var generateJSON = function() {
-                fs.writeFile(appDir+'/public/output/all-votes.json', JSON.stringify(votes), function (err) {
+                fs.writeFile(global.appDir+'/public/output/all-votes.json', JSON.stringify(votes), function (err) {
                     if (err) {
                         console.log(err);
                     }
@@ -268,7 +268,7 @@ var generateVotingData = function() {
         } else {
             console.log(err);
         }
-    })
+    });
 
     console.log('Generating Votind data - DONE'.green);
 };

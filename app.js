@@ -31,7 +31,7 @@ require('./core/gitPull');
 
 //TODO: check and generate file on first start
 try {
-    articlesData = JSON.parse(fs.readFileSync(__dirname + '/public/output/all-data.json', "utf8")) || {};
+    global.articlesData[global.opts.langDefault] = JSON.parse(fs.readFileSync(__dirname + global.opts.articlesDataOutputDir + global.opts.articlesDataFile, "utf8")) || {};
 } catch (e) {
     if (e.code === 'ENOENT') {
         articlesJson.generateData();
@@ -105,12 +105,12 @@ arr.map(function(item) {
         var indexJson = {records:indexData};
 
         //Generating links to all sections
-        for (var section in articlesData) {
+        for (var section in global.articlesData[global.opts.langDefault]) {
         	if (indexJson[section] === undefined) {
         		indexJson[section] = [];
         	}
 
-			for (var articles in articlesData[section]) {
+			for (var articles in global.articlesData[global.opts.langDefault][section]) {
 				indexJson[section].push({
 					linkTitle: articles,
 					linkHref: '/#!/search/' + articles.replace(/\s+/g, '_')

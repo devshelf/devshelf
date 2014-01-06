@@ -5,10 +5,48 @@ var fs = require('fs')
     , sh = require("shorthash")
     , extend = require('extend');
 
-var generateData = function() {
+
+/**
+ * Extend srcInput arcicles data with extendedInput data (for localization data merge)
+ * @param {Object} srcInput
+ * @param {Object} extenderInput
+ */
+var extendArticlesData = function(srcInput, extenderInput){
+    var src = JSON.parse(JSON.stringify(srcInput)), //Cloning objects to isolate from main
+        extender = JSON.parse(JSON.stringify(extenderInput));
+
+    for (var cat in extender) {
+        var catObj = extender[cat];
+
+        for (var tag in catObj) {
+            var tagArr = catObj[tag],
+                srcTagArr = src[cat][tag] || [];
+
+            if (srcTagArr.length === 0) {
+                src[cat][tag] = [];
+            }
+
+            src[cat][tag] = srcTagArr.concat(tagArr);
+        }
+    }
+
+    return src;
+};
+
+/**
+ * Generate JSON file with all articles data
+ * @param {String} targetDir
+ * @param {String} lang
+ */
+var prepareJSON = function(targetDir, lang) {
     //Generating output data with all articles info
-    var outputJson = {},
-        dir = appDir + "/article_data/";
+    var language = lang,
+        localizationEnabled = typeof language !== 'undefined',
+
+        dir = localizationEnabled ? targetDir + language + '/' : targetDir,
+
+        outputJSON = {},
+        JSONfileName = global.opts.articlesDataFile;
 
     fs.readdir(dir, function(err, files){
         var jsonFilesArr = [];
@@ -64,25 +102,35 @@ var generateData = function() {
                 }
             }
 
-            outputJson[fileName] = extend(currentFile);
+            outputJSON[fileName] = extend(currentFile);
             jsonFileQueue++;
+
+            //When all fiels scanned
             if (jsonFileQueue === jsonFileCount) {
-                fs.readdir(appDir+'/public/output/',function(e){
-                    if(!e || (e && e.code === 'EEXIST')){
-                        generateJSON();
-                    } else if (e.code === 'ENOENT') {
-                        fs.mkdir(appDir+'/public/output/');
-                        generateJSON();
-                    } else {
-                        console.log(e);
-                    }
-                });
+                var finalJSON = outputJSON;
+
+                //If localized, merge with main JSON
+                if (localizationEnabled) {
+
+                    //Update JSON data
+                    var defaultLangJSON = global.articlesData[global.opts.langDefault];
+
+                    finalJSON = extendArticlesData(defaultLangJSON, outputJSON);
+
+                    global.articlesData[language] = outputJSON;
+                }
+
+                global.articlesData[global.opts.langDefault] = finalJSON || {};
 
                 // function for write json file
-                var generateJSON = function() {
-                    articlesData = outputJson || {}; // Updating global object
+                var generateJSON = function(data, dir) {
+                    var JSONformat = null;
 
-                    fs.writeFile(appDir+"/public/output/all-data.json", JSON.stringify(outputJson), function (err) {
+                    if (global.MODE === 'development') {
+                        JSONformat = 4;
+                    }
+
+                    fs.writeFile(dir + JSONfileName, JSON.stringify(data, null, JSONformat), function (err) {
                         if (err) {
                             console.log(err);
                         } else {
@@ -90,9 +138,34 @@ var generateData = function() {
                         }
                     });
                 };
+
+                (function(data) {
+                    var outputDir = global.appDir+global.opts.articlesDataOutputDir;
+
+                    if (localizationEnabled) {
+                        outputDir = global.appDir+global.opts.articlesDataOutputDir+language+'/';
+                    }
+
+                    //Prepare output folder and write file
+                    fs.readdir(outputDir,function(e){
+                        if(!e || (e && e.code === 'EEXIST')){
+                            generateJSON(data, outputDir);
+                        } else if (e.code === 'ENOENT') {
+                            fs.mkdir(outputDir);
+                            generateJSON(data, outputDir);
+                        } else {
+                            console.log(e);
+                        }
+                    });
+                })(finalJSON);
             }
         });
     });
+};
+
+var generateData = function() {
+    prepareJSON(global.appDir + '/article_data/');
+    prepareJSON(global.appDir + '/article_data/', 'ru');
 };
 
 /* Export */

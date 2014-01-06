@@ -8,6 +8,8 @@
       "devPort":8888
     },
 
+    "langDefault": "en",
+
     "remoteDBhost": "127.0.0.1",
     "remoteDBport": "27017",
 
@@ -15,6 +17,8 @@
 
     "votingDataCron": "180000",
 
+    "articlesDataOutputDir":"/public/output/",
+    "articlesDataFile": "all-data.json",
     "articlesDataCron": "180000",
 
     "github": {
