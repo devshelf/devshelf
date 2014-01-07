@@ -24,14 +24,15 @@
 		{{/menu}}
 	</ul>
 	<ul class="user-login mobile-menu-part" id="user-login">
-		<li class="user-login_item" style="display: none">
-			<a href="#" class="user-login js-login"><i class="fa fa-user"></i> Log in</a>
-		</li>
+		<!--<li class="user-login_item" style="display: none">-->
+			<!--<a href="#" class="user-login js-login"><i class="fa fa-user"></i> {{login}}</a>-->
+		<!--</li>-->
 	</ul>
 </div>
 
 <!-- content area -->
 <div id="main-content"></div>
+<div id="main-content2"></div>
 <!-- /content area -->
 
 <!-- main page template -->
@@ -43,8 +44,8 @@
 			</h1>
 			<!--<h2 class="banner-head sub-title">{{searchText}}</h2>-->
 			<form class="pure-form home-search">
-				<input type="text" class="pure-input pure-input-1-3 js-search-input" placeholder="For example: box-shadow" tabindex="1">
-				<button type="submit" class="pure-button js-search-button"><i class="fa fa-search fa-lg"></i> Search</button>
+				<input type="text" class="pure-input pure-input-1-3 js-search-input" placeholder="{{searchExample}}" tabindex="1">
+				<button type="submit" class="pure-button js-search-button"><i class="fa fa-search fa-lg"></i> {{searchBtn}}</button>
 			</form>
 		</div>
 	</div>

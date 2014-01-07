@@ -116,6 +116,7 @@ a {
 
 .article-rating.positive {color:rgb(28, 184, 65);}
 .article-rating.negative {color:rgb(202, 60, 60);}
+.article-rating.neutral {color:#999}
 
 
 

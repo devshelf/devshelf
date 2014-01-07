@@ -52,14 +52,24 @@ p {
  * vertically center the text.
  */
 .banner {
-	background: transparent url('../img/code.png') 0 0 repeat-y fixed;
+	background: url('../img/js.png') repeat-y fixed;
 	text-align: center;
 	background-size: 100%;
 	width: 100%;
 	margin:38px 0 3em 0;
 	border-bottom: 1px solid #b7b7b7;
-
+    -webkit-transition: background .15s .3s;
+    -moz-transition: background .15s .3s;
+    -ms-transition: background .15s .3s;
+    -o-transition: background .15s .3s;
+    transition: background .15s .3s;
 	}
+    .banner.__css {
+        background-image:url('../img/css.png');
+        }
+    .banner.__html {
+        background-image:url('../img/html.png');
+        }
 
 .banner-inner {
 	background: rgba(0,0,0,.65);
@@ -145,6 +155,9 @@ button[type=submit]::before {
 .pricing-table .pricing-table-header a {
 	color:#fff;
 	}
+.pricing-table > a {
+    text-decoration:none;
+    }
 
 /*
  * -- PRICING TABLE HEADER COLORS --

@@ -1,7 +1,8 @@
 var TARGET_CONT = 'main-content',
     totalTagList = {},
     searchTagList = {},
-    voteData = {};
+    voteData = {},
+    langData = {};
 
 var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
 
@@ -174,7 +175,6 @@ var templateEngine = (function() {
                 getParams = p.hash.split('/')[1],
                 resultList = [],
                 target;
-
             if (!!getParams) {
                 hash = p.hash.split('/')[0];
             } else {
@@ -278,11 +278,11 @@ var templateEngine = (function() {
         insertTemplate: function(p) {
             var target = p.target || TARGET_CONT;
                 $template = $('#'+ p.template),
-                $target = $('#'+ target)
+                $target = $('#'+ target);
+            var params = $.extend({}, p.params, langData[p.template]);
+            $target.html( Mustache.to_html( $template.html(), params) );
 
-            $target.html( Mustache.to_html( $template.html(), p.params) );
-
-            var actualParams = $.extend({}, p.params),
+            var actualParams = $.extend({}, params),
                 actualUrl = actualParams.url || $template.attr('data-url'),
                 actualTitle = actualParams.title || $template.attr('title') || document.title,
                 cleanHash = '/',
@@ -371,8 +371,17 @@ var templateEngine = (function() {
             for (var i = 0; i < resultList.length; i++ ) {
                 if ( !!voteData[resultList[i].id] ) {
                     resultList[i].votes = voteData[resultList[i].id].plusVotes - voteData[resultList[i].id].minusVotes;
+                    if (resultList[i].votes > 0) {
+                        resultList[i].popularity = 'positive'
+                    } else if (resultList[i].votes < 0) {
+                        resultList[i].popularity = 'negative'
+                    }
+                    else {
+                        resultList[i].popularity = 'neutral'
+                    }
                 } else {
                     resultList[i].votes = 0;
+                    resultList[i].popularity = 'neutral'
                 }
             }
 
@@ -391,6 +400,22 @@ var templateEngine = (function() {
 })();
 
 var mainApp = function() {
+
+    /**
+     * Change banner background
+     */
+
+    $("#main-content").on('mouseenter', '.pricing-table', function(){
+        var _this = $(this);
+        if (_this.is('[class*=css]')) {
+            $(".banner").attr('class','banner __css');
+        } else if (_this.is('[class*=html]')) {
+            $(".banner").attr('class','banner __html');
+        } else {
+            $(".banner").attr('class','banner');
+        }
+    });
+
     /**
      * Onready template rendering
      */
@@ -471,6 +496,11 @@ var mainApp = function() {
                 total: resultList.length,
                 resultList: resultList
             }
+        });
+
+        templateEngine.insertTemplate( {
+            template: 'main-page2',
+            target: "main-source"
         });
 
         templateEngine.insertTemplate( {
@@ -629,6 +659,20 @@ var getJsonData = function(p) {
 		? 'en'
 		: p.lang;
 
+    // extend templates with correct language
+    var getLangData = function(callback) {
+        var cb = callback || function() {}
+          , path = (currentLanguage === 'en') ? '' : '/ru/'
+        ;
+        $.ajax({
+            url: ''+path+'template-data.json',
+            success: function(data) {
+                langData = $.extend(true, langData, data);
+                cb();
+            }
+        })
+    }
+
 	// Execution getting operations
     getAllData({
     	jsonData: languages[currentLanguage]['data'],
@@ -639,7 +683,7 @@ var getJsonData = function(p) {
 					lang: currentLanguage
 				},
 				callback: function() {
-					callback();
+                    getLangData(callback);
 				}
 			})
     	}
@@ -652,7 +696,7 @@ var getJsonData = function(p) {
 $(function() {
 
     /**
-     * Getting templates and starts The App
+     * Gets templates and starts The App
      */
     var prepateTemplates = function() {
         $.ajax({

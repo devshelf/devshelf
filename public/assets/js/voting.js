@@ -44,7 +44,20 @@ var getVotes = function(that) {
         success:function( data ) {
 
             if (data !== null) {
-                voteItem.find('.js-vote-result').text(data.plusVotes - data.minusVotes);
+                var result = voteItem.find('.js-vote-result'),
+                    newVotes = data.plusVotes - data.minusVotes;
+
+                if (Math.abs(parseInt(result.html())) <= 2) {
+                    result.removeClass('neutral positive negative');
+                    if (newVotes === 0) {
+                        result.addClass('neutral');
+                    } else if (newVotes > 0) {
+                        result.addClass('positive');
+                    } else {
+                        result.addClass('negative');
+                    }
+                }
+                result.text(newVotes);
             }
         }
     });
