@@ -50,7 +50,7 @@ restart() {
 
 status() {
     echo "Status for $NAME:"
-    sudo -H -u $USER $forever status
+    sudo -H -u $USER $forever list
     RETVAL=$?
 }
 
