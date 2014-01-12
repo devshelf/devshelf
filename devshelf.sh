@@ -8,9 +8,9 @@
 # Based on https://gist.github.com/jinze/3748766
 #
 # To use it as service on Ubuntu:
-# sudo cp devshelf.conf /etc/init.d/devshelf
+# sudo cp devshelf.sh /etc/init.d/devshelf
 # sudo chmod a+x /etc/init.d/devshelf
-# update-rc.d devshelf defaults
+# sudo update-rc.d devshelf defaults
 #
 # Then use commands:
 # service devshelf <command (start|stop|etc)>
