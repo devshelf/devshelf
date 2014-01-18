@@ -8,6 +8,9 @@
       "devPort":8888
     },
 
+    "tempCurrentLang" : "ru",
+
+    "additionalLanguages":["ru"],
     "langDefault": "en",
 
     "remoteDBhost": "127.0.0.1",
@@ -17,9 +20,13 @@
 
     "votingDataCron": "180000",
 
-    "articlesDataOutputDir":"/public/output/",
+    "dataOutputDir":"/public/output/",
     "articlesDataFile": "all-data.json",
-    "articlesDataLangFile": "lang-data.json",
+    "articlesVoteFile": "all-votes.json",
+
+    "articlesDataLangFile": "pure.json",
+    "articlesCleanLangObjPrefix": "pure-",
+
     "articlesDataCron": "180000",
 
     "github": {

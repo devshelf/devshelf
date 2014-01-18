@@ -236,7 +236,7 @@ var templateEngine = (function() {
                     callback: function(p) {
                         templateEngine.insertTemplate(p);
                     }
-                })
+                });
 
                 /**
                  * Prepare data for result of search list rendering
@@ -426,7 +426,7 @@ var mainApp = function() {
      */
     window.addEventListener('popstate', function(e) {
     	templateEngine.checkHash();
-    })
+    });
 
     /**
     * Language buttons events
@@ -446,7 +446,7 @@ var mainApp = function() {
     				window.location.reload();
     			}
     		})
-    	}
+    	};
 
     	if ($(this).hasClass('__ru')) {
     		lang = 'ru';
@@ -454,7 +454,7 @@ var mainApp = function() {
 
     	makeRedirect();
 
-    })
+    });
 
     /**
      * Search field on main page
@@ -511,7 +511,7 @@ var mainApp = function() {
                 total: resultList.length,
                 resultList: resultList
             }
-        })
+        });
 
         templateEngine.getCategoryByArticle({
             query: searchQuery,
@@ -521,7 +521,7 @@ var mainApp = function() {
         })
 
 
-    })
+    });
 
     /**
      * Search field on search page
@@ -561,7 +561,7 @@ var mainApp = function() {
                     total: resultList.length,
                     resultList: resultList
                 }
-            })
+            });
 
             templateEngine.getCategoryByArticle({
                 query: searchQuery,
@@ -572,7 +572,7 @@ var mainApp = function() {
 
         }
     })
-}
+};
 
 /**
 * Localization module on client
@@ -652,7 +652,7 @@ var getJsonData = function(p) {
                 }
         })
 
-    }
+    };
 
 	// if p.lang not set, it equals to 'en'
 	currentLanguage = (languages[p.lang] === undefined)
@@ -671,7 +671,7 @@ var getJsonData = function(p) {
                 cb();
             }
         })
-    }
+    };
 
 	// Execution getting operations
     getAllData({
@@ -688,11 +688,13 @@ var getJsonData = function(p) {
 			})
     	}
     })
-}
+};
 
 /**
  * Onstart routines
  */
+var currentLanguage = $('html').attr('lang');
+
 $(function() {
 
     /**
@@ -709,13 +711,13 @@ $(function() {
             },
             dataType: 'text'
         })
-    }
+    };
 
     /**
      * Getting data and rendering templates
      */
     getJsonData({
-    	lang: 'en',
+    	lang: currentLanguage,
     	callback: function() {
 	    	prepateTemplates();
     	}

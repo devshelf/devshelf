@@ -12,7 +12,8 @@ var express = require('express')
 
 
 /* Global vars */
-global.articlesData = {}; //all-data.json obj
+global.articlesData = {}; //all-data.json obj with articles by lang (articlesData.en/ru/etc)
+global.articlesIDs = {}; //all-data.json ID lists by lang (articlesIDs.en/ru/etc)
 
 global.appDir = path.dirname(require.main.filename); //path to project dir
 
@@ -91,19 +92,19 @@ app
 var arr = ['/','/index','/index.html','/home'];
 
 //mustache generate index page
-var indexData = (global.opts.langDefault === 'en') ? JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8")) : JSON.parse(fs.readFileSync(__dirname + '/public/ru/index.json', "utf8"));
+var indexData = (global.opts.tempCurrentLang === 'en') ? JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8")) : JSON.parse(fs.readFileSync(__dirname + '/public/ru/index.json', "utf8"));
 
 arr.map(function(item) {
     app.get(item, function(req, res) {
         var indexJson = {records:indexData};
 
         //Generating links to all sections
-        for (var section in global.articlesData[global.opts.langDefault]) {
+        for (var section in global.articlesData[global.opts.tempCurrentLang]) {
         	if (indexJson[section] === undefined) {
         		indexJson[section] = [];
         	}
 
-			for (var articles in global.articlesData[global.opts.langDefault][section]) {
+			for (var articles in global.articlesData[global.opts.tempCurrentLang][section]) {
 				indexJson[section].push({
 					linkTitle: articles,
 					linkHref: '/#!/search/' + articles.replace(/\s+/g, '_')
@@ -113,7 +114,6 @@ arr.map(function(item) {
 
         indexJson.indexJson = JSON.stringify(indexJson);
         var indexPage = fs.readFileSync(__dirname + '/public/build/index.html', "utf8");
-        console.log(indexJson);
         var htmlToSend = mustache.to_html(indexPage, indexJson);
         res.send(htmlToSend);
     });
@@ -124,9 +124,9 @@ arr.map(function(item) {
 * voting module (requiring place matters)
 * */
 var voting = require('./core/voting');
-app.get('/plusVotes', voting.plusVotes); // (id, user)
-app.get('/minusVotes', voting.minusVotes); // (id, user)
-app.get('/getVotes', voting.getVotes); // (id)
+app.get('/plusVotes', voting.plusVotes); // post arguments: id, user
+app.get('/minusVotes', voting.minusVotes); // post arguments: id, user
+app.get('/getVotes', voting.getVotes); // post arguments: id
 app.get('/getAllVotes', voting.getAllVotes);
 
 // Preparing initial data on start

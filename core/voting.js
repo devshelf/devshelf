@@ -48,36 +48,13 @@ var removeFromArray = function removeA(arr) {
     return arr;
 };
 
-var checkVotesId = function(id) {
+var checkVotesId = function(id, lang) {
     var currentID = id,
         response = false,
-        existingIDs = [];
-
-    // Getting actual data for existing ID lookup
-    if (JSON.stringify(global.articlesData[global.opts.langDefault]) === '{}') { //from global var or from file
-        global.articlesData[global.opts.langDefault] = JSON.parse(fs.readFileSync(global.appDir + '/public/output/all-data.json', "utf8")) || {};
-    }
-
-    //TODO: optimize existingIDs generation
-    // Preparing existing IDs list
-    for(var cat in global.articlesData[global.opts.langDefault]) {
-        var currentCat = global.articlesData[global.opts.langDefault][cat];
-
-        for(var obj in currentCat) {
-            var targetArr = currentCat[obj];
-
-            var i=0;
-            while(i<targetArr.length){
-
-                existingIDs.push(targetArr[i].id)
-
-                i++;
-            }
-        }
-    }
+        currentLanguage = lang;
 
     // Check if our ID exists
-    if (existingIDs.indexOf(currentID) !== -1) {
+    if (global.articlesIDs[currentLanguage].length !== 0 && global.articlesIDs[currentLanguage].indexOf(currentID) !== -1) {
         response = true;
     }
 
@@ -97,8 +74,18 @@ var vote = mongoose.Schema({
     minusVotesUsers: Array
 });
 
-//Model
-var Vote = mongoose.model('Votes', vote);
+var prepareMongoModel = function(lang) {
+    var mongoCollection = 'votes',
+        langDefault = global.opts.langDefault;
+
+    if (lang !== langDefault) {
+        mongoCollection = mongoCollection + '-' + lang;
+    }
+
+    console.log('collection', mongoCollection);
+
+    return mongoose.model('Votes', vote, mongoCollection);
+};
 
 /* /Mongo model */
 
@@ -110,9 +97,15 @@ var makeVote = function(req, res, voteType){
         user = typeof req.user === 'undefined' ?  undefined : req.user.github.login,
         oppositeVotesType;
 
+    try {
+
+    //TODO:dmitry pass user lang from session (from req)
+    var lang = global.opts.tempCurrentLang;
+    var Vote = prepareMongoModel(lang);
+
     if (user === undefined) { // Check user auth
         res.jsonp('unauthorized');
-    } else if ( checkVotesId(id) ) { // Validate ID
+    } else if ( checkVotesId(id, lang) ) { // Validate ID
         if (voteType === 'plusVotes') {
             oppositeVotesType = 'minusVotes';
         } else if (voteType === 'minusVotes') {
@@ -183,6 +176,10 @@ var makeVote = function(req, res, voteType){
     } else {
         res.jsonp('incorrect ID');
     }
+    } catch (e) {
+        console.log(e);
+    }
+
 };
 
 var checkVoting = function(data, voteType, oppositeVotesType, username){
@@ -222,6 +219,10 @@ var checkVoting = function(data, voteType, oppositeVotesType, username){
 var getVotes = function(req, res) {
     var id = req.query._id;
 
+    //TODO:dmitry pass user lang from session (from req)
+    var lang = global.opts.tempCurrentLang;
+    var Vote = prepareMongoModel(lang);
+
     Vote.findById(id, function (err, data) {
         if(!err) {
             res.jsonp(data);
@@ -230,6 +231,10 @@ var getVotes = function(req, res) {
 };
 
 var getAllVotes = function(req, res) {
+    //TODO:dmitry pass user lang from session (from req)
+    var lang = global.opts.tempCurrentLang;
+    var Vote = prepareMongoModel(lang);
+
     Vote.find(function (err, votes) {
         if(!err) {
             res.jsonp(votes);
@@ -242,30 +247,59 @@ var getAllVotes = function(req, res) {
 /* All votes to json */
 var fs = require('fs');
 
-var generateVotingData = function() {
+var generateVotingData = function(lang) {
+    var langDefault = global.opts.langDefault,
+        language = lang || langDefault,
+        localizationEnabled = language !== langDefault,
+
+        dataOutputDir = global.opts.dataOutputDir,
+
+        articlesVoteFile = global.opts.articlesVoteFile;
+
+    var Vote = prepareMongoModel(language);
+
     Vote.find(function (err, votes) {
         if (!err) {
 
-            fs.readdir(global.appDir+'/public/output/',function(e){
-                if(!e || (e && e.code === 'EEXIST')){
-                    generateJSON();
-                } else if (e.code === 'ENOENT') {
-                    fs.mkdir(global.appDir+'/public/output/');
-                    generateJSON();
-                } else {
-                    console.log(e);
-                }
-            });
+            var generateJSON = function(data, dir, fileName) {
+                var JSONformat = null;
 
-            var generateJSON = function() {
-                fs.writeFile(global.appDir+'/public/output/all-votes.json', JSON.stringify(votes), function (err) {
+                if (global.MODE === 'development') {
+                    JSONformat = 4;
+                }
+
+                fs.writeFile(dir + fileName, JSON.stringify(data, null, JSONformat), function (err) {
                     if (err) {
                         console.log(err);
+                    } else {
+                        console.log("Generating Voting data in ".green + dir.green + fileName.green + ": DONE".green);
                     }
                 });
             };
 
-            console.log('Generating Voting data: DONE'.green);
+            (function(votes) {
+                var outputDir = global.appDir+dataOutputDir;
+
+                if (localizationEnabled) {
+                    outputDir = global.appDir+dataOutputDir+language+'/';
+                }
+
+                var processJSON = function(){
+                    generateJSON(votes, outputDir, articlesVoteFile);
+                };
+
+                //Prepare output folder and write file
+                fs.readdir(outputDir,function(e){
+                    if(!e || (e && e.code === 'EEXIST')){
+                        processJSON();
+                    } else if (e.code === 'ENOENT') {
+                        fs.mkdir(outputDir);
+                        processJSON();
+                    } else {
+                        console.log(e);
+                    }
+                });
+            })(votes);
 
         } else {
             console.log(err);
@@ -314,5 +348,9 @@ module.exports = {
 
     generateVotingData: function(){
         generateVotingData();
+
+        global.opts.additionalLanguages.map(function(item) {
+            generateVotingData(item);
+        });
     }
 };

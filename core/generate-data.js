@@ -2,7 +2,8 @@ var fs = require('fs')
     , colors = require('colors')
     , path = require('path')
     , md5 = require('MD5')
-    , sh = require("shorthash")
+    , sh = require('shorthash')
+    , generateIDs = require('./aticles-ids')
     , extend = require('extend');
 
 
@@ -40,15 +41,15 @@ var extendArticlesData = function(srcInput, extenderInput){
  */
 var prepareJSON = function(targetDir, lang) {
     //Generating output data with all articles info
-    var language = lang,
-        localizationEnabled = typeof language !== 'undefined',
+    var langDefault = global.opts.langDefault,
+        language = lang || langDefault,
+        localizationEnabled = language !== langDefault,
 
         dir = localizationEnabled ? targetDir + language + '/' : targetDir,
 
         outputJSON = {},
 
-        langDefault = global.opts.langDefault,
-        articlesDataOutputDir = global.opts.articlesDataOutputDir,
+        dataOutputDir = global.opts.dataOutputDir,
 
         articlesDataFile = global.opts.articlesDataFile,
         articlesDataLangFile = global.opts.articlesDataLangFile;
@@ -117,15 +118,17 @@ var prepareJSON = function(targetDir, lang) {
                 //If localized, merge with main JSON
                 if (localizationEnabled) {
 
-                    //Update JSON data
                     var defaultLangJSON = global.articlesData[langDefault];
 
-                    finalJSON = extendArticlesData(defaultLangJSON, outputJSON);
+                    //pure data selection, only lang
+                    global.articlesData[global.opts.articlesCleanLangObjPrefix+language] = finalJSON
 
-                    global.articlesData[language] = outputJSON;
+                    finalJSON = extendArticlesData(defaultLangJSON, outputJSON);
                 }
 
-                global.articlesData[langDefault] = finalJSON || {};
+                //Updating global objects
+                global.articlesData[language] = finalJSON || {};
+                generateIDs.updateIDs(language);
 
                 // function for write json file
                 var generateJSON = function(data, dir, fileName) {
@@ -140,15 +143,16 @@ var prepareJSON = function(targetDir, lang) {
                             console.log(err);
                         } else {
                             console.log("Generating Articles data in ".green + dir.green + fileName.green + ": DONE".green);
+
                         }
                     });
                 };
 
                 (function(fullJSON, onlyLang) {
-                    var outputDir = global.appDir+articlesDataOutputDir;
+                    var outputDir = global.appDir+dataOutputDir;
 
                     if (localizationEnabled) {
-                        outputDir = global.appDir+articlesDataOutputDir+language+'/';
+                        outputDir = global.appDir+dataOutputDir+language+'/';
                     }
 
                     var processJSON = function(){
@@ -178,7 +182,10 @@ var prepareJSON = function(targetDir, lang) {
 
 var generateData = function() {
     prepareJSON(global.appDir + '/articles-data/');
-    prepareJSON(global.appDir + '/articles-data/', 'ru');
+
+    global.opts.additionalLanguages.map(function(item) {
+        prepareJSON(global.appDir + '/articles-data/', item);
+    });
 };
 
 /* Export */

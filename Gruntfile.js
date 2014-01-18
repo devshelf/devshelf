@@ -68,7 +68,7 @@ module.exports = function(grunt) {
                         'public/templates.html',
                         'public/index.html'
                         ],
-                tasks: ['csso:main','htmlcompressor:main'],
+                tasks: ['csso:main','uglify:main','htmlcompressor:main'],
                 options: {
                     nospawn: true
                 }
