@@ -1,13 +1,15 @@
 var exec = require('child_process').exec,
-    articlesJson = require('../articles-json');
+    articlesJson = require('../generate-data');
 
 // for waiting when function finished
 var NOT_RUNNING = true;
 // user who have permissions for git pull from repository;
-setInterval(function() {
+
+var updateData = function() {
     if (NOT_RUNNING) {
 
         NOT_RUNNING = false;
+
         function callback(error, stdout, stderr) {
             console.log('stdout: ' + stdout);
 
@@ -18,8 +20,16 @@ setInterval(function() {
             articlesJson.generateData();
             NOT_RUNNING = true;
         }
+
         console.log("Git pull from reposity...");
 
         exec('git --work-tree='+ global.appDir +' --git-dir='+ global.appDir +'/.git pull --rebase', callback);
     }
-},global.opts.articlesDataCron);
+};
+
+if (global.MODE === 'production') {
+    setInterval(function() {
+        updateData();
+    },global.opts.articlesDataCron);
+}
+

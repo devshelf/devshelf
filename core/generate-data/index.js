@@ -46,7 +46,12 @@ var prepareJSON = function(targetDir, lang) {
         dir = localizationEnabled ? targetDir + language + '/' : targetDir,
 
         outputJSON = {},
-        JSONfileName = global.opts.articlesDataFile;
+
+        langDefault = global.opts.langDefault,
+        articlesDataOutputDir = global.opts.articlesDataOutputDir,
+
+        articlesDataFile = global.opts.articlesDataFile,
+        articlesDataLangFile = global.opts.articlesDataLangFile;
 
     fs.readdir(dir, function(err, files){
         var jsonFilesArr = [];
@@ -113,59 +118,67 @@ var prepareJSON = function(targetDir, lang) {
                 if (localizationEnabled) {
 
                     //Update JSON data
-                    var defaultLangJSON = global.articlesData[global.opts.langDefault];
+                    var defaultLangJSON = global.articlesData[langDefault];
 
                     finalJSON = extendArticlesData(defaultLangJSON, outputJSON);
 
                     global.articlesData[language] = outputJSON;
                 }
 
-                global.articlesData[global.opts.langDefault] = finalJSON || {};
+                global.articlesData[langDefault] = finalJSON || {};
 
                 // function for write json file
-                var generateJSON = function(data, dir) {
+                var generateJSON = function(data, dir, fileName) {
                     var JSONformat = null;
 
                     if (global.MODE === 'development') {
                         JSONformat = 4;
                     }
 
-                    fs.writeFile(dir + JSONfileName, JSON.stringify(data, null, JSONformat), function (err) {
+                    fs.writeFile(dir + fileName, JSON.stringify(data, null, JSONformat), function (err) {
                         if (err) {
                             console.log(err);
                         } else {
-                            console.log("Generating Articles data - DONE".green);
+                            console.log("Generating Articles data in ".green + dir.green + fileName.green + ": DONE".green);
                         }
                     });
                 };
 
-                (function(data) {
-                    var outputDir = global.appDir+global.opts.articlesDataOutputDir;
+                (function(fullJSON, onlyLang) {
+                    var outputDir = global.appDir+articlesDataOutputDir;
 
                     if (localizationEnabled) {
-                        outputDir = global.appDir+global.opts.articlesDataOutputDir+language+'/';
+                        outputDir = global.appDir+articlesDataOutputDir+language+'/';
                     }
+
+                    var processJSON = function(){
+                        generateJSON(fullJSON, outputDir, articlesDataFile);
+
+                        if (localizationEnabled) {
+                            generateJSON(onlyLang, outputDir, articlesDataLangFile);
+                        }
+                    };
 
                     //Prepare output folder and write file
                     fs.readdir(outputDir,function(e){
                         if(!e || (e && e.code === 'EEXIST')){
-                            generateJSON(data, outputDir);
+                            processJSON();
                         } else if (e.code === 'ENOENT') {
                             fs.mkdir(outputDir);
-                            generateJSON(data, outputDir);
+                            processJSON();
                         } else {
                             console.log(e);
                         }
                     });
-                })(finalJSON);
+                })(finalJSON, outputJSON);
             }
         });
     });
 };
 
 var generateData = function() {
-    prepareJSON(global.appDir + '/article_data/');
-    prepareJSON(global.appDir + '/article_data/', 'ru');
+    prepareJSON(global.appDir + '/articles-data/');
+    prepareJSON(global.appDir + '/articles-data/', 'ru');
 };
 
 /* Export */

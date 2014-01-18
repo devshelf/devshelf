@@ -11,7 +11,7 @@
         "link": "#!/about"
     },{
         "name":"Add new articles",
-        "link": "http://github.com/sourcejs/devshelf/tree/master/article_data"
+        "link": "http://github.com/sourcejs/devshelf/tree/master/articles-data"
     }],
 
     "footerSections": [{
@@ -19,6 +19,6 @@
         "sectionText": "<p>Modern web application made for the community (for us!), by the community, to collect most relevant information about development technologies.</p> <p>With community rating, you will get only the best content existing in the open web.</p>"
     },{
         "sectionTitle": "How to support",
-        "sectionText": "<p>Project is fully <a href='http://github.com/sourcejs/devshelf'>open source</a>, you can <a href='http://github.com/sourcejs/devshelf/tree/master/article_data'>contribute links</a> to best articles, ideas and improve web application source code simply by leaving your pull requests.</p> <p>DevShelf is all  <strong>about storing best articles and tools</strong>, not your documentation. For documentation purposes, use <a href='http://devdocs.io'>devdocs.io</a>.</p>"
+        "sectionText": "<p>Project is fully <a href='http://github.com/sourcejs/devshelf'>open source</a>, you can <a href='http://github.com/sourcejs/devshelf/tree/master/articles-data'>contribute links</a> to best articles, ideas and improve web application source code simply by leaving your pull requests.</p> <p>DevShelf is all  <strong>about storing best articles and tools</strong>, not your documentation. For documentation purposes, use <a href='http://devdocs.io'>devdocs.io</a>.</p>"
     }]
 }

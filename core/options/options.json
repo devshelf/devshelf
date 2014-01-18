@@ -19,6 +19,7 @@
 
     "articlesDataOutputDir":"/public/output/",
     "articlesDataFile": "all-data.json",
+    "articlesDataLangFile": "lang-data.json",
     "articlesDataCron": "180000",
 
     "github": {

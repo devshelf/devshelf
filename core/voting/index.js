@@ -265,28 +265,32 @@ var generateVotingData = function() {
                 });
             };
 
+            console.log('Generating Voting data: DONE'.green);
+
         } else {
             console.log(err);
+
+            console.log('WARN: Voting data not generated, check connection to DB'.yellow);
         }
     });
-
-    console.log('Generating Votind data - DONE'.green);
 };
 
-// for waiting when function finished
-var NOT_RUNNING = true;
+if (global.MODE === 'production') {
+    // for waiting when function finished
+    var NOT_RUNNING = true;
 
-setInterval(function() {
-    if (NOT_RUNNING) {
+    setInterval(function() {
+        if (NOT_RUNNING) {
 
-        NOT_RUNNING = false;
+            NOT_RUNNING = false;
 
-        generateVotingData();
+            generateVotingData();
 
-        NOT_RUNNING = true;
+            NOT_RUNNING = true;
 
-    }
-}, global.global.opts.votingDataCron);
+        }
+    }, global.global.opts.votingDataCron);
+}
 /* /All votes to json */
 
 

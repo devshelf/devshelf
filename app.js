@@ -26,20 +26,12 @@ global.opts = require('./core/options/'); //Global options
 /*
 * Update local information from git hub and regenerate all-data.json
 * */
-var articlesJson = require('./core/articles-json');
+var articlesJson = require('./core/generate-data');
+require('./core/updateData');
 
-require('./core/gitPull');
+//Preparing initial data on start
+articlesJson.generateData();
 
-//TODO: check and generate file on first start
-try {
-    global.articlesData[global.opts.langDefault] = JSON.parse(fs.readFileSync(__dirname + global.opts.articlesDataOutputDir + global.opts.articlesDataFile, "utf8")) || {};
-} catch (e) {
-    if (e.code === 'ENOENT') {
-        articlesJson.generateData();
-
-        console.log('All-data.json is not generated yet, please re-run application.'.red);
-    }
-}
 
 /*
 * auth module
@@ -127,6 +119,7 @@ arr.map(function(item) {
     });
 });
 
+
 /*
 * voting module (requiring place matters)
 * */
@@ -136,13 +129,9 @@ app.get('/minusVotes', voting.minusVotes); // (id, user)
 app.get('/getVotes', voting.getVotes); // (id)
 app.get('/getAllVotes', voting.getAllVotes);
 
+// Preparing initial data on start
+voting.generateVotingData();
 
-// Preparing initial data till cron
-fs.readFile(__dirname + '/public/output/all-votes.json', function(err, data) {
-    if (err) {
-        voting.generateVotingData();
-    }
-});
 
 /*
 * error hadnling
