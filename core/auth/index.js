@@ -30,9 +30,10 @@ everyauth.everymodule
   });
 
 everyauth.github
-  .appId(GHappID)
-  .appSecret(GHappSecret)
-  .findOrCreateUser( function (sess, accessToken, accessTokenExtra, ghUser) {
-      return usersByGhId[ghUser.id] || (usersByGhId[ghUser.id] = addUser('github', ghUser, accessToken));
-  })
-  .redirectPath('/auth/done');
+    .appId(GHappID)
+    .appSecret(GHappSecret)
+    .scope('repo')
+    .findOrCreateUser( function (sess, accessToken, accessTokenExtra, ghUser) {
+        return usersByGhId[ghUser.id] || (usersByGhId[ghUser.id] = addUser('github', ghUser, accessToken));
+        })
+    .redirectPath('/auth/done');
