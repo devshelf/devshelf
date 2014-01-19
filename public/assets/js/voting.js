@@ -66,10 +66,13 @@ var getVotes = function(that) {
 $(function(){
 
     //Listeners
-    $('body').on('click', '.js-vote', function(e){
-        e.preventDefault();
 
-        sendVote(this);
-    });
+    if (indexJson.commonOpts.voting.enabled) {
+        $('body').on('click', '.js-vote', function(e){
+            e.preventDefault();
+
+            sendVote(this);
+        });
+    }
 
 });

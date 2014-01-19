@@ -41,7 +41,7 @@ var extendArticlesData = function(srcInput, extenderInput){
  */
 var prepareJSON = function(targetDir, lang) {
     //Generating output data with all articles info
-    var langDefault = global.opts.langDefault,
+    var langDefault = global.opts.l18n.defaultLang,
         language = lang || langDefault,
         localizationEnabled = language !== langDefault,
 
@@ -183,7 +183,7 @@ var prepareJSON = function(targetDir, lang) {
 var generateData = function() {
     prepareJSON(global.appDir + '/articles-data/');
 
-    global.opts.additionalLanguages.map(function(item) {
+    global.opts.l18n.additionalLangs.map(function(item) {
         prepareJSON(global.appDir + '/articles-data/', item);
     });
 };

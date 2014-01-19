@@ -15,7 +15,8 @@
         "about": "About",
         "underTags": "under tags",
         "voteUp": "Vote Up",
-        "voteDown": "Vote Down"
+        "voteDown": "Vote Down",
+        "voteDisabled": "Voting is not available right now, we're working on it!"
     },
     "about": {
         "aboutProject": "About the project",

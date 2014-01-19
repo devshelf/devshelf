@@ -76,13 +76,11 @@ var vote = mongoose.Schema({
 
 var prepareMongoModel = function(lang) {
     var mongoCollection = 'votes',
-        langDefault = global.opts.langDefault;
+        langDefault = global.opts.l18n.defaultLang;
 
     if (lang !== langDefault) {
         mongoCollection = mongoCollection + '-' + lang;
     }
-
-    console.log('collection', mongoCollection);
 
     return mongoose.model('Votes', vote, mongoCollection);
 };
@@ -100,7 +98,7 @@ var makeVote = function(req, res, voteType){
     try {
 
     //TODO:dmitry pass user lang from session (from req)
-    var lang = global.opts.tempCurrentLang;
+    var lang = global.opts.l18n.tempCurrentLang;
     var Vote = prepareMongoModel(lang);
 
     if (user === undefined) { // Check user auth
@@ -220,7 +218,7 @@ var getVotes = function(req, res) {
     var id = req.query._id;
 
     //TODO:dmitry pass user lang from session (from req)
-    var lang = global.opts.tempCurrentLang;
+    var lang = global.opts.l18n.tempCurrentLang;
     var Vote = prepareMongoModel(lang);
 
     Vote.findById(id, function (err, data) {
@@ -232,7 +230,7 @@ var getVotes = function(req, res) {
 
 var getAllVotes = function(req, res) {
     //TODO:dmitry pass user lang from session (from req)
-    var lang = global.opts.tempCurrentLang;
+    var lang = global.opts.l18n.tempCurrentLang;
     var Vote = prepareMongoModel(lang);
 
     Vote.find(function (err, votes) {
@@ -248,7 +246,7 @@ var getAllVotes = function(req, res) {
 var fs = require('fs');
 
 var generateVotingData = function(lang) {
-    var langDefault = global.opts.langDefault,
+    var langDefault = global.opts.l18n.defaultLang,
         language = lang || langDefault,
         localizationEnabled = language !== langDefault,
 
@@ -309,7 +307,7 @@ var generateVotingData = function(lang) {
     });
 };
 
-if (global.MODE === 'production') {
+if (global.opts.voting.enabled && global.MODE === 'production') {
     // for waiting when function finished
     var NOT_RUNNING = true;
 
@@ -323,7 +321,7 @@ if (global.MODE === 'production') {
             NOT_RUNNING = true;
 
         }
-    }, global.global.opts.votingDataCron);
+    }, global.global.opts.voting.updateInterval);
 }
 /* /All votes to json */
 
@@ -349,7 +347,7 @@ module.exports = {
     generateVotingData: function(){
         generateVotingData();
 
-        global.opts.additionalLanguages.map(function(item) {
+        global.opts.l18n.additionalLangs.map(function(item) {
             generateVotingData(item);
         });
     }

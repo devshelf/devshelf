@@ -8,17 +8,21 @@
       "devPort":8888
     },
 
-    "tempCurrentLang" : "ru",
+    "voting" : {
+        "updateInterval": "180000"
+    },
 
-    "additionalLanguages":["ru"],
-    "langDefault": "en",
+    "l18n" : {
+        "tempCurrentLang" : "ru",
+
+        "additionalLangs":["ru"],
+        "defaultLang": "en"
+    },
 
     "remoteDBhost": "127.0.0.1",
     "remoteDBport": "27017",
 
     "cookieSecret": "secret",
-
-    "votingDataCron": "180000",
 
     "dataOutputDir":"/public/output/",
     "articlesDataFile": "all-data.json",

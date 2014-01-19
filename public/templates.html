@@ -58,13 +58,30 @@
             {{/description}}
 
             <p class="article-voting">
-                <button class="pure-button js-vote" title="{{voteUp}}+" data-vote-type="plus">
-                    <i class="fa fa-thumbs-up"></i>
-                </button>
+                {{#votingEnabled}}
+                    <button class="pure-button js-vote" title="{{voteUp}}+" data-vote-type="plus">
+                        <i class="fa fa-thumbs-up"></i>
+                    </button>
+                {{/votingEnabled}}
+                {{^votingEnabled}}
+                    <button class="pure-button js-vote" title="{{voteDisabled}}" data-vote-type="plus" disabled>
+                        <i class="fa fa-thumbs-up"></i>
+                    </button>
+                {{/votingEnabled}}
+
                 <span class="article-rating {{popularity}} js-vote-result">{{votes}}</span>
-                <button class="pure-button js-vote" title="{{voteDown}}-" data-vote-type="minus">
-                    <i class="fa fa-thumbs-down"></i>
-                </button>
+
+                {{#votingEnabled}}
+                    <button class="pure-button js-vote" title="{{voteDown}}-" data-vote-type="minus">
+                        <i class="fa fa-thumbs-down"></i>
+                    </button>
+                {{/votingEnabled}}
+                {{^votingEnabled}}
+                    <button class="pure-button js-vote" title="{{voteDisabled}}" data-vote-type="minus" disabled>
+                        <i class="fa fa-thumbs-down"></i>
+                    </button>
+                {{/votingEnabled}}
+
             </p>
         </li>
         {{/resultList}}

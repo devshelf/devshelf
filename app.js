@@ -21,6 +21,7 @@ global.MODE = process.env.NODE_ENV || 'development';
 
 global.app = express();
 global.opts = require('./core/options/'); //Global options
+global.commonOpts = require('./core/options/common-options.json'); //Common options with Front-end
 /* /Global vars */
 
 
@@ -91,20 +92,26 @@ app
 // for opening index page
 var arr = ['/','/index','/index.html','/home'];
 
-//mustache generate index page
-var indexData = (global.opts.tempCurrentLang === 'en') ? JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8")) : JSON.parse(fs.readFileSync(__dirname + '/public/ru/index.json', "utf8"));
-
 arr.map(function(item) {
     app.get(item, function(req, res) {
+        //TODO:dmitry pass user lang from session (from req)
+        var lang = global.opts.l18n.tempCurrentLang;
+
+
+        //TODO: cache this
+        //mustache generate index page
+        var indexData = (lang === 'en') ? JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8")) : JSON.parse(fs.readFileSync(__dirname + '/public/ru/index.json', "utf8"));
+
         var indexJson = {records:indexData};
+        indexJson.commonOpts = global.commonOpts;
 
         //Generating links to all sections
-        for (var section in global.articlesData[global.opts.tempCurrentLang]) {
+        for (var section in global.articlesData[lang]) {
         	if (indexJson[section] === undefined) {
         		indexJson[section] = [];
         	}
 
-			for (var articles in global.articlesData[global.opts.tempCurrentLang][section]) {
+			for (var articles in global.articlesData[lang][section]) {
 				indexJson[section].push({
 					linkTitle: articles,
 					linkHref: '/#!/search/' + articles.replace(/\s+/g, '_')
@@ -115,6 +122,9 @@ arr.map(function(item) {
         indexJson.indexJson = JSON.stringify(indexJson);
         var indexPage = fs.readFileSync(__dirname + '/public/build/index.html', "utf8");
         var htmlToSend = mustache.to_html(indexPage, indexJson);
+        //TODO: /cache this
+
+
         res.send(htmlToSend);
     });
 });
@@ -124,10 +134,13 @@ arr.map(function(item) {
 * voting module (requiring place matters)
 * */
 var voting = require('./core/voting');
-app.get('/plusVotes', voting.plusVotes); // post arguments: id, user
-app.get('/minusVotes', voting.minusVotes); // post arguments: id, user
-app.get('/getVotes', voting.getVotes); // post arguments: id
-app.get('/getAllVotes', voting.getAllVotes);
+
+if (global.opts.voting.enabled) {
+    app.get('/plusVotes', voting.plusVotes); // post arguments: id, user
+    app.get('/minusVotes', voting.minusVotes); // post arguments: id, user
+    app.get('/getVotes', voting.getVotes); // post arguments: id
+    app.get('/getAllVotes', voting.getAllVotes);
+}
 
 // Preparing initial data on start
 voting.generateVotingData();

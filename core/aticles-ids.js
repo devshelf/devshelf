@@ -3,7 +3,7 @@ var fs = require('fs');
 var updateIDs = function(lang, pure) {
     var currentLanguage = lang,
         gettingPureData = pure || false,
-        langDefault = global.opts.langDefault,
+        langDefault = global.opts.l18n.defaultLang,
 
         globalData = global.articlesData[currentLanguage],
 

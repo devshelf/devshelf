@@ -2,13 +2,16 @@ var coreSettings = require("./options.json"),
     deepExtend = require('deep-extend'),
     fs = require('fs');
 
-var extendedSettings = {},
-    extendedSettingsFile = "/secure-options.json";
+var secureOptions = {},
+    secureOptionsFile = "/secure-options.json";
+    commonSettingsWithFrontendFile = "/common-options.json";
 
-if(fs.existsSync(__dirname + extendedSettingsFile)) {
-    extendedSettings = require(__dirname + extendedSettingsFile);
+if(fs.existsSync(__dirname + secureOptionsFile)) {
+    commonSettingsWithFrontend = require(__dirname + commonSettingsWithFrontendFile);
+    deepExtend(coreSettings, commonSettingsWithFrontend);
 
-    deepExtend(coreSettings, extendedSettings);
+    secureOptions = require(__dirname + secureOptionsFile);
+    deepExtend(coreSettings, secureOptions);
 }
 
 module.exports = coreSettings;

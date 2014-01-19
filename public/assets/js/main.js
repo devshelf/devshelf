@@ -256,7 +256,8 @@ var templateEngine = (function() {
                     getParams: getParams.replace(/_/g, ' '),
                     resultList: resultList,
                     copy: indexJson.records.copy,
-	                total: resultList.length
+	                total: resultList.length,
+                    votingEnabled: indexJson.commonOpts.voting.enabled
                 }
             });
 
@@ -494,7 +495,8 @@ var mainApp = function() {
                 replaceHistory: true,
                 getParams: searchQuery,
                 total: resultList.length,
-                resultList: resultList
+                resultList: resultList,
+                votingEnabled: indexJson.commonOpts.voting.enabled
             }
         });
 
@@ -509,7 +511,8 @@ var mainApp = function() {
             params: {
                 getParams: searchQuery,
                 total: resultList.length,
-                resultList: resultList
+                resultList: resultList,
+                votingEnabled: indexJson.commonOpts.voting.enabled
             }
         });
 
@@ -559,7 +562,8 @@ var mainApp = function() {
                 params: {
                     getParams: searchQuery,
                     total: resultList.length,
-                    resultList: resultList
+                    resultList: resultList,
+                    votingEnabled: indexJson.commonOpts.voting.enabled
                 }
             });
 
@@ -630,7 +634,7 @@ var getJsonData = function(p) {
             cacheNeeded = true;
 
         //If logged, give latest info
-        if(localStorage['user']) {
+        if(indexJson.commonOpts.voting.enabled && localStorage['user']) {
             dataUrl = '/getAllVotes';
             cacheNeeded = false
         }
