@@ -24,6 +24,7 @@ global.MODE = process.env.NODE_ENV || 'development';
 global.app = express();
 global.opts = require('./core/options/'); //Global options
 global.commonOpts = require('./core/options/common-options.json'); //Common options with Front-end
+global.currentLang = 'en';
 /* /Global vars */
 
 
@@ -262,6 +263,39 @@ app.get('/validate', function (req, res) {
 });
 
 
+/* Localization */
+app.use(function (req, res, next) {
+    global.currentLang = req.session.lang || 'en';
+//console.log('--- currentLang', currentLang);
+    next();
+});
+
+app.post('/lang', function (req, res, next) {
+    console.log('========== new ==========');
+
+// todo: dmitryl: geoapi predict part will be here
+
+    currentLang = req.body.lang || 'en';
+    res.cookie('lang', currentLang, {maxAge: 900000, httpOnly: false});
+    req.session.lang = currentLang || 'en';
+//    req.session.visits = req.session.visits + 1 || 0;
+
+    console.log('--- SESSION:', currentLang);
+
+//    console.log('--- REQ.METHOD:', req.method);
+//    console.log('--- SESSION:', req);
+//    console.log('--- --- TEST testUser:', req.session.testUser);
+//    console.log('--- --- TEST userLang:', req.session.userLang);
+//    console.log('--- COOKIES:', req.cookies);
+
+    res.send();
+//    next();
+});
+
+
+/* /Localization */
+
+
 /*
 * web routing
 * */
@@ -274,42 +308,50 @@ app
 // for opening index page
 var arr = ['/','/index','/index.html','/home'];
 
-arr.map(function(item) {
-    app.get(item, function(req, res) {
-        //TODO:dmitry pass user lang from session (from req)
-        var lang = global.opts.l18n.tempCurrentLang;
+app.get('/', function (req, res, next) {
+    //mustache generate index page
+    var indexData = (currentLang === 'en') ?
+                    JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8")) :
+                    JSON.parse(fs.readFileSync(__dirname + '/public/'+ currentLang +'/index.json', "utf8"));
 
+console.log('=== INDEX DATA', indexData, global.currentLang);
 
-        //TODO: cache this
-        //mustache generate index page
-        var indexData = (lang === 'en') ? JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8")) : JSON.parse(fs.readFileSync(__dirname + '/public/ru/index.json', "utf8"));
+    arr.map(function(item) {
+//        app.get(item, function(req, res) {
+            var indexJson = { records: indexData };
 
-        var indexJson = {records:indexData};
-        indexJson.commonOpts = global.commonOpts;
+            indexJson.commonOpts = global.commonOpts;
 
-        //Generating links to all sections
-        for (var section in global.articlesData[lang]) {
-        	if (indexJson[section] === undefined) {
-        		indexJson[section] = [];
-        	}
+console.log('====== INDEX DATA inner', indexData, global.currentLang);
 
-			for (var articles in global.articlesData[lang][section]) {
-				indexJson[section].push({
-					linkTitle: articles,
-					linkHref: '/#!/search/' + articles.replace(/\s+/g, '_')
-				})
-			}
-        }
+            //Generating links to all sections
+            for (var section in global.articlesData[currentLang]) {
+                if (indexJson[section] === undefined) {
+                    indexJson[section] = [];
+                }
+
+                for (var articles in global.articlesData[currentLang][section]) {
+                    indexJson[section].push({
+                        linkTitle: articles,
+                        linkHref: '/#!/search/' + articles.replace(/\s+/g, '_')
+                    })
+                }
+            }
 
         indexJson.indexJson = JSON.stringify(indexJson);
+
         var indexPage = fs.readFileSync(__dirname + '/public/build/index.html', "utf8");
         var htmlToSend = mustache.to_html(indexPage, indexJson);
         //TODO: /cache this
 
 
         res.send(htmlToSend);
+//        });
     });
+
+    next();
 });
+
 
 
 /*
@@ -331,7 +373,7 @@ voting.generateVotingData();
 /*
 * error hadnling
 * */
-app.use(function(req, res, next) {
+ app.use(function(err, req, res, next) {
     res.send(404, '404');
 });
 

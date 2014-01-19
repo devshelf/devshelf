@@ -13,10 +13,12 @@ var templateEngine = (function() {
 
         /**
          * Filter results from all-data.json related to inserted word or this part;
-         * @param {Object} opt
+         * @param {Object} opt Options for search
+         * 0: {String} opt.qSearch query string
+         * 1: {JSON} opt.allData JSON with articles
          * @returns {Array}
-         *  -> [0] full results with categories; need upgrade mustache render func;
-         *  -> [1] lite version; can be used in mustache without workarounds;
+         * 0: {Object} full results with categories; need to upgrade mustache render func;
+         * 1: {Array} lite version; can be used in mustache without workarounds;
          */
         fuzzySearch: function(opt) {
             var
@@ -175,6 +177,7 @@ var templateEngine = (function() {
                 getParams = p.hash.split('/')[1],
                 resultList = [],
                 target;
+
             if (!!getParams) {
                 hash = p.hash.split('/')[0];
             } else {
@@ -280,6 +283,7 @@ var templateEngine = (function() {
             var target = p.target || TARGET_CONT;
                 $template = $('#'+ p.template),
                 $target = $('#'+ target);
+
             var params = $.extend({}, p.params, langData[p.template]);
             $target.html( Mustache.to_html( $template.html(), params) );
 
@@ -433,12 +437,15 @@ var mainApp = function() {
     * Language buttons events
     */
     $('.pure-menu').on('click', '.js-language', function() {
-    	var lang = 'en';
+        // TODO: dmitryl: check list below
+        // [*] move this check to data-*
+
+    	var lang = $(this).hasClass('__ru')? 'ru' : 'en';
 
     	var makeRedirect = function() {
     		$.ajax({
-    			url: '/',
-    			type: 'post',
+    			url: '/lang',
+    			type: 'POST',
     			data: {
     				curr: window.location.hash,
     				lang: lang
@@ -448,10 +455,6 @@ var mainApp = function() {
     			}
     		})
     	};
-
-    	if ($(this).hasClass('__ru')) {
-    		lang = 'ru';
-    	}
 
     	makeRedirect();
 
@@ -579,11 +582,32 @@ var mainApp = function() {
 };
 
 /**
+ *
+ * @returns {Object}    cookie string parsed into object
+ */
+function cookieParser() {
+    var
+        cookie = {},
+        c = document.cookie.split('; '),
+        cLen = c.length,
+        arr;
+
+    for (var i=0; i<cLen; i++) {
+        arr = c[i].split('=');
+        cookie[arr[0]] = arr[1];
+    }
+
+    return cookie;
+}
+
+
+/**
 * Localization module on client
 * Getting articles and voting data for specific language
 */
 var getJsonData = function(p) {
-	var currentLanguage,
+	var
+        currentLanguage,
 		languages = {
 			en: {
 				data: 'output/all-data.json',
@@ -659,15 +683,15 @@ var getJsonData = function(p) {
     };
 
 	// if p.lang not set, it equals to 'en'
-	currentLanguage = (languages[p.lang] === undefined)
-		? 'en'
-		: p.lang;
+	currentLanguage = (languages[p.lang])? p.lang : 'en';
+//console.log('currentLanguage', currentLanguage);
 
     // extend templates with correct language
     var getLangData = function(callback) {
         var cb = callback || function() {}
           , path = (currentLanguage === 'en') ? '' : '/ru/'
-        ;
+          ;
+
         $.ajax({
             url: ''+path+'template-data.json',
             success: function(data) {
@@ -697,7 +721,7 @@ var getJsonData = function(p) {
 /**
  * Onstart routines
  */
-var currentLanguage = $('html').attr('lang');
+var currentLanguage = cookieParser(document.cookie)['lang'] || 'en';
 
 $(function() {
 

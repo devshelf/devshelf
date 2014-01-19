@@ -19,7 +19,7 @@
         "voteDisabled": "Голосование в данный момент не доступно, мы уже работаем над решением"
     },
     "about": {
-        "aboutProject": "О проектеt",
+        "aboutProject": "О проекте",
         "header": "Два дня &mdash; Один проект",
         "description": [
             { "p": "After two extremely challenging days during the Hackaton (plus few commits afterwards), we are happy to introduce&nbsp;our latest project&nbsp;&mdash;&nbsp;<strong>DevShelf.us</strong>. This is modern, cutting-edge web application, which collects only the best and most rated articles about <strong>HTML5</strong> stack of technologies."},
