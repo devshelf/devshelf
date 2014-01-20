@@ -28,7 +28,9 @@ module.exports = function(grunt) {
                   'public/assets/css/font-awesome.css',
                   'public/assets/css/main.css',
                   'public/assets/css/pricing.css',
-                  'public/assets/css/blog.css'
+                  'public/assets/css/blog.css',
+                  'public/assets/css/form.css',
+                  'public/assets/css/jquery.autoSuggest.css'
               ]
             }
           }
@@ -42,7 +44,8 @@ module.exports = function(grunt) {
                     'public/assets/js/mustache.js',
                     'public/assets/js/main.js',
                     'public/assets/js/auth.js',
-                    'public/assets/js/voting.js'
+                    'public/assets/js/voting.js',
+                    'public/assets/js/jquery.autoSuggest.js'
                 ]
               }
             }
