@@ -306,9 +306,9 @@ var templateEngine = (function() {
             }
 
             //TODO: move to custom callback
-            if (!isTouch) {
-                $('.js-search-input').focus();
-            }
+//            if (!isTouch) {
+//                $('.js-search-input').focus();
+//            }
 
             return this;
         },
@@ -578,7 +578,27 @@ var mainApp = function() {
             })
 
         }
-    })
+    });
+
+    /**
+     * AutoSuggest for tags input
+     * http://nicolasbize.github.io/magicsuggest/
+    */
+
+    $('body').on('click', 'a[href=addNewUrl]', function( e ){
+        e.preventDefault();
+
+        $('#addNewUrlForm').simpleModal().trigger('show');
+
+        // need to init after showing in simpleModal
+        $('#tags').magicSuggest({
+                resultAsString: true,
+                width: 300,
+                data: 'tag1,blabla,superPuper,...,12345'
+            });
+
+    });
+
 };
 
 /**

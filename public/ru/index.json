@@ -12,7 +12,7 @@
         "link": "#!/about"
     },{
         "name":"Добавить статью",
-        "link": "http://github.com/sourcejs/devshelf/tree/master/article_data"
+        "link": "addNewUrl"
     }],
 
     "footerSections": [{

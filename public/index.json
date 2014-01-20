@@ -12,7 +12,7 @@
         "link": "#!/about"
     },{
         "name":"Add new articles",
-        "link": "http://github.com/sourcejs/devshelf/tree/master/articles-data"
+        "link": "addNewUrl"
     }],
 
     "footerSections": [{
