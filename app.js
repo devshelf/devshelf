@@ -43,6 +43,12 @@ articlesJson.generateData();
 * */
 require('./core/auth');
 
+
+/*
+ * git api form
+ * */
+require('./core/commit');
+
 app.use(express.bodyParser())
     .use(express.cookieParser(global.opts.cookieSecret));
 

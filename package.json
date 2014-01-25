@@ -20,6 +20,7 @@
     "grunt-csso": "~0.5.0",
     "grunt-htmlcompressor": "~0.1.8",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-copy": "~0.4.1"
+    "grunt-contrib-copy": "~0.4.1",
+    "base64": "~2.1.0"
   }
 }
