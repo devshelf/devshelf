@@ -94,6 +94,8 @@ app.get('/auth/check', function (req, res) {
 * @param {String} req.query.url - url of new article
 * @param {String} req.query.title — title of new article
 */
+
+//TODO: вынести код метода в отдельный файл, в app.js оставить только listener. Проверку URL убрать и вынести в отдельный файл для будущего использования
 app.get('/validate', function (req, res) {
 
 	var url = parseurl.parse( req.query.url ),
@@ -206,8 +208,9 @@ app.get('/validate', function (req, res) {
 		}
 
 		// Read all data
+        //TODO: брать данные не из файла, а из глобального объекта и убрать завязку на русский язык, ибо языков может быть много
 		var commonData = JSON.parse(fs.readFileSync(__dirname + '/public/output/all-data.json', "utf8")),
-			langData = JSON.parse(fs.readFileSync(__dirname + '/public/output/ru/lang-data.json', "utf8")),
+			langData = JSON.parse(fs.readFileSync(__dirname + '/public/output/ru/all-data.json', "utf8")),
 			summData = [];
 
 		// Parsing English articles and collecting their titles
@@ -242,9 +245,9 @@ app.get('/validate', function (req, res) {
 	/**
 	* Run checks
 	*/
-	checkURLStatus(function(responce) {
-
-		if (responce) {
+    //TODO: проверить на наличие необходимых данных, прежде чем начать выполнять проверки
+	checkURLStatus(function(response) {
+		if (response) {
 			checkArticleFound(function(noSimilarTitles) {
 
 				if (noSimilarTitles) {
@@ -265,7 +268,7 @@ app.get('/validate', function (req, res) {
 				message: 'Page not found'
 			});
 		}
-	})
+	});
 });
 
 
@@ -277,7 +280,7 @@ app.use(function (req, res, next) {
 });
 
 app.post('/lang', function (req, res, next) {
-    console.log('========== new ==========');
+//    console.log('========== new ==========');
 
 // todo: dmitryl: geoapi predict part will be here
 
@@ -286,7 +289,7 @@ app.post('/lang', function (req, res, next) {
     req.session.lang = currentLang || 'en';
 //    req.session.visits = req.session.visits + 1 || 0;
 
-    console.log('--- SESSION:', currentLang);
+//    console.log('--- SESSION:', currentLang);
 
 //    console.log('--- REQ.METHOD:', req.method);
 //    console.log('--- SESSION:', req);
@@ -320,7 +323,7 @@ app.get('/', function (req, res, next) {
                     JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8")) :
                     JSON.parse(fs.readFileSync(__dirname + '/public/'+ currentLang +'/index.json', "utf8"));
 
-console.log('=== INDEX DATA', indexData, global.currentLang);
+//console.log('=== INDEX DATA', indexData, global.currentLang);
 
     arr.map(function(item) {
 //        app.get(item, function(req, res) {
@@ -328,7 +331,7 @@ console.log('=== INDEX DATA', indexData, global.currentLang);
 
             indexJson.commonOpts = global.commonOpts;
 
-console.log('====== INDEX DATA inner', indexData, global.currentLang);
+//console.log('====== INDEX DATA inner', indexData, global.currentLang);
 
             //Generating links to all sections
             for (var section in global.articlesData[currentLang]) {
