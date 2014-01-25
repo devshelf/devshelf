@@ -1,7 +1,14 @@
-.pure-form sup {
+.pure-form sup,
+.form-errors{
     color: #e9322d;
     }
 
-#addNewUrlForm {
+.form-errors {
+	margin-top: 30px;
+	text-align: center;
+	}
+
+#addNewUrlModal {
     min-width: 550px;
+	overflow: visible;
     }

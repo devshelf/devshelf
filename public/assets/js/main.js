@@ -588,14 +588,107 @@ var mainApp = function() {
     $('body').on('click', 'a[href=addNewUrl]', function( e ){
         e.preventDefault();
 
-        $('#addNewUrlForm').simpleModal().trigger('show');
+        $('#addNewUrlModal').simpleModal().trigger('show');
 
-        // need to init after showing in simpleModal
-        $('#tags').magicSuggest({
-                resultAsString: true,
-                width: 300,
-                data: 'tag1,blabla,superPuper,...,12345'
+        var $form = $('#addNewUrlForm'),
+            $selectCategory = $('#category'),
+            tempSelects = '',
+            tempTags = []
+        ;
+
+        //load all category and tags
+        for ( var cat in totalTagList ) {
+            if ( totalTagList.hasOwnProperty(cat) ){
+
+                tempSelects += ('<option value="' + cat + '">' + cat + '</option>');
+
+                for ( var tag in totalTagList[cat] ) {
+
+                    tempTags.push(tag);
+
+                }
+            }
+        }
+
+        $selectCategory.append(tempSelects);
+
+        var $tagsInput = $('#tags').magicSuggest({
+            resultAsString: true,
+            width: 300,
+            data: tempTags
+        });
+
+        $form.on('submit', function( e ){
+            e.preventDefault();
+
+            var sendData,
+                tagsArray,
+                errorField = $form.find('.form-errors'),
+                validate = {
+                    status: true,
+                    errors: []
+                };
+
+            sendData = convertFormToJSON(this);
+
+            $.ajax({
+                url:'/auth/check',
+                async: false,
+                success: function( data ){
+                    validate.status = data == 'false' ? false : true;
+
+                    if ( !validate.status ) {
+                        validate.errors.push('Only authorized users can add articles.');
+                    }
+                },
+                error: function( data ){
+                    console.log( data );
+                }
             });
+
+            //checking unique title and existing url
+            $.ajax({
+                url: '/validate',
+                data: {
+                    url: sendData['url'],
+                    title: sendData['title']
+                },
+                async: false,
+                success: function(data) {
+
+                    if ( !data.status ) {
+                        validate.status = false;
+                        validate.errors.push( data.message );
+                    }
+                },
+                error: function( data ) {
+                    console.log( 'Validation service is not responding.' );
+                }
+            });
+
+            if ( !validate.status ) {
+                errorField.html( validate.errors.join('<br>'));
+                return false;
+            }
+
+            tagsArray = $tagsInput.getValue();
+            sendData['mainTag'] = tagsArray.shift();
+            sendData['tags'] = tagsArray;
+
+            $.ajax({
+                url: '/someUrl',
+                data: sendData,
+
+                success: function( data ){
+                    //...
+                },
+                error: function( data ) {
+                    errorField.text('Oops.. Can\'t submit!');
+
+                }
+            });
+
+        });
 
     });
 
@@ -620,6 +713,16 @@ function cookieParser() {
     return cookie;
 }
 
+function convertFormToJSON(form){
+    var array = $(form).serializeArray();
+    var json = {};
+
+    $.each(array, function() {
+        json[this.name] = this.value || '';
+    });
+
+    return json;
+}
 
 /**
 * Localization module on client

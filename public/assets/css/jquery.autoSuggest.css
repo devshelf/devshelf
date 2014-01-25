@@ -1,18 +1,15 @@
 .ms-ctn{
-    height: 28px !important;
     position: relative;
-    padding: 0;
+    padding: 0 0 3px 0;
     margin-bottom: 0px;
     font-size: 14px;
     line-height: 20px;
     color: #555555;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
+
     border-radius: 3px;
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid #cccccc;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
     -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
@@ -20,6 +17,8 @@
     transition: border linear 0.2s, box-shadow linear 0.2s;
     cursor: default;
     display: inline-block;
+
+	width: 254px !important;
     vertical-align: middle;
 }
 .ms-ctn-invalid{
@@ -53,6 +52,7 @@
     float: left;
     margin: 2px 0 2px 2px;
     font-size: .8em;
+	width: 250px !important;
 }
 .ms-ctn-disabled input{
     cursor: not-allowed;
@@ -114,6 +114,7 @@
     border-radius: 3px;
     border: 1px solid #CCC;
     left: -1px;
+	top: 3px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -124,6 +125,7 @@
     border-top: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+	width: 254px !important;
 }
 .ms-res-ctn .ms-res-group{
     line-height: 23px;
@@ -173,6 +175,11 @@
     margin-left: 5px;
     margin-top: 4px;
 }
+
+.ms-sel-item:first-child {
+	background: #749E6E;
+	}
+
 .ms-sel-ctn .ms-sel-text{
     background: #FFF;
     color: #666;
@@ -186,9 +193,7 @@
     background: #565656;
     color: #FFF;
 }
-.ms-sel-ctn .ms-sel-item:hover{
-    background: #565656;
-}
+
 .ms-sel-ctn .ms-sel-text:hover{
     background: #FFF;
 }
@@ -218,6 +223,6 @@
     color: #AAA;
     font-size: 10px;
     position: absolute;
-    top: -17px;
+    bottom: -19px;
     right: 0;
 }

@@ -123,17 +123,15 @@ app.get('/validate', function (req, res) {
 				}
 
 				res.on('data', function(data) {
-					content.length += data.length;
-					content.data += data;
 
-					if (content.length == res.headers['content-length']) {
 
-						if ( (res.statusCode.toString().charAt(0) !== '2') && (res.statusCode.toString().charAt(0) !== '3') ) {
-							callback( false );
-						} else {
-							callback( true );
-						}
-					}
+
+                    if ( (res.statusCode.toString().charAt(0) !== '2') && (res.statusCode.toString().charAt(0) !== '3') ) {
+                        callback( false );
+                    } else {
+                        callback( true );
+                    }
+
 				});
 
 			});
@@ -205,7 +203,7 @@ app.get('/validate', function (req, res) {
 
 			// Step 7
 			return d[n][m];
-		}
+		};
 
 		// Read all data
         //TODO: брать данные не из файла, а из глобального объекта и убрать завязку на русский язык, ибо языков может быть много

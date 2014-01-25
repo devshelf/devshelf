@@ -30,57 +30,50 @@
 	</ul>
 </div>
 
-<div id="addNewUrlForm" class="login-popup" style="display: none">
+<div id="addNewUrlModal" class="login-popup" style="display: none">
     <div class="pure-g-r">
         <div class="pure-u-1">
             <header class="login-popup-header login-popup-padding">
                 <h3 class="login-popup-title main">Add new articles</h3>
             </header>
             <div class="login-popup-desc login-popup-padding">
-                <form class="pure-form pure-form-aligned">
+                <form id="addNewUrlForm" class="pure-form pure-form-aligned">
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="url">URL <sup>*</sup></label>
-                        <input id="url" type="url" placeholder="URL" class="pure-input-1-2" required>
+                        <input id="url" name="url" type="url" placeholder="URL" class="pure-input-1-2" required>
                     </div>
 
                     <div class="pure-control-group">
                         <label for="title">Title <sup>*</sup></label>
-                        <input id="title" type="text" placeholder="Title" class="pure-input-1-2" required>
+                        <input id="title" name="title" type="text" placeholder="Title" class="pure-input-1-2" required>
                     </div>
 
                     <div class="pure-control-group">
                         <label for="author">Author</label>
-                        <input id="author" type="text" placeholder="Author" class="pure-input-1-2">
+                        <input id="author" name="author" type="text" placeholder="Author" class="pure-input-1-2">
                     </div>
 
                     <div class="pure-control-group">
                         <label for="author-link">Author link</label>
-                        <input id="author-link" type="text" placeholder="Author link" class="pure-input-1-2">
+                        <input id="author-link" name="author-link" type="text" placeholder="Author link" class="pure-input-1-2">
                     </div>
 
                     <div class="pure-control-group">
                         <label for="author-mail">Author mail</label>
-                        <input id="author-mail" type="text" placeholder="Author mail" class="pure-input-1-2">
+                        <input id="author-mail" name="author-mail" type="text" placeholder="Author mail" class="pure-input-1-2">
                     </div>
 
                     <div class="pure-control-group">
                         <label for="author-mail-hash">Author mail hash</label>
-                        <input id="author-mail-hash" type="text" placeholder="Author mail hash" class="pure-input-1-2">
-                    </div>
-
-                    <div class="pure-control-group">
-                        <label for="id">ID</label>
-                        <input id="id" type="text" placeholder="ID" class="pure-input-1-2">
+                        <input id="author-mail-hash" name="author-mail-hash" type="text" placeholder="Author mail hash" class="pure-input-1-2">
                     </div>
 
                     <div class="pure-control-group">
                         <label for="category">Category</label>
                         <select name="category" id="category" class="pure-input-1-2">
                             <option value="">-</option>
-                            <option value="HTML">HTML</option>
-                            <option value="CSS">CSS</option>
-                            <option value="JS">JS</option>
+
                         </select>
                     </div>
 
@@ -88,6 +81,8 @@
                         <label for="tags">Tags</label>
                         <input id="tags" type="text"  placeholder="">
                     </div>
+
+					<div class="pure-control-group form-errors"></div>
 
                     <div class="pure-controls">
                         <button type="submit" class="pure-button pure-button-primary">Add article</button>
