@@ -42,7 +42,7 @@ var checkAuth = function(){
             url: '/auth/check',
             success:function( authorized ) {
 
-                if (authorized === 'false') {
+                if (!authorized) {
                     $('.auth-iframe').remove();
                     $('body').append('<iframe src="/auth/github" class="auth-iframe"></iframe>')
                 }
@@ -60,7 +60,7 @@ var unAuth = function(){
     $.ajax({
         url: '/auth/check',
         success:function( authorized) {
-            if (authorized === 'true') {
+            if (authorized) {
                 $('.auth-iframe').remove();
                 $('body').append('<iframe src="/logout" class="auth-iframe"></iframe>')
 

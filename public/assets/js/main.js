@@ -635,7 +635,7 @@ var mainApp = function() {
                 url:'/auth/check',
                 async: false,
                 success: function( data ){
-                    validate.status = data == 'false' ? false : true;
+                    validate.status = data;
 
                     if ( !validate.status ) {
                         validate.errors.push('Only authorized users can add articles.');
