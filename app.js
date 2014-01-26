@@ -6,8 +6,6 @@ var express = require('express')
     , mustache = require('mustache')
     , everyauth = require('everyauth')
     , path = require('path')
-    , http = require('http')
-    , parseurl = require('url')
     , MongoStore = require('connect-mongostore')(express)
     ;
 /* /Module dependencies */
@@ -82,192 +80,25 @@ app.get('/auth/check', function (req, res) {
     var user = typeof req.user === 'undefined' ?  undefined : req.user.github.login;
 
     if (user === undefined) {
-        res.send('false');
+        res.send(false);
     } else {
-        res.send('true');
+        res.send(true);
     }
 });
 
+
 /**
-* Links validator
-* @param {Object} req — http request data
-* @param {String} req.query.url - url of new article
-* @param {String} req.query.title — title of new article
+* Validation
 */
-
-//TODO: вынести код метода в отдельный файл, в app.js оставить только listener. Проверку URL убрать и вынести в отдельный файл для будущего использования
-app.get('/validate', function (req, res) {
-
-	var url = parseurl.parse( req.query.url ),
-		title = req.query.title;
-
-	/**
-	* Check on availability
-	* @param {Function} callback
-	*/
-	function checkURLStatus( callback ) {
-		var optionsget = {
-			hostname : url.host,
-			port : 80,
-			path : url.path,
-			method : 'GET'
-		};
-
-		// Make http request and check for statusCode — 2xx and 3xx accepted, otherwise fails
-		var getData = function getData() {
-			var reqGet = http.request(optionsget, function(res) {
-
-				var content = {
-					length: 0,
-					data: ''
-				}
-
-				res.on('data', function(data) {
+var validation = require('./core/article-validate');
+app.get('/validate', validation.articleValidate);
 
 
-
-                    if ( (res.statusCode.toString().charAt(0) !== '2') && (res.statusCode.toString().charAt(0) !== '3') ) {
-                        callback( false );
-                    } else {
-                        callback( true );
-                    }
-
-				});
-
-			});
-
-			reqGet.end();
-			reqGet.on('error', function(e) {
-				callback( false );
-			});
-
-		}();
-	}
-
-	/**
-	* Check for already exists title
-	* @param {Function} callback
-	*/
-	function checkArticleFound( callback ) {
-
-		// If leet than value, article title already exists
-		var LevenshteinThreshold = 5;
-
-		//http://www.merriampark.com/ld.htm, http://www.mgilleland.com/ld/ldjavascript.htm, Damerau–Levenshtein distance (Wikipedia)
-		var levDist = function(s, t) {
-			var d = []; //2d matrix
-
-			// Step 1
-			var n = s.length;
-			var m = t.length;
-
-			if (n == 0) return m;
-			if (m == 0) return n;
-
-			//Create an array of arrays in javascript (a descending loop is quicker)
-			for (var i = n; i >= 0; i--) d[i] = [];
-
-			// Step 2
-			for (var i = n; i >= 0; i--) d[i][0] = i;
-			for (var j = m; j >= 0; j--) d[0][j] = j;
-
-			// Step 3
-			for (var i = 1; i <= n; i++) {
-				var s_i = s.charAt(i - 1);
-
-				// Step 4
-				for (var j = 1; j <= m; j++) {
-
-					//Check the jagged ld total so far
-					if (i == j && d[i][j] > 4) return n;
-
-					var t_j = t.charAt(j - 1);
-					var cost = (s_i == t_j) ? 0 : 1; // Step 5
-
-					//Calculate the minimum
-					var mi = d[i - 1][j] + 1;
-					var b = d[i][j - 1] + 1;
-					var c = d[i - 1][j - 1] + cost;
-
-					if (b < mi) mi = b;
-					if (c < mi) mi = c;
-
-					d[i][j] = mi; // Step 6
-
-					//Damerau transposition
-					if (i > 1 && j > 1 && s_i == t.charAt(j - 2) && s.charAt(i - 2) == t_j) {
-						d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + cost);
-					}
-				}
-			}
-
-			// Step 7
-			return d[n][m];
-		};
-
-		// Read all data
-        //TODO: брать данные не из файла, а из глобального объекта и убрать завязку на русский язык, ибо языков может быть много
-		var commonData = JSON.parse(fs.readFileSync(__dirname + '/public/output/all-data.json', "utf8")),
-			langData = JSON.parse(fs.readFileSync(__dirname + '/public/output/ru/all-data.json', "utf8")),
-			summData = [];
-
-		// Parsing English articles and collecting their titles
-		for (var section in commonData) {
-			for (var property in commonData[section]) {
-				for (var article = 0; article < commonData[section][property].length; article++ ) {
-					summData.push( commonData[section][property][article].title );
-				}
-			}
-		}
-
-		// Parsing Russian articles and collecting their titles
-		for (var section in langData) {
-			for (var property in langData[section]) {
-				for (var article = 0; article < langData[section][property].length; article++ ) {
-					summData.push( langData[section][property][article].title );
-				}
-			}
-		}
-
-		// Getting Levenstein  distance for paie "each title — new title"
-		for (var articleTitle = 0; articleTitle < summData.length; articleTitle++) {
-			if ( levDist( summData[articleTitle], title ) < LevenshteinThreshold ) {
-				callback( false );
-				return;
-			}
-		}
-
-		callback( true );
-	}
-
-	/**
-	* Run checks
-	*/
-    //TODO: проверить на наличие необходимых данных, прежде чем начать выполнять проверки
-	checkURLStatus(function(response) {
-		if (response) {
-			checkArticleFound(function(noSimilarTitles) {
-
-				if (noSimilarTitles) {
-					res.send({
-						status: true,
-						message: 'OK'
-					});
-				} else {
-					res.send({
-						status: false,
-						message: 'Article with this title already exists'
-					});
-				}
-			})
-		} else {
-			res.send({
-				status: false,
-				message: 'Page not found'
-			});
-		}
-	});
-});
+/**
+* URL checker
+*/
+var check = require('./core/check-url-status');
+app.get('/check-url', check.checkURLStatus);
 
 
 /* Localization */
