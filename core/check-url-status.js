@@ -41,10 +41,10 @@ var checkURLStatus = function ( req, res ) {
 		});
 
 	}();
-}
+};
 
 module.exports = {
 	checkURLStatus: function(req, res) {
 		checkURLStatus(req, res)
 	}
-}
+};

@@ -33,20 +33,10 @@ var drawLoginButton = function(){
 };
 
 var checkAuth = function(){
-    if(localStorage['user']) {
+    if(localStorage['user'] && appData.auth) {
         var user = JSON.parse( localStorage.getItem('user') );
 
         drawLogined(user);
-
-        $.ajax({
-            url: '/auth/check',
-            success:function( authorized ) {
-                if (!authorized) {
-                    $('.auth-iframe').remove();
-                    $('body').append('<iframe src="/auth/github" class="auth-iframe"></iframe>')
-                }
-            }
-        });
 
     } else {
         drawLoginButton();
@@ -57,15 +47,8 @@ var unAuth = function(){
     localStorage.removeItem('user');
     drawLoginButton();
 
-    $.ajax({
-        url: '/auth/check',
-        success:function( authorized) {
-            if (authorized) {
-                $('.auth-iframe').remove();
-                $('body').append('<iframe src="/logout" class="auth-iframe"></iframe>')
-            }
-        }
-    });
+    $('.auth-iframe').remove();
+    $('body').append('<iframe src="/logout" class="auth-iframe"></iframe>');
 };
 
 $(function(){

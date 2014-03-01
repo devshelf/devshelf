@@ -37,3 +37,12 @@ everyauth.github
         return usersByGhId[ghUser.id] || (usersByGhId[ghUser.id] = addUser('github', ghUser, accessToken));
         })
     .redirectPath('/auth/done');
+
+// Overriding logout
+everyauth.everymodule.handleLogout( function (req, res) {
+    delete req.session.authCache;
+
+    req.logout();
+
+    this.redirect(res, this.logoutRedirectPath());
+});

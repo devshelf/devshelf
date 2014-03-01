@@ -258,9 +258,9 @@ var templateEngine = (function() {
                 params: {
                     getParams: getParams.replace(/_/g, ' '),
                     resultList: resultList,
-                    copy: indexJson.records.copy,
+                    copy: appData.records.copy,
 	                total: resultList.length,
-                    votingEnabled: indexJson.commonOpts.voting.enabled
+                    votingEnabled: appData.commonOpts.voting.enabled
                 }
             });
 
@@ -499,7 +499,7 @@ var mainApp = function() {
                 getParams: searchQuery,
                 total: resultList.length,
                 resultList: resultList,
-                votingEnabled: indexJson.commonOpts.voting.enabled
+                votingEnabled: appData.commonOpts.voting.enabled
             }
         });
 
@@ -515,7 +515,7 @@ var mainApp = function() {
                 getParams: searchQuery,
                 total: resultList.length,
                 resultList: resultList,
-                votingEnabled: indexJson.commonOpts.voting.enabled
+                votingEnabled: appData.commonOpts.voting.enabled
             }
         });
 
@@ -574,7 +574,7 @@ var mainApp = function() {
                     getParams: searchQuery,
                     total: resultList.length,
                     resultList: resultList,
-                    votingEnabled: indexJson.commonOpts.voting.enabled
+                    votingEnabled: appData.commonOpts.voting.enabled
                 }
             });
 
@@ -722,20 +722,10 @@ var mainApp = function() {
 
             sendData = convertFormToJSON(this);
 
-            $.ajax({
-                url:'/auth/check',
-                async: false,
-                success: function( data ){
-                    validate.status = data;
-
-                    if ( !validate.status ) {
-                        validate.errors.push('Only authorized users can add articles.');
-                    }
-                },
-                error: function( data ){
-                    console.log( data );
-                }
-            });
+            if (!appData.auth) {
+                validate.status = false;
+                validate.errors.push('Only authorized users can add articles.');
+            }
 
             //checking unique title and existing url
             $.ajax({
@@ -872,7 +862,7 @@ var getJsonData = function(p) {
             cacheNeeded = true;
 
         //If logged, give latest info
-        if(indexJson.commonOpts.voting.enabled && localStorage['user']) {
+        if(appData.commonOpts.voting.enabled && localStorage['user']) {
             dataUrl = '/getAllVotes';
             cacheNeeded = false
         }

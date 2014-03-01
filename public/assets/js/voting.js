@@ -67,7 +67,7 @@ $(function(){
 
     //Listeners
 
-    if (indexJson.commonOpts.voting.enabled) {
+    if (appData.commonOpts.voting.enabled) {
         $('body').on('click', '.js-vote', function(e){
             e.preventDefault();
 

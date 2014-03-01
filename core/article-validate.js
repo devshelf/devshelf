@@ -134,4 +134,4 @@ module.exports = {
 	articleValidate: function(req, res) {
 		articleValidate(req, res)
 	}
-}
+};

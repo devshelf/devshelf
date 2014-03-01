@@ -92,7 +92,7 @@ var prepareMongoModel = function(lang) {
 //Add positive vote
 var makeVote = function(req, res, voteType){
     var id = req.query._id,
-        user = typeof req.session.auth === 'undefined' ?  undefined : req.session.auth.github.user.login,
+        user = typeof req.session.authCache === 'undefined' ?  undefined : req.session.authCache.github.user.login,
         oppositeVotesType;
 
     try {

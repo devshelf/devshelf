@@ -82,12 +82,14 @@ app.post('/lang', function (req, res, next) {
 /*
 * auth module
 * */
-require('./core/auth');
 
+require('./core/auth');
 app.use(everyauth.middleware());
 
 app.get('/auth/done', function (req, res) {
-    var userData = JSON.stringify(req.session.auth.github.user);
+    req.session.authCache = req.session.auth;
+
+    var userData = JSON.stringify(req.session.authCache.github.user);
 
     var authData = {
         user: userData
@@ -97,16 +99,6 @@ app.get('/auth/done', function (req, res) {
     var htmlToSend = mustache.to_html(authPage, authData);
 
     res.send(htmlToSend);
-});
-
-app.get('/auth/check', function (req, res) {
-    var response = false;
-
-    if ( (req.session.auth && typeof req.session.auth.github.user === 'object') || typeof req.user === 'object') {
-        response = true;
-    }
-
-    res.send(response);
 });
 
 
@@ -141,6 +133,8 @@ app
 
 //main page
 app.get('/', function(req, res) {
+    console.log(req.session);
+
     var lang = req.session.lang || global.opts.l18n.defaultLang;
 
     //TODO: cache this
@@ -164,7 +158,12 @@ app.get('/', function(req, res) {
         }
     }
 
-    indexJson.indexJson = JSON.stringify(indexJson);
+    //Auth data
+    indexJson.auth = (req.session.authCache && typeof req.session.authCache.github.user === 'object') || typeof req.user === 'object' ? true : false;
+
+    //Preparing for client
+    indexJson.appData = JSON.stringify(indexJson);
+
     var indexPage = fs.readFileSync(__dirname + '/public/build/index.html', "utf8");
     var htmlToSend = mustache.to_html(indexPage, indexJson);
     //TODO: /cache this
