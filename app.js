@@ -7,6 +7,7 @@ var express = require('express')
     , everyauth = require('everyauth')
     , path = require('path')
     , MongoStore = require('connect-mongostore')(express)
+    , geo = require('geoip-native')
     ;
 /* /Module dependencies */
 
@@ -37,7 +38,7 @@ global.indexData[global.opts.l18n.defaultLang] = JSON.parse(fs.readFileSync(__di
 //filling lang properties
 global.opts.l18n.additionalLangs.map(function(item) {
     global.indexData[item] = JSON.parse(fs.readFileSync(__dirname + '/public/'+item+'/index.json', "utf8"));
-});
+        });
 
 
 /*
@@ -54,7 +55,7 @@ articlesJson.generateData();
 * Session
 */
 app.use(express.bodyParser())
-    .use(express.cookieParser(global.opts.cookieSecret));
+   .use(express.cookieParser(global.opts.cookieSecret));
 
 app.use(express.session({
     secret: global.opts.cookieSecret,
@@ -67,28 +68,32 @@ app.use(express.session({
 
 
 /**
-* Localization
+* Localization & geoIP
 */
-var langMiddleware = function(req, res, next) {
-    // todo: dmitryl: geoapi predict part will be here
+function langMiddleware(req, res, next) {
+    var
+        geodata = geo.lookup(req.ip),// req.ip
+        // there is listed countries who will has RU lang by default;
+        RU = ['RU', 'KZ', 'BY', 'UA', 'AM', 'GE'];
 
-    if (!req.session.lang) {
-       if (req.method === 'GET') {
-            //setting language on first enter
-
-            req.session.lang = global.opts.l18n.defaultLang;
+    if (!req.cookies.lang && req.method === 'GET') {
+        console.log('ATTENTION NO COOKIE', req.cookies.lang);
+            // setting language on first enter
+//            req.session.lang = (~RU.indexOf(geodata.code))? 'ru' : global.opts.l18n.defaultLang;
+            res.cookie('country', geodata.code, { maxAge: 3600000, httpOnly: false });
+            res.cookie('lang', global.opts.l18n.defaultLang, { maxAge: 3600000, httpOnly: false });
         }
-   }
 
    // keep executing the router middleware
-   next()
+   next();
 };
+
 app.use(langMiddleware);
 
 app.post('/lang', function (req, res, next) {
-    var currentLang = req.body.lang || 'en';
-    res.cookie('lang', currentLang, {maxAge: 900000, httpOnly: false});
-    req.session.lang = currentLang || 'en';
+    var currentLang = req.body.lang || global.opts.l18n.defaultLang;
+    res.cookie('lang', currentLang, { maxAge: 3600000, httpOnly: false });
+//    req.session.lang = currentLang || 'en';
 
     res.send();
 });
@@ -161,7 +166,7 @@ app
 
 //main page
 app.get('/', function(req, res) {
-    var lang = req.session.lang || global.opts.l18n.defaultLang;
+    var lang = req.cookies.lang || global.opts.l18n.defaultLang;
 
     //text data
     var indexJson = {records:global.indexData[lang]};
@@ -217,13 +222,11 @@ voting.generateVotingData();
 if (MODE === 'production') {
     app.use(function(err, req, res, next) {
         console.log(err);
-
         res.send(404, '404');
     });
 
     app.use(function(err, req, res, next) {
         console.log(err);
-
         res.send(500, '500');
     });
 }

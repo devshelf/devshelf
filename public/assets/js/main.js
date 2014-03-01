@@ -723,8 +723,8 @@ var mainApp = function() {
 
             if (!appData.auth) {
                 validate.status = false;
-                validate.errors.push('Only authorized users can add articles.');
-            }
+                        validate.errors.push('Only authorized users can add articles.');
+                    }
 
             //checking unique title and existing url
             $.ajax({
