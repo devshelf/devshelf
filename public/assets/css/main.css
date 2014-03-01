@@ -142,20 +142,15 @@ a {
 	padding-top: 0.5em;
 	padding-left: 0.5em;
 	padding-right: 0.5em;
+	border: 1px solid transparent;
 	border-bottom:1px dotted #eee;
-	background-color: transparent;
 
-	transition: background-color 1s;
+
 	}
 	.article-item.__in-focus {
-		background-color: #eee;
-		border-bottom-color: transparent;
+		border: 1px #df2d4f solid;
 		}
 
-		.article-item.__in-focus .pure-button {
-			box-shadow: 0 0 0 1px #888;
-
-			}
 
 .article-title-link {color:#111;}
 .article-voting .pure-button, .article-rating{ display:inline-block; vertical-align: middle; margin-right:.25em;}
