@@ -532,7 +532,15 @@ var mainApp = function() {
     /**
      * Search field on search page
      */
-    $('#main-content').on('keyup', '.js-search-input-interactive', function() {
+    $('#main-content').on('keyup', '.js-search-input-interactive', function(e) {
+
+		// keyboard navigation on search results
+    	if ( (e.keyCode == 38) || (e.keyCode == 40) || (e.keyCode == 13) ) {
+    		return false;
+    	}
+    	if ( e.keyCode == 27 ) {
+    		$('.js-search-input-interactive').blur();
+    	}
 
         var searchQuery = $.trim($('.js-search-input').val()),
             resultList = [];
@@ -579,6 +587,89 @@ var mainApp = function() {
 
         }
     });
+
+    /**
+    * Arrow keys in search result
+    */
+    $('body').on('keydown keypress keyup', function(e) {
+    	if ( (e.keyCode == 40) || (e.keyCode ==38) ) {
+    		e.preventDefault();
+    	}
+    })
+
+    $('body').on('keydown', function(e) {
+
+    	function scrollToItem( $item ) {
+    		var itemHeight = $item.outerHeight(),
+    			itemVerticalOffset = $item.offset().top,
+    			containerHeight = $('#main-content').outerHeight(),
+    			windowHeight = $(window).height(),
+    			newScrollTop = (itemHeight < windowHeight)
+    				? itemVerticalOffset - 70 -(windowHeight - itemHeight)/2
+    				: itemVerticalOffset - 150;
+
+				$(window).scrollTop( newScrollTop );
+    	}
+
+    	function setFocusToLink( $item ) {
+			scrollToItem( $item );
+
+    		$item
+    			.addClass('__in-focus');
+    	}
+
+    	function switchItem( direction ) {
+    		var $current, $target;
+
+    		if ( $('.article-item.__in-focus').length ) {
+    			$current = $('.article-item.__in-focus');
+    			$target = (direction == 'next')
+    				? $current.next('.article-item')
+    				: $current.prev('.article-item');
+
+    			if (!$target.length) {
+    				if ( $current.index('.article-item') == 0 ) {
+    					var currentSearchValue = $('.js-search-input-interactive').val();
+    					$('.js-search-input-interactive').focus().val(currentSearchValue);
+
+    					$current.removeClass('__in-focus');
+    				}
+
+    				return false;
+    			} else {
+    				$current.removeClass('__in-focus');
+    			}
+    		} else {
+    			if (direction == 'next') {
+	    			$target = $('.article-item').first();
+    			} else {
+    				return false;
+    			}
+    		}
+
+    		setFocusToLink( $target );
+    	}
+
+    	if (e.keyCode == 40) {
+	    	switchItem('next');
+    	}
+
+    	if (e.keyCode == 38) {
+	    	switchItem('prev');
+    	}
+
+    	if ( e.keyCode == 13 ) {
+    		if ( $('.article-item.__in-focus').length ) {
+    			e.preventDefault();
+    			var addr = $( '.article-item.__in-focus .article-title-link' ).attr('href');
+				window.location.href = addr;
+    		}
+    	}
+
+    	if ( e.keyCode == 27 ) {
+    		$('.article-item.__in-focus').removeClass('.__in-focus');
+    	}
+    })
 
     /**
      * AutoSuggest for tags input

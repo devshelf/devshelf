@@ -1302,7 +1302,7 @@ this the same font stack that Normalize.css sets for the `body`.
 
 .pure-menu.pure-menu-open {
     visibility: visible;
-    z-index: 2;
+    z-index: 10;
     width: 100%;
 }
 
