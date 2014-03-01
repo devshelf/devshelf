@@ -138,7 +138,7 @@ app.use(everyauth.middleware());
 
 var authDoneTpl = fs.readFileSync(__dirname+'/views/auth-done.html', "utf8");
 app.get('/auth/stub', function (req, res) {
-    var lang = req.session.lang || global.opts.l18n.defaultLang;
+    var lang = req.cookies.lang || global.opts.l18n.defaultLang;
 
     var indexJson = global.indexData[lang];
 
@@ -150,7 +150,7 @@ app.get('/auth/stub', function (req, res) {
 });
 
 app.get('/auth/done', function (req, res) {
-    var lang = req.session.lang || global.opts.l18n.defaultLang;
+    var lang = req.cookies.lang || global.opts.l18n.defaultLang;
 
     //Creating cachedAuth for keeping auth after app restart
     req.session.authCache = req.session.auth;
