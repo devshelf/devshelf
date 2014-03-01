@@ -13,8 +13,6 @@
     },
 
     "l18n" : {
-        "tempCurrentLang" : "ru",
-
         "additionalLangs":["ru"],
         "defaultLang": "en"
     },
@@ -39,12 +37,5 @@
 
         "appID": "github appID",
         "appSecret": "github appSecret"
-    },
-
-    "cookie": {
-        "secret": "secret",
-        "key": "pid",
-        "httpOnly": false,
-        "originalMaxAge": null
     }
 }

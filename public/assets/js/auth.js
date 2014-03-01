@@ -41,7 +41,6 @@ var checkAuth = function(){
         $.ajax({
             url: '/auth/check',
             success:function( authorized ) {
-
                 if (!authorized) {
                     $('.auth-iframe').remove();
                     $('body').append('<iframe src="/auth/github" class="auth-iframe"></iframe>')
@@ -56,6 +55,7 @@ var checkAuth = function(){
 
 var unAuth = function(){
     localStorage.removeItem('user');
+    drawLoginButton();
 
     $.ajax({
         url: '/auth/check',
@@ -63,8 +63,6 @@ var unAuth = function(){
             if (authorized) {
                 $('.auth-iframe').remove();
                 $('body').append('<iframe src="/logout" class="auth-iframe"></iframe>')
-
-                drawLoginButton();
             }
         }
     });

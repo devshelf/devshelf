@@ -22,7 +22,6 @@ global.MODE = process.env.NODE_ENV || 'development';
 global.app = express();
 global.opts = require('./core/options/'); //Global options
 global.commonOpts = require('./core/options/common-options.json'); //Common options with Front-end
-global.currentLang = 'en';
 /* /Global vars */
 
 
@@ -36,19 +35,11 @@ require('./core/updateData');
 articlesJson.generateData();
 
 
-/*
-* auth module
-* */
-require('./core/auth');
-
-
-/*
- * git api form
- * */
-require('./core/commit');
-
+/**
+* Session
+*/
 app.use(express.bodyParser())
-    .use(express.cookieParser(global.opts.cookieSecret));
+        .use(express.cookieParser(global.opts.cookieSecret));
 
 app.use(express.session({
     secret: global.opts.cookieSecret,
@@ -57,14 +48,57 @@ app.use(express.session({
         host: global.opts.remoteDBhost,
         port: global.opts.remoteDBport
     })
-  })
-);
+}));
+
+
+/**
+* Localization
+*/
+var langMiddleware = function(req, res, next) {
+    // todo: dmitryl: geoapi predict part will be here
+
+    if (!req.session.lang) {
+       if (req.method === 'GET') {
+            //setting language on first enter
+
+            req.session.lang = global.opts.l18n.defaultLang;
+        }
+   }
+
+   // keep executing the router middleware
+   next()
+};
+app.use(langMiddleware);
+
+app.get('/check-url', function (req, res) {
+    // todo: dmitryl: make languages switchable
+
+    var currentLang = req.body.lang || 'en';
+    res.cookie('lang', currentLang, {maxAge: 900000, httpOnly: false});
+    req.session.lang = currentLang || 'en';
+//    req.session.visits = req.session.visits + 1 || 0;
+
+    console.log('--- SESSION:', currentLang);
+
+//    console.log('--- REQ.METHOD:', req.method);
+//    console.log('--- SESSION:', req);
+//    console.log('--- --- TEST testUser:', req.session.testUser);
+//    console.log('--- --- TEST userLang:', req.session.userLang);
+//    console.log('--- COOKIES:', req.cookies);
+
+    res.send();
+});
+
+
+/*
+* auth module
+* */
+require('./core/auth');
+
 app.use(everyauth.middleware());
 
 app.get('/auth/done', function (req, res) {
-//    console.log(req.user);
-
-    var userData = JSON.stringify(req.user.github);
+    var userData = JSON.stringify(req.session.auth.github.user);
 
     var authData = {
         user: userData
@@ -77,14 +111,20 @@ app.get('/auth/done', function (req, res) {
 });
 
 app.get('/auth/check', function (req, res) {
-    var user = typeof req.user === 'undefined' ?  undefined : req.user.github.login;
+    var response = false;
 
-    if (user === undefined) {
-        res.send(false);
-    } else {
-        res.send(true);
+    if ( (req.session.auth && typeof req.session.auth.github.user === 'object') || typeof req.user === 'object') {
+        response = true;
     }
+
+    res.send(response);
 });
+
+
+/*
+ * git api form
+ * */
+require('./core/commit');
 
 
 /**
@@ -101,39 +141,6 @@ var check = require('./core/check-url-status');
 app.get('/check-url', check.checkURLStatus);
 
 
-/* Localization */
-app.use(function (req, res, next) {
-    global.currentLang = req.session.lang || 'en';
-//console.log('--- currentLang', currentLang);
-    next();
-});
-
-app.post('/lang', function (req, res, next) {
-//    console.log('========== new ==========');
-
-// todo: dmitryl: geoapi predict part will be here
-
-    currentLang = req.body.lang || 'en';
-    res.cookie('lang', currentLang, {maxAge: 900000, httpOnly: false});
-    req.session.lang = currentLang || 'en';
-//    req.session.visits = req.session.visits + 1 || 0;
-
-//    console.log('--- SESSION:', currentLang);
-
-//    console.log('--- REQ.METHOD:', req.method);
-//    console.log('--- SESSION:', req);
-//    console.log('--- --- TEST testUser:', req.session.testUser);
-//    console.log('--- --- TEST userLang:', req.session.userLang);
-//    console.log('--- COOKIES:', req.cookies);
-
-    res.send();
-//    next();
-});
-
-
-/* /Localization */
-
-
 /*
 * web routing
 * */
@@ -143,53 +150,38 @@ app
 	.use(gzippo.staticGzip(app.get('route')))
 	.use(gzippo.compress());
 
-// for opening index page
-var arr = ['/','/index','/index.html','/home'];
+//main page
+app.get('/', function(req, res) {
+    var lang = req.session.lang || global.opts.l18n.defaultLang;
 
-app.get('/', function (req, res, next) {
+    //TODO: cache this
     //mustache generate index page
-    var indexData = (currentLang === 'en') ?
-                    JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8")) :
-                    JSON.parse(fs.readFileSync(__dirname + '/public/'+ currentLang +'/index.json', "utf8"));
+    var indexData = (lang === 'en') ? JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8")) : JSON.parse(fs.readFileSync(__dirname + '/public/ru/index.json', "utf8"));
 
-//console.log('=== INDEX DATA', indexData, global.currentLang);
+    var indexJson = {records:indexData};
+    indexJson.commonOpts = global.commonOpts;
 
-    arr.map(function(item) {
-//        app.get(item, function(req, res) {
-            var indexJson = { records: indexData };
+    //Generating links to all sections
+    for (var section in global.articlesData[lang]) {
+        if (indexJson[section] === undefined) {
+            indexJson[section] = [];
+        }
 
-            indexJson.commonOpts = global.commonOpts;
+        for (var articles in global.articlesData[lang][section]) {
+            indexJson[section].push({
+                linkTitle: articles,
+                linkHref: '/#!/search/' + articles.replace(/\s+/g, '_')
+            })
+        }
+    }
 
-//console.log('====== INDEX DATA inner', indexData, global.currentLang);
+    indexJson.indexJson = JSON.stringify(indexJson);
+    var indexPage = fs.readFileSync(__dirname + '/public/build/index.html', "utf8");
+    var htmlToSend = mustache.to_html(indexPage, indexJson);
+    //TODO: /cache this
 
-            //Generating links to all sections
-            for (var section in global.articlesData[currentLang]) {
-                if (indexJson[section] === undefined) {
-                    indexJson[section] = [];
-                }
-
-                for (var articles in global.articlesData[currentLang][section]) {
-                    indexJson[section].push({
-                        linkTitle: articles,
-                        linkHref: '/#!/search/' + articles.replace(/\s+/g, '_')
-                    })
-                }
-            }
-
-        indexJson.indexJson = JSON.stringify(indexJson);
-
-        var indexPage = fs.readFileSync(__dirname + '/public/build/index.html', "utf8");
-        var htmlToSend = mustache.to_html(indexPage, indexJson);
-        //TODO: /cache this
-
-
-        res.send(htmlToSend);
-//        });
-    });
-
-    next();
+    res.send(htmlToSend);
 });
-
 
 
 /*
@@ -211,13 +203,20 @@ voting.generateVotingData();
 /*
 * error hadnling
 * */
- app.use(function(err, req, res, next) {
-    res.send(404, '404');
-});
 
-app.use(function(err, req, res, next) {
-    res.send(500, '500');
-});
+if (MODE === 'production') {
+    app.use(function(err, req, res, next) {
+        console.log(err);
+
+        res.send(404, '404');
+    });
+
+    app.use(function(err, req, res, next) {
+        console.log(err);
+
+        res.send(500, '500');
+    });
+}
 
 var appPort = MODE === 'development' ? global.opts.app.devPort : global.opts.app.port;
 

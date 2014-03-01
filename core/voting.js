@@ -92,13 +92,13 @@ var prepareMongoModel = function(lang) {
 //Add positive vote
 var makeVote = function(req, res, voteType){
     var id = req.query._id,
-        user = typeof req.user === 'undefined' ?  undefined : req.user.github.login,
+        user = typeof req.session.auth === 'undefined' ?  undefined : req.session.auth.github.user.login,
         oppositeVotesType;
 
     try {
 
     //TODO:dmitry pass user lang from session (from req)
-    var lang = global.opts.l18n.tempCurrentLang;
+    var lang = req.session.lang || global.opts.l18n.defaultLang;
     var Vote = prepareMongoModel(lang);
 
     if (user === undefined) { // Check user auth
@@ -218,7 +218,7 @@ var getVotes = function(req, res) {
     var id = req.query._id;
 
     //TODO:dmitry pass user lang from session (from req)
-    var lang = global.opts.l18n.tempCurrentLang;
+    var lang = req.session.lang || global.opts.l18n.defaultLang;
     var Vote = prepareMongoModel(lang);
 
     Vote.findById(id, function (err, data) {
@@ -230,7 +230,7 @@ var getVotes = function(req, res) {
 
 var getAllVotes = function(req, res) {
     //TODO:dmitry pass user lang from session (from req)
-    var lang = global.opts.l18n.tempCurrentLang;
+    var lang = req.session.lang || global.opts.l18n.defaultLang;
     var Vote = prepareMongoModel(lang);
 
     Vote.find(function (err, votes) {

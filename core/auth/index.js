@@ -8,7 +8,7 @@ var usersById = {},
 
 var addUser = function (source, sourceUser, token) {
     var user;
-    sourceUser.token = token; //extending object with acces_token
+    sourceUser.token = token; //extending object with access_token
 
     if (arguments.length === 1) { // password-based
         user = sourceUser = source;

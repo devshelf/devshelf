@@ -1,5 +1,5 @@
 {
     "voting" : {
-        "enabled" : false
+        "enabled" : true
     }
 }
