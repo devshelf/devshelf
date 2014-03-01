@@ -70,21 +70,10 @@ var langMiddleware = function(req, res, next) {
 };
 app.use(langMiddleware);
 
-app.get('/check-url', function (req, res) {
-    // todo: dmitryl: make languages switchable
-
+app.post('/lang', function (req, res, next) {
     var currentLang = req.body.lang || 'en';
     res.cookie('lang', currentLang, {maxAge: 900000, httpOnly: false});
     req.session.lang = currentLang || 'en';
-//    req.session.visits = req.session.visits + 1 || 0;
-
-    console.log('--- SESSION:', currentLang);
-
-//    console.log('--- REQ.METHOD:', req.method);
-//    console.log('--- SESSION:', req);
-//    console.log('--- --- TEST testUser:', req.session.testUser);
-//    console.log('--- --- TEST userLang:', req.session.userLang);
-//    console.log('--- COOKIES:', req.cookies);
 
     res.send();
 });
