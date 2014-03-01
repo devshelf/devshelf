@@ -1,8 +1,29 @@
 <!DOCTYPE html>
-<title>Auth done</title>
+<title>{{authTitle}}</title>
+
+<style>
+body{
+    overflow: hidden;
+    margin: 0;
+    text-align: center;
+    }
+</style>
+
+<img src="/build/img/github-loagind.gif" width="500" alt="Loading">
+
+{{#authDone}}
 <script>
 if(opener){
     opener.authCallback({{{user}}});
 }
 close();
 </script>
+{{/authDone}}
+
+{{^authDone}}
+<script>
+setTimeout(function (){
+    window.location = "/auth/github";
+}, 10);
+</script>
+{{/authDone}}

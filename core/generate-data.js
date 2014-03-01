@@ -129,9 +129,10 @@ var prepareJSON = function(targetDir, lang) {
                 //Updating global objects
                 global.articlesData[language] = finalJSON || {};
                 generateIDs.updateIDs(language);
+                generateTagLinks(language);
 
                 // function for write json file
-                var generateJSON = function(data, dir, fileName) {
+                var writeToFile = function(data, dir, fileName) {
                     var JSONformat = null;
 
                     if (global.MODE === 'development') {
@@ -156,10 +157,10 @@ var prepareJSON = function(targetDir, lang) {
                     }
 
                     var processJSON = function(){
-                        generateJSON(fullJSON, outputDir, articlesDataFile);
+                        writeToFile(fullJSON, outputDir, articlesDataFile);
 
                         if (localizationEnabled) {
-                            generateJSON(onlyLang, outputDir, articlesDataLangFile);
+                            writeToFile(onlyLang, outputDir, articlesDataLangFile);
                         }
                     };
 
@@ -178,6 +179,24 @@ var prepareJSON = function(targetDir, lang) {
             }
         });
     });
+};
+
+var generateTagLinks = function(lang) {
+    //cleaning
+    global.tagLinks[lang] = {};
+
+    for (var section in global.articlesData[lang]) {
+        if (global.tagLinks[lang][section] === undefined) {
+            global.tagLinks[lang][section] = [];
+        }
+
+        for (var articles in global.articlesData[lang][section]) {
+            global.tagLinks[lang][section].push({
+                linkTitle: articles,
+                linkHref: '/#!/search/' + articles.replace(/\s+/g, '_')
+            })
+        }
+    }
 };
 
 var generateData = function() {

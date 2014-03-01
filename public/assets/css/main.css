@@ -125,8 +125,10 @@ a {
 	right: 13px;
 	font-size: 2em;
 	color: #A9A9A9;
-
 	}
+    .pure-form.main-search .pure-button:active {
+        box-shadow: none;
+        }
 
 /* /HOMEPAGE SEARCH */
 

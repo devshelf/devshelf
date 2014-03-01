@@ -1,5 +1,5 @@
 var auth = function() {
-    var popup = open('/auth/github', 'popup', 'width=1015,height=500');
+    var popup = open('/auth/stub', 'popup', 'width=1015,height=500');
 };
 
 var drawLogined = function(userData) {
@@ -13,8 +13,6 @@ var drawLogined = function(userData) {
 };
 
 var authCallback  = function(userData) {
-//    console.log(userData);
-
     $("#login-popup").trigger("hide");
     drawLogined(userData);
 
@@ -44,6 +42,7 @@ var checkAuth = function(){
 };
 
 var unAuth = function(){
+    appData.auth = false;
     localStorage.removeItem('user');
     drawLoginButton();
 

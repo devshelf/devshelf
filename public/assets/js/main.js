@@ -1,8 +1,7 @@
 var TARGET_CONT = 'main-content',
     totalTagList = {},
     searchTagList = {},
-    voteData = {},
-    langData = {};
+    voteData = {};
 
 var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
 
@@ -284,7 +283,7 @@ var templateEngine = (function() {
                 $template = $('#'+ p.template),
                 $target = $('#'+ target);
 
-            var params = $.extend({}, p.params, langData[p.template]);
+            var params = $.extend({}, p.params, appData.records[p.template]);
             $target.html( Mustache.to_html( $template.html(), params) );
 
             var actualParams = $.extend({}, params),
@@ -887,23 +886,7 @@ var getJsonData = function(p) {
     };
 
 	// if p.lang not set, it equals to 'en'
-	currentLanguage = (languages[p.lang])? p.lang : 'en';
-//console.log('currentLanguage', currentLanguage);
-
-    // extend templates with correct language
-    var getLangData = function(callback) {
-        var cb = callback || function() {}
-          , path = (currentLanguage === 'en') ? '' : '/ru/'
-          ;
-
-        $.ajax({
-            url: ''+path+'template-data.json',
-            success: function(data) {
-                langData = $.extend(true, langData, data);
-                cb();
-            }
-        })
-    };
+	currentLanguage = (languages[p.lang]) ? p.lang : 'en';
 
 	// Execution getting operations
     getAllData({
@@ -915,7 +898,7 @@ var getJsonData = function(p) {
 					lang: currentLanguage
 				},
 				callback: function() {
-                    getLangData(callback);
+					callback();
 				}
 			})
     	}

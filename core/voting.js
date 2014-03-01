@@ -95,9 +95,6 @@ var makeVote = function(req, res, voteType){
         user = typeof req.session.authCache === 'undefined' ?  undefined : req.session.authCache.github.user.login,
         oppositeVotesType;
 
-    try {
-
-    //TODO:dmitry pass user lang from session (from req)
     var lang = req.session.lang || global.opts.l18n.defaultLang;
     var Vote = prepareMongoModel(lang);
 
@@ -174,9 +171,6 @@ var makeVote = function(req, res, voteType){
     } else {
         res.jsonp('incorrect ID');
     }
-    } catch (e) {
-        console.log(e);
-    }
 
 };
 
@@ -217,7 +211,6 @@ var checkVoting = function(data, voteType, oppositeVotesType, username){
 var getVotes = function(req, res) {
     var id = req.query._id;
 
-    //TODO:dmitry pass user lang from session (from req)
     var lang = req.session.lang || global.opts.l18n.defaultLang;
     var Vote = prepareMongoModel(lang);
 
@@ -229,7 +222,6 @@ var getVotes = function(req, res) {
 };
 
 var getAllVotes = function(req, res) {
-    //TODO:dmitry pass user lang from session (from req)
     var lang = req.session.lang || global.opts.l18n.defaultLang;
     var Vote = prepareMongoModel(lang);
 

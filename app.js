@@ -14,6 +14,7 @@ var express = require('express')
 /* Global vars */
 global.articlesData = {}; //all-data.json obj with articles by lang (articlesData.en/ru/etc)
 global.articlesIDs = {}; //all-data.json ID lists by lang (articlesIDs.en/ru/etc)
+global.tagLinks = {}; //global object with tag links
 
 global.appDir = path.dirname(require.main.filename); //path to project dir
 
@@ -23,6 +24,20 @@ global.app = express();
 global.opts = require('./core/options/'); //Global options
 global.commonOpts = require('./core/options/common-options.json'); //Common options with Front-end
 /* /Global vars */
+
+
+/*
+* Data
+* */
+
+global.indexData = {};
+
+global.indexData[global.opts.l18n.defaultLang] = JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8"));
+
+//filling lang properties
+global.opts.l18n.additionalLangs.map(function(item) {
+    global.indexData[item] = JSON.parse(fs.readFileSync(__dirname + '/public/'+item+'/index.json', "utf8"));
+});
 
 
 /*
@@ -39,7 +54,7 @@ articlesJson.generateData();
 * Session
 */
 app.use(express.bodyParser())
-        .use(express.cookieParser(global.opts.cookieSecret));
+    .use(express.cookieParser(global.opts.cookieSecret));
 
 app.use(express.session({
     secret: global.opts.cookieSecret,
@@ -86,18 +101,31 @@ app.post('/lang', function (req, res, next) {
 require('./core/auth');
 app.use(everyauth.middleware());
 
+var authDoneTpl = fs.readFileSync(__dirname+'/views/auth-done.html', "utf8");
+app.get('/auth/stub', function (req, res) {
+    var lang = req.session.lang || global.opts.l18n.defaultLang;
+
+    var indexJson = global.indexData[lang];
+
+    indexJson.authDone = false;
+
+    var htmlToSend = mustache.to_html(authDoneTpl, indexJson);
+
+    res.send(htmlToSend);
+});
+
 app.get('/auth/done', function (req, res) {
+    var lang = req.session.lang || global.opts.l18n.defaultLang;
+
+    //Creating cachedAuth for keeping auth after app restart
     req.session.authCache = req.session.auth;
 
-    var userData = JSON.stringify(req.session.authCache.github.user);
+    var indexJson = global.indexData[lang];
 
-    var authData = {
-        user: userData
-    };
+    indexJson.user = JSON.stringify(req.session.authCache.github.user);
+    indexJson.authDone = true;
 
-    var authPage = fs.readFileSync(__dirname+'/views/auth-done.html', "utf8");
-    var htmlToSend = mustache.to_html(authPage, authData);
-
+    var htmlToSend = mustache.to_html(authDoneTpl, indexJson);
     res.send(htmlToSend);
 });
 
@@ -133,40 +161,34 @@ app
 
 //main page
 app.get('/', function(req, res) {
-    console.log(req.session);
-
     var lang = req.session.lang || global.opts.l18n.defaultLang;
 
-    //TODO: cache this
-    //mustache generate index page
-    var indexData = (lang === 'en') ? JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8")) : JSON.parse(fs.readFileSync(__dirname + '/public/ru/index.json', "utf8"));
+    //text data
+    var indexJson = {records:global.indexData[lang]};
 
-    var indexJson = {records:indexData};
+    //for dynamic options update
     indexJson.commonOpts = global.commonOpts;
 
-    //Generating links to all sections
-    for (var section in global.articlesData[lang]) {
-        if (indexJson[section] === undefined) {
-            indexJson[section] = [];
-        }
-
-        for (var articles in global.articlesData[lang][section]) {
-            indexJson[section].push({
-                linkTitle: articles,
-                linkHref: '/#!/search/' + articles.replace(/\s+/g, '_')
-            })
-        }
-    }
+    //link to tags catalogues for main page
+    indexJson.catalogue = global.tagLinks[lang];
 
     //Auth data
     indexJson.auth = (req.session.authCache && typeof req.session.authCache.github.user === 'object') || typeof req.user === 'object' ? true : false;
 
+
     //Preparing for client
-    indexJson.appData = JSON.stringify(indexJson);
+    var clientIndexJson = {},
+        clientIndexJsonFields = ['commonOpts','auth','records'];
+
+    clientIndexJsonFields.map(function(item){
+       clientIndexJson[item] = indexJson[item];
+    });
+
+    indexJson.appData = JSON.stringify(clientIndexJson);
+
 
     var indexPage = fs.readFileSync(__dirname + '/public/build/index.html', "utf8");
     var htmlToSend = mustache.to_html(indexPage, indexJson);
-    //TODO: /cache this
 
     res.send(htmlToSend);
 });
