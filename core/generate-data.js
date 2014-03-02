@@ -78,6 +78,8 @@ var prepareJSON = function(targetDir, lang) {
 
             //Processing json data to add custom objects to it
             for (tag in currentFile) {
+
+                //updating currentFile properties
                 var targetDataArr = currentFile[tag];
 
                 var i=0;
@@ -108,10 +110,10 @@ var prepareJSON = function(targetDir, lang) {
                 }
             }
 
-            outputJSON[fileName] = extend(currentFile);
+            outputJSON[fileName] = currentFile;
             jsonFileQueue++;
 
-            //When all fiels scanned
+            //When all files scanned, now heading to writing
             if (jsonFileQueue === jsonFileCount) {
                 var finalJSON = outputJSON;
 

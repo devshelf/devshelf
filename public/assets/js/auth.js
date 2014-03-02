@@ -16,6 +16,7 @@ var authCallback  = function(userData) {
     $("#login-popup").trigger("hide");
     drawLogined(userData);
 
+    appData.auth = true;
     localStorage.setItem('user', JSON.stringify(userData));
 
     if(voteCache !== undefined) {
