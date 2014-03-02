@@ -7,7 +7,6 @@ var express = require('express')
     , everyauth = require('everyauth')
     , path = require('path')
     , MongoStore = require('connect-mongostore')(express)
-    , geo = require('geoip-native')
     ;
 /* /Module dependencies */
 
@@ -68,31 +67,13 @@ app.use(express.session({
 
 
 /**
-* Localization & geoIP
+* Localization & geo-ip service
 */
-var langMiddleware = function (req, res, next) {
-    var
-        geodata = geo.lookup(req.ip),// req.ip
-        // there is listed countries who will has RU lang by default;
-        RU = ['RU', 'KZ', 'BY', 'UA', 'AM', 'GE'];
-
-    if (!req.cookies.lang && req.method === 'GET') {
-            // setting language on first enter
-//            req.session.lang = (~RU.indexOf(geodata.code))? 'ru' : global.opts.l18n.defaultLang;
-            res.cookie('country', geodata.code, { maxAge: 3600000, httpOnly: false });
-            res.cookie('lang', global.opts.l18n.defaultLang, { maxAge: 3600000, httpOnly: false });
-        }
-
-   // keep executing the router middleware
-   next();
-};
-
-app.use(langMiddleware);
+app.use(require('./core/lang'));
 
 app.post('/lang', function (req, res, next) {
     var currentLang = req.body.lang || global.opts.l18n.defaultLang;
     res.cookie('lang', currentLang, { maxAge: 3600000, httpOnly: false });
-//    req.session.lang = currentLang || 'en';
 
     res.send();
 });
