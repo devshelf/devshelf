@@ -38,7 +38,7 @@ global.indexData[global.opts.l18n.defaultLang] = JSON.parse(fs.readFileSync(__di
 //filling lang properties
 global.opts.l18n.additionalLangs.map(function(item) {
     global.indexData[item] = JSON.parse(fs.readFileSync(__dirname + '/public/'+item+'/index.json', "utf8"));
-        });
+});
 
 
 /*
@@ -70,14 +70,13 @@ app.use(express.session({
 /**
 * Localization & geoIP
 */
-function langMiddleware(req, res, next) {
+var langMiddleware = function (req, res, next) {
     var
         geodata = geo.lookup(req.ip),// req.ip
         // there is listed countries who will has RU lang by default;
         RU = ['RU', 'KZ', 'BY', 'UA', 'AM', 'GE'];
 
     if (!req.cookies.lang && req.method === 'GET') {
-        console.log('ATTENTION NO COOKIE', req.cookies.lang);
             // setting language on first enter
 //            req.session.lang = (~RU.indexOf(geodata.code))? 'ru' : global.opts.l18n.defaultLang;
             res.cookie('country', geodata.code, { maxAge: 3600000, httpOnly: false });
@@ -180,6 +179,7 @@ app.get('/', function(req, res) {
     //Auth data
     indexJson.auth = (req.session.authCache && typeof req.session.authCache.github.user === 'object') || typeof req.user === 'object' ? true : false;
 
+    if (MODE === 'production') { indexJson.production = true; }
 
     //Preparing for client
     var clientIndexJson = {},

@@ -223,6 +223,8 @@
 </div>
 
 <script type="text/javascript">var appData = {{{appData}}};</script>
+
+{{#production}}
 <script type="text/javascript">
 	var _gauges = _gauges || [];
 	(function() {
@@ -236,6 +238,8 @@
 		s.parentNode.insertBefore(t, s);
 	})();
 </script>
+{{/production}}
+
 </body>
 {{/records}}
 
