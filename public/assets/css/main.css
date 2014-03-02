@@ -64,11 +64,14 @@ a {
 	line-height: 1.5em;
 	padding: 0 0.4em;
 	cursor: pointer;
-}
+    }
+    .user-language:hover {
+        text-decoration: underline;
+        }
 
-.user-language + .user-language {
-	margin-left: 1em;
-}
+    .user-language + .user-language {
+        margin-left: 1em;
+        }
 
 /* /LANGUAGE */
 

@@ -436,8 +436,7 @@ var mainApp = function() {
     * Language buttons events
     */
     $('.pure-menu').on('click', '.js-language', function() {
-        // TODO: dmitryl: check list below
-        // [*] move this check to data-*
+        // TODO: dmitryl: move this check to data-*
 
     	var lang = $(this).hasClass('__ru')? 'ru' : 'en';
 
