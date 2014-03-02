@@ -17,7 +17,7 @@ var sendVote = function(that){
         success:function( data ) {
             if (data === 'unauthorized') {
 
-                $("#login-popup").simpleModal().trigger( "show" );
+                showModal('login-popup');
 
                 voteCache = that;
             } else if (data === 'incorrect ID') {

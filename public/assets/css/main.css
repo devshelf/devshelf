@@ -19,6 +19,10 @@ a {
 	background: none;
 	}
 
+.ovHidden {
+	overflow: hidden;
+	}
+
 /* USER LOGIN PART */
 
 .user-login {
@@ -165,13 +169,11 @@ a {
 
 /*POPUP*/
 
-.login-popup {
+.popup {
+	display:none;
 
 	max-width: 404px;
 	padding:0;
-
-	display:none;
-
 
 	background: #FFF;
 	border-radius: 5px;
@@ -179,50 +181,53 @@ a {
 	overflow: hidden;
 
 	}
-.login-popup-padding { padding:1.2em; }
-.login-popup-header {
+
+.popup-padding { padding:1.2em; }
+
+.popup-header {
 	background: #dadada url(../img/hd-bg.png) repeat;
 	border-bottom: 1px solid darkgray;
+	border-radius: 5px 5px 0 0;
 	}
 
-.login-popup-title {
+.popup-title {
 	margin:0;
 	color:#444;
 	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
 	}
 
-.login-popup-title.main {
+.popup-title.main {
 	margin-bottom:.25em;
 
 	}
 
-.login-popup-title.sub {
+.popup-title.sub {
 	font-size: .9em;
 	color:#000;
 
 	}
 
-.login-popup-title {
+.popup-title {
 	margin-top:0;
 	}
 
-.login-popup-desc {
+.popup-desc {
 	/*margin-top:.5em;*/
 	/*text-align: center;*/
 	}
 
-.login-popup-desc p {
+.popup-desc p {
 	margin-top:0;
 	}
 
-.login-popup-desc p:last-child {
+.popup-desc p:last-child {
 	margin-bottom:0;
 	}
 
 
 
-.login-popup-close { position: absolute; top: 12px; right: 12px; display: block; width: 14px; height: 14px;  z-index: 2; cursor: pointer; color:gray; font-size:1.25em;}
-.login-popup-close:hover {color:#000;}
+.popup-close { position: absolute; top: 12px; right: 12px; display: block; width: 14px; height: 14px;  z-index: 2; cursor: pointer; color:gray; font-size:1.25em;}
+.popup-close:hover {color:#000;}
 
 
 .sidebar-header {

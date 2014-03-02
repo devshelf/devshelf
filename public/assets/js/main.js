@@ -675,104 +675,139 @@ var mainApp = function() {
      * http://nicolasbize.github.io/magicsuggest/
     */
 
-    $('body').on('click', 'a[href=addNewUrl]', function( e ){
-        e.preventDefault();
-
-        $('#addNewUrlModal').simpleModal().trigger('show');
-
-        var $form = $('#addNewUrlForm'),
-            $selectCategory = $('#category'),
-            tempSelects = '',
-            tempTags = []
-        ;
-
-        //load all category and tags
-        for ( var cat in totalTagList ) {
-            if ( totalTagList.hasOwnProperty(cat) ){
-
-                tempSelects += ('<option value="' + cat + '">' + cat + '</option>');
-
-                for ( var tag in totalTagList[cat] ) {
-
-                    tempTags.push(tag);
-
-                }
-            }
-        }
-
-        $selectCategory.append(tempSelects);
-
-        var $tagsInput = $('#tags').magicSuggest({
-            resultAsString: true,
-            width: 300,
-            data: tempTags
-        });
-
-        $form.on('submit', function( e ){
+    $('body')
+        .on('click', 'a[href=addNewUrl]', function( e ){
             e.preventDefault();
 
-            var sendData,
-                tagsArray,
-                errorField = $form.find('.form-errors'),
-                validate = {
-                    status: true,
-                    errors: []
-                };
+            var $form = $('#addNewUrlForm'),
+                $selectCategory = $('#category'),
+                tempSelects = '',
+                tempTags = []
+                ;
 
-            sendData = convertFormToJSON(this);
-
-            if (!appData.auth) {
-                validate.status = false;
-                        validate.errors.push('Only authorized users can add articles.');
-                    }
-
-            //checking unique title and existing url
-            $.ajax({
-                url: '/validate',
-                data: {
-                    url: sendData['url'],
-                    title: sendData['title']
-                },
-                async: false,
-                success: function(data) {
-
-                    if ( !data.status ) {
-                        validate.status = false;
-                        validate.errors.push( data.message );
-                    }
-                },
-                error: function( data ) {
-                    console.log( 'Validation service is not responding.' );
-                }
-            });
-
-            if ( !validate.status ) {
-                errorField.html( validate.errors.join('<br>'));
-                return false;
+            //if user not auth
+            if ( !window.appData.auth ) {
+                showModal('login-popup');
+                return false
             }
 
-            tagsArray = $tagsInput.getValue();
-            sendData['mainTag'] = tagsArray.shift();
-            sendData['tags'] = tagsArray;
+            showModal('addNewUrlModal');
 
-            $.ajax({
-                url: '/someUrl',
-                data: sendData,
+            //load all category and tags
+            for ( var cat in totalTagList ) {
+                if ( totalTagList.hasOwnProperty(cat) ){
 
-                success: function( data ){
-                    //...
-                },
-                error: function( data ) {
-                    errorField.text('Oops.. Can\'t submit!');
+                    tempSelects += ('<option value="' + cat + '">' + cat + '</option>');
 
+                    for ( var tag in totalTagList[cat] ) {
+
+                        tempTags.push(tag);
+
+                    }
                 }
+            }
+
+            $selectCategory.append(tempSelects);
+
+            var $tagsInput = $('#tags').magicSuggest({
+                resultAsString: true,
+                width: 300,
+                data: tempTags
             });
 
-        });
+            $form.on('submit', function( e ){
+                e.preventDefault();
 
-    });
+                var sendData,
+                    tagsArray,
+                    errorField = $form.find('.form-errors'),
+                    validate = {
+                        status: true,
+                        errors: []
+                    };
+
+                sendData = convertFormToJSON(this);
+
+                if (!appData.auth) {
+                    validate.status = false;
+                    validate.errors.push('Only authorized users can add articles.');
+                }
+
+                //checking unique title and existing url
+                $.ajax({
+                    url: '/validate',
+                    data: {
+                        url: sendData['url'],
+                        title: sendData['title']
+                    },
+                    async: false,
+                    success: function(data) {
+
+                        if ( !data.status ) {
+                            validate.status = false;
+                            validate.errors.push( data.message );
+                        }
+                    },
+                    error: function( data ) {
+                        console.log( 'Validation service is not responding.' );
+                    }
+                });
+
+                if ( !validate.status ) {
+                    errorField.html( validate.errors.join('<br>'));
+                    return false;
+                }
+
+                tagsArray = $tagsInput.getValue();
+                sendData['mainTag'] = tagsArray.shift();
+                sendData['tags'] = tagsArray;
+
+                $.ajax({
+                    url: '/someUrl',
+                    data: sendData,
+
+                    success: function( data ){
+                        //...
+                        //closeAddNewUrlModal();
+                    },
+
+                    error: function( data ) {
+                        errorField.text('Oops.. Can\'t submit!');
+                    }
+                });
+
+            });
+
+        })
+        .on('click', '.js-popup-close', function(e){
+            closeModal();
+        })
+    ;
 
 };
+
+
+function closeModal(){
+    $(".showModal").removeClass("showModal");
+    $('body').removeClass('ovHidden');
+}
+
+function showModal( templateID ){
+    if ( !templateID ) return false;
+
+    $('body')
+        .addClass('ovHidden')
+
+        //close on ESC
+        .on('keydown', function(e) {
+            if ( e.which == 27) {
+                closeModal();
+            }
+        })
+    ;
+
+    $('#' + templateID).addClass('showModal');
+}
 
 /**
  *

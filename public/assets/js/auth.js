@@ -13,7 +13,9 @@ var drawLogined = function(userData) {
 };
 
 var authCallback  = function(userData) {
-    $("#login-popup").trigger("hide");
+
+    closeModal();
+
     drawLogined(userData);
 
     appData.auth = true;
@@ -52,19 +54,17 @@ var unAuth = function(){
 };
 
 $(function(){
-    $('body').on('click', '.js-login', function(e){
-        e.preventDefault();
-
-        auth();
-    });
-
-    $('body').on('click', '.js-logout', function(e){
-        e.preventDefault();
-
-        unAuth();
-    });
-
-    $('body').on('click', '.js-login-popup-close', function(e){
-        $("#login-popup").trigger("hide");
-    });
+    $('body')
+        .on('click', '.js-login', function(e){
+            e.preventDefault();
+            auth();
+        })
+        .on('click', '.js-logout', function(e){
+            e.preventDefault();
+            unAuth();
+        })
+        .on('click', '.js-popup-close', function(e){
+            e.preventDefault();
+            closeModal();
+        });
 });

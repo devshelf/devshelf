@@ -8,7 +8,37 @@
 	text-align: center;
 	}
 
-#addNewUrlModal {
-    min-width: 550px;
-	overflow: visible;
-    }
+.showModal {
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+
+	display: block;
+
+	background: rgba(0,0,0,.7);
+	z-index: 99;
+	max-width: 100%;
+
+	overflow-y: auto;
+	text-align: center;
+	}
+	.showModal:before {
+		content: '';
+		min-height: 100%;
+		display: inline-block;
+		vertical-align: middle;
+		}
+
+	.showModal .popup_cnt {
+		position: relative;
+		z-index: 100;
+
+		display: inline-block;
+		max-width: 550px;
+		min-width: 404px;
+		margin: 30px 0;
+
+		vertical-align: middle;
+		text-align: left;
+		border-radius: 5px;
+		background: #fff;
+		}
