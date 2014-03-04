@@ -692,6 +692,9 @@ var mainApp = function() {
 
             showModal('addNewUrlModal');
 
+            //prevent double init
+            if ( $(this).hasClass('js-already-init') ) return false;
+
             //load all category and tags
             for ( var cat in totalTagList ) {
                 if ( totalTagList.hasOwnProperty(cat) ){
@@ -699,9 +702,7 @@ var mainApp = function() {
                     tempSelects += ('<option value="' + cat + '">' + cat + '</option>');
 
                     for ( var tag in totalTagList[cat] ) {
-
                         tempTags.push(tag);
-
                     }
                 }
             }
@@ -777,6 +778,7 @@ var mainApp = function() {
 
             });
 
+            $(this).addClass('js-already-init');
         })
         .on('click', '.js-popup-close', function(e){
             closeModal();

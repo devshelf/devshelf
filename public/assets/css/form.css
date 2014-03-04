@@ -42,3 +42,17 @@
 		border-radius: 5px;
 		background: #fff;
 		}
+
+.isl {/* select list */
+	width: 100%;
+	color: #333;
+	height: 20px; /* for opera */
+	margin: 0;
+	}
+
+.isl__promo {
+	height: 28px;
+	max-height: 28px;
+	line-height: 28px;
+	margin-top: 0 !important;
+	}
