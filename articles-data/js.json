@@ -28,8 +28,8 @@
             "title": "JavaScript Garden"
         },
         {
-        	"url": "http://shichuan.github.io/javascript-patterns/",
-        	"title": "JS Patterns"
+            "url": "http://shichuan.github.io/javascript-patterns/",
+            "title": "JS Patterns"
         }
     ],
     "meteor": [
@@ -57,6 +57,45 @@
             "url": "http://nimbupani.com/css-object-model.html",
             "title": "CSS Object Model",
             "author": "Divya Manian"
+        }
+    ],
+    "ember": [
+        {
+            "url": "http://coding.smashingmagazine.com/2013/11/07/an-in-depth-introduction-to-ember-js/",
+            "title": "An In-Depth Introduction To Ember.js",
+            "author": "Julien Knebel",
+            "tags": [
+                "mvc"
+            ]
+        }
+    ],
+    "dom": [
+        {
+            "url": "http://coding.smashingmagazine.com/2013/11/12/an-introduction-to-dom-events/",
+            "title": "An Introduction To DOM Events",
+            "author": "Wilson Page"
+        }
+    ],
+    "video": [
+        {
+            "url": "http://coding.smashingmagazine.com/2013/11/18/the-future-of-video-in-web-design/",
+            "title": "The Future Of Video In Web Design",
+            "author": "Sean Fioritto"
+        }
+    ],
+    "architecture": [
+        {
+            "url": "http://coding.smashingmagazine.com/2013/11/21/introduction-to-full-stack-javascript/",
+            "title": "An Introduction To Full-Stack JavaScript",
+            "author": "Alejandro Hernandez"
+        }
+    ],
+    "Selector Listeners": [
+        {
+            "url": "http://www.backalleycoder.com/2012/08/06/css-selector-listeners/",
+            "title": "CSS Selector Listeners",
+            "author": "Daniel Buchner",
+            "id": "ZqdNQa"
         }
     ]
 }

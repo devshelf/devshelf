@@ -1,12 +1,12 @@
 {
     "box-shadow": [
         {
-        "url": "http://www.css3.info/preview/box-shadow/",
-        "title": "Box-shadow, one of CSS3′s best new features"
+            "url": "http://www.css3.info/preview/box-shadow/",
+            "title": "Box-shadow, one of CSS3′s best new features"
         },
         {
-        "url": "http://css3gen.com/box-shadow/",
-        "title": "CSS3 Box Shadow Generator"
+            "url": "http://css3gen.com/box-shadow/",
+            "title": "CSS3 Box Shadow Generator"
         }
     ],
 
@@ -24,6 +24,12 @@
     ],
 
     "transition": [
+        {
+            "url": "http://www.netmagazine.com/tutorials/more-efficient-css3-transitions",
+            "title": "More efficient CSS3 transitions",
+            "author": "Val Head",
+            "id": "1y9s8T"
+        },
         {
             "url": "http://alistapart.com/article/understanding-css3-transitions/",
             "title": "Understanding CSS3 Transitions",
@@ -69,11 +75,11 @@
     ],
 
     "specificity": [
-    	{
-    		"url": "http://coding.smashingmagazine.com/2007/07/27/css-specificity-things-you-should-know/",
-    		"title": "CSS Specificity: Things You Should Know",
-    		"author": "Vitaly Friedman"
-    	}
+        {
+            "url": "http://coding.smashingmagazine.com/2007/07/27/css-specificity-things-you-should-know/",
+            "title": "CSS Specificity: Things You Should Know",
+            "author": "Vitaly Friedman"
+        }
     ],
 
     "fonts": [
@@ -87,37 +93,50 @@
             ],
             "id": "X8k5u"
         },
-    	{
-    		"url": "http://www.paulirish.com/2009/fighting-the-font-face-fout/",
-    		"title": "Fighting the @font-face FOUT",
-    		"author": "Paul Irish",
-    		"tags": [
-    			"@font-face"
-    		]
-    	}
+        {
+            "url": "http://www.paulirish.com/2009/fighting-the-font-face-fout/",
+            "title": "Fighting the @font-face FOUT",
+            "author": "Paul Irish",
+            "tags": [
+                "@font-face"
+            ]
+        },
+        {
+            "url": "http://designshack.net/articles/css/a-beginners-guide-to-using-google-web-fonts/",
+            "title": "A Beginner’s Guide to Using Google Web Fonts",
+            "author": "Joshua Johnson",
+            "id": "Z131FHz"
+        }
     ],
     "clearfix": [
-    	{
-    		"url": "http://nicolasgallagher.com/micro-clearfix-hack/",
-    		"title": "A new micro clearfix hack",
-    		"author": "Nicolas Gallagher",
-    		"tags": [
-    			"float"
-    		]
-    	}
+        {
+            "url": "http://nicolasgallagher.com/micro-clearfix-hack/",
+            "title": "A new micro clearfix hack",
+            "author": "Nicolas Gallagher",
+            "tags": [
+                "float"
+            ]
+        }
     ],
 
     "flexbox": [
-    	{
-    		"url": "http://philipwalton.github.io/solved-by-flexbox/",
-    		"title": "Solved by Flexbox",
-    		"author": "Philip Walton"
-    	},
-    	{
-    		"url": "http://dev.opera.com/articles/view/advanced-cross-browser-flexbox/",
-    		"title": "Advanced cross-browser flexbox",
-    		"author": "Chris Mills"
-    	}
+        {
+            "url": "http://philipwalton.github.io/solved-by-flexbox/",
+            "title": "Solved by Flexbox",
+            "author": "Philip Walton"
+        },
+        {
+            "url": "http://dev.opera.com/articles/view/advanced-cross-browser-flexbox/",
+            "title": "Advanced cross-browser flexbox",
+            "author": "Chris Mills"
+        },
+
+        {
+            "url": "http://net.tutsplus.com/tutorials/html-css-techniques/an-introduction-to-css-flexbox/",
+            "title": "An Introduction to the CSS Flexbox Module",
+            "author": "Umar Hansa",
+            "id": "ZweReW"
+        }
 
     ],
     "variables": [
@@ -129,28 +148,28 @@
         }
     ],
     "css3": [
-    	{
-    		"url": "http://coding.smashingmagazine.com/2010/04/28/css3-solutions-for-internet-explorer/",
-    		"title": "CSS3 Solutions for Internet Explorer",
-    		"author": "Louis Lazaris",
-    		"tags": [
-    			"opacity",
-    			"border-radius",
-    			"box-shadow",
-    			"text-shadow",
-    			"rgba",
-    			"transform",
-    			"ie"
-    		]
-    	},
-    	{
-    		"url": "http://www.useragentman.com/IETransformsTranslator/",
-    		"title": "IE's CSS3 Transforms Translator",
-    		"tags": [
-    			"transform",
-    			"ie"
-    		]
-    	},
+        {
+            "url": "http://coding.smashingmagazine.com/2010/04/28/css3-solutions-for-internet-explorer/",
+            "title": "CSS3 Solutions for Internet Explorer",
+            "author": "Louis Lazaris",
+            "tags": [
+                "opacity",
+                "border-radius",
+                "box-shadow",
+                "text-shadow",
+                "rgba",
+                "transform",
+                "ie"
+            ]
+        },
+        {
+            "url": "http://www.useragentman.com/IETransformsTranslator/",
+            "title": "IE's CSS3 Transforms Translator",
+            "tags": [
+                "transform",
+                "ie"
+            ]
+        },
         {
             "url": "http://www.red-team-design.com/css-generated-content-replaced-elements",
             "title": "CSS generated content on replaced elements",
@@ -212,7 +231,7 @@
                 "responsive"
             ]
         }
-     ],
+    ],
     "responsive": [
         {
             "url": "http://dev.opera.com/articles/view/responsive-images-problem/",
@@ -221,8 +240,33 @@
             "tags": [
                 "rwd"
             ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2013/11/05/killer-responsive-layouts-with-css-regions/",
+            "title": "Killer Responsive Layouts With CSS Regions",
+            "author": "CJ Gammon",
+            "tags": [
+                "rwd",
+                "regions"
+            ],
+            "id": "Zoslta"
+        },
+        {
+            "url": "http://www.campaignmonitor.com/guides/mobile/",
+            "title": "Responsive Email Design",
+            "author": "Campaign Monitor",
+            "tags": [
+                "email"
+            ],
+            "id": "2wyYbh"
+        },
+        {
+            "url": "http://palantir.net/blog/responsive-design-s-dirty-little-secret",
+            "title": "Responsive Design’s Dirty Little Secret",
+            "author": "John Albin Wilkins",
+            "id": "1lWilN"
         }
-     ],
+    ],
     "sprites": [
         {
             "url": "http://miekd.com/articles/using-css-sprites-to-optimize-your-website-for-retina-displays/",
@@ -300,6 +344,114 @@
                 "markup"
             ],
             "id": "2rxL7y"
+        }
+    ],
+    "tools": [
+        {
+            "url": "http://coding.smashingmagazine.com/2006/09/02/list-of-css-tools/",
+            "title": "List of CSS Tools",
+            "author": "Sven Lennartz"
+        }
+    ],
+    "techniques": [
+        {
+            "url": "http://coding.smashingmagazine.com/2007/01/19/53-css-techniques-you-couldnt-live-without/",
+            "title": "53 CSS-Techniques You Couldn’t Live Without",
+            "author": "Vitaly Friedman"
+        },
+        {
+            "url": "http://www.thecssninja.com/css/reveal-effect",
+            "title": "Curtain reveal effect using CSS",
+            "author": "Ryan Seddon",
+            "id": "247WKn"
+        }
+    ],
+    "print": [
+        {
+            "url": "http://coding.smashingmagazine.com/2007/02/21/printing-the-web-solutions-and-techniques/",
+            "title": "Printing the Web: Solutions and Techniques",
+            "author": "Vitaly Friedman"
+        }
+    ],
+    "float": [
+        {
+            "url": "http://coding.smashingmagazine.com/2007/05/01/css-float-theory-things-you-should-know/",
+            "title": "CSS Float Theory: Things You Should Know",
+            "author": "Vitaly Friedman"
+        }
+    ],
+    "transform": [
+        {
+            "url": "http://generatedcontent.org/post/26407228072/split-feature",
+            "title": "Creating an angled split feature area with CSS transforms",
+            "author": "David Storey",
+            "id": "1KqFrL"
+        }
+    ],
+    "media-queries": [
+        {
+            "url": "http://css-tricks.com/media-queries-sass-3-2-and-codekit/",
+            "title": "Media Queries, Sass 3.2, and CodeKit",
+            "author": "Chris Coyier",
+            "id": "1kpAU6"
+        },
+        {
+            "url": "http://blog.cloudfour.com/the-ems-have-it-proportional-media-queries-ftw/",
+            "title": "The EMs have it: Proportional Media Queries FTW!",
+            "author": "Lyza Gardner",
+            "id": "Zaqkxr"
+        }
+    ],
+    "undefined": [
+        {
+            "url": "http://davidwalsh.name/css-columns",
+            "title": "CSS Columns",
+            "author": "David Walsh",
+            "id": "ZKGydd"
+        },
+        {
+            "url": "http://www.html5rocks.com/en/tutorials/regions/adobe/",
+            "title": "Magazine-like Layout for the Web with CSS Regions and Exclusions",
+            "author": "Christian Cantrell",
+            "id": "2cpkFB"
+        },
+        {
+            "url": "http://filamentgroup.com/lab/how_we_learned_to_leave_body_font_size_alone/",
+            "title": "How we learned to leave default font-size alone and embrace the em",
+            "author": "Filament Group",
+            "id": "1njDie"
+        }
+    ],
+    "text-align": [
+        {
+            "url": "http://davidwalsh.name/text-align-start",
+            "title": "text-align: start & RTL",
+            "author": "David Walsh",
+            "id": "2emve2"
+        }
+    ],
+    "blend": [
+        {
+            "url": "http://blogs.adobe.com/webplatform/2012/07/17/new-blending-features-in-css/",
+            "title": "New blending features in CSS",
+            "author": "Rik Cabanier",
+            "id": "Z2siN9c"
+        }
+    ],
+    "regions": [
+        {
+            "url": "http://blogs.adobe.com/cantrell/archives/2012/07/css-regions-arent-just-for-columns.html",
+            "title": "CSS Regions Aren’t Just For Columns",
+            "author": "Christian Cantrell",
+            "id": "1h8NfW"
+        }
+    ],
+    "hight dpi": [
+        {
+            "url": "http://www.html5rocks.com/en/mobile/high-dpi/",
+            "title": "High DPI Images for Variable Pixel Densities",
+            "author": "Boris Smus",
+            "id": "26CUlg"
         }
     ]
 }

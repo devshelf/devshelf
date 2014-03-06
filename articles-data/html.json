@@ -41,5 +41,12 @@
     		"title": "Understand the Favicon",
     		"author": "Jonathan Neal"
     	}
+    ],
+    "microformats": [
+        {
+          "url": "http://coding.smashingmagazine.com/2007/05/04/microformats-what-they-are-and-how-to-use-them/",
+          "title": "Microformats: What They Are and How To Use Them",
+          "author": "Vitaly Friedman"
+        }
     ]
 }

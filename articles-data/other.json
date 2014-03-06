@@ -7,7 +7,7 @@
             "author": "Robert Haritonov",
             "author-link": "http://rhr.me",
             "author-mail": "r@rhr.me",
-            "id":"mcss",
+            "id": "mcss",
             "tags": [
                 "css",
                 "best practises"
@@ -184,6 +184,14 @@
             "author": "Chris Coyier",
             "author-link": "http://css-tricks.com/",
             "author-mail": "chriscoyier@gmail.com"
+        }
+    ],
+    "tools": [
+        {
+            "url": "http://webdesign.tutsplus.com/tutorials/workflow-tutorials/faster-htmlcss-workflow-with-chrome-developer-tools/",
+            "title": "Faster HTML/CSS Workflow with Chrome Developer Tools",
+            "author": "Aaron Lumsden",
+            "id": "ZpaFqM"
         }
     ]
 }
