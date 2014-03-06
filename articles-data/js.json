@@ -40,5 +40,16 @@
                 "nodejs"
             ]
         }
+    ],
+    "3d": [
+        {
+            "url": "http://photon.attasi.com/",
+            "title": "CSS 3D Lighting Engine",
+            "author": "Tom Giannattasio",
+            "tags": [
+                "photon"
+            ],
+            "id": "Z1ovIoS"
+        }
     ]
 }

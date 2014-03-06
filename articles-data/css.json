@@ -10,6 +10,19 @@
         }
     ],
 
+    "styling": [
+        {
+            "url": "http://updates.html5rocks.com/2012/06/The-amazing-powers-of-CSS",
+            "title": "The amazing powers of CSS",
+            "author": "Ilmari Heikkinen",
+            "tags": [
+                "pseudo class",
+                "tricks"
+            ],
+            "id": "UQPjT"
+        }
+    ],
+
     "transition": [
         {
             "url": "http://alistapart.com/article/understanding-css3-transitions/",
@@ -17,6 +30,26 @@
             "tags": [
                 "animation"
             ]
+        },
+        {
+            "url": "http://demosthenes.info/blog/540/Animating-CSS3-Image-Filters",
+            "title": "Animating CSS3 Image Filters",
+            "author": "Dudley Storey",
+            "tags": [
+                "images",
+                "filters",
+                "animation"
+            ],
+            "id": "Z1rvdvb"
+        },
+        {
+            "url": "http://www.netmagazine.com/tutorials/create-page-turn-effect",
+            "title": "Create a page turn effect",
+            "author": "Joe Lambert",
+            "tags": [
+                "animation"
+            ],
+            "id": "1ALEXP"
         },
         {
             "url": "http://www.css3.info/preview/css3-transitions/",
@@ -43,6 +76,15 @@
     	}
     ],
 
+    "consistency": [
+        {
+            "url": "https://github.com/necolas/idiomatic-css",
+            "title": "Principles of writing consistent, idiomatic CSS",
+            "author": "Nicolas Gallagher",
+            "id": "1XXE0G"
+        }
+    ],
+
     "@font-face": [
     	{
     		"url": "http://www.paulirish.com/2009/fighting-the-font-face-fout/",
@@ -53,7 +95,18 @@
     		]
     	}
     ],
-
+    "fonts": [
+        {
+            "url": "http://www.typotheque.com/articles/opentype_features_in_web_browsers",
+            "title": "OpenType features in web browsers",
+            "author": "Gustavo Ferreira",
+            "tags": [
+                "opentype",
+                "draft"
+            ],
+            "id": "X8k5u"
+        }
+    ],
     "clearfix": [
     	{
     		"url": "http://nicolasgallagher.com/micro-clearfix-hack/",
@@ -78,7 +131,14 @@
     	}
 
     ],
-
+    "variables": [
+        {
+            "url": "http://www.phpied.com/css-variables/",
+            "title": "CSS variables",
+            "author": "Stoyan Stefanov",
+            "id": "ZQYjRL"
+        }
+    ],
     "css3": [
     	{
     		"url": "http://coding.smashingmagazine.com/2010/04/28/css3-solutions-for-internet-explorer/",
@@ -101,9 +161,57 @@
     			"transform",
     			"ie"
     		]
-    	}
+    	},
+        {
+            "url": "http://www.red-team-design.com/css-generated-content-replaced-elements",
+            "title": "CSS generated content on replaced elements",
+            "author": "Catalin Rosu",
+            "tags": [
+                "before",
+                "after",
+                "content"
+            ],
+            "id": "Z2nf1nb"
+        },
+        {
+            "url": "http://www.alistapart.com/articles/building-books-with-css3/",
+            "title": "Building Books with CSS3",
+            "author": "Nellie McKesson ",
+            "tags": [
+                "typography"
+            ],
+            "id": "ZL8RoA"
+        },
+        {
+            "url": "http://www.hongkiat.com/blog/a-look-into-css3-negation-not-selector/",
+            "title": "A Look Into: CSS3 Negation (:NOT) Selector",
+            "author": "Thoriq Firdaus",
+            "tags": [
+                "selectors"
+            ],
+            "id": "1sObGJ"
+        }
     ],
-
+    "preprocessors": [
+        {
+            "url": "http://www.developerdrive.com/2012/07/introduction-to-sass/",
+            "title": "Introduction to Sass",
+            "author": "Alex Ball",
+            "tags": [
+                "sass"
+            ],
+            "id": "24RACu"
+        },
+        {
+            "url": "http://www.developerdrive.com/2012/04/learning-less-an-introduction/",
+            "title": "Learning LESS",
+            "author": "Alex Ball",
+            "tags": [
+                "less"
+            ],
+            "id": "Pp8TB"
+        }
+    ],
     "media rules": [
         {
                 "url": "http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/",
@@ -115,5 +223,92 @@
 			"responsive"
 		]
         }
-     ]
+     ],
+    "sprites": [
+        {
+            "url": "http://miekd.com/articles/using-css-sprites-to-optimize-your-website-for-retina-displays/",
+            "title": "Using CSS Sprites to optimize your website for Retina Displays",
+            "author": "Maykel Loomans",
+            "tags": [
+                "retina"
+            ],
+            "id": "Z1bIlmX"
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2012/06/14/coding-qa-with-chris-coyier-box-sizing-and-css-sprites/",
+            "title": "Coding Q&A With Chris Coyier: Box-Sizing and CSS Sprites",
+            "author": "Chris Coyier",
+            "tags": [
+                "box-sizing"
+            ],
+            "id": "1P2Qtj"
+        }
+    ],
+    "css3": [
+        {
+            "url": "http://www.xanthir.com/blog/b4JF0",
+            "title": "How CSS Handles Errors",
+            "author": "Tab Atkins Jr.",
+            "tags": [
+                "errors",
+                "valid code"
+            ],
+            "id": "Z1EWnKI"
+        },
+        {
+            "url": "http://lab.cubiq.org/css3mad/",
+            "title": "CSS3 Mad",
+            "author": "Cubiq",
+            "id": "U7LhQ"
+        },
+        {
+            "url": "http://csswizardry.com/2012/07/quasi-qualified-css-selectors/",
+            "title": "Quasi-qualified CSS selectors",
+            "author": "Harry Roberts",
+            "tags": [
+                "performance"
+            ],
+            "id": "Z1qteR8"
+        },
+        {
+            "url": "http://www.igvita.com/2012/06/14/debunking-responsive-css-performance-myths/",
+            "title": "Debunking Responsive CSS Performance Myths",
+            "author": "Ilya Grigorik",
+            "tags": [
+                "responsive",
+                "performance"
+            ],
+            "id": "lQ7e4"
+        },
+        {
+            "url": "http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/perfectly-rotate-and-mask-thumbnails-with-css3/",
+            "title": "Perfectly Rotate and Mask Thumbnails With CSS3",
+            "author": "Jim Nielsen",
+            "tags": [
+                "images",
+                "rotate",
+                "design"
+            ],
+            "id": "Z1GvkiX"
+        }
+    ],
+    "object": [
+        {
+            "url": "http://nimbupani.com/css-object-model.html",
+            "title": "CSS Object Model",
+            "author": "Divya Manian",
+            "id": "Z2wiNHt"
+        }
+    ],
+    "comments": [
+        {
+            "url": "http://css-tricks.com/show-markup-in-css-comments/",
+            "title": "Show Markup in CSS Comments",
+            "author": "Chris Coyier",
+            "tags": [
+                "markup"
+            ],
+            "id": "2rxL7y"
+        }
+    ]
 }

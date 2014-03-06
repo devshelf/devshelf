@@ -89,6 +89,27 @@
                 "css",
                 "best practises"
             ]
+        },
+        {
+            "url": "http://css-tricks.com/one-two-three/",
+            "title": "One, Two, or Three",
+            "author": "Chris Coyier",
+            "id": "1WvlXH"
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2012/07/13/coding-qa-with-chris-coyier-code-smell-type-grid/",
+            "title": "Coding Q&A With Chris Coyier: Code Smell And Type On A Grid",
+            "author": "Chris Coyier",
+            "id": "Z10Pzql"
+        },
+        {
+            "url": "http://dbushell.com/2012/04/23/modularity-and-style-guides/",
+            "title": "Modularity and Style Guides",
+            "author": "David Bushell",
+            "tags": [
+                "oocss"
+            ],
+            "id": "Z4Yyz8"
         }
     ],
     "html best practises": [
@@ -163,6 +184,37 @@
             "author": "Chris Coyier",
             "author-link": "http://css-tricks.com/",
             "author-mail": "chriscoyier@gmail.com"
+        }
+    ],
+    "wordpress": [
+        {
+            "url": "http://www.paulund.co.uk/wordpress-theme-css-starter",
+            "title": "WordPress Theme CSS Starter",
+            "author": "Paulund",
+            "tags": [
+                "themes",
+                "css"
+            ],
+            "id": "Z2rjRp8"
+        }
+    ],
+    "modules": [
+        {
+            "url": "http://www.zurb.com/article/1000/foundation-3-0-typography-and-modular-sca",
+            "title": "Foundation 3.0 Typography and Modular Scale Collide",
+            "author": "Chris Michel",
+            "tags": [
+                "typography"
+            ],
+            "id": "23i8QF"
+        }
+    ],
+    "codepen": [
+        {
+            "url": "http://css-tricks.com/codepen-beta/",
+            "title": "CodePen Beta",
+            "author": "Chris Coyier",
+            "id": "51426"
         }
     ]
 }
