@@ -10,14 +10,14 @@
         }
     ],
 
-    "styling": [
+    "tricks": [
         {
             "url": "http://updates.html5rocks.com/2012/06/The-amazing-powers-of-CSS",
             "title": "The amazing powers of CSS",
             "author": "Ilmari Heikkinen",
             "tags": [
                 "pseudo class",
-                "tricks"
+                "selectors"
             ],
             "id": "UQPjT"
         }
@@ -76,25 +76,6 @@
     	}
     ],
 
-    "consistency": [
-        {
-            "url": "https://github.com/necolas/idiomatic-css",
-            "title": "Principles of writing consistent, idiomatic CSS",
-            "author": "Nicolas Gallagher",
-            "id": "1XXE0G"
-        }
-    ],
-
-    "@font-face": [
-    	{
-    		"url": "http://www.paulirish.com/2009/fighting-the-font-face-fout/",
-    		"title": "Fighting the @font-face FOUT",
-    		"author": "Paul Irish",
-    		"tags": [
-    			"fonts"
-    		]
-    	}
-    ],
     "fonts": [
         {
             "url": "http://www.typotheque.com/articles/opentype_features_in_web_browsers",
@@ -105,7 +86,15 @@
                 "draft"
             ],
             "id": "X8k5u"
-        }
+        },
+    	{
+    		"url": "http://www.paulirish.com/2009/fighting-the-font-face-fout/",
+    		"title": "Fighting the @font-face FOUT",
+    		"author": "Paul Irish",
+    		"tags": [
+    			"@font-face"
+    		]
+    	}
     ],
     "clearfix": [
     	{
@@ -214,14 +203,24 @@
     ],
     "media rules": [
         {
-                "url": "http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/",
-                "title": "How to unprefix -webkit-device-pixel-ratio",
-                "author": "W3C",
-		"tags": [
-			"best-practices",
-			"media-queries",
-			"responsive"
-		]
+            "url": "http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/",
+            "title": "How to unprefix -webkit-device-pixel-ratio",
+            "author": "W3C",
+            "tags": [
+                "best-practices",
+                "media-queries",
+                "responsive"
+            ]
+        }
+     ],
+    "responsive": [
+        {
+            "url": "http://dev.opera.com/articles/view/responsive-images-problem/",
+            "title": "Responsive images: what's the problem, and how do we fix it?",
+            "author": "Matt Wilcox",
+            "tags": [
+                "rwd"
+            ]
         }
      ],
     "sprites": [
@@ -290,14 +289,6 @@
                 "design"
             ],
             "id": "Z1GvkiX"
-        }
-    ],
-    "object": [
-        {
-            "url": "http://nimbupani.com/css-object-model.html",
-            "title": "CSS Object Model",
-            "author": "Divya Manian",
-            "id": "Z2wiNHt"
         }
     ],
     "comments": [

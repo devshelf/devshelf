@@ -41,27 +41,5 @@
     		"title": "Understand the Favicon",
     		"author": "Jonathan Neal"
     	}
-    ],
-
-    "css": [
-        {
-            "url": "http://www.kickstarter.com/projects/150422311/screencasting-a-complete-redesign",
-            "title": "Screencasting a Complete CSS-Tricks Redesign",
-            "author": "Chris Coyier",
-            "tags": [
-                "screencast"
-            ],
-            "id": "1p65F0"
-        },
-        {
-            "url": "http://dev.opera.com/articles/view/responsive-images-problem/",
-            "title": "Responsive images: what's the problem, and how do we fix it?",
-            "author": "Matt Wilcox",
-            "tags": [
-                "responsive"
-            ],
-            "id": "Z1hC2k6"
-        }
-
     ]
 }

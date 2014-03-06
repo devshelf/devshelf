@@ -185,36 +185,5 @@
             "author-link": "http://css-tricks.com/",
             "author-mail": "chriscoyier@gmail.com"
         }
-    ],
-    "wordpress": [
-        {
-            "url": "http://www.paulund.co.uk/wordpress-theme-css-starter",
-            "title": "WordPress Theme CSS Starter",
-            "author": "Paulund",
-            "tags": [
-                "themes",
-                "css"
-            ],
-            "id": "Z2rjRp8"
-        }
-    ],
-    "modules": [
-        {
-            "url": "http://www.zurb.com/article/1000/foundation-3-0-typography-and-modular-sca",
-            "title": "Foundation 3.0 Typography and Modular Scale Collide",
-            "author": "Chris Michel",
-            "tags": [
-                "typography"
-            ],
-            "id": "23i8QF"
-        }
-    ],
-    "codepen": [
-        {
-            "url": "http://css-tricks.com/codepen-beta/",
-            "title": "CodePen Beta",
-            "author": "Chris Coyier",
-            "id": "51426"
-        }
     ]
 }
