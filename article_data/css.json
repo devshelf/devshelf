@@ -2,7 +2,7 @@
     "box-shadow": [
         {
             "url": "http://www.css3.info/preview/box-shadow/",
-            "title": "Box-shadow, one of CSS3ÃÂ¢ÃÂÃÂ²s best new features"
+            "title": "Box-shadow, one of CSS3ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ²s best new features"
         },
         {
             "url": "http://css3gen.com/box-shadow/",
@@ -105,6 +105,16 @@
                 "best-practices",
                 "media-queries",
                 "responsive"
+            ]
+        },
+        {
+            "url": "1test_http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/",
+            "title": "test_How to unprefix -webkit-device-pixel-ratio",
+            "author": "test_W3C",
+            "tags": [
+                "test_best-practices",
+                "test_media-queries",
+                "test_responsive"
             ]
         },
         {
