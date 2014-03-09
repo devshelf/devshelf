@@ -1,15 +1,14 @@
 {
     "box-shadow": [
         {
-        "url": "http://www.css3.info/preview/box-shadow/",
-        "title": "Box-shadow, one of CSS3′s best new features"
+            "url": "http://www.css3.info/preview/box-shadow/",
+            "title": "Box-shadow, one of CSS3Ã¢ÂÂ²s best new features"
         },
         {
-        "url": "http://css3gen.com/box-shadow/",
-        "title": "CSS3 Box Shadow Generator"
+            "url": "http://css3gen.com/box-shadow/",
+            "title": "CSS3 Box Shadow Generator"
         }
     ],
-
     "transition": [
         {
             "url": "http://alistapart.com/article/understanding-css3-transitions/",
@@ -34,86 +33,103 @@
             ]
         }
     ],
-
     "specificity": [
-    	{
-    		"url": "http://coding.smashingmagazine.com/2007/07/27/css-specificity-things-you-should-know/",
-    		"title": "CSS Specificity: Things You Should Know",
-    		"author": "Vitaly Friedman"
-    	}
+        {
+            "url": "http://coding.smashingmagazine.com/2007/07/27/css-specificity-things-you-should-know/",
+            "title": "CSS Specificity: Things You Should Know",
+            "author": "Vitaly Friedman"
+        }
     ],
-
     "@font-face": [
-    	{
-    		"url": "http://www.paulirish.com/2009/fighting-the-font-face-fout/",
-    		"title": "Fighting the @font-face FOUT",
-    		"author": "Paul Irish",
-    		"tags": [
-    			"fonts"
-    		]
-    	}
+        {
+            "url": "http://www.paulirish.com/2009/fighting-the-font-face-fout/",
+            "title": "Fighting the @font-face FOUT",
+            "author": "Paul Irish",
+            "tags": [
+                "fonts"
+            ]
+        }
     ],
-
     "clearfix": [
-    	{
-    		"url": "http://nicolasgallagher.com/micro-clearfix-hack/",
-    		"title": "A new micro clearfix hack",
-    		"author": "Nicolas Gallagher",
-    		"tags": [
-    			"float"
-    		]
-    	}
+        {
+            "url": "http://nicolasgallagher.com/micro-clearfix-hack/",
+            "title": "A new micro clearfix hack",
+            "author": "Nicolas Gallagher",
+            "tags": [
+                "float"
+            ]
+        }
     ],
-
     "flexbox": [
-    	{
-    		"url": "http://philipwalton.github.io/solved-by-flexbox/",
-    		"title": "Solved by Flexbox",
-    		"author": "Philip Walton"
-    	},
-    	{
-    		"url": "http://dev.opera.com/articles/view/advanced-cross-browser-flexbox/",
-    		"title": "Advanced cross-browser flexbox",
-    		"author": "Chris Mills"
-    	}
-
+        {
+            "url": "http://philipwalton.github.io/solved-by-flexbox/",
+            "title": "Solved by Flexbox",
+            "author": "Philip Walton"
+        },
+        {
+            "url": "http://dev.opera.com/articles/view/advanced-cross-browser-flexbox/",
+            "title": "Advanced cross-browser flexbox",
+            "author": "Chris Mills"
+        }
     ],
-
     "css3": [
-    	{
-    		"url": "http://coding.smashingmagazine.com/2010/04/28/css3-solutions-for-internet-explorer/",
-    		"title": "CSS3 Solutions for Internet Explorer",
-    		"author": "Louis Lazaris",
-    		"tags": [
-    			"opacity",
-    			"border-radius",
-    			"box-shadow",
-    			"text-shadow",
-    			"rgba",
-    			"transform",
-    			"ie"
-    		]
-    	},
-    	{
-    		"url": "http://www.useragentman.com/IETransformsTranslator/",
-    		"title": "IE's CSS3 Transforms Translator",
-    		"tags": [
-    			"transform",
-    			"ie"
-    		]
-    	}
+        {
+            "url": "http://coding.smashingmagazine.com/2010/04/28/css3-solutions-for-internet-explorer/",
+            "title": "CSS3 Solutions for Internet Explorer",
+            "author": "Louis Lazaris",
+            "tags": [
+                "opacity",
+                "border-radius",
+                "box-shadow",
+                "text-shadow",
+                "rgba",
+                "transform",
+                "ie"
+            ]
+        },
+        {
+            "url": "http://www.useragentman.com/IETransformsTranslator/",
+            "title": "IE's CSS3 Transforms Translator",
+            "tags": [
+                "transform",
+                "ie"
+            ]
+        }
     ],
-
     "media rules": [
         {
-                "url": "http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/",
-                "title": "How to unprefix -webkit-device-pixel-ratio",
-                "author": "W3C",
-		"tags": [
-			"best-practices",
-			"media-queries",
-			"responsive"
-		]
+            "url": "http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/",
+            "title": "How to unprefix -webkit-device-pixel-ratio",
+            "author": "W3C",
+            "tags": [
+                "best-practices",
+                "media-queries",
+                "responsive"
+            ]
+        },
+        {
+            "url": "http://test.lv",
+            "title": "test_How to unprefix -webkit-device-pixel-ratio",
+            "author": "test_W3C",
+            "author-link": "http://rhr.me",
+            "author-mail": "r@rhr.me",
+            "tags": [
+                "test_best-practices",
+                "test_media-queries",
+                "test_responsive"
+            ]
+        },
+        {
+            "url": "http://test.lv",
+            "title": "test_How to unprefix -webkit-device-pixel-ratio",
+            "author": "test_W3C",
+            "author-link": "http://rhr.me",
+            "author-mail": "r@rhr.me",
+            "tags": [
+                "test_best-practices",
+                "test_media-queries",
+                "test_responsive"
+            ]
         }
-     ]
+    ]
 }
