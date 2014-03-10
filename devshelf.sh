@@ -8,9 +8,9 @@
 # Based on https://gist.github.com/jinze/3748766
 #
 # To use it as service on Ubuntu:
-# sudo cp devshelf.conf /etc/init.d/devshelf
+# sudo cp devshelf.sh /etc/init.d/devshelf
 # sudo chmod a+x /etc/init.d/devshelf
-# update-rc.d devshelf defaults
+# sudo update-rc.d devshelf defaults
 #
 # Then use commands:
 # service devshelf <command (start|stop|etc)>
@@ -19,45 +19,44 @@ NAME=devshelf                            # Unique name for the application
 SOUREC_DIR=/home/user/devshelf           # Location of the application source
 COMMAND=node                             # Command to run
 SOURCE_NAME=app.js                       # Name os the applcation entry point script
+USER=user                                # User for process running
+NODE_ENVIROMENT=production               # Node environment
 
-user=root
 pidfile=/var/run/$NAME.pid
 logfile=/var/log/$NAME.log
-forever_dir=/var/run/forever             # Forever root directory.
-
 forever=forever
 
 start() {
-    export NODE_ENV=production
+    export NODE_ENV=$NODE_ENVIROMENT
     echo "Starting $NAME node instance : "
 
     touch $logfile
-    chown $user $logfile
+    chown $USER $logfile
 
     touch $pidfile
-    chown $user $pidfile
+    chown $USER $pidfile
 
     iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
-    $forever start -p $forever_dir --pidFile $pidfile -l $logfile -a --sourceDir $SOUREC_DIR -c $COMMAND $SOURCE_NAME
+    sudo -H -u $USER $forever start --pidFile $pidfile -l $logfile -a --sourceDir $SOUREC_DIR -c $COMMAND $SOURCE_NAME
 
     RETVAL=$?
 }
 
 restart() {
     echo -n "Restarting $NAME node instance : "
-    $forever restart $SOURCE_NAME
+    sudo -H -u $USER $forever restart $SOURCE_NAME
     RETVAL=$?
 }
 
 status() {
     echo "Status for $NAME:"
-    $forever status
+    sudo -H -u $USER $forever list
     RETVAL=$?
 }
 
 stop() {
     echo -n "Shutting down $NAME node instance : "
-    $forever stop $SOURCE_NAME
+    sudo -H -u $USER $forever stop $SOURCE_NAME
 }
 
 case "$1" in
