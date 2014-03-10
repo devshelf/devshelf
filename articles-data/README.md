@@ -2,15 +2,13 @@
 
 Everybody from community could contribute their materials (articles, books, tools) to [DevShelf](http://devshelf.us) library.
 
-To add your information all you need to do, is to select category by `.json` file in this directory (or create your own), and leave a pull request.
+To add your materials all you need to do, is to select wanted category by `*.json` file in this directory (or create your own), and leave a pull request with new object in array.
 
-First object in `.json` file is a `tag` name, that will be searchable through [DevShelf](http://devshelf.us) website, inside it we could store as much materials as we want, just push new item to array.
-
-Available additional information about links that you contribute could be easily added with nested objects:
+Example:
 
 ```json
 {
-    "css methodologies": [
+    "css": [
             {
                 "url": "http://operatino.github.io/MCSS/en/",
                 "title": "Multilayer CSS",
@@ -20,9 +18,12 @@ Available additional information about links that you contribute could be easily
                 "author-mail-hash": "r@rhr.me",
                 "id":"mcss",
                 "tags": [
-                    "css",
+                    "css methodologies",
                     "best practises"
                 ]
+            },
+            {
+                "url": "..."
             }
         ]
 }
@@ -32,9 +33,9 @@ Where,
 
 * *`url` - link to the article or interesting material
 * *`title` - its title
-* `description` - article description, not vital but usefull
+* `description` - article description (not vital but usefull)
 * `auhtor-*` - author name, link to info about him and email for gravatar
 * `id` - ID's are optional, will be generated automatically
-* `tags` - array with additional tags, that also will be searchable
+* `tags` - first tag in array defines main object category, other tags will be also searchable on [DevShelf](http://devshelf.us)
 
 \* obligatory fields
