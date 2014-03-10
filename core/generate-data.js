@@ -17,18 +17,14 @@ var extendArticlesData = function(srcInput, extenderInput){
         extender = JSON.parse(JSON.stringify(extenderInput));
 
     for (var cat in extender) {
-        var catObj = extender[cat];
+        var catArr = extender[cat],
+            srcTagArr = src[cat] || [];
 
-        for (var tag in catObj) {
-            var tagArr = catObj[tag],
-                srcTagArr = src[cat][tag] || [];
-
-            if (srcTagArr.length === 0) {
-                src[cat][tag] = [];
-            }
-
-            src[cat][tag] = srcTagArr.concat(tagArr);
+        if (srcTagArr.length === 0) {
+            src[cat] = [];
         }
+
+        src[cat] = srcTagArr.concat(catArr);
     }
 
     return src;
@@ -76,41 +72,37 @@ var prepareJSON = function(targetDir, lang) {
             var fileName = path.basename(file, ".json");
             var currentFile = JSON.parse(fs.readFileSync(dir+file, "utf8"));
 
-            //Processing json data to add custom objects to it
-            for (tag in currentFile) {
+            //updating currentFile properties
+            var targetDataArr = currentFile[fileName] || [];
 
-                //updating currentFile properties
-                var targetDataArr = currentFile[tag];
+            var i=0;
+            while(i<targetDataArr.length){
+                var targetObj = targetDataArr[i],
+                    targetEmail = targetObj["author-mail"],
+                    targetUrl = targetObj["url"];
 
-                var i=0;
-                while(i<targetDataArr.length){
-                    var targetObj = targetDataArr[i],
-                        targetEmail = targetObj["author-mail"],
-                        targetUrl = targetObj["url"];
+                //Generating email md5 hash
+                if(typeof targetEmail === 'string') {
+                    var authorMailHash = md5(targetEmail);
 
-                    //Generating email md5 hash
-                    if(typeof targetEmail === 'string') {
-                        var authorMailHash = md5(targetEmail);
-
-                        targetObj["author-mail-hash"] = authorMailHash;
-                    }
-
-                    //Generating unique ID by hash
-                    if(typeof targetUrl === 'string') {
-                        var targetID = targetObj["id"];
-
-                        if (typeof targetID !== 'string') {
-                            var authorUrlHash = sh.unique(targetUrl);
-
-                            targetObj["id"] = authorUrlHash;
-                        }
-                    }
-
-                    i++;
+                    targetObj["author-mail-hash"] = authorMailHash;
                 }
+
+                //Generating unique ID by hash
+                if(typeof targetUrl === 'string') {
+                    var targetID = targetObj["id"];
+
+                    if (typeof targetID !== 'string') {
+                        var authorUrlHash = sh.unique(targetUrl);
+
+                        targetObj["id"] = authorUrlHash;
+                    }
+                }
+
+                i++;
             }
 
-            outputJSON[fileName] = currentFile;
+            outputJSON = extend(outputJSON, currentFile);
             jsonFileQueue++;
 
             //When all files scanned, now heading to writing

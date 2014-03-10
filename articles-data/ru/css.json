@@ -1,8 +1,11 @@
 {
-    "box-shadow": [
+    "css": [
         {
-        "url": "http://rhr.me",
-        "title": "Русская ссылка"
+            "url": "http://rhr.me",
+            "title": "Русская ссылка",
+            "tags": [
+                "box-shadow"
+            ]
         }
     ]
 }

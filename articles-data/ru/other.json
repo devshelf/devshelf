@@ -1,5 +1,5 @@
 {
-    "css methodologies": [
+    "other": [
         {
             "url": "http://operatino.github.io/MCSS/",
             "title": "Многослойный CSS",
@@ -9,6 +9,7 @@
             "author-mail": "r@rhr.me",
             "id":"mcssru",
             "tags": [
+                "css methodologies",
                 "css",
                 "best practises"
             ]
