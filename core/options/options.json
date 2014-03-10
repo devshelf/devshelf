@@ -8,8 +8,24 @@
       "devPort":8888
     },
 
+    "validate" : {
+        "noData": "Not enough data",
+        "urlFail": "URL not reachable",
+        "urlEmpty": "URL not provided",
+        "titleFail": "Article with this title already exists",
+        "titleEmpty": "No title provided"
+    },
+
     "voting" : {
         "updateInterval": "180000"
+    },
+
+    "form" : {
+        "masterRepo": "sourcejs/devshelf",
+        "PRdescription": "Automatic pull request from [DevShelf.us](http://devshelf.us)",
+        "PRtitlePrefix": "Form submit: \"",
+        "PRtitlePostfix": "\" to ",
+        "commitMessage": "Auto-commit from DevShelf.us submit form"
     },
 
     "l18n" : {
@@ -35,6 +51,8 @@
     "articlesDataCron": "180000",
 
     "github": {
+        "repoName": "devshelf",
+
         "devAppID": "github devAppID",
         "devAppSecret": "github devAppSecret",
 

@@ -1,118 +1,177 @@
 $(document).ready(function() {
-    var token = "";
-    var login = "jurispukitis";
-    var repo = "devshelf";
 
-    var testObject = {
-        "url": "1test_http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/",
-        "title": "test_How to unprefix -webkit-device-pixel-ratio",
-        "author": "test_W3C",
-        "tags": [
-            "test_best-practices",
-            "test_media-queries",
-            "test_responsive"
-        ]
+    var convertFormToJSON = function(form){
+        var array = $(form).serializeArray();
+        var json = {};
+
+        $.each(array, function() {
+            json[this.name] = this.value || '';
+        });
+
+        return json;
     };
 
-    var userData = {
-        token: token,
-        login: login,
-        repo: repo
-    };
+    var postToServer = function(sendData, callback){
+        if (localStorage['user'] && appData.auth) {
+            var token = appData.authToken,
+                user = JSON.parse( localStorage.getItem('user')),
+                login = user.login;
 
+            //Preparing senging data
+            var cat = sendData.category,
+                mainTag = sendData.mainTag;
 
-    $('#btn').click(function() {
-        $.ajax({
-            type: 'GET',
-            url: 'https://api.github.com/user?access_token='+token,
-            crossDomain: true,
-            success: function(data) { console.log(data); },
-            error: function(error) { console.log(error); }
-        });
-
-    });
-
-    $('#fork').click(function() {
-        $.ajax({
-            type: 'post',
-            url: 'https://api.github.com/repos/sourcejs/devshelf/forks?access_token='+token,
-            crossDomain: true,
-            success: function(data) { console.log(data); },
-            error: function(error) { console.log(error); }
-        });
-    });
-
-    $('#commit').click(function() {
-        var articleFile = {};
-
-        $.ajax({
-            type: 'get',
-            url: 'https://api.github.com/repos/sourcejs/devshelf/contents/article_data/css.json?access_token='+token,
-            crossDomain: true,
-            success: function(data) {
-                articleFile = data;
-                sendToServer();
-            },
-            error: function(error) { console.log(error); }
-        });
-
-        function sendToServer() {
-            var allDataForServer = {
-                testArticle: testObject,
-                userData: userData,
-                fileFromRepo: articleFile
+            var postData = {
+                url: sendData.url,
+                title: sendData.title
             };
-            allDataForServer = JSON.stringify(allDataForServer);
+
+            var checkEmpty = function(field){
+                if(sendData[field].length !== 0) {postData[field] = sendData[field]}
+            };
+            var checkEmptyArr = ['author', 'author-mail', 'author-link', 'tags'];
+            for (var i = 0; i < checkEmptyArr.length ; i++) {
+                checkEmpty(checkEmptyArr[i]);
+            }
+
+            var data = {
+                token: token,
+                postData: postData,
+                login: login,
+                mainTag: mainTag,
+                cat: cat
+            };
+
+//            console.log('ready to send ',data);
+
+            //TODO: change to post
             $.ajax({
-                type: 'POST',
-                url: '/post',
-                data: allDataForServer
+                type: 'get',
+                url: '/post-article',
+                data: data,
+                success: function(data) {
+                    callback(data);
+                },
+                error: function(error) { console.log(error); }
             });
-            $.get("/get", function(file) {
-                postToGitHub(file);
-            });
+        }
+    };
 
-            function postToGitHub(file) {
-                var sha = "";
-                $.ajax({
-                    type: 'get',
-                    url: 'https://api.github.com/repos/jurispukitis/devshelf/contents/article_data/css.json',
-                    success: function(data) {
-                        sha = data["sha"];
-                        sendToGitHub()
-                    },
-                    error: function(error) { console.log(error); }
-                });
+    $('body')
+        .on('click', 'a[href=addNewUrl]', function( e ){
+            e.preventDefault();
 
-                function sendToGitHub() {
-                    var datas = JSON.stringify({"message":"New content123","sha":sha,"content": file}, false, 4);
-                    $.ajax({
-                        type: 'PUT',
-                        url: 'https://api.github.com/repos/jurispukitis/devshelf/contents/article_data/css.json?access_token='+token,
-                        data: datas,
-                        success: function(data) {
-//                            pullRequest();
-                            console.log(data)
-                            ; },
-                        error: function(error) { console.log(error); }
-                    });
-                }
+            var $form = $('#addNewUrlForm'),
+                $selectCategory = $('#category'),
+                tempSelects = '',
+                tempTags = []
+                ;
 
-                function pullRequest() {
-                    var requestData = JSON.stringify({
-                        "sha": "6d6bf7961b8f88d6e7d11cf8d281bae10d1e76d1"
-                    }, false, 4);
+            //if user not auth
+            if ( !window.appData.auth ) {
+                showModal('login-popup');
+                return false
+            }
 
-                    $.ajax({
-                        type: 'POST',
-                        url: 'https://api.github.com/repos/sourcejs/devshelf/pulls?access_token='+token,
-                        data: requestData,
-                        success: function(data) {console.log(data)},
-                        error: function(error) { console.log(error); }
-                    });
+            showModal('addNewUrlModal');
+
+            //prevent double init
+            if ( $(this).hasClass('js-already-init') ) return false;
+
+            //load all category and tags
+            for ( var cat in totalTagList ) {
+                if ( totalTagList.hasOwnProperty(cat) ){
+
+                    tempSelects += ('<option value="' + cat + '">' + cat + '</option>');
+
+                    for ( var tag in totalTagList[cat] ) {
+                        tempTags.push(tag);
+                    }
                 }
             }
-        }
-    });
+
+            $selectCategory.append(tempSelects);
+
+            /**
+             * AutoSuggest for tags input
+             * http://nicolasbize.github.io/magicsuggest/
+            */
+
+            var $tagsInput = $('#tags').magicSuggest({
+                resultAsString: true,
+                width: 300,
+                data: tempTags
+            });
+
+            $form.on('submit', function( e ){
+                e.preventDefault();
+
+                var sendData,
+                    tagsArray,
+                    errorField = $form.find('.form-errors'),
+                    validate = {
+                        status: true,
+                        errors: []
+                    };
+
+                sendData = convertFormToJSON(this);
+
+                var proceedToServer = function(){
+                    tagsArray = $tagsInput.getValue();
+                    sendData['mainTag'] = tagsArray.shift();
+                    sendData['tags'] = tagsArray;
+
+                    postToServer(sendData, function(data){
+                        //TODO: push message to UI and clean form
+                        console.log('send done', data);
+                    })
+                };
+
+
+                //Check auth
+                if (!appData.auth) {
+                    validate.status = false;
+                    validate.errors.push('Only authorized users can add articles.');
+                } else {
+                    //checking unique title and existing url
+                    $.ajax({
+                        url: '/validate',
+                        data: {
+                            url: sendData['url'],
+                            title: sendData['title']
+                        },
+                        async: false,
+                        success: function(data) {
+
+                            //If validation passed, send data to server
+                            if ( data.status ) {
+
+                                proceedToServer();
+
+                            } else {
+                                var message = data.message || "Validation failed";
+
+                                validate.status = false;
+                                validate.errors.push( message );
+                            }
+                        },
+                        error: function( data ) {
+                            console.log( 'Validation service is not responding.' );
+                        }
+                    });
+
+                    if ( !validate.status ) {
+                        errorField.html( validate.errors.join('<br>'));
+                        return false;
+                    }
+                }
+
+            });
+
+            $(this).addClass('js-already-init');
+        })
+        .on('click', '.js-popup-close', function(e){
+            closeModal();
+        });
 
 });

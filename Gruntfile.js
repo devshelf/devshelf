@@ -44,7 +44,8 @@ module.exports = function(grunt) {
                     'public/assets/js/main.js',
                     'public/assets/js/auth.js',
                     'public/assets/js/voting.js',
-                    'public/assets/js/jquery.autoSuggest.js'
+                    'public/assets/js/jquery.autoSuggest.js',
+                    'public/assets/js/form.js'
                 ]
               }
             }

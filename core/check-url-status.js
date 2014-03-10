@@ -9,8 +9,34 @@ var http = require('http')
 * @param {String} req.query.url — url for test
 * @param {Object} res — response object
 */
-var checkURLStatus = function ( req, res ) {
-	var url = parseurl.parse( req.query.url );
+var checkURLService = function ( req, res ) {
+	var url = req.query.url;
+
+    if (url) {
+        checkURL(url, function(okay){
+            if (okay) {
+                res.send({
+                    status: true
+                });
+            } else {
+                res.send({
+                    status: false,
+                    message: global.opts.validate.urlFail
+                });
+            }
+        });
+    } else {
+        res.send({
+            status: false,
+            message: global.opts.validate.urlEmpty
+        });
+    }
+
+};
+
+var checkURL = function ( plainUrl, callback ) {
+    var url = parseurl.parse( plainUrl ),
+        firstRequestReady = false;
 
 	var optionsget = {
 		hostname : url.host,
@@ -25,11 +51,15 @@ var checkURLStatus = function ( req, res ) {
 
 			response.on('data', function(data) {
 
-				if ( (response.statusCode.toString().charAt(0) !== '2') && (response.statusCode.toString().charAt(0) !== '3') ) {
-					res.send(false);
-				} else {
-					res.send(true);
-				}
+                if (!firstRequestReady) {
+                   if ( (response.statusCode.toString().charAt(0) !== '2') && (response.statusCode.toString().charAt(0) !== '3') ) {
+                        callback(false);
+                    } else {
+                        callback(true);
+                    }
+                }
+
+                firstRequestReady = true;
 
 			});
 
@@ -37,14 +67,17 @@ var checkURLStatus = function ( req, res ) {
 
 		reqGet.end();
 		reqGet.on('error', function(e) {
-			res.send(false);
+			callback(false);
 		});
 
 	}();
 };
 
 module.exports = {
-	checkURLStatus: function(req, res) {
-		checkURLStatus(req, res)
+	checkURL: function(url, callback) {
+		checkURL(url, callback)
+	},
+	checkURLService: function(req, res) {
+		checkURLService(req, res)
 	}
 };

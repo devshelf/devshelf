@@ -1,16 +1,29 @@
 /**
-* Links validator
+* Unique Article Validator
 * @param {Object} req — http request data
-* @param {String} req.query.url - url of new article
 * @param {String} req.query.title — title of new article
 * @param {Object} res — response object
 */
 
-var articleValidate = function(req, res) {
+var checkTitleService = function(req, res) {
+    var title = req.query.title;
 
-	var url = req.query.url,
-		title = req.query.title;
+    checkTitle(title, function(okay, msg){
+        if (okay) {
+            res.send({
+                status: true,
+                message: msg
+            });
+        } else {
+            res.send({
+                status: false,
+                message: msg
+            });
+        }
+    });
+};
 
+var checkTitle = function(title, callback) {
 	/**
 	* Check for already exists title
 	*/
@@ -89,10 +102,7 @@ var articleValidate = function(req, res) {
 			if (title.length < 5) {
 				if (summData[articleTitle].toUpperCase() == title.toUpperCase()) {
 
-					res.send({
-						status: false,
-						message: 'Article with this title already exists'
-					});
+                    callback(false, global.opts.validate.titleFail);
 
 					return;
 				}
@@ -100,10 +110,7 @@ var articleValidate = function(req, res) {
 				// Getting Levenstein  distance for pair "each title — new title"
 				if ( levDist( summData[articleTitle].toUpperCase(), title.toUpperCase() ) < LevenshteinThreshold ) {
 
-					res.send({
-						status: false,
-						message: 'Article with this title already exists'
-					});
+                    callback(false, global.opts.validate.titleFail);
 
 					return;
 				}
@@ -111,27 +118,24 @@ var articleValidate = function(req, res) {
 			}
 		}
 
-		res.send({
-			status: true,
-			message: 'OK'
-		});
+		callback(true, 'OK');
 	}
 
 	/**
 	* Run checks
 	*/
-	if (url && title) {
-		checkArticleFound(res);
+	if (title) {
+		checkArticleFound();
 	} else {
-		res.send({
-			status: false,
-			message: 'Invalid parameters'
-		});
+        callback(false, global.opts.validate.titleEmpty);
 	}
 };
 
 module.exports = {
-	articleValidate: function(req, res) {
-		articleValidate(req, res)
+	checkTitle: function(title, callback) {
+		checkTitle(title, callback);
+	},
+	checkTitleService: function(req, res) {
+		checkTitleService(req, res)
 	}
 };

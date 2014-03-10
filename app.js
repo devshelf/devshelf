@@ -118,21 +118,29 @@ app.get('/auth/done', function (req, res) {
 /*
  * git api form
  * */
-require('./core/commit');
+var form = require('./core/form');
+app.get('/post-article', form.postArticle); // preparing encoded data from changed file
 
 
 /**
-* Validation
+* Unique title checker
 */
-var validation = require('./core/article-validate');
-app.get('/validate', validation.articleValidate);
+var validation = require('./core/check-title');
+app.get('/check-title', validation.checkTitleService);
 
 
 /**
 * URL checker
 */
-var check = require('./core/check-url-status');
-app.get('/check-url', check.checkURLStatus);
+var checkUrl = require('./core/check-url-status');
+app.get('/check-url', checkUrl.checkURLService);
+
+
+/**
+* Validate all
+*/
+var validate = require('./core/validate');
+app.get('/validate', validate.validateService);
 
 
 /*
@@ -158,13 +166,19 @@ app.get('/', function(req, res) {
     indexJson.catalogue = global.tagLinks[lang];
 
     //Auth data
-    indexJson.auth = (req.session.authCache && typeof req.session.authCache.github.user === 'object') || typeof req.user === 'object' ? true : false;
+    if (req.session.authCache && typeof req.session.authCache.github.user === 'object' || typeof req.user === 'object') {
+        indexJson.auth = true;
+        indexJson.authToken = req.session.authCache.github.accessToken;
+    } else {
+        indexJson.auth = false;
+    }
 
-    if (MODE === 'production') { indexJson.production = true; }
+    //Production mode in templates
+    if (global.MODE === 'production') { indexJson.production = true; }
 
     //Preparing for client
     var clientIndexJson = {},
-        clientIndexJsonFields = ['commonOpts','auth','records'];
+        clientIndexJsonFields = ['commonOpts','auth', 'authToken','records'];
 
     clientIndexJsonFields.map(function(item){
        clientIndexJson[item] = indexJson[item];
@@ -200,7 +214,7 @@ voting.generateVotingData();
 * error hadnling
 * */
 
-if (MODE === 'production') {
+if (global.MODE === 'production') {
     app.use(function(err, req, res, next) {
         console.log(err);
         res.send(404, '404');
@@ -212,8 +226,8 @@ if (MODE === 'production') {
     });
 }
 
-var appPort = MODE === 'development' ? global.opts.app.devPort : global.opts.app.port;
+var appPort = global.MODE === 'development' ? global.opts.app.devPort : global.opts.app.port;
 
 app.listen(appPort);
 var appPortString = appPort.toString();
-console.log('[DevShelf] is working on '.blue + appPortString.blue + ' port in '.blue + MODE.blue + ' mode...'.blue);
+console.log('[DevShelf] is working on '.blue + appPortString.blue + ' port in '.blue + global.MODE.blue + ' mode...'.blue);

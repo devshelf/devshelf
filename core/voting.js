@@ -162,7 +162,7 @@ var makeVote = function(req, res, voteType){
 
                     Vote.update({ _id: id }, { $set: dataToUpdate}, function(){
                         res.jsonp(voteType+' SUCCESS');
-                        console.log(voteType+' SUCCESS'.green);
+//                        console.log(voteType+' SUCCESS'.green);
                     });
 
                 }
