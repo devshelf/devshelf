@@ -1,112 +1,107 @@
 {
-    "performance": [
+    "html": [
         {
             "url": "http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/",
             "title": "The media object saves hundreds of lines of code",
             "author": "Nicole Sullivan",
             "tags": [
+                "performance",
                 "css",
                 "html5",
                 "media"
-            ],
-            "id": "1Mio43"
-        }
-    ],
-
-    "tags": [
+            ]
+        },
         {
             "url": "http://html5doctor.com/the-section-element/",
             "title": "The section element",
             "tags": [
+                "tags",
                 "html5",
                 "semantics",
                 "section"
             ]
-        }
-    ],
-
-    "forms": [
+        },
         {
             "url": "http://diveintohtml5.info/forms.html",
             "title": "A FORM OF MADNESS",
             "tags": [
+                "forms",
                 "html5"
             ]
-        }
-    ],
-
-    "favicon": [
-    	{
-    		"url": "http://www.jonathantneal.com/blog/understand-the-favicon/",
-    		"title": "Understand the Favicon",
-    		"author": "Jonathan Neal"
-    	}
-    ],
-    "microformats": [
+        },
         {
-          "url": "http://coding.smashingmagazine.com/2007/05/04/microformats-what-they-are-and-how-to-use-them/",
-          "title": "Microformats: What They Are and How To Use Them",
-          "author": "Vitaly Friedman"
+            "url": "http://www.jonathantneal.com/blog/understand-the-favicon/",
+            "title": "Understand the Favicon",
+            "author": "Jonathan Neal",
+            "tags": [
+                "favicon"
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2007/05/04/microformats-what-they-are-and-how-to-use-them/",
+            "title": "Microformats: What They Are and How To Use Them",
+            "author": "Vitaly Friedman",
+            "tags": [
+                "microformats"
+            ]
         },
         {
             "url": "http://demosthenes.info/blog/593/Introduction-to-Microformats-For-Web-Pages",
             "title": "Introduction to Microformats For Web Pages",
             "author": "Dudley Storey",
-            "id": "Z1LsgwS"
-        }
-    ],
-    "video": [
+            "tags": [
+                "microformats"
+            ]
+        },
         {
             "url": "http://www.iandevlin.com/blog/2012/08/html5/responsive-html5-video",
             "title": "Responsive HTML5 video",
             "author": "Ian Devlin",
             "tags": [
+                "video",
                 "responsive"
-            ],
-            "id": "Z1yY1Q3"
-        }
-    ],
-    "best practises": [
+            ]
+        },
         {
             "url": "http://coding.smashingmagazine.com/2012/10/23/road-reusable-html-components/",
             "title": "The Road To Reusable HTML Components",
             "author": "Niels Matthijs",
             "tags": [
+                "best practises",
                 "methodology"
-            ],
-            "id": "Z12K5Aw"
-        }
-    ],
-    "svg": [
+            ]
+        },
         {
             "url": "http://net.tutsplus.com/tutorials/html-css-techniques/using-inline-svgs-with-html5/",
             "title": "Using Inline SVGs With HTML5",
             "author": "Sue Smith",
-            "id": "Z1kXjN"
-        }
-    ],
-    "tutorial": [
+            "tags": [
+                "svg"
+            ]
+        },
         {
             "url": "http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/the-best-way-to-learn-html-2/",
             "title": "The Best Way to Learn HTML",
             "author": "Ian Yates",
-            "id": "7vayI"
-        }
-    ],
-    "semantics": [
+            "tags": [
+                "tutorial"
+            ]
+        },
         {
             "url": "http://nicolasgallagher.com/about-html-semantics-front-end-architecture/",
             "title": "About HTML semantics and front-end architecture",
             "author": "Nicolas Gallagher",
-            "id": "Z1xUK3B"
-        }
-    ],
-    "tools": [
+            "tags": [
+                "semantics"
+            ]
+        },
         {
             "url": "http://philipwalton.com/articles/introducing-html-inspector/",
             "title": "HTML Inspector",
             "author": "Philip Walton",
-            "id": "Z1TO3KP"
+            "tags": [
+                "tools"
+            ]
         }
     ]
 }

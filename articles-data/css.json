@@ -1,39 +1,42 @@
 {
-    "box-shadow": [
+    "css": [
         {
-        "url": "http://www.css3.info/preview/box-shadow/",
-        "title": "Box-shadow, one of CSS3's best new features"
+            "url": "http://www.css3.info/preview/box-shadow/",
+            "title": "Box-shadow, one of CSS3's best new features",
+            "tags": [
+                "box-shadow"
+            ]
         },
         {
             "url": "http://css3gen.com/box-shadow/",
-            "title": "CSS3 Box Shadow Generator"
-        }
-    ],
-
-    "tricks": [
+            "title": "CSS3 Box Shadow Generator",
+            "tags": [
+                "box-shadow"
+            ]
+        },
         {
             "url": "http://updates.html5rocks.com/2012/06/The-amazing-powers-of-CSS",
             "title": "The amazing powers of CSS",
             "author": "Ilmari Heikkinen",
             "tags": [
+                "tricks",
                 "pseudo class",
                 "selectors"
-            ],
-            "id": "UQPjT"
-        }
-    ],
-
-    "transition": [
+            ]
+        },
         {
             "url": "http://www.netmagazine.com/tutorials/more-efficient-css3-transitions",
             "title": "More efficient CSS3 transitions",
             "author": "Val Head",
-            "id": "1y9s8T"
+            "tags": [
+                "transition"
+            ]
         },
         {
             "url": "http://alistapart.com/article/understanding-css3-transitions/",
             "title": "Understanding CSS3 Transitions",
             "tags": [
+                "transition",
                 "animation"
             ]
         },
@@ -42,25 +45,26 @@
             "title": "Animating CSS3 Image Filters",
             "author": "Dudley Storey",
             "tags": [
+                "transition",
                 "images",
                 "filters",
                 "animation"
-            ],
-            "id": "Z1rvdvb"
+            ]
         },
         {
             "url": "http://www.netmagazine.com/tutorials/create-page-turn-effect",
             "title": "Create a page turn effect",
             "author": "Joe Lambert",
             "tags": [
+                "transition",
                 "animation"
-            ],
-            "id": "1ALEXP"
+            ]
         },
         {
             "url": "http://www.css3.info/preview/css3-transitions/",
             "title": "An Introduction to CSS3 Transitions",
             "tags": [
+                "transition",
                 "animation"
             ]
         },
@@ -68,36 +72,35 @@
             "url": "https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions",
             "title": "Using CSS transitions",
             "tags": [
+                "transition",
                 "animation",
                 "mdn"
             ]
-        }
-    ],
-
-    "specificity": [
+        },
         {
             "url": "http://coding.smashingmagazine.com/2007/07/27/css-specificity-things-you-should-know/",
             "title": "CSS Specificity: Things You Should Know",
-            "author": "Vitaly Friedman"
-        }
-    ],
-
-    "fonts": [
+            "author": "Vitaly Friedman",
+            "tags": [
+                "specificity"
+            ]
+        },
         {
             "url": "http://www.typotheque.com/articles/opentype_features_in_web_browsers",
             "title": "OpenType features in web browsers",
             "author": "Gustavo Ferreira",
             "tags": [
+                "fonts",
                 "opentype",
                 "draft"
-            ],
-            "id": "X8k5u"
+            ]
         },
         {
             "url": "http://www.paulirish.com/2009/fighting-the-font-face-fout/",
             "title": "Fighting the @font-face FOUT",
             "author": "Paul Irish",
             "tags": [
+                "fonts",
                 "@font-face"
             ]
         },
@@ -105,139 +108,134 @@
             "url": "http://designshack.net/articles/css/a-beginners-guide-to-using-google-web-fonts/",
             "title": "A Beginner’s Guide to Using Google Web Fonts",
             "author": "Joshua Johnson",
-            "id": "Z131FHz"
-        }
-    ],
-    "clearfix": [
+            "tags": [
+                "fonts"
+            ]
+        },
         {
             "url": "http://nicolasgallagher.com/micro-clearfix-hack/",
             "title": "A new micro clearfix hack",
             "author": "Nicolas Gallagher",
             "tags": [
+                "clearfix",
                 "float"
             ]
-        }
-    ],
-
-    "flexbox": [
+        },
         {
             "url": "http://philipwalton.github.io/solved-by-flexbox/",
             "title": "Solved by Flexbox",
-            "author": "Philip Walton"
+            "author": "Philip Walton",
+            "tags": [
+                "flexbox"
+            ]
         },
         {
             "url": "http://dev.opera.com/articles/view/advanced-cross-browser-flexbox/",
             "title": "Advanced cross-browser flexbox",
-            "author": "Chris Mills"
+            "author": "Chris Mills",
+            "tags": [
+                "flexbox"
+            ]
         },
-
         {
             "url": "http://net.tutsplus.com/tutorials/html-css-techniques/an-introduction-to-css-flexbox/",
             "title": "An Introduction to the CSS Flexbox Module",
             "author": "Umar Hansa",
-            "id": "ZweReW"
-        }
-
-    ],
-    "variables": [
+            "tags": [
+                "flexbox"
+            ]
+        },
         {
             "url": "http://www.phpied.com/css-variables/",
             "title": "CSS variables",
             "author": "Stoyan Stefanov",
-            "id": "ZQYjRL"
-        }
-    ],
-    "css3": [
-        {
-            "url": "http://coding.smashingmagazine.com/2010/04/28/css3-solutions-for-internet-explorer/",
-            "title": "CSS3 Solutions for Internet Explorer",
-            "author": "Louis Lazaris",
             "tags": [
-                "opacity",
-                "border-radius",
-                "box-shadow",
-                "text-shadow",
-                "rgba",
-                "transform",
-                "ie"
+                "variables"
             ]
         },
         {
-            "url": "http://www.useragentman.com/IETransformsTranslator/",
-            "title": "IE's CSS3 Transforms Translator",
+            "url": "http://www.xanthir.com/blog/b4JF0",
+            "title": "How CSS Handles Errors",
+            "author": "Tab Atkins Jr.",
             "tags": [
-                "transform",
-                "ie"
+                "css3",
+                "errors",
+                "valid code"
             ]
         },
         {
-            "url": "http://www.red-team-design.com/css-generated-content-replaced-elements",
-            "title": "CSS generated content on replaced elements",
-            "author": "Catalin Rosu",
+            "url": "http://lab.cubiq.org/css3mad/",
+            "title": "CSS3 Mad",
+            "author": "Cubiq",
             "tags": [
-                "before",
-                "after",
-                "content"
-            ],
-            "id": "Z2nf1nb"
+                "css3"
+            ]
         },
         {
-            "url": "http://www.alistapart.com/articles/building-books-with-css3/",
-            "title": "Building Books with CSS3",
-            "author": "Nellie McKesson ",
+            "url": "http://csswizardry.com/2012/07/quasi-qualified-css-selectors/",
+            "title": "Quasi-qualified CSS selectors",
+            "author": "Harry Roberts",
             "tags": [
-                "typography"
-            ],
-            "id": "ZL8RoA"
+                "css3",
+                "performance"
+            ]
         },
         {
-            "url": "http://www.hongkiat.com/blog/a-look-into-css3-negation-not-selector/",
-            "title": "A Look Into: CSS3 Negation (:NOT) Selector",
-            "author": "Thoriq Firdaus",
+            "url": "http://www.igvita.com/2012/06/14/debunking-responsive-css-performance-myths/",
+            "title": "Debunking Responsive CSS Performance Myths",
+            "author": "Ilya Grigorik",
             "tags": [
-                "selectors"
-            ],
-            "id": "1sObGJ"
-        }
-    ],
-    "preprocessors": [
+                "css3",
+                "responsive",
+                "performance"
+            ]
+        },
+        {
+            "url": "http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/perfectly-rotate-and-mask-thumbnails-with-css3/",
+            "title": "Perfectly Rotate and Mask Thumbnails With CSS3",
+            "author": "Jim Nielsen",
+            "tags": [
+                "css3",
+                "images",
+                "rotate",
+                "design"
+            ]
+        },
         {
             "url": "http://www.developerdrive.com/2012/07/introduction-to-sass/",
             "title": "Introduction to Sass",
             "author": "Alex Ball",
             "tags": [
+                "preprocessors",
                 "sass"
-            ],
-            "id": "24RACu"
+            ]
         },
         {
             "url": "http://www.developerdrive.com/2012/04/learning-less-an-introduction/",
             "title": "Learning LESS",
             "author": "Alex Ball",
             "tags": [
+                "preprocessors",
                 "less"
-            ],
-            "id": "Pp8TB"
-        }
-    ],
-    "media rules": [
+            ]
+        },
         {
             "url": "http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/",
             "title": "How to unprefix -webkit-device-pixel-ratio",
             "author": "W3C",
             "tags": [
+                "media rules",
                 "best-practices",
                 "media-queries",
                 "responsive"
             ]
-        }
-    ],
-    "responsive": [
+        },
         {
             "url": "http://dev.opera.com/articles/view/responsive-images-problem/",
             "title": "Responsive images: what's the problem, and how do we fix it?",
             "author": "Matt Wilcox",
             "tags": [
+                "responsive",
                 "rwd"
             ]
         },
@@ -246,212 +244,174 @@
             "title": "Killer Responsive Layouts With CSS Regions",
             "author": "CJ Gammon",
             "tags": [
+                "responsive",
                 "rwd",
                 "regions"
-            ],
-            "id": "Zoslta"
+            ]
         },
         {
             "url": "http://www.campaignmonitor.com/guides/mobile/",
             "title": "Responsive Email Design",
             "author": "Campaign Monitor",
             "tags": [
+                "responsive",
                 "email"
-            ],
-            "id": "2wyYbh"
+            ]
         },
         {
             "url": "http://palantir.net/blog/responsive-design-s-dirty-little-secret",
             "title": "Responsive Design’s Dirty Little Secret",
             "author": "John Albin Wilkins",
-            "id": "1lWilN"
-        }
-    ],
-    "sprites": [
+            "tags": [
+                "responsive"
+            ]
+        },
         {
             "url": "http://miekd.com/articles/using-css-sprites-to-optimize-your-website-for-retina-displays/",
             "title": "Using CSS Sprites to optimize your website for Retina Displays",
             "author": "Maykel Loomans",
             "tags": [
+                "sprites",
                 "retina"
-            ],
-            "id": "Z1bIlmX"
+            ]
         },
         {
             "url": "http://coding.smashingmagazine.com/2012/06/14/coding-qa-with-chris-coyier-box-sizing-and-css-sprites/",
             "title": "Coding Q&A With Chris Coyier: Box-Sizing and CSS Sprites",
             "author": "Chris Coyier",
             "tags": [
+                "sprites",
                 "box-sizing"
-            ],
-            "id": "1P2Qtj"
-        }
-    ],
-    "css3": [
-        {
-            "url": "http://www.xanthir.com/blog/b4JF0",
-            "title": "How CSS Handles Errors",
-            "author": "Tab Atkins Jr.",
-            "tags": [
-                "errors",
-                "valid code"
-            ],
-            "id": "Z1EWnKI"
+            ]
         },
-        {
-            "url": "http://lab.cubiq.org/css3mad/",
-            "title": "CSS3 Mad",
-            "author": "Cubiq",
-            "id": "U7LhQ"
-        },
-        {
-            "url": "http://csswizardry.com/2012/07/quasi-qualified-css-selectors/",
-            "title": "Quasi-qualified CSS selectors",
-            "author": "Harry Roberts",
-            "tags": [
-                "performance"
-            ],
-            "id": "Z1qteR8"
-        },
-        {
-            "url": "http://www.igvita.com/2012/06/14/debunking-responsive-css-performance-myths/",
-            "title": "Debunking Responsive CSS Performance Myths",
-            "author": "Ilya Grigorik",
-            "tags": [
-                "responsive",
-                "performance"
-            ],
-            "id": "lQ7e4"
-        },
-        {
-            "url": "http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/perfectly-rotate-and-mask-thumbnails-with-css3/",
-            "title": "Perfectly Rotate and Mask Thumbnails With CSS3",
-            "author": "Jim Nielsen",
-            "tags": [
-                "images",
-                "rotate",
-                "design"
-            ],
-            "id": "Z1GvkiX"
-        }
-    ],
-    "comments": [
         {
             "url": "http://css-tricks.com/show-markup-in-css-comments/",
             "title": "Show Markup in CSS Comments",
             "author": "Chris Coyier",
             "tags": [
+                "comments",
                 "markup"
-            ],
-            "id": "2rxL7y"
-        }
-    ],
-    "tools": [
+            ]
+        },
         {
             "url": "http://coding.smashingmagazine.com/2006/09/02/list-of-css-tools/",
             "title": "List of CSS Tools",
-            "author": "Sven Lennartz"
-        }
-    ],
-    "techniques": [
+            "author": "Sven Lennartz",
+            "tags": [
+                "tools"
+            ]
+        },
         {
             "url": "http://coding.smashingmagazine.com/2007/01/19/53-css-techniques-you-couldnt-live-without/",
             "title": "53 CSS-Techniques You Couldn’t Live Without",
-            "author": "Vitaly Friedman"
+            "author": "Vitaly Friedman",
+            "tags": [
+                "techniques"
+            ]
         },
         {
             "url": "http://www.thecssninja.com/css/reveal-effect",
             "title": "Curtain reveal effect using CSS",
             "author": "Ryan Seddon",
-            "id": "247WKn"
-        }
-    ],
-    "print": [
+            "tags": [
+                "techniques"
+            ]
+        },
         {
             "url": "http://coding.smashingmagazine.com/2007/02/21/printing-the-web-solutions-and-techniques/",
             "title": "Printing the Web: Solutions and Techniques",
-            "author": "Vitaly Friedman"
-        }
-    ],
-    "float": [
+            "author": "Vitaly Friedman",
+            "tags": [
+                "print"
+            ]
+        },
         {
             "url": "http://coding.smashingmagazine.com/2007/05/01/css-float-theory-things-you-should-know/",
             "title": "CSS Float Theory: Things You Should Know",
-            "author": "Vitaly Friedman"
-        }
-    ],
-    "transform": [
+            "author": "Vitaly Friedman",
+            "tags": [
+                "float"
+            ]
+        },
         {
             "url": "http://generatedcontent.org/post/26407228072/split-feature",
             "title": "Creating an angled split feature area with CSS transforms",
             "author": "David Storey",
-            "id": "1KqFrL"
-        }
-    ],
-    "media-queries": [
+            "tags": [
+                "transform"
+            ]
+        },
         {
             "url": "http://css-tricks.com/media-queries-sass-3-2-and-codekit/",
             "title": "Media Queries, Sass 3.2, and CodeKit",
             "author": "Chris Coyier",
-            "id": "1kpAU6"
+            "tags": [
+                "media-queries"
+            ]
         },
         {
             "url": "http://blog.cloudfour.com/the-ems-have-it-proportional-media-queries-ftw/",
             "title": "The EMs have it: Proportional Media Queries FTW!",
             "author": "Lyza Gardner",
-            "id": "Zaqkxr"
-        }
-    ],
-    "undefined": [
+            "tags": [
+                "media-queries"
+            ]
+        },
         {
             "url": "http://davidwalsh.name/css-columns",
             "title": "CSS Columns",
             "author": "David Walsh",
-            "id": "ZKGydd"
+            "tags": [
+                "undefined"
+            ]
         },
         {
             "url": "http://www.html5rocks.com/en/tutorials/regions/adobe/",
             "title": "Magazine-like Layout for the Web with CSS Regions and Exclusions",
             "author": "Christian Cantrell",
-            "id": "2cpkFB"
+            "tags": [
+                "undefined"
+            ]
         },
         {
             "url": "http://filamentgroup.com/lab/how_we_learned_to_leave_body_font_size_alone/",
             "title": "How we learned to leave default font-size alone and embrace the em",
             "author": "Filament Group",
-            "id": "1njDie"
-        }
-    ],
-    "text-align": [
+            "tags": [
+                "undefined"
+            ]
+        },
         {
             "url": "http://davidwalsh.name/text-align-start",
             "title": "text-align: start & RTL",
             "author": "David Walsh",
-            "id": "2emve2"
-        }
-    ],
-    "blend": [
+            "tags": [
+                "text-align"
+            ]
+        },
         {
             "url": "http://blogs.adobe.com/webplatform/2012/07/17/new-blending-features-in-css/",
             "title": "New blending features in CSS",
             "author": "Rik Cabanier",
-            "id": "Z2siN9c"
-        }
-    ],
-    "regions": [
+            "tags": [
+                "blend"
+            ]
+        },
         {
             "url": "http://blogs.adobe.com/cantrell/archives/2012/07/css-regions-arent-just-for-columns.html",
             "title": "CSS Regions Aren’t Just For Columns",
             "author": "Christian Cantrell",
-            "id": "1h8NfW"
-        }
-    ],
-    "hight dpi": [
+            "tags": [
+                "regions"
+            ]
+        },
         {
             "url": "http://www.html5rocks.com/en/mobile/high-dpi/",
             "title": "High DPI Images for Variable Pixel Densities",
             "author": "Boris Smus",
-            "id": "26CUlg"
+            "tags": [
+                "hight dpi"
+            ]
         }
     ]
 }

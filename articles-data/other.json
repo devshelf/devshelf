@@ -1,5 +1,5 @@
 {
-    "css methodologies": [
+    "other": [
         {
             "url": "http://operatino.github.io/MCSS/en/",
             "title": "Multilayer CSS",
@@ -9,6 +9,7 @@
             "author-mail": "r@rhr.me",
             "id": "mcss",
             "tags": [
+                "css methodologies",
                 "css",
                 "best practises"
             ]
@@ -20,12 +21,11 @@
             "author": "Jonathan Snook",
             "author-link": "http://snook.ca/",
             "tags": [
+                "css methodologies",
                 "css",
                 "best practises"
             ]
-        }
-    ],
-    "css best practises": [
+        },
         {
             "url": "http://github.com/necolas/idiomatic-css",
             "title": "Principles of writing consistent, idiomatic CSS",
@@ -34,6 +34,7 @@
             "author-link": "http://nicolasgallagher.com",
             "author-mail": "nicolas@nicolasgallagher.com",
             "tags": [
+                "css best practises",
                 "css",
                 "best practises"
             ]
@@ -44,6 +45,7 @@
             "author-link": "http://csswizardry.com",
             "author-mail": "harry@csswizardry.com",
             "tags": [
+                "css best practises",
                 "css",
                 "best practises"
             ]
@@ -54,6 +56,7 @@
             "author-link": "http://csswizardry.com",
             "author-mail": "harry@csswizardry.com",
             "tags": [
+                "css best practises",
                 "css",
                 "best practises"
             ]
@@ -64,6 +67,7 @@
             "author-link": "http://csswizardry.com",
             "author-mail": "harry@csswizardry.com",
             "tags": [
+                "css best practises",
                 "css",
                 "best practises"
             ]
@@ -75,6 +79,7 @@
             "author-link": "http://csswizardry.com",
             "author-mail": "harry@csswizardry.com",
             "tags": [
+                "css best practises",
                 "css",
                 "best practises"
             ]
@@ -86,6 +91,7 @@
             "author-link": "http://csswizardry.com",
             "author-mail": "harry@csswizardry.com",
             "tags": [
+                "css best practises",
                 "css",
                 "best practises"
             ]
@@ -94,25 +100,27 @@
             "url": "http://css-tricks.com/one-two-three/",
             "title": "One, Two, or Three",
             "author": "Chris Coyier",
-            "id": "1WvlXH"
+            "tags": [
+                "css best practises"
+            ]
         },
         {
             "url": "http://coding.smashingmagazine.com/2012/07/13/coding-qa-with-chris-coyier-code-smell-type-grid/",
             "title": "Coding Q&A With Chris Coyier: Code Smell And Type On A Grid",
             "author": "Chris Coyier",
-            "id": "Z10Pzql"
+            "tags": [
+                "css best practises"
+            ]
         },
         {
             "url": "http://dbushell.com/2012/04/23/modularity-and-style-guides/",
             "title": "Modularity and Style Guides",
             "author": "David Bushell",
             "tags": [
+                "css best practises",
                 "oocss"
-            ],
-            "id": "Z4Yyz8"
-        }
-    ],
-    "html best practises": [
+            ]
+        },
         {
             "url": "http://github.com/necolas/idiomatic-html",
             "title": "Principles of writing consistent, idiomatic HTML",
@@ -121,6 +129,7 @@
             "author-link": "http://nicolasgallagher.com",
             "author-mail": "nicolas@nicolasgallagher.com",
             "tags": [
+                "html best practises",
                 "html",
                 "best practises"
             ]
@@ -130,31 +139,30 @@
             "title": "HTML5 Boilerplate - The web’s most popular front-end template",
             "description": "HTML5 Boilerplate helps you build fast, robust, and adaptable web apps or sites. Kick-start your project with the combined knowledge and effort of 100s of developers, all in one little package.",
             "tags": [
+                "html best practises",
                 "html",
                 "bootstraps",
                 "best practises"
             ]
-        }
-    ],
-    "full stack": [
+        },
         {
             "url": "http://bem.info/",
             "title": "BEM",
             "description": "Full stack technology for creating web applications developed by <a href='www.yandex.com'>Yandex</a>. Includes methodology, tools, js framework, etc.",
             "tags": [
+                "full stack",
                 "html",
                 "css",
                 "js",
                 "best practises"
             ]
-        }
-    ],
-    "rookie": [
+        },
         {
             "url": "http://www.impressivewebs.com/skills-front-end-developers/",
             "title": "Skills for front-end developer",
             "description": "List containing a wide variety of skills and technologies that front-end developers should be working on learning.",
             "tags": [
+                "rookie",
                 "html",
                 "css",
                 "js",
@@ -166,6 +174,7 @@
             "url": "http://speckyboy.com/2013/11/13/node-js-for-front-end-developers/",
             "title": "An Introduction to Node.js for Front-End Developers",
             "tags": [
+                "rookie",
                 "nodejs",
                 "js",
                 "howto"
@@ -177,6 +186,7 @@
             "url": "http://24ways.org/2013/grunt-is-not-weird-and-hard/",
             "title": "Grunt for People Who Think Things Like Grunt are Weird and Hard",
             "tags": [
+                "rookie",
                 "nodejs",
                 "js",
                 "grunt"
@@ -184,14 +194,14 @@
             "author": "Chris Coyier",
             "author-link": "http://css-tricks.com/",
             "author-mail": "chriscoyier@gmail.com"
-        }
-    ],
-    "tools": [
+        },
         {
             "url": "http://webdesign.tutsplus.com/tutorials/workflow-tutorials/faster-htmlcss-workflow-with-chrome-developer-tools/",
             "title": "Faster HTML/CSS Workflow with Chrome Developer Tools",
             "author": "Aaron Lumsden",
-            "id": "ZpaFqM"
+            "tags": [
+                "tools"
+            ]
         }
     ]
 }
