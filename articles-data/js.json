@@ -13,9 +13,24 @@
             "tags": [
                 "slides"
             ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2009/01/15/45-new-jquery-techniques-for-a-good-user-experience/",
+            "title": "45+ New jQuery Techniques For Good User Experience",
+            "author": "Noura Yehia",
+            "tags": [
+                "resources ",
+                "UX"
+            ]
         }
     ],
-
+    "tools ": [
+        {
+            "url": "http://coding.smashingmagazine.com/2009/02/08/50-extremely-useful-javascript-tools/",
+            "title": "50 Useful JavaScript Tools",
+            "author": "Jacob Gube"
+        }
+    ],
     "patterns": [
         {
             "url": "http://addyosmani.com/resources/essentialjsdesignpatterns/book/",
@@ -96,6 +111,33 @@
             "title": "CSS Selector Listeners",
             "author": "Daniel Buchner",
             "id": "ZqdNQa"
+        }
+    ],
+    "performace": [
+        {
+            "url": "http://www.456bereastreet.com/archive/201209/tell_css_that_javascript_is_available_asap/",
+            "title": "Tell CSS that JavaScript is available ASAP",
+            "author": "Roger Johansson"
+        }
+    ],
+    "flowtime": [
+        {
+            "url": "https://github.com/marcolago/flowtime.js",
+            "title": "Flowtime.js",
+            "author": "Marco Lago",
+            "tags": [
+                "presentations"
+            ]
+        }
+    ],
+    "anima": [
+        {
+            "url": "http://lvivski.github.com/anima/",
+            "title": "Anima.js",
+            "author": "Yehor Lvivski",
+            "tags": [
+                "animation"
+            ]
         }
     ]
 }

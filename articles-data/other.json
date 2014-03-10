@@ -193,5 +193,13 @@
             "author": "Aaron Lumsden",
             "id": "ZpaFqM"
         }
+    ],
+    "microformats": [
+        {
+            "url": "http://demosthenes.info/blog/593/Introduction-to-Microformats-For-Web-Pages",
+            "title": "Introduction to Microformats For Web Pages",
+            "author": "Dudley Storey",
+            "id": "Z1LsgwS"
+        }
     ]
 }
