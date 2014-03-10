@@ -126,7 +126,7 @@ var pullRequest = function(req, res, callback) {
       "title": global.opts.form.PRtitlePrefix+req.query.postData.title+global.opts.form.PRtitlePostfix+req.query.cat,
       "body": global.opts.form.PRdescription,
       "head": req.query.login+":master",
-      "base": "master"
+      "base": global.opts.form.PRbranch
     }, function(err, data) {
         if (err) { GhApiOnErr(req, res, err, 'PR error'); return; }
 //        console.log('PR done');
