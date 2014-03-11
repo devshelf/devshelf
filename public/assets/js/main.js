@@ -5,6 +5,44 @@ var TARGET_CONT = 'main-content',
 
 var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
 
+function fuzzy (opt) {
+
+    console.log('--- start 1');
+
+    var
+        query = 'best',
+        qRegExp = new RegExp(query),
+        allData = opt,
+        liteResult = [];
+
+    for (k in allData) {
+        var prop = allData[k],
+            tags = prop.tags,
+            tags_l = tags.length;
+
+        if (!tags_l) continue;
+        /**
+         * if category doesn't match query, all
+         * inner articles has tested for tag field
+         */
+        for (var i = 0; i < tags_l; i++) {
+
+            if ( qRegExp.test(tags[i].match(query)) ) {
+                liteResult.push(prop);
+            } else continue;
+
+        }
+    }
+
+
+
+
+
+
+    return [null, liteResult];
+}
+
+
 var templateEngine = (function() {
     var hashStruct = {};
 
@@ -19,60 +57,34 @@ var templateEngine = (function() {
          * 0: {Object} full results with categories; need to upgrade mustache render func;
          * 1: {Array} lite version; can be used in mustache without workarounds;
          */
-        fuzzySearch: function(opt) {
+        fuzzySearch: function fuzzy (opt) {
             var
                 query = opt.q.toLowerCase(),
                 qRegExp = new RegExp(query),
                 allData = opt.allData,
-                result = {},
                 liteResult = [];
 
             for (k in allData) {
-                var
-                    prop = allData[k],
-                    prop_l = prop.length;
+                var prop = allData[k],
+                    tags = prop.tags,
+                    tags_l = tags.length;
 
-                if (!prop_l) continue;
+                if (!tags_l) continue;
 
                 /**
-                 * if category successfully matches query tag
-                 * - all categories articles goes to search output
-                 * without matching;
+                 * if category doesn't match query, all
+                 * inner articles has tested for tag field
                  */
-                if ( qRegExp.test(k.match(query)) ) {
-                    liteResult = liteResult.concat(prop);
+                for (var i = 0; i < tags_l; i++) {
 
-                    if (!result[k]) result[k] = [];
-                    result[k] = prop;
-                }
-                else {
-                    /**
-                     * if category doesn't match query, all
-                     * inner articles has tested for tag field
-                     */
-                    for (var i=0; i < prop_l; i++) {
+                    if ( qRegExp.test(tags[i].match(query)) ) {
+                        liteResult.push(prop);
+                    } else continue;
 
-                        var
-                            tags = prop[i].tags,
-                            tags_l = tags? tags.length : 0;
-
-                        if (!tags || !tags_l) continue;
-
-                        for (var j=0; j < tags_l; j++) {
-                            if ( qRegExp.test(tags[j].match(query)) ) {
-                                if (!result[k]) result[k] = [];
-                                result[k].push(prop[i]);
-                                liteResult.push(prop[i]);
-                            } else continue;
-                        }
-                    }
                 }
             }
 
-    //console.log('options', query, allData);
-    //console.log('liteResult', liteResult);
-
-            return [result, liteResult];
+            return [null, liteResult];
         },
 
         /**

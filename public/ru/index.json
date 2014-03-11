@@ -37,7 +37,7 @@
     "search": {
         "placeholder": "Далее найти",
         "button": "Найти",
-        "related": "Похожие теги"
+        "related": "Связанные теги"
     },
     "search-output": {
         "resultsLabel": "Результаты",
