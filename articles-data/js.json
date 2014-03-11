@@ -1,16 +1,17 @@
 {
-    "ecmascript": [
+    "js": [
         {
             "url": "http://www.2ality.com/2013/07/es6-modules.html",
-            "title": "ECMAScript 6 modules: the future is now"
-        }
-    ],
-
-    "jquery": [
+            "title": "ECMAScript 6 modules: the future is now",
+            "tags": [
+                "ecmascript"
+            ]
+        },
         {
             "url": "http://ejohn.org/apps/workshop/adv-talk/#0",
             "title": "Things You Might Not Know About jQuery",
             "tags": [
+                "jquery",
                 "slides"
             ]
         },
@@ -19,118 +20,124 @@
             "title": "45+ New jQuery Techniques For Good User Experience",
             "author": "Noura Yehia",
             "tags": [
+                "jquery",
                 "resources ",
                 "UX"
             ]
-        }
-    ],
-    "tools ": [
+        },
         {
             "url": "http://coding.smashingmagazine.com/2009/02/08/50-extremely-useful-javascript-tools/",
             "title": "50 Useful JavaScript Tools",
-            "author": "Jacob Gube"
-        }
-    ],
-    "patterns": [
+            "author": "Jacob Gube",
+            "tags": [
+                "tools "
+            ]
+        },
         {
             "url": "http://addyosmani.com/resources/essentialjsdesignpatterns/book/",
             "title": "Learning JavaScript Design Patterns",
-            "author": "Addy Osmani"
+            "author": "Addy Osmani",
+            "tags": [
+                "patterns"
+            ]
         },
-
         {
             "url": "http://bonsaiden.github.io/JavaScript-Garden/",
-            "title": "JavaScript Garden"
+            "title": "JavaScript Garden",
+            "tags": [
+                "patterns"
+            ]
         },
         {
             "url": "http://shichuan.github.io/javascript-patterns/",
-            "title": "JS Patterns"
-        }
-    ],
-    "meteor": [
+            "title": "JS Patterns",
+            "tags": [
+                "patterns"
+            ]
+        },
         {
             "url": "http://moduscreate.com/diving-into-meteorjs/",
             "title": "Diving into MeteorJS",
             "tags": [
+                "meteor",
                 "nodejs"
             ]
-        }
-    ],
-    "3d": [
+        },
         {
             "url": "http://photon.attasi.com/",
             "title": "CSS 3D Lighting Engine",
             "author": "Tom Giannattasio",
             "tags": [
+                "3d",
                 "photon"
-            ],
-            "id": "Z1ovIoS"
-        }
-    ],
-    "CSS Object Model": [
+            ]
+        },
         {
             "url": "http://nimbupani.com/css-object-model.html",
             "title": "CSS Object Model",
-            "author": "Divya Manian"
-        }
-    ],
-    "ember": [
+            "author": "Divya Manian",
+            "tags": [
+                "CSS Object Model"
+            ]
+        },
         {
             "url": "http://coding.smashingmagazine.com/2013/11/07/an-in-depth-introduction-to-ember-js/",
             "title": "An In-Depth Introduction To Ember.js",
             "author": "Julien Knebel",
             "tags": [
+                "ember",
                 "mvc"
             ]
-        }
-    ],
-    "dom": [
+        },
         {
             "url": "http://coding.smashingmagazine.com/2013/11/12/an-introduction-to-dom-events/",
             "title": "An Introduction To DOM Events",
-            "author": "Wilson Page"
-        }
-    ],
-    "video": [
+            "author": "Wilson Page",
+            "tags": [
+                "dom"
+            ]
+        },
         {
             "url": "http://coding.smashingmagazine.com/2013/11/18/the-future-of-video-in-web-design/",
             "title": "The Future Of Video In Web Design",
-            "author": "Sean Fioritto"
-        }
-    ],
-    "architecture": [
+            "author": "Sean Fioritto",
+            "tags": [
+                "video"
+            ]
+        },
         {
             "url": "http://coding.smashingmagazine.com/2013/11/21/introduction-to-full-stack-javascript/",
             "title": "An Introduction To Full-Stack JavaScript",
-            "author": "Alejandro Hernandez"
-        }
-    ],
-    "Selector Listeners": [
+            "author": "Alejandro Hernandez",
+            "tags": [
+                "architecture"
+            ]
+        },
         {
             "url": "http://www.backalleycoder.com/2012/08/06/css-selector-listeners/",
             "title": "CSS Selector Listeners",
             "author": "Daniel Buchner",
-            "id": "ZqdNQa"
-        }
-    ],
-    "performace": [
+            "tags": [
+                "Selector Listeners"
+            ]
+        },
         {
             "url": "http://www.456bereastreet.com/archive/201209/tell_css_that_javascript_is_available_asap/",
             "title": "Tell CSS that JavaScript is available ASAP",
-            "author": "Roger Johansson"
-        }
-    ],
-    "flowtime": [
+            "author": "Roger Johansson",
+            "tags": [
+                "performace"
+            ]
+        },
         {
             "url": "https://github.com/marcolago/flowtime.js",
             "title": "Flowtime.js",
             "author": "Marco Lago",
             "tags": [
+                "flowtime",
                 "presentations"
             ]
-        }
-    ],
-    "anima": [
+        },
         {
             "url": "http://lvivski.github.com/anima/",
             "title": "Anima.js",

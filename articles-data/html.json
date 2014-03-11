@@ -102,48 +102,34 @@
             "tags": [
                 "tools"
             ]
-        }
-    ],
-    "responsive": [
-        {
-            "url": "http://www.iandevlin.com/blog/2012/08/html5/responsive-html5-video",
-            "title": "Responsive HTML5 video",
-            "author": "Ian Devlin",
-            "tags": [
-                "video"
-            ]
-        }
-    ],
-    "meta": [
+        },
         {
             "url": "http://blog.javierusobiaga.com/stop-using-the-viewport-tag-until-you-know-ho",
             "title": "Stop Using the Viewport Meta Tag (until You Know How to Use It)",
             "author": "Javier Usobiaga",
             "tags": [
+                "meta",
                 "viewport"
             ]
-        }
-    ],
-    "mobile": [
+        },
         {
             "url": "http://www.mobilexweb.com/blog/ipad-mini-detection-for-html5-user-agent",
             "title": "Mission: Impossible – iPad mini detection for HTML5",
             "author": "Max Firtman",
             "tags": [
+                "mobile",
                 "ipad"
             ]
-        }
-    ],
-    "zen": [
+        },
         {
             "url": "http://coding.smashingmagazine.com/2013/03/26/goodbye-zen-coding-hello-emmet/",
             "title": "Goodbye, Zen Coding. Hello, Emmet!",
             "author": "Zeno Rocha",
             "tags": [
+                "tools",
                 "performance",
                 "emmet"
-            ],
-            "id": "Z5rvmW"
+            ]
         }
     ]
 }
