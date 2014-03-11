@@ -1,47 +1,9 @@
 var TARGET_CONT = 'main-content',
     totalTagList = {},
-    searchTagList = {},
+    searchTagList = [],
     voteData = {};
 
 var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
-
-function fuzzy (opt) {
-
-    console.log('--- start 1');
-
-    var
-        query = 'best',
-        qRegExp = new RegExp(query),
-        allData = opt,
-        liteResult = [];
-
-    for (k in allData) {
-        var prop = allData[k],
-            tags = prop.tags,
-            tags_l = tags.length;
-
-        if (!tags_l) continue;
-        /**
-         * if category doesn't match query, all
-         * inner articles has tested for tag field
-         */
-        for (var i = 0; i < tags_l; i++) {
-
-            if ( qRegExp.test(tags[i].match(query)) ) {
-                liteResult.push(prop);
-            } else continue;
-
-        }
-    }
-
-
-
-
-
-
-    return [null, liteResult];
-}
-
 
 var templateEngine = (function() {
     var hashStruct = {};
@@ -64,23 +26,20 @@ var templateEngine = (function() {
                 allData = opt.allData,
                 liteResult = [];
 
-            for (k in allData) {
-                var prop = allData[k],
+            var j = allData.length;
+            while (j--) {
+
+                var prop = allData[j],
                     tags = prop.tags,
                     tags_l = tags.length;
 
                 if (!tags_l) continue;
 
-                /**
-                 * if category doesn't match query, all
-                 * inner articles has tested for tag field
-                 */
-                for (var i = 0; i < tags_l; i++) {
-
+                var i = tags_l;
+                while (i--) {
                     if ( qRegExp.test(tags[i].match(query)) ) {
                         liteResult.push(prop);
                     } else continue;
-
                 }
             }
 
@@ -757,10 +716,16 @@ var getJsonData = function(p) {
         $.ajax({
             url: p.jsonData,
             success: function(data) {
+console.log('DATA:', data);
                 totalTagList = $.extend(true, totalTagList, data);
 
-                for (var section in data) {
-                    searchTagList = $.extend(true, searchTagList, data[section]);
+                for (k in data) {
+                    var prop = data[k],
+                        j = prop.length;
+
+                    while (j--) {
+                        searchTagList.push(prop[j]);
+                    }
                 }
 
                 templateEngine.extendingTags();
