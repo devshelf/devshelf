@@ -408,6 +408,7 @@ var mainApp = function() {
     */
     $('.pure-menu').on('click', '.js-language', function() {
         // TODO: dmitryl: move this check to data-*
+        // TODO: dmitryl: remove hardcode to 'en', 'ru', use appData.commonOpts.l18n
 
     	var lang = $(this).hasClass('__ru')? 'ru' : 'en';
 
@@ -716,7 +717,10 @@ var getJsonData = function(p) {
         $.ajax({
             url: p.jsonData,
             success: function(data) {
-console.log('DATA:', data);
+
+                // TODO: dmitryl: generate right list for suggested tags in SERP and posting form
+                console.log('DATA:', data);
+
                 totalTagList = $.extend(true, totalTagList, data);
 
                 for (k in data) {
@@ -733,7 +737,7 @@ console.log('DATA:', data);
                 callback();
             }
         })
-    }
+    };
 
     /**
      * Getting actual voting data
@@ -772,8 +776,8 @@ console.log('DATA:', data);
 
     };
 
-	// if p.lang not set, it equals to 'en'
-	currentLanguage = (languages[p.lang]) ? p.lang : 'en';
+	// if p.lang not set, it equals to default lang (as set in common options on server)
+	currentLanguage = (languages[p.lang]) ? p.lang : appData.commonOpts.l18n.defaultLang;
 
 	// Execution getting operations
     getAllData({
@@ -795,7 +799,7 @@ console.log('DATA:', data);
 /**
  * Onstart routines
  */
-var currentLanguage = cookieParser(document.cookie)['lang'] || 'en';
+var currentLanguage = cookieParser(document.cookie)['lang'] || appData.commonOpts.l18n.defaultLang;
 
 $(function() {
 

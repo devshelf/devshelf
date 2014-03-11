@@ -19,6 +19,8 @@ var postArticle = function(req, res){
         validateData(req.query, function(validateStatus){
             if (validateStatus) {
                 fork(req, res, function(err, data){
+
+                    //Callback from PR (final step)
                     res.send({
                         status: true,
                         message: "PR created",
@@ -126,11 +128,36 @@ var pullRequest = function(req, res, callback) {
       "body": global.opts.form.PRdescription,
       "head": req.query.login+":"+global.opts.form.PRbranch,
       "base": global.opts.form.PRbranch
-    }, function(err, data) {
-        if (err) { GhApiOnErr(req, res, err, 'PR error'); return; }
-//        console.log('PR done');
+    }, function(GHMasterErr, GHMasterData) {
+        if (GHMasterErr) {
 
-        callback(err, data);
+            //On error we're checking if user already left PR
+            ghrepoMaster.prs(function(err, data){
+                var PRsArr = data,
+                    hasPR = false;
+
+                PRsArr.map(function(item){
+
+                   //if its users PR and was automatically created earlier
+                   if (item.user.login === req.query.login && item.body === global.opts.form.PRdescription) {
+                        hasPR = true;
+
+                       callback(err, item);
+                   }
+                });
+
+                //if user don't have PRs, pass erorr
+                if (!hasPR) {
+                    GhApiOnErr(req, res, GHMasterErr, 'PR error'); return;
+                }
+
+            });
+        } else {
+//            console.log('PR done');
+
+            callback(GHMasterErr, GHMasterData);
+        }
+
     });
 };
 

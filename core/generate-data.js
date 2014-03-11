@@ -179,18 +179,31 @@ var generateTagLinks = function(lang) {
     //cleaning
     global.tagLinks[lang] = {};
 
+    var getOnlyOne = [];
+
     for (var section in global.articlesData[lang]) {
-        if (global.tagLinks[lang][section] === undefined) {
-            global.tagLinks[lang][section] = [];
+        var targetArr = global.articlesData[lang][section] || [];
+
+        if (typeof global.tagLinks[lang][section] !== 'object') {
+            global.tagLinks[lang][section] = []
         }
 
-        for (var articles in global.articlesData[lang][section]) {
-            global.tagLinks[lang][section].push({
-                linkTitle: articles,
-                linkHref: '/#!/search/' + articles.replace(/\s+/g, '_')
-            })
-        }
+        targetArr.map(function(article){
+            var mainTag = article.tags[0];
+
+            //writing only one of a king
+            if (getOnlyOne.indexOf(mainTag) < 0) {
+                getOnlyOne.push(article.tags[0])
+
+                global.tagLinks[lang][section].push({
+                    linkTitle: article.tags[0],
+                    linkHref: '/#!/search/' + article.tags[0].replace(/\s+/g, '_')
+                });
+            }
+
+        });
     }
+
 };
 
 var generateData = function() {

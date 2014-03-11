@@ -1,5 +1,3 @@
-var fs = require('fs');
-
 var updateIDs = function(lang, pure) {
     var currentLanguage = lang,
         gettingPureData = pure || false,
@@ -21,17 +19,13 @@ var updateIDs = function(lang, pure) {
 
     // Preparing existing IDs list
     for(var cat in globalData) {
-        var currentCat = globalData[cat];
+        var targetArr = globalData[cat];
 
-        for(var obj in currentCat) {
-            var targetArr = currentCat[obj];
+        var i=0;
+        while(i<targetArr.length){
+            global.articlesIDs[targetGlobalIDsData].push(targetArr[i].id)
 
-            var i=0;
-            while(i<targetArr.length){
-                global.articlesIDs[targetGlobalIDsData].push(targetArr[i].id)
-
-                i++;
-            }
+            i++;
         }
     }
 
