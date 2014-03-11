@@ -85,9 +85,8 @@ var editFile = function(req, res, callback) {
     var client = github.client(req.query.token),
         ghrepo = client.repo(req.query.login+'/'+global.opts.github.repoName);
 
-    ghrepo.contents('article_data/'+req.query.cat+'.json', function(err, currentFile){
-        if (err) { GhApiOnErr(req, res, err); return; }
-//        console.log('read file done');
+    ghrepo.contents('articles-data/'+req.query.cat+'.json', global.opts.form.PRbranch, function(err, currentFile){
+        if (err) { GhApiOnErr(req, res, err, 'Error getting file contents from GitHub'); return; }
 
         //updating data
         try { //trying to parse JSON
@@ -97,17 +96,17 @@ var editFile = function(req, res, callback) {
             GhApiOnErr(req, res, err, 'Error parsing current cat JSON'); return;
         }
 
-        try { //trying to push new object
-            var tagDataArr = decodedContentObject[req.query.mainTag];
-                tagDataArr.push(req.query.postData);
 
-            decodedContentObject[req.query.mainTag] = extend(decodedContentObject[req.query.mainTag], tagDataArr);
+        try { //trying to push new object
+            var tagDataArr = decodedContentObject[req.query.cat];
+                tagDataArr.push(req.query.postData);
         } catch (err) {
             GhApiOnErr(req, res, err, 'Error pushing new object to JSON'); return;
         }
 
+
         //comiting updated data
-        ghrepo.updateContents(currentFile.path, global.opts.form.commitMessage, JSON.stringify(decodedContentObject, false, 4), currentFile.sha, function(err, data){
+        ghrepo.updateContents(currentFile.path, global.opts.form.commitMessage, JSON.stringify(decodedContentObject, false, 4), currentFile.sha, global.opts.form.PRbranch, function(err, data){
             if (err) { GhApiOnErr(req, res, err, 'Update error'); return; }
 //            console.log('update done');
 
@@ -125,7 +124,7 @@ var pullRequest = function(req, res, callback) {
     ghrepoMaster.pr({
       "title": global.opts.form.PRtitlePrefix+req.query.postData.title+global.opts.form.PRtitlePostfix+req.query.cat,
       "body": global.opts.form.PRdescription,
-      "head": req.query.login+":master",
+      "head": req.query.login+":"+global.opts.form.PRbranch,
       "base": global.opts.form.PRbranch
     }, function(err, data) {
         if (err) { GhApiOnErr(req, res, err, 'PR error'); return; }
@@ -148,8 +147,18 @@ var validateData = function(data, callback) {
         return valid;
     };
 
+    var checkTag = function(){
+        var valid = false;
+
+        if (typeof data.postData.tags === 'object' && data.postData.tags.length > 0) {
+            valid = true;
+        }
+
+        return valid;
+    };
+
     //if url and title exists
-    if (checkCat() && data.mainTag && data.postData.url && data.postData.title) {
+    if (checkCat() && checkTag() && data.postData.url && data.postData.title) {
 
         //url is responding
         checkURL.checkURL(data.postData.url, function(urlAccesible){
@@ -173,9 +182,9 @@ var validateData = function(data, callback) {
 
 //Validating input data
 var GhApiOnErr = function(req, res, err, msg) {
-    console.log(err);
+    var message = msg || 'GitHub error';
 
-    var message = msg || 'GH error';
+    console.log('Error: '+ message, '| JS message: '+err);
 
     res.send({
         statusCode: 500,

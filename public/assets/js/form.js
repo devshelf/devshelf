@@ -18,8 +18,7 @@ $(document).ready(function() {
                 login = user.login;
 
             //Preparing senging data
-            var cat = sendData.category,
-                mainTag = sendData.mainTag;
+            var cat = sendData.category;
 
             var postData = {
                 url: sendData.url,
@@ -38,7 +37,6 @@ $(document).ready(function() {
                 token: token,
                 postData: postData,
                 login: login,
-                mainTag: mainTag,
                 cat: cat
             };
 
@@ -118,12 +116,21 @@ $(document).ready(function() {
 
                 var proceedToServer = function(){
                     tagsArray = $tagsInput.getValue();
-                    sendData['mainTag'] = tagsArray.shift();
                     sendData['tags'] = tagsArray;
 
                     postToServer(sendData, function(data){
-                        //TODO: push message to UI and clean form
                         console.log('send done', data);
+
+                        //if error
+                        if (data.statusCode === 500){
+                            var message = data.message || "Submit failed";
+
+                            validate.status = false;
+                            validate.errors.push( message );
+                        } else {
+                            //TODO: push success message to UI and clean form
+                        }
+
                     })
                 };
 
