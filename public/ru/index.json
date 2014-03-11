@@ -95,6 +95,7 @@
     		{ "p": "Кроме того, мы будем рады любым пожеланиям в <a href='https://github.com/sourcejs/devshelf/issues'>Issues</a> проекта." }
     	],
     	"bookmarkletUsageTitle": "Как использовать?",
-    	"bookmarkletUsageDesc": "Добавьте в закладки следующий код:"
+    	"bookmarkletUsageDesc": "Перетащите эту кнопку на панель закладок:",
+    	"bookmarkletLinkTitle": "Отправить в DevShelf"
     }
 }

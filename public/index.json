@@ -94,6 +94,7 @@
     		{ "p": "Bookmarklet's code is available in <a href='https://github.com/sourcejs/devshelf'>project github repo</a>. Please, feel free to make it better." }
     	],
     	"bookmarkletUsageTitle": "How to use?",
-    	"bookmarkletUsageDesc": "Add to favorites this code:"
+    	"bookmarkletUsageDesc": "Drag this button to favorits panel:",
+    	"bookmarkletLinkTitle": "Send to DevShelf"
     }
 }

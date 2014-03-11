@@ -15,8 +15,6 @@ a {
 	position: relative;
 	}
 
-
-
 .brand-title,
 .brand-tagline {
 	margin: 0;
@@ -67,7 +65,6 @@ a {
 
 .content {
 	padding: 2em 3em 0;
-	margin-top:38px;
 	}
 
 .content.aritcle {
@@ -136,6 +133,12 @@ a {
 .footer {
 	text-align: center;
 	padding: 1em 3em;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
 	}
 .footer a {
 	color: #ccc;

@@ -4,8 +4,14 @@
  * Extend PURE styles
  */
 
+html {
+	position: relative;
+	height: 100%;
+	}
+
 body {
 	position: relative;
+	min-height: 100%;
 	}
 
 a {
@@ -21,6 +27,11 @@ a {
 
 .ovHidden {
 	overflow: hidden;
+	}
+
+/* sticky footer */
+#main-content {
+	padding-bottom: 50px;
 	}
 
 /* USER LOGIN PART */
