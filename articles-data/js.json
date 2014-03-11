@@ -194,6 +194,87 @@
                 "Ajax ",
                 "SEO "
             ]
+        },
+        {
+            "url": "http://labs.bigroomstudios.com/libraries/animo-js",
+            "title": "animo.js",
+            "author": "Daniel Raftery",
+            "tags": [
+                "animation",
+                "css",
+                "jquery"
+            ]
+        },
+        {
+            "url": "http://krasimirtsonev.com/blog/article/AbsurdJS-fundamentals",
+            "title": "AbsurdJS fundamentals",
+            "author": "Krasimir Tsonev",
+            "tags": [
+                "preprocessors",
+                "css",
+                "absurdjs",
+                "nodejs"
+            ]
+        },
+        {
+            "url": "http://typedarray.org/javascript-refresh",
+            "title": "A JavaScript refresh",
+            "author": "Thibault Imbert",
+            "tags": [
+                "amazing",
+                "javascript"
+            ]
+        },
+        {
+            "url": "http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/",
+            "title": "OOP In JavaScript: What You NEED to Know",
+            "author": "Richard Of Stanley",
+            "tags": [
+                "OOP",
+                "prototype"
+            ]
+        },
+        {
+            "url": "https://github.com/maxogden/art-of-node",
+            "title": "The Art of Node",
+            "author": "Max Ogden",
+            "tags": [
+                "nodejs"
+            ]
+        },
+        {
+            "url": "http://net.tutsplus.com/tutorials/javascript-ajax/make-backbone-better-with-extensions/",
+            "title": "Make Backbone Better With Extensions",
+            "author": "Joe Zimmerman",
+            "tags": [
+                "backbone"
+            ]
+        },
+        {
+            "url": "http://domenic.me/2013/03/19/strict-mode-static-scoping/",
+            "title": "Strict Mode = Static Scoping",
+            "author": "Domenic Denicola",
+            "tags": [
+                "strict mode"
+            ]
+        },
+        {
+            "url": "http://alistapart.com/article/writing-testable-javascript",
+            "title": "Writing Testable JavaScript",
+            "author": "Rebecca Murphey",
+            "tags": [
+                "testing",
+                "TDD"
+            ]
+        },
+        {
+            "url": "http://www.2ality.com/2013/07/defending-constructors.html",
+            "title": "In defense of JavaScript’s constructors",
+            "author": "Axel Rauschmayer",
+            "tags": [
+                "constructor"
+            ]
         }
+
     ]
 }
