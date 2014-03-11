@@ -130,6 +130,24 @@
                 "performance",
                 "emmet"
             ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2012/03/13/techniques-overcome-poor-css-support-email/",
+            "title": "Techniques For Overcoming Poor CSS Support In Email",
+            "author": "Lynda Elliott",
+            "tags": [
+                "e-mail",
+                "mailing"
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2011/11/18/html5-semantics/",
+            "title": "HTML5 Semantics",
+            "author": "Bruce Lawson",
+            "tags": [
+                "HTML5 ",
+                "Semantics "
+            ]
         }
     ]
 }

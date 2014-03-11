@@ -210,6 +210,67 @@
             "tags": [
                 "microformats"
             ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2013/10/29/get-up-running-grunt/",
+            "title": "Get Up And Running With Grunt",
+            "author": "Mike Cunsolo",
+            "tags": [
+                "Tools ",
+                "Workflow ",
+                "grunt"
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2013/10/25/hidden-productivity-secrets-with-alfred/",
+            "title": "Hidden Productivity Secrets With Alfred",
+            "author": "Zeno Rocha",
+            "tags": [
+                "HTML5 ",
+                "Tools ",
+                "Workflow ",
+                "Alfred"
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2012/05/24/beginners-guide-ruby/",
+            "title": "A Beginner’s Guide to Ruby",
+            "author": "Marc Gayle",
+            "tags": [
+                "Ruby ",
+                "guide",
+                "OOP"
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2011/08/03/modern-version-control-with-git-part-2/",
+            "title": "Modern Version Control With Git, Part 2",
+            "author": "Tobias Günther",
+            "tags": [
+                "Git ",
+                "Version control ",
+                "guide"
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2011/09/05/getting-started-with-the-paypal-api/",
+            "title": "Getting Started With The PayPal API",
+            "author": "Eran Galperin",
+            "tags": [
+                "API ",
+                "PayPal ",
+                "PHP "
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2011/07/26/modern-version-control-with-git-series/",
+            "title": "Modern Version Control With Git",
+            "author": "Tobias Günther",
+            "tags": [
+                "Git ",
+                "Version control ",
+                "guide"
+            ]
         }
     ]
 }

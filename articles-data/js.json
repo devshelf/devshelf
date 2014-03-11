@@ -145,6 +145,55 @@
             "tags": [
                 "animation"
             ]
+        },
+        {
+            "url": "http://css-tricks.com/controlling-css-animations-transitions-javascript/",
+            "title": "Controlling CSS Animations and Transitions with JavaScript",
+            "author": "Zach Saucier",
+            "tags": [
+                "animation",
+                "transition",
+                "css"
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2013/08/27/analyzing-network-characteristics-using-javascript-and-the-dom-part-2/",
+            "title": "Analyzing Network Characteristics Using JavaScript And The DOM, Part 2",
+            "author": "Philip Tellis",
+            "tags": [
+                "JavaScript ",
+                "Performance ",
+                "DOM"
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2013/08/09/backbone-js-tips-patterns/",
+            "title": "Backbone.js Tips And Patterns",
+            "author": "Phillip Whisenhunt",
+            "tags": [
+                "Frameworks ",
+                "JavaScript "
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2012/09/23/useful-javascript-libraries-jquery-plugins-web-developers/",
+            "title": "Useful JavaScript Libraries and jQuery Plugins",
+            "author": "Smashing Editorial",
+            "tags": [
+                "JavaScript ",
+                "JQuery ",
+                "library",
+                "plugin"
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2011/09/27/searchable-dynamic-content-with-ajax-crawling/",
+            "title": "Searchable Dynamic Content With AJAX Crawling",
+            "author": "Zack Grossbart",
+            "tags": [
+                "Ajax ",
+                "SEO "
+            ]
         }
     ]
 }

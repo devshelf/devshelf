@@ -412,6 +412,16 @@
             "tags": [
                 "hight dpi"
             ]
+        },
+        {
+            "url": "http://demosthenes.info/blog/568/Create-Rich-Web-Typography-With-CSS3-&-OpenType-Discretionary-Ligatures-&-True-Small-Caps",
+            "title": "Create Rich Web Typography With CSS3 & OpenType: Discretionary Ligatures & True Small Caps",
+            "author": "Dudley Storey",
+            "tags": [
+                "typography",
+                "opentype",
+                "fonts"
+            ]
         }
     ]
 }
