@@ -37,13 +37,12 @@ var templateEngine = (function() {
 
                 var i = tags_l;
                 while (i--) {
-                    if ( qRegExp.test(tags[i].match(query)) ) {
-                        liteResult.push(prop);
-                    } else continue;
+                    if ( qRegExp.test(tags[i]) ) liteResult.push(prop);
+                    else continue;
                 }
             }
 
-            return [null, liteResult];
+            return liteResult;
         },
 
         /**
@@ -173,7 +172,7 @@ var templateEngine = (function() {
                 $.extend(true, resultList, templateEngine.fuzzySearch({
                     q: getParams.replace(/_/g, ' '),
                     allData: searchTagList
-                })[1]);
+                }));
 
                 for (var resultInstance = 0; resultInstance < resultList.length; resultInstance++) {
                 	var resultItem = resultList[resultInstance];
@@ -208,7 +207,8 @@ var templateEngine = (function() {
                     query: getParams.replace(/_/g, ' '),
                     callback: function(p) {
                         templateEngine.insertTemplate(p);
-                    }
+                    },
+                    result: resultList
                 });
 
                 /**
@@ -295,34 +295,33 @@ var templateEngine = (function() {
                 navList = [],
                 template = 'nav-panel',
                 target = 'nav-list',
-                wasAdded = {},
-                currentCategory;
+                tagList = {},
+                result = p.result;
+//console.log('P:', p);
 
-            for (currentCategory in totalTagList) {
+            // TODO: check list below
+            // [*] add check for already finded items
 
-                for (testArticle in totalTagList[currentCategory]) {
-                    if ( !new RegExp(p.query).test(testArticle.match(p.query)) ) {
-                        continue;
-                    }
+            var i = result.length;
+            while (i--) {
+                var article = result[i],
+                    tags = article.tags;
 
-                    for (var articleInCategory in totalTagList[currentCategory]) {
-
-                        if (!!wasAdded[articleInCategory]) {
-                            continue;
-                        }
-
-                        var currentArticleArray = totalTagList[currentCategory][articleInCategory];
-
-                        navList.push( {
-                            navLink: '/#!/search/' + articleInCategory.replace(/\s+/g, '_'),
-                            navTitle: articleInCategory
-                        } );
-
-                        wasAdded[articleInCategory] = true;
-
-                    }
-
+                var j = tags.length;
+                while (j--) {
+                    var tag = tags[j];
+                    tagList[tag.tagTitle] = [tag.tagTitle, tag.tagLink];
                 }
+            }
+
+            for (k in tagList) {
+//                if (new RegExp('\b'+ k +'\b').match(p.query)) continue;
+
+                var tag = tagList[k];
+                navList.push({
+                    navLink: '/#!/search/' + tag[1].replace(/\s+/g, '_'),
+                    navTitle: tag[0]
+                });
             }
 
             callback({
@@ -442,7 +441,7 @@ var mainApp = function() {
         $.extend(true, resultList, templateEngine.fuzzySearch({
             q: searchQuery,
             allData: searchTagList
-        })[1]);
+        }));
 
 		for (var resultInstance = 0; resultInstance < resultList.length; resultInstance++) {
 			var resultItem = resultList[resultInstance];
@@ -493,7 +492,8 @@ var mainApp = function() {
             query: searchQuery,
             callback: function(p) {
                 templateEngine.insertTemplate(p);
-            }
+            },
+            result: resultList
         })
 
 
@@ -518,7 +518,9 @@ var mainApp = function() {
         $.extend(true, resultList, templateEngine.fuzzySearch({
             q: searchQuery,
             allData: searchTagList
-        })[1]); // 1 - liteMode
+        }));
+
+//        console.log("RESULTLIST:x ", resultList);
 
 		for (var resultInstance = 0; resultInstance < resultList.length; resultInstance++) {
 			var resultItem = resultList[resultInstance];
@@ -529,10 +531,12 @@ var mainApp = function() {
 
 				resultItem.tags[resultTags] = {
 					tagTitle: title,
-					tagLink:link
+					tagLink: link
 				}
 			}
 		}
+
+//        console.log("RESULTITEM: ", resultItem);
 
         if (resultList.length) {
 			templateEngine.attachVotes(resultList);
@@ -552,7 +556,8 @@ var mainApp = function() {
                 query: searchQuery,
                 callback: function(p) {
                     templateEngine.insertTemplate(p);
-                }
+                },
+                result: resultList
             })
 
         }
@@ -719,7 +724,7 @@ var getJsonData = function(p) {
             success: function(data) {
 
                 // TODO: dmitryl: generate right list for suggested tags in SERP and posting form
-                console.log('DATA:', data);
+//                console.log('DATA:', data);
 
                 totalTagList = $.extend(true, totalTagList, data);
 
