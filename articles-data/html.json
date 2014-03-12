@@ -114,7 +114,7 @@
         },
         {
             "url": "http://www.mobilexweb.com/blog/ipad-mini-detection-for-html5-user-agent",
-            "title": "Mission: Impossible â iPad mini detection for HTML5",
+            "title": "Mission: Impossible Ã¢ÂÂ iPad mini detection for HTML5",
             "author": "Max Firtman",
             "tags": [
                 "mobile",
@@ -223,7 +223,7 @@
         {
             "url": "http://www.netmagazine.com/tutorials/create-slick-html5-animations",
             "title": "Create slick HTML5 animations",
-            "author": "Martin GÃ¶rner",
+            "author": "Martin GÃÂ¶rner",
             "tags": [
                 "animation",
                 "tutorial",
@@ -282,6 +282,20 @@
             "author-link": "http://caniuse.com/",
             "tags": [
                 "http://caniuse.com/"
+            ]
+        },
+        {
+            "url": "http://nicolasbize.github.io/magicsuggest/",
+            "title": "http://nicolasbize.github.io/magicsuggest/",
+            "author": "http://nicolasbize.github.io/magicsuggest/",
+            "author-mail": "http://nicolasbize.github.io/magicsuggest/",
+            "author-link": "http://nicolasbize.github.io/magicsuggest/",
+            "tags": [
+                "sda",
+                "sdf",
+                "asdf",
+                "asdfasdf",
+                "asdfa"
             ]
         }
     ]
