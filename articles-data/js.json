@@ -269,7 +269,7 @@
         },
         {
             "url": "http://www.2ality.com/2013/07/defending-constructors.html",
-            "title": "In defense of JavaScriptÃÂÃÂ¢ÃÂÃÂÃÂÃÂs constructors",
+            "title": "In defense of JavaScriptÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂs constructors",
             "author": "Axel Rauschmayer",
             "tags": [
                 "constructor"
@@ -319,6 +319,22 @@
             "author-link": "http://caniuse.com/",
             "tags": [
                 "http://caniuse.com/"
+            ]
+        },
+        {
+            "url": "http://caniuse.com/",
+            "title": "http://caniuse.com/",
+            "author": "http://caniuse.com/",
+            "author-mail": "http://caniuse.com/",
+            "author-link": "http://caniuse.com/",
+            "tags": [
+                "adfads\\",
+                "asdf",
+                "asdfa",
+                "sdf",
+                "asdfasdfa",
+                "sdfasdfs",
+                "df"
             ]
         }
     ]
