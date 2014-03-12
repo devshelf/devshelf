@@ -52,8 +52,8 @@
     border-radius: 0;
     float: left;
     margin: 2px 0 2px 2px;
-    font-size: .8em;
 	width: 150px !important;
+	font-size: 12px;
 }
 .ms-ctn-disabled input{
     cursor: not-allowed;
@@ -186,7 +186,7 @@
     color: #666;
     padding-right: 0;
     margin-left: 0;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
 }
 .ms-res-ctn .ms-res-item em{

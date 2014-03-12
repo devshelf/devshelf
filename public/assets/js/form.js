@@ -15,7 +15,8 @@ $(document).ready(function() {
         if (localStorage['user'] && appData.auth) {
             var token = appData.authToken,
                 user = JSON.parse( localStorage.getItem('user')),
-                login = user.login;
+                login = user.login,
+                $spinner = $('.spinner');
 
             //Preparing senging data
             var cat = sendData.category;
@@ -47,6 +48,12 @@ $(document).ready(function() {
                 type: 'get',
                 url: '/post-article',
                 data: data,
+                beforeSend: function() {
+                    $spinner.show();
+                },
+                complete: function(){
+                    $spinner.hide();
+                },
                 success: function(data) {
                     callback(data);
                 },
@@ -112,6 +119,7 @@ $(document).ready(function() {
             var sendData,
                 tagsArray,
                 errorField = $form.find('.form-errors'),
+                successField = $form.find('.form-success'),
                 validate = {
                     status: true,
                     errors: []
@@ -133,7 +141,12 @@ $(document).ready(function() {
                         validate.status = false;
                         validate.errors.push( message );
                     } else {
-                        //TODO: push success message to UI and clean form
+                        //show success message
+                        successField.html(data.message + '! <br/> Pull request link: ' +  data.data.html_url).show();
+
+                        //reset form and input with tags
+                        $form[0].reset();
+                        $tagsInput.clear(true);
                     }
 
                 })
@@ -173,7 +186,7 @@ $(document).ready(function() {
                 });
 
                 if ( !validate.status ) {
-                    errorField.html( validate.errors.join('<br>'));
+                    errorField.html( validate.errors.join('<br>')).show();
                     return false;
                 }
             }

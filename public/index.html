@@ -42,12 +42,21 @@
 					<form id="addNewUrlForm" class="pure-form pure-form-aligned">
 					<fieldset>
 						<div class="pure-control-group">
-							<label for="url">URL <sup>*</sup></label>
+							<label class="pure-input-1-2" for="url">URL <sup>*</sup></label>
 							<input id="url" name="url" type="url" placeholder="URL" class="pure-input-1-2" required>
 						</div>
 
 						<div class="pure-control-group">
-							<label for="title">Title <sup>*</sup></label>
+							<label class="pure-input-1-2" for="lang">Lang <sup>*</sup></label>
+							<select name="lang" id="lang" class="pure-input-1-2" required>
+								<option value="-1">-</option>
+								<option value="RU">RU</option>
+								<option value="EN">EN</option>
+							</select>
+						</div>
+
+						<div class="pure-control-group">
+							<label class="pure-input-1-2" for="title">Title <sup>*</sup></label>
 							<input id="title" name="title" type="text" placeholder="Title" class="pure-input-1-2" required>
 						</div>
 
@@ -79,6 +88,7 @@
 						</div>
 
 						<div class="pure-control-group form-errors"></div>
+						<div class="pure-control-group form-success"></div>
 
 						<div class="pure-controls">
 							<button type="submit" class="pure-button pure-button-primary">Add article</button>
@@ -88,6 +98,7 @@
 					</div>
 			</div>
 		</div>
+		<div class="spinner"></div>
 	</div>
 
 </div>
@@ -219,6 +230,8 @@
 		</div>
 	</div>
 </div>
+
+
 
 <script type="text/javascript">var appData = {{{appData}}};</script>
 

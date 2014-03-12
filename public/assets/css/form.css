@@ -3,10 +3,28 @@
     color: #e9322d;
     }
 
-.form-errors {
+.form-errors,
+.form-success {
+	display: none;
 	margin-top: 30px;
 	text-align: center;
 	}
+
+.form-success {
+	font-size: 12px;
+	color: #1daa09;
+	}
+
+.spinner {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.5) url(../img/spinner.gif) 50% no-repeat;
+	z-index: 5;
+}
 
 .showModal {
 	position: fixed;
