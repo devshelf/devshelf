@@ -114,7 +114,7 @@
         },
         {
             "url": "http://www.mobilexweb.com/blog/ipad-mini-detection-for-html5-user-agent",
-            "title": "Mission: Impossible – iPad mini detection for HTML5",
+            "title": "Mission: Impossible â iPad mini detection for HTML5",
             "author": "Max Firtman",
             "tags": [
                 "mobile",
@@ -129,6 +129,13 @@
                 "tools",
                 "performance",
                 "emmet"
+            ]
+        },
+        {
+            "url": "http://rhr.me",
+            "title": "Full web page HTML markup process ",
+            "tags": [
+                "tag "
             ]
         }
     ]
