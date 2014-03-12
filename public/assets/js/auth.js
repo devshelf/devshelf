@@ -24,6 +24,10 @@ var authCallback  = function(userData) {
     if(voteCache !== undefined) {
         sendVote(voteCache); //running cached voting
     }
+
+    if(typeof addNewArticleRecall) {
+        addNewArticle(addNewArticleRecall); //running cached form call
+    }
 };
 
 var drawLoginButton = function(){

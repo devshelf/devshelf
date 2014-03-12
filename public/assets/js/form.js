@@ -1,201 +1,203 @@
-$(document).ready(function() {
+var convertFormToJSON = function(form){
+    var array = $(form).serializeArray();
+    var json = {};
 
-    var convertFormToJSON = function(form){
-        var array = $(form).serializeArray();
-        var json = {};
+    $.each(array, function() {
+        json[this.name] = this.value || '';
+    });
 
-        $.each(array, function() {
-            json[this.name] = this.value || '';
-        });
+    return json;
+};
 
-        return json;
-    };
+var postToServer = function(sendData, callback){
+    if (localStorage['user'] && appData.auth) {
+        var token = appData.authToken,
+            user = JSON.parse( localStorage.getItem('user')),
+            login = user.login,
+            $spinner = $('.spinner');
 
-    var postToServer = function(sendData, callback){
-        if (localStorage['user'] && appData.auth) {
-            var token = appData.authToken,
-                user = JSON.parse( localStorage.getItem('user')),
-                login = user.login,
-                $spinner = $('.spinner');
+        //Preparing senging data
+        var cat = sendData.category;
 
-            //Preparing senging data
-            var cat = sendData.category;
+        var postData = {
+            url: sendData.url,
+            title: sendData.title
+        };
 
-            var postData = {
-                url: sendData.url,
-                title: sendData.title
-            };
+        var checkEmpty = function(field){
+            if(sendData[field].length !== 0) {postData[field] = sendData[field]}
+        };
+        var checkEmptyArr = ['author', 'author-mail', 'author-link', 'tags'];
+        for (var i = 0; i < checkEmptyArr.length ; i++) {
+            checkEmpty(checkEmptyArr[i]);
+        }
 
-            var checkEmpty = function(field){
-                if(sendData[field].length !== 0) {postData[field] = sendData[field]}
-            };
-            var checkEmptyArr = ['author', 'author-mail', 'author-link', 'tags'];
-            for (var i = 0; i < checkEmptyArr.length ; i++) {
-                checkEmpty(checkEmptyArr[i]);
-            }
-
-            var data = {
-                token: token,
-                postData: postData,
-                login: login,
-                cat: cat
-            };
+        var data = {
+            token: token,
+            postData: postData,
+            login: login,
+            cat: cat
+        };
 
 //            console.log('ready to send ',data);
 
-            //TODO: change to post
-            $.ajax({
-                type: 'get',
-                url: '/post-article',
-                data: data,
-                beforeSend: function() {
-                    $spinner.show();
-                },
-                complete: function(){
-                    $spinner.hide();
-                },
-                success: function(data) {
-                    callback(data);
-                },
-                error: function(error) { console.log(error); }
-            });
-        }
-    };
+        //TODO: change to post
+        $.ajax({
+            type: 'get',
+            url: '/post-article',
+            data: data,
+            beforeSend: function() {
+                $spinner.show();
+            },
+            complete: function(){
+                $spinner.hide();
+            },
+            success: function(data) {
+                callback(data);
+            },
+            error: function(error) { console.log(error); }
+        });
+    }
+};
 
-    var addNewArticle = function( p ) {
-        var $form = $('#addNewUrlForm'),
-            $selectCategory = $('#category'),
-            tempSelects = '',
-            tempTags = [],
-            _this = $('a[href=addNewUrl]'),
-            url = (p && p.url) || '',
-            title =  (p && p.title) || '',
-            author =  (p && p.author) || ''
-            ;
+var addNewArticleRecall; //recalling for after login
+var addNewArticle = function( p ) {
+    var $form = $('#addNewUrlForm'),
+        $selectCategory = $('#category'),
+        tempSelects = '',
+        tempTags = [],
+        _this = $('a[href=addNewUrl]'),
+        url = (p && p.url) || '',
+        title =  (p && p.title) || '',
+        author =  (p && p.author) || ''
+        ;
 
-        $('#url').val(url);
-        $('#title').val(title);
-        $('#author').val(author);
+    $('#url').val(url);
+    $('#title').val(title);
+    $('#author').val(author);
 
-        //if user not auth
-        if ( !window.appData.auth ) {
-            showModal('login-popup');
-            return false
-        }
-
+    //if user not authorized
+    if ( !window.appData.auth ) {
+        addNewArticleRecall = p || true;
+        showModal('login-popup');
+        return false
+    } else {
+        addNewArticleRecall = false;
         showModal('addNewUrlModal');
+    }
 
-        //prevent double init
-        if ( $(_this).hasClass('js-already-init') ) return false;
+    //prevent double init
+    if ( $(_this).hasClass('js-already-init') ) return false;
 
-        //load all category and tags
-        for ( var cat in totalTagList ) {
-            if ( totalTagList.hasOwnProperty(cat) ){
+    //load all category and tags
+    for ( var cat in totalTagList ) {
+        if ( totalTagList.hasOwnProperty(cat) ){
 
-                tempSelects += ('<option value="' + cat + '">' + cat + '</option>');
+            tempSelects += ('<option value="' + cat + '">' + cat + '</option>');
 
-                for ( var tag in totalTagList[cat] ) {
-                    tempTags.push(tag);
-                }
+            for ( var tag in totalTagList[cat] ) {
+                tempTags.push(tag);
             }
         }
+    }
 
-        $selectCategory.append(tempSelects);
+    $selectCategory.append(tempSelects);
 
-        /**
-         * AutoSuggest for tags input
-         * http://nicolasbize.github.io/magicsuggest/
-        */
+    /**
+     * AutoSuggest for tags input
+     * http://nicolasbize.github.io/magicsuggest/
+    */
 
-        var $tagsInput = $('#tags').magicSuggest({
-            resultAsString: true,
-            width: 300,
-            data: tempTags
-        });
+    var $tagsInput = $('#tags').magicSuggest({
+        resultAsString: true,
+        width: 300,
+        data: tempTags
+    });
 
-        $form.on('submit', function( e ){
-            e.preventDefault();
+    $form.on('submit', function( e ){
+        e.preventDefault();
 
-            var sendData,
-                tagsArray,
-                errorField = $form.find('.form-errors'),
-                successField = $form.find('.form-success'),
-                validate = {
-                    status: true,
-                    errors: []
-                };
+        var sendData,
+            tagsArray,
+            errorField = $form.find('.form-errors'),
+            successField = $form.find('.form-success'),
+            validate = {
+                status: true,
+                errors: []
+            };
 
-            sendData = convertFormToJSON(this);
+        sendData = convertFormToJSON(this);
 
-            var proceedToServer = function(){
-                tagsArray = $tagsInput.getValue();
-                sendData['tags'] = tagsArray;
+        var proceedToServer = function(){
+            tagsArray = $tagsInput.getValue();
+            sendData['tags'] = tagsArray;
 
-                postToServer(sendData, function(data){
-                    console.log('send done', data);
+            postToServer(sendData, function(data){
+                console.log('send done', data);
 
-                    //if error
-                    if (data.statusCode === 500){
-                        var message = data.message || "Submit failed";
+                //if error
+                if (data.statusCode === 500){
+                    var message = data.message || "Submit failed";
+
+                    validate.status = false;
+                    validate.errors.push( message );
+                } else {
+                    //show success message
+                    successField.html(data.message + '! <br/> Pull request link: ' +  data.data.html_url).show();
+
+                    //reset form and input with tags
+                    $form[0].reset();
+                    $tagsInput.clear(true);
+                }
+
+            })
+        };
+
+
+        //Check auth
+        if (!appData.auth) {
+            validate.status = false;
+            validate.errors.push('Only authorized users can add articles.');
+        } else {
+            //checking unique title and existing url
+            $.ajax({
+                url: '/validate',
+                data: {
+                    url: sendData['url'],
+                    title: sendData['title']
+                },
+                async: false,
+                success: function(data) {
+
+                    //If validation passed, send data to server
+                    if ( data.status ) {
+
+                        proceedToServer();
+
+                    } else {
+                        var message = data.message || "Validation failed";
 
                         validate.status = false;
                         validate.errors.push( message );
-                    } else {
-                        //show success message
-                        successField.html(data.message + '! <br/> Pull request link: ' +  data.data.html_url).show();
-
-                        //reset form and input with tags
-                        $form[0].reset();
-                        $tagsInput.clear(true);
                     }
-
-                })
-            };
-
-
-            //Check auth
-            if (!appData.auth) {
-                validate.status = false;
-                validate.errors.push('Only authorized users can add articles.');
-            } else {
-                //checking unique title and existing url
-                $.ajax({
-                    url: '/validate',
-                    data: {
-                        url: sendData['url'],
-                        title: sendData['title']
-                    },
-                    async: false,
-                    success: function(data) {
-
-                        //If validation passed, send data to server
-                        if ( data.status ) {
-
-                            proceedToServer();
-
-                        } else {
-                            var message = data.message || "Validation failed";
-
-                            validate.status = false;
-                            validate.errors.push( message );
-                        }
-                    },
-                    error: function( data ) {
-                        console.log( 'Validation service is not responding.' );
-                    }
-                });
-
-                if ( !validate.status ) {
-                    errorField.html( validate.errors.join('<br>')).show();
-                    return false;
+                },
+                error: function( data ) {
+                    console.log( 'Validation service is not responding.' );
                 }
+            });
+
+            if ( !validate.status ) {
+                errorField.html( validate.errors.join('<br>')).show();
+                return false;
             }
+        }
 
-        });
+    });
 
-        $(_this).addClass('js-already-init');
-    };
+    $(_this).addClass('js-already-init');
+};
 
+$(document).ready(function() {
 
     //Setting event listeners
     $('body')

@@ -61,22 +61,32 @@
             {
                 "name": "Robert Haritonov",
                 "contacts": "<a href='http://twitter.com/operatino_en' target='_blank'>@operatino</a>, <a href='http://rhr.me' target='_blank'>rhr.me</a>",
-                "role": "Idea, organization, voting and launch."
+                "role": "Idea, organization, backend and launch."
             },
             {
                 "name": "Ivan Metelev",
                 "contacts": "<a href='http://twitter.com/from_anywhere' target='_blank'>@from_anywhere</a>, <a href='http://welovehtml.ru/' target='_blank'>welovehtml.ru</a>",
-                "role": "Templating structure and navigation."
+                "role": "Templating structure and navigation, bookmarklet."
             },
             {
-                "name": "Juris Pukitis",
-                "contacts": "<a href='http://twitter.com/jur4eg' target='_blank'>@jur4eg</a>",
-                "role": "Node JS back-end supplier, data caching."
+                "name": "Gennady Tsarinny",
+                "contacts": "<a href='https://github.com/genson' target='_blank'>@genson</a>",
+                "role": "Layout and posting form UI."
             },
             {
                 "name": "Dmitry Lapynov",
                 "contacts": "<a href='http://twitter.com/lapynow' target='_blank'>@lapynow</a>",
-                "role": "Search engine and layout."
+                "role": "Search engine and localization."
+            },
+            {
+                "name": "Dennis Przendzinski",
+                "contacts": "<a href='https://github.com/nightkin' target='_blank'>@nightkin</a>",
+                "role": "Content."
+            },
+            {
+                "name": "Juris Pukitis",
+                "contacts": "<a href='http://twitter.com/jur4eg' target='_blank'>@jur4eg</a>",
+                "role": "Ideas and consultations."
             },
             {
                 "name": "Andrew Ivashkevich",
