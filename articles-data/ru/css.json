@@ -2,9 +2,16 @@
     "css": [
         {
             "url": "http://rhr.me",
-            "title": "Русская ссылка",
+            "title": "Ð ÑÑÑÐºÐ°Ñ ÑÑÑÐ»ÐºÐ°",
             "tags": [
                 "box-shadow"
+            ]
+        },
+        {
+            "url": "http://rhr.me",
+            "title": "Full web page HTML markup process ",
+            "tags": [
+                "tag "
             ]
         }
     ]
