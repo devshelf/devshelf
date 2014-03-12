@@ -52,7 +52,7 @@
         },
         {
             "url": "http://csswizardry.com/2013/05/scope-in-css/",
-            "title": "Ã¢ÂÂScopeÃ¢ÂÂ in CSS",
+            "title": "ÃÂ¢ÃÂÃÂScopeÃÂ¢ÃÂÃÂ in CSS",
             "author-link": "http://csswizardry.com",
             "author-mail": "harry@csswizardry.com",
             "tags": [
@@ -136,7 +136,7 @@
         },
         {
             "url": "http://html5boilerplate.com/",
-            "title": "HTML5 Boilerplate - The webÃ¢ÂÂs most popular front-end template",
+            "title": "HTML5 Boilerplate - The webÃÂ¢ÃÂÃÂs most popular front-end template",
             "description": "HTML5 Boilerplate helps you build fast, robust, and adaptable web apps or sites. Kick-start your project with the combined knowledge and effort of 100s of developers, all in one little package.",
             "tags": [
                 "html best practises",
@@ -234,7 +234,7 @@
         },
         {
             "url": "http://coding.smashingmagazine.com/2012/05/24/beginners-guide-ruby/",
-            "title": "A BeginnerÃ¢ÂÂs Guide to Ruby",
+            "title": "A BeginnerÃÂ¢ÃÂÃÂs Guide to Ruby",
             "author": "Marc Gayle",
             "tags": [
                 "Ruby ",
@@ -245,7 +245,7 @@
         {
             "url": "http://coding.smashingmagazine.com/2011/08/03/modern-version-control-with-git-part-2/",
             "title": "Modern Version Control With Git, Part 2",
-            "author": "Tobias GÃÂ¼nther",
+            "author": "Tobias GÃÂÃÂ¼nther",
             "tags": [
                 "Git ",
                 "Version control ",
@@ -265,7 +265,7 @@
         {
             "url": "http://coding.smashingmagazine.com/2011/07/26/modern-version-control-with-git-series/",
             "title": "Modern Version Control With Git",
-            "author": "Tobias GÃÂ¼nther",
+            "author": "Tobias GÃÂÃÂ¼nther",
             "tags": [
                 "Git ",
                 "Version control ",
@@ -297,6 +297,19 @@
                 "sadf",
                 "assd",
                 "f"
+            ]
+        },
+        {
+            "url": "http://caniuse.com/",
+            "title": "http://caniuse.com/",
+            "author": "http://caniuse.com/",
+            "author-mail": "http://caniuse.com/",
+            "author-link": "http://caniuse.com/",
+            "tags": [
+                "sdfs",
+                "asdfas",
+                "df",
+                "asdf"
             ]
         }
     ]
