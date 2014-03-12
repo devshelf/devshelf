@@ -107,5 +107,22 @@
     	"bookmarkletUsageTitle": "Как использовать?",
     	"bookmarkletUsageDesc": "Перетащите эту кнопку на панель закладок:",
     	"bookmarkletLinkTitle": "Отправить в DevShelf"
-    }
+    },
+
+    "formModalTitle": "Форма добавления статей",
+    "formURL": "URL",
+    "formTitle": "Заголовок",
+    "formCategory": "Категория",
+    "formTags": "Теги",
+    "formLang": "Язык статьи",
+    "formAuthor": "Автор",
+    "formAuthorLink": "Ссылка на автора",
+    "formAuthorMail": "Email автора",
+    "formSubmit": "Добавить статью",
+    "formFailed": "Ошибка добавления",
+    "formSuccess": "Pull Request создан:",
+
+    "authModalTitle": "Пожалуйста авторизируйтесь",
+    "authDescr": "Авторизация необходима для того что бы оставлять голоса и добавлять статьи через GitHub.",
+    "authLoginWelcome": "Пожалуйста авторизируйтесь через "
 }

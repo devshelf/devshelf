@@ -106,5 +106,22 @@
     	"bookmarkletUsageTitle": "How to use?",
     	"bookmarkletUsageDesc": "Drag this button to favorits panel:",
     	"bookmarkletLinkTitle": "Send to DevShelf"
-    }
+    },
+
+    "formModalTitle": "Add new articles",
+    "formURL": "URL",
+    "formTitle": "Title",
+    "formCategory": "Category",
+    "formTags": "Tags",
+    "formLang": "Article language",
+    "formAuthor": "Author",
+    "formAuthorLink": "Author link",
+    "formAuthorMail": "Author mail",
+    "formSubmit": "Add article",
+    "formFailed": "Submit failed",
+    "formSuccess": "Pull Request created:",
+
+    "authModalTitle": "Authorization required",
+    "authDescr": "We use your account details to accept the votes and allow you to submit articles through GitHub",
+    "authLoginWelcome": "Please login through "
 }

@@ -36,10 +36,11 @@ var postToServer = function(sendData, callback){
             token: token,
             postData: postData,
             login: login,
-            cat: cat
+            cat: cat,
+            lang: sendData.lang
         };
 
-//            console.log('ready to send ',data);
+            console.log('ready to send ',data);
 
         //TODO: change to post
         $.ajax({
@@ -136,18 +137,18 @@ var addNewArticle = function( p ) {
                 console.log('send done', data);
 
                 //if error
-                if (data.statusCode === 500){
-                    var message = data.message || "Submit failed";
-
-                    validate.status = false;
-                    validate.errors.push( message );
-                } else {
+                if (data.status){
                     //show success message
-                    successField.html(data.message + '! <br/> Pull request link: ' +  data.data.html_url).show();
+                    successField.html(appData.records.formSuccess+' <a href="'+  data.data.html_url +'">' +  data.data.html_url +'</a>').show();
 
                     //reset form and input with tags
                     $form[0].reset();
                     $tagsInput.clear(true);
+                } else {
+                    var message = data.message || appData.records.formFailed;
+
+                    validate.status = false;
+                    validate.errors.push( message );
                 }
 
             })

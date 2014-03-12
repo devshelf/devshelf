@@ -83,11 +83,11 @@ var fork = function(req, res, callback) {
 
 //Editing file
 var editFile = function(req, res, callback) {
-
     var client = github.client(req.query.token),
-        ghrepo = client.repo(req.query.login+'/'+global.opts.github.repoName);
+        ghrepo = client.repo(req.query.login+'/'+global.opts.github.repoName),
+        lang = req.query.lang === global.opts.l18n.defaultLang ? '' : req.query.lang + '/';
 
-    ghrepo.contents('articles-data/'+req.query.cat+'.json', global.opts.form.PRbranch, function(err, currentFile){
+    ghrepo.contents('articles-data/'+lang+req.query.cat+'.json', global.opts.form.PRbranch, function(err, currentFile){
         if (err) { GhApiOnErr(req, res, err, 'Error getting file contents from GitHub'); return; }
 
         //updating data
@@ -215,6 +215,7 @@ var GhApiOnErr = function(req, res, err, msg) {
 
     res.send({
         statusCode: 500,
+        status: false,
         message: message
     });
 };
