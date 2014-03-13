@@ -297,10 +297,6 @@ var templateEngine = (function() {
                 target = 'nav-list',
                 tagList = {},
                 result = p.result;
-//console.log('P:', p);
-
-            // TODO: check list below
-            // [*] add check for already finded items
 
             var i = result.length;
             while (i--) {
@@ -315,7 +311,8 @@ var templateEngine = (function() {
             }
 
             for (k in tagList) {
-//                if (new RegExp('\b'+ k +'\b').match(p.query)) continue;
+                // prevent article with same tag as p.query
+                if ( p.query.match(new RegExp(k + '\\b', 'i')) ) continue;
 
                 var tag = tagList[k];
                 navList.push({
@@ -520,8 +517,6 @@ var mainApp = function() {
             allData: searchTagList
         }));
 
-//        console.log("RESULTLIST:x ", resultList);
-
 		for (var resultInstance = 0; resultInstance < resultList.length; resultInstance++) {
 			var resultItem = resultList[resultInstance];
 
@@ -535,8 +530,6 @@ var mainApp = function() {
 				}
 			}
 		}
-
-//        console.log("RESULTITEM: ", resultItem);
 
         if (resultList.length) {
 			templateEngine.attachVotes(resultList);
@@ -724,7 +717,6 @@ var getJsonData = function(p) {
             success: function(data) {
 
                 // TODO: dmitryl: generate right list for suggested tags in SERP and posting form
-//                console.log('DATA:', data);
 
                 totalTagList = $.extend(true, totalTagList, data);
 
