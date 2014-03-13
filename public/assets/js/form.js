@@ -66,6 +66,7 @@ var addNewArticle = function( p ) {
     var $form = $('#addNewUrlForm'),
         $selectCategory = $('#category'),
         tempSelects = '',
+        tempTagsObj = {},
         tempTags = [],
         _this = $('a[href=addNewUrl]'),
         url = (p && p.url) || '',
@@ -91,16 +92,28 @@ var addNewArticle = function( p ) {
     if ( $(_this).hasClass('js-already-init') ) return false;
 
     //load all category and tags
-    for ( var cat in totalTagList ) {
-        if ( totalTagList.hasOwnProperty(cat) ){
+    for (var category in totalTagList ) {
+        if ( totalTagList.hasOwnProperty(category) ) {
 
-            tempSelects += ('<option value="' + cat + '">' + cat + '</option>');
+            tempSelects += ('<option value="' + category + '">' + category + '</option>');
 
-            for ( var tag in totalTagList[cat] ) {
-                tempTags.push(tag);
+            var elem = totalTagList[category],
+                i = elem.length;
+
+            while (i--) {
+                var arr = elem[i].tags,
+                    j = arr.length;
+
+                while (j--) {
+                    tempTagsObj[arr[j]] = true;
+                }
+
             }
         }
     }
+
+    // filter
+    for (k in tempTagsObj) tempTags.push(k);
 
     $selectCategory.append(tempSelects);
 
