@@ -25,7 +25,7 @@ var authCallback  = function(userData) {
         sendVote(voteCache); //running cached voting
     }
 
-    if(typeof addNewArticleRecall) {
+    if(addNewArticleRecall) {
         addNewArticle(addNewArticleRecall); //running cached form call
     }
 };
