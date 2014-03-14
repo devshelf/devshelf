@@ -71,7 +71,8 @@ var addNewArticle = function( p ) {
         _this = $('a[href=addNewUrl]'),
         url = (p && p.url) || '',
         title =  (p && p.title) || '',
-        author =  (p && p.author) || ''
+        author =  (p && p.author) || '',
+        $tagsInput
         ;
 
     $('#url').val(url);
@@ -113,19 +114,30 @@ var addNewArticle = function( p ) {
     }
 
     // filter
-    for (k in tempTagsObj) tempTags.push(k);
+    for (var k in tempTagsObj) tempTags.push(k);
 
-    $selectCategory.append(tempSelects);
+    $selectCategory
+        .append(tempSelects)
+        .on('change', function(){
+            var selectVal = $(this).val();
+
+            if (selectVal != "-1") {
+                $tagsInput.enable();
+            } else {
+                $tagsInput.disable();
+            }
+        });
 
     /**
      * AutoSuggest for tags input
      * http://nicolasbize.github.io/magicsuggest/
     */
 
-    var $tagsInput = $('#tags').magicSuggest({
+    $tagsInput = $('#tags').magicSuggest({
         resultAsString: true,
         width: 300,
-        data: tempTags
+        data: tempTags,
+        disabled: true
     });
 
     $form.on('submit', function( e ){
