@@ -2,16 +2,23 @@
     "css": [
         {
             "url": "http://rhr.me",
-            "title": "Ð ÑÑÑÐºÐ°Ñ ÑÑÑÐ»ÐºÐ°",
+            "title": "ÃÂ ÃÂÃÂÃÂÃÂºÃÂ°ÃÂ ÃÂÃÂÃÂÃÂ»ÃÂºÃÂ°",
             "tags": [
                 "box-shadow"
             ]
         },
         {
             "url": "http://rhr.me",
-            "title": "Тест",
+            "title": "Ð¢ÐµÑÑ",
             "tags": [
                 "robert"
+            ]
+        },
+        {
+            "url": "http://rhr.me",
+            "title": "test Design’s",
+            "tags": [
+                "tags"
             ]
         }
     ]
