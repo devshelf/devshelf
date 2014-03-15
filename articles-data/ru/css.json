@@ -27,6 +27,13 @@
             "tags": [
                 "вася"
             ]
+        },
+        {
+            "url": "http://rhr.me",
+            "title": "sdsadas",
+            "tags": [
+                "test"
+            ]
         }
     ]
 }
