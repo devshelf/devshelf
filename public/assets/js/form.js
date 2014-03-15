@@ -40,7 +40,7 @@ var postToServer = function(sendData, callback){
             lang: sendData.lang
         };
 
-            console.log('ready to send ',data);
+        if (devMode) { console.log('ready to send ',data); }
 
         //TODO: change to post
         $.ajax({
@@ -159,14 +159,15 @@ var addNewArticle = function( p ) {
             sendData['tags'] = tagsArray;
 
             postToServer(sendData, function(data){
-                console.log('send done', data);
+                if (devMode) { console.log('send done', data); }
 
                 //if error
-                if (data.status){
+                if (data.status) {
                     //show success message
-                    successField.html(appData.records.formSuccess+' <a href="'+  data.data.html_url +'">' +  data.data.html_url +'</a>').show();
+                    successField.html(' <a href="'+  data.data.html_url +'">' +  appData.records.formSuccess +'</a>').show();
 
                     //reset form and input with tags
+                    $tagsInput.disable();
                     $form[0].reset();
                     $tagsInput.clear(true);
                 } else {
@@ -197,6 +198,7 @@ var addNewArticle = function( p ) {
 
                     //If validation passed, send data to server
                     if ( data.status ) {
+                        errorField.hide();
 
                         proceedToServer();
 

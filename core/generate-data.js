@@ -2,6 +2,7 @@ var fs = require('fs')
     , colors = require('colors')
     , path = require('path')
     , md5 = require('MD5')
+    , JSON5 = require('json5')
     , sh = require('shorthash')
     , generateIDs = require('./aticles-ids')
     , extend = require('extend');
@@ -70,7 +71,7 @@ var prepareJSON = function(targetDir, lang) {
         var jsonFileQueue = 0;
         jsonFilesArr.map(function(file){
             var fileName = path.basename(file, ".json");
-            var currentFile = JSON.parse(fs.readFileSync(dir+file, "utf8"));
+            var currentFile = JSON5.parse(fs.readFileSync(dir+file, "utf8"));
 
             //updating currentFile properties
             var targetDataArr = currentFile[fileName] || [];
@@ -133,7 +134,7 @@ var prepareJSON = function(targetDir, lang) {
                         JSONformat = 4;
                     }
 
-                    fs.writeFile(dir + fileName, JSON.stringify(data, null, JSONformat), function (err) {
+                    fs.writeFile(dir + fileName, JSON5.stringify(data, null, JSONformat), function (err) {
                         if (err) {
                             console.log(err);
                         } else {

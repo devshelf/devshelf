@@ -40,6 +40,7 @@ module.exports = function(grunt) {
             main: {
               files: {
                 'public/build/js/all.min.js': [
+                    'public/assets/js/utils.js',
                     'public/assets/js/mustache.js',
                     'public/assets/js/main.js',
                     'public/assets/js/auth.js',

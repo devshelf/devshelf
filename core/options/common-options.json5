@@ -1,0 +1,15 @@
+//http://json5.org/
+
+{
+    l18n : {
+        additionalLangs: ["ru"],
+        langZone: {
+            ru : ["ru", "kz", "by", "ua", "am", "ge"]
+        },
+        defaultLang: "en"
+    },
+
+    voting : {
+        enabled : true
+    }
+}

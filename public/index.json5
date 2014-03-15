@@ -1,62 +1,66 @@
+//http://json5.org/
+
 {
-    "lang": "ru",
+    //Current file language
+    "lang": "en",
+
     "title": "DevShelf.us - Community driven reading shelf",
     "logo": "DevShelf <sup class='beta'>beta</sup>",
-    "bannerText": "Книжная полка разработчика",
-    "searchBtn": "Найти",
-    "searchExample": "Например: box-shadow",
-    "copy": "DevShelf.us 2014. Спасибо команде фронт-енд разработчиков <a href='http://corp.mail.ru/communications/odnoklassniki'>OK.ru</a>",
+    "bannerText": "Community driven reading shelf",
+    "searchBtn": "Search",
+    "searchExample": "For example: box-shadow",
+    "copy": "DevShelf.us 2014. Thanks to <a href='http://corp.mail.ru/en/communications/odnoklassniki'>OK.ru</a> front-end development team",
 
     "menu": [{
-        "name":"О проекте",
+        "name":"About",
         "link": "#!/about"
     },{
-        "name":"Добавить статью",
+        "name":"Add new articles",
         "link": "addNewUrl"
     },{
-        "name":"Букмарклет",
+        "name":"Bookmarklet",
         "link": "#!/bookmarklet"
     }],
 
     "footerSections": [{
-        "sectionTitle": "О проекте",
+        "sectionTitle": "About",
         "sectionText": "<p>Modern web application made for the community (for us!), by the community, to collect most relevant information about development technologies.</p> <p>With community rating, you will get only the best content existing in the open web.</p>"
     },{
-        "sectionTitle": "Как поучаствовать?",
+        "sectionTitle": "How to support",
         "sectionText": "<p>Project is fully <a href='http://github.com/sourcejs/devshelf'>open source</a>, you can <a href='http://github.com/sourcejs/devshelf/tree/master/articles-data'>contribute links</a> to best articles, ideas and improve web application source code simply by leaving your pull requests.</p> <p>DevShelf is all  <strong>about storing best articles and tools</strong>, not your documentation. For documentation purposes, use <a href='http://devdocs.io'>devdocs.io</a>.</p>"
     }],
 
-    "authTitle" : "Авторизация...",
+    "authTitle" : "Authorizing...",
 
     "menu-not-logined": {
-        "login": "Войти"
+        "login": "Log In"
     },
     "menu-logined": {
-        "login": "Выйти"
+        "login": "Log Out"
     },
     "search": {
-        "placeholder": "Далее найти",
-        "button": "Найти",
-        "related": "Связанные теги"
+        "placeholder": "Search by tags",
+        "button": "Find",
+        "related": "Related Tags"
     },
     "search-output": {
-        "resultsLabel": "Результаты",
-        "about": "О",
-        "underTags": "теги",
-        "voteUp": "Голосовать За",
-        "voteDown": "Голосовать Против",
-        "voteDisabled": "Голосование в данный момент не доступно, мы уже работаем над решением"
+        "resultsLabel": "Results",
+        "about": "About",
+        "underTags": "under tags",
+        "voteUp": "Vote Up",
+        "voteDown": "Vote Down",
+        "voteDisabled": "Voting is not available right now, we're working on it!"
     },
     "about": {
-        "aboutProject": "О проекте",
-        "header": "Два дня &mdash; Один проект",
+        "aboutProject": "About the project",
+        "header": "Two Days &mdash; One Project",
         "description": [
             { "p": "After two extremely challenging days during the Hackaton (plus few commits afterwards), we are happy to introduce&nbsp;our latest project&nbsp;&mdash;&nbsp;<strong>DevShelf.us</strong>. This is modern, cutting-edge web application, which collects only the best and most rated articles about <strong>HTML5</strong> stack of technologies."},
             { "p": "We provide search engine intelligence and base for <strong>your <a href='http://github.com/sourcejs/devshelf/tree/master/articles-data'>contributed data</a></strong> inside our application, to present you only best and relevant information about those new technologies, which you are looking for."},
             { "p": "Project has been developed and now is supported by <a href='http://corp.mail.ru/en/communications/odnoklassniki'>OK.ru</a> front-end development team (creators of <a href='http://sourcejs.com'>Source</a> and <a href='http://operatino.github.io/MCSS/en/'>MCSS</a>), but as we are fully <a href='http://github.com/sourcejs/devshelf/tree/master/articles-data'>open source</a>, everybody can join us and <strong>make web a better place</strong>."},
-            { "p": "Зацените команду!"}
+            { "p": "Check out our team below."}
         ],
-        "aboutTeam": "О команде",
+        "aboutTeam": "About the team",
         "theTeam": [
             {
                 "name": "Robert Haritonov",
@@ -94,35 +98,37 @@
                 "role": "Layout ideas and solutions."
             }
         ],
-        "contactUs": "Оставайтесь на связи"
+        "contactUs": "Stay in touch"
     },
     "bookmarklet": {
-    	"bookmarkletToolsTitle": "Инструменты",
-    	"bookmarkletMainTitle": "Букмарклет",
+    	"bookmarkletToolsTitle": "Tools",
+    	"bookmarkletMainTitle": "Bookmarklet",
     	"description": [
-    		{ "p": "Для того, чтобы вам было удобнее добавлять достойные статьи на devshelf, мы заваяли небольшой букмарклет. Он даст вам возможность на любой странице выбрать кликом название статьи и автора, а затем отправить данные в форму добавления." },
-    		{ "p": "Код букмарклета в исходном и минифицированном виде мы выложили в <a href='https://github.com/sourcejs/devshelf'>репозиторий проекта</a> на гитхабе. Пожалуйста, не стесняйтесь его править — ведь это наш общий инструмент." },
-    		{ "p": "Кроме того, мы будем рады любым пожеланиям в <a href='https://github.com/sourcejs/devshelf/issues'>Issues</a> проекта." }
+    		{ "p": "Trying to make an addition to devshelf easier, we create a small bookmarklet. It helps to choose article's title and author on any page, and sends this data to devshelf's addition form." },
+    		{ "p": "Bookmarklet's code is available in <a href='https://github.com/sourcejs/devshelf'>project github repo</a>. Please, feel free to make it better." }
     	],
-    	"bookmarkletUsageTitle": "Как использовать?",
-    	"bookmarkletUsageDesc": "Перетащите эту кнопку на панель закладок:",
-    	"bookmarkletLinkTitle": "Отправить в DevShelf"
+    	"bookmarkletUsageTitle": "How to use?",
+    	"bookmarkletUsageDesc": "Drag this button to favorits panel:",
+    	"bookmarkletLinkTitle": "Send to DevShelf"
     },
 
-    "formModalTitle": "Форма добавления статей",
-    "formURL": "URL",
-    "formTitle": "Заголовок",
-    "formCategory": "Категория",
-    "formTags": "Теги",
-    "formLang": "Язык статьи",
-    "formAuthor": "Автор",
-    "formAuthorLink": "Ссылка на автора",
-    "formAuthorMail": "Email автора",
-    "formSubmit": "Добавить статью",
-    "formFailed": "Ошибка добавления",
-    "formSuccess": "Pull Request создан:",
 
-    "authModalTitle": "Пожалуйста авторизируйтесь",
-    "authDescr": "Авторизация необходима для того что бы оставлять голоса и добавлять статьи через GitHub.",
-    "authLoginWelcome": "Пожалуйста авторизируйтесь через "
+    //Form
+    "formModalTitle": "Add new articles",
+    "formURL": "URL",
+    "formTitle": "Title",
+    "formCategory": "Category",
+    "formTags": "Tags",
+    "formLang": "Article language",
+    "formAuthor": "Author",
+    "formAuthorLink": "Author link",
+    "formAuthorMail": "Author mail",
+    "formSubmit": "Add article",
+    "formFailed": "Submit failed",
+    "formSuccess": "Pull Request created",
+
+    //Authorization
+    "authModalTitle": "Authorization required",
+    "authDescr": "We use your account details to accept the votes and allow you to submit articles through GitHub",
+    "authLoginWelcome": "Please login through "
 }

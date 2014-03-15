@@ -6,6 +6,7 @@ var express = require('express')
     , mustache = require('mustache')
     , everyauth = require('everyauth')
     , path = require('path')
+    , JSON5 = require('json5')
     , MongoStore = require('connect-mongostore')(express)
     ;
 /* /Module dependencies */
@@ -22,9 +23,8 @@ global.MODE = process.env.NODE_ENV || 'development';
 
 global.app = express();
 global.opts = require('./core/options/'); //Global options
-global.commonOpts = require('./core/options/common-options.json'); //Common options with Front-end
+global.commonOpts = JSON5.parse(fs.readFileSync(__dirname + '/core/options/common-options.json5', "utf8")); //Common options with Front-end
 /* /Global vars */
-
 
 /*
 * Data
@@ -32,11 +32,11 @@ global.commonOpts = require('./core/options/common-options.json'); //Common opti
 
 global.indexData = {};
 
-global.indexData[global.opts.l18n.defaultLang] = JSON.parse(fs.readFileSync(__dirname + '/public/index.json', "utf8"));
+global.indexData[global.opts.l18n.defaultLang] = JSON5.parse(fs.readFileSync(__dirname + '/public/index.json5', "utf8"));
 
 //filling lang properties
 global.opts.l18n.additionalLangs.map(function(item) {
-    global.indexData[item] = JSON.parse(fs.readFileSync(__dirname + '/public/'+item+'/index.json', "utf8"));
+    global.indexData[item] = JSON5.parse(fs.readFileSync(__dirname + '/public/'+item+'/index.json5', "utf8"));
 });
 
 
@@ -64,6 +64,13 @@ app.use(express.session({
         port: global.opts.remoteDBport
     })
 }));
+
+app.use(function (req, res, next) {
+    res.cookie('app-mode', global.MODE, { maxAge: 3600000, httpOnly: false });
+
+    // keep executing the router middleware
+    next();
+});
 
 
 /**
@@ -107,7 +114,7 @@ app.get('/auth/done', function (req, res) {
 
     var indexJson = global.indexData[lang];
 
-    indexJson.user = JSON.stringify(req.session.authCache.github.user);
+    indexJson.user = JSON5.stringify(req.session.authCache.github.user);
     indexJson.authDone = true;
 
     var htmlToSend = mustache.to_html(authDoneTpl, indexJson);
@@ -184,7 +191,7 @@ app.get('/', function(req, res) {
        clientIndexJson[item] = indexJson[item];
     });
 
-    indexJson.appData = JSON.stringify(clientIndexJson);
+    indexJson.appData = JSON5.stringify(clientIndexJson);
 
 
     var indexPage = fs.readFileSync(__dirname + '/public/build/index.html', "utf8");

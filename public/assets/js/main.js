@@ -4,6 +4,7 @@ var TARGET_CONT = 'main-content',
     voteData = {};
 
 var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
+var devMode = getCookie('app-mode') === 'development' ? true : false;
 
 var templateEngine = (function() {
     var hashStruct = {};

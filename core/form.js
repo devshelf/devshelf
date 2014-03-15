@@ -1,6 +1,5 @@
-var base64_decode = require('base64').decode,
-    extend = require('extend'),
-    github = require('octonode'),
+var github = require('octonode'),
+    JSON5 = require('json5'),
     checkURL = require('./check-url-status'),
     checkTitle = require('./check-title');
 
@@ -93,7 +92,8 @@ var editFile = function(req, res, callback) {
         //updating data
         try { //trying to parse JSON
             var fileContentInBase64 = currentFile.content,
-                decodedContentObject = JSON.parse(base64_decode(fileContentInBase64));
+                decodedContentObject = JSON5.parse(new Buffer(fileContentInBase64, 'base64').toString('utf8'));
+
         } catch (err) {
             GhApiOnErr(req, res, err, 'Error parsing current cat JSON'); return;
         }
@@ -108,7 +108,7 @@ var editFile = function(req, res, callback) {
 
 
         //comiting updated data
-        ghrepo.updateContents(currentFile.path, global.opts.form.commitMessage, JSON.stringify(decodedContentObject, false, 4), currentFile.sha, global.opts.form.PRbranch, function(err, data){
+        ghrepo.updateContents(currentFile.path, global.opts.form.commitMessage, JSON5.stringify(decodedContentObject, false, 4), currentFile.sha, global.opts.form.PRbranch, function(err, data){
             if (err) { GhApiOnErr(req, res, err, 'Update error'); return; }
 //            console.log('update done');
 

@@ -1,3 +1,5 @@
+//http://json5.org/
+
 {
     "description": {
         "main": "all basic settigns are stored in options.json, also you can store secure settings in special secure-options.json file that will extend basic settings"
