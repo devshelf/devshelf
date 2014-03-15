@@ -7,9 +7,8 @@ var fs = require('fs')
     , generateIDs = require('./aticles-ids')
     , extend = require('extend');
 
-
 /**
- * Extend srcInput arcicles data with extendedInput data (for localization data merge)
+ * Extend srcInput articles data with extendedInput data (for localization data merge)
  * @param {Object} srcInput
  * @param {Object} extenderInput
  */
@@ -33,16 +32,20 @@ var extendArticlesData = function(srcInput, extenderInput){
 
 /**
  * Generate JSON file with all articles data
- * @param {String} targetDir
- * @param {String} lang
+ * @param {Object} p
+ * @param {String} p.targetDir
+ * @param {String} [p.lang]
+ * @param {Function} p.callback
  */
-var prepareJSON = function(targetDir, lang) {
+var prepareJSON = function(p) {
     //Generating output data with all articles info
     var langDefault = global.opts.l18n.defaultLang,
-        language = lang || langDefault,
+        language = p.lang || langDefault,
         localizationEnabled = language !== langDefault,
 
-        dir = localizationEnabled ? targetDir + language + '/' : targetDir,
+        dir = localizationEnabled ? p.targetDir + language + '/' : p.targetDir,
+
+        callback = p.callback || function(){},
 
         outputJSON = {},
 
@@ -121,10 +124,12 @@ var prepareJSON = function(targetDir, lang) {
                     finalJSON = extendArticlesData(defaultLangJSON, outputJSON);
                 }
 
-                //Updating global objects
+                // Job is done, next goes some callbacks and writing output to file
                 global.articlesData[language] = finalJSON || {};
                 generateIDs.updateIDs(language);
                 generateTagLinks(language);
+                callback();
+
 
                 // function for write json file
                 var writeToFile = function(data, dir, fileName) {
@@ -139,7 +144,6 @@ var prepareJSON = function(targetDir, lang) {
                             console.log(err);
                         } else {
                             console.log("Generating Articles data in ".green + dir.green + fileName.green + ": DONE".green);
-
                         }
                     });
                 };
@@ -208,10 +212,18 @@ var generateTagLinks = function(lang) {
 };
 
 var generateData = function() {
-    prepareJSON(global.appDir + '/articles-data/');
+    prepareJSON({
+        targetDir: global.appDir + '/articles-data/',
+        callback: function(){
+            //it's important to process main language data first
 
-    global.opts.l18n.additionalLangs.map(function(item) {
-        prepareJSON(global.appDir + '/articles-data/', item);
+            global.opts.l18n.additionalLangs.map(function(lang) {
+                prepareJSON({
+                    targetDir:global.appDir + '/articles-data/',
+                    lang: lang
+                });
+            });
+        }
     });
 };
 
