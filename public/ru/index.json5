@@ -126,6 +126,7 @@
     "formSubmit": "Добавить статью",
     "formFailed": "Ошибка добавления",
     "formSuccess": "Pull Request создан",
+    "formDisabled": "Форма на техническом обслуживании, пожалуйста, оставляйте свои Pull Request вручную",
 
     //Authorization
     "authModalTitle": "Пожалуйста авторизируйтесь",

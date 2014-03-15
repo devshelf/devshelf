@@ -126,6 +126,7 @@
     "formSubmit": "Add article",
     "formFailed": "Submit failed",
     "formSuccess": "Pull Request created",
+    "formDisabled": "Form currently inactive, please leave your Pull Request through GitHub",
 
     //Authorization
     "authModalTitle": "Authorization required",

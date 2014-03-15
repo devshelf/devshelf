@@ -11,5 +11,13 @@
 
     voting : {
         enabled : true
+    },
+
+    form: {
+        enabled: true
+    },
+
+    validate: {
+        enabled: true
     }
 }

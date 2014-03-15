@@ -56,7 +56,11 @@ var postToServer = function(sendData, callback){
             success: function(data) {
                 callback(data);
             },
-            error: function(error) { console.log(error); }
+            error: function(err) {
+                if (devMode) { console.log(err); }
+
+                $('#addNewUrlForm').find('.form-errors').html( appData.records.formDisabled ).show();
+            }
         });
     }
 };
@@ -209,8 +213,10 @@ var addNewArticle = function( p ) {
                         validate.errors.push( message );
                     }
                 },
-                error: function( data ) {
-                    console.log( 'Validation service is not responding.' );
+                error: function(err) {
+                    if (devMode) { console.log(err); }
+
+                    errorField.html( appData.records.formDisabled ).show();
                 }
             });
 

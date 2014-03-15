@@ -125,30 +125,23 @@ app.get('/auth/done', function (req, res) {
 /*
  * git api form
  * */
-var form = require('./core/form');
-app.get('/post-article', form.postArticle); // preparing encoded data from changed file
-
-
-/**
-* Unique title checker
-*/
-var validation = require('./core/check-title');
-app.get('/check-title', validation.checkTitleService);
-
+if (global.opts.form.enabled) {
+    var form = require('./core/form');
+    app.get('/post-article', form.postArticle); // preparing encoded data from changed file
+}
 
 /**
-* URL checker
+* Validation
 */
-var checkUrl = require('./core/check-url-status');
-app.get('/check-url', checkUrl.checkURLService);
+if (global.opts.validate.enabled) {
+    var validation = require('./core/check-title'),
+        checkUrl = require('./core/check-url-status'),
+        validate = require('./core/validate');
 
-
-/**
-* Validate all
-*/
-var validate = require('./core/validate');
-app.get('/validate', validate.validateService);
-
+    app.get('/check-title', validation.checkTitleService); //Check unique title
+    app.get('/check-url', checkUrl.checkURLService); //URL checker
+    app.get('/validate', validate.validateService); //Validate all
+}
 
 /*
 * web routing
