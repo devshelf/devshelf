@@ -193,7 +193,7 @@ a {
 	border-radius: 5px;
 	box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
 	overflow: hidden;
-
+    white-space: nowrap;
 	}
 
 .popup-padding { padding:1.2em; }

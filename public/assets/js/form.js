@@ -182,6 +182,8 @@ var addNewArticle = function( p ) {
 
                         validate.status = false;
                         validate.errors.push( message );
+
+                        errorField.html( validate.errors.join('<br>')).show();
                     }
 
                 })
@@ -214,6 +216,8 @@ var addNewArticle = function( p ) {
 
                             validate.status = false;
                             validate.errors.push( message );
+
+                            errorField.html( validate.errors.join('<br>')).show();
                         }
                     },
                     error: function(err) {
@@ -222,13 +226,12 @@ var addNewArticle = function( p ) {
                         errorField.html( appData.records.formDisabled ).show();
                     }
                 });
-
-                if ( !validate.status ) {
-                    errorField.html( validate.errors.join('<br>')).show();
-                    return false;
-                }
             }
 
+            if ( !validate.status ) {
+                errorField.html( validate.errors.join('<br>')).show();
+                return false;
+            }
         });
 
         $(_this).addClass('js-already-init');
