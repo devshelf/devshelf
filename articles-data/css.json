@@ -422,6 +422,13 @@
                 "opentype",
                 "fonts"
             ]
+        },
+        {
+            "url": "http://rhr.me",
+            "title": "Front End Ops Conf 2014",
+            "tags": [
+                "tag"
+            ]
         }
     ]
 }
