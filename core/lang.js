@@ -36,7 +36,7 @@ module.exports = function (req, res, next) {
         }
 
         // setting language on first enter
-        req.session.lang = lang = getCommonLang(countryCode, opts.langZone);
+        lang = getCommonLang(countryCode, opts.langZone);
         res.cookie('lang', lang, { maxAge: 3600000, httpOnly: false });
         res.cookie('country', countryCode, { maxAge: 3600000, httpOnly: false });
     }
