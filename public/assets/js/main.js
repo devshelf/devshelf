@@ -564,7 +564,7 @@ var mainApp = function() {
     	if ( (e.keyCode == 40) || (e.keyCode ==38) ) {
     		e.preventDefault();
     	}
-    })
+    });
 
     $('body').on('keydown', function(e) {
 
@@ -685,6 +685,77 @@ function cookieParser() {
     return cookie;
 }
 
+var getAllDataDeffered = $.Deferred();
+/**
+ * Getting actual articles data
+ * @param {Object} p
+ * @param {Function} p.callback
+ * @param {String} p.jsonData — path to json articles data
+ */
+var getAllData = function(p) {
+    var callback = p.callback || function() {};
+
+    $.ajax({
+        url: p.jsonData,
+        success: function(data) {
+
+            totalTagList = $.extend(true, totalTagList, data);
+
+            for (k in data) {
+                var prop = data[k],
+                    j = prop.length;
+
+                while (j--) {
+                    searchTagList.push(prop[j]);
+                }
+            }
+
+            templateEngine.extendingTags();
+
+            getAllDataDeffered.resolve();
+
+            callback();
+        }
+    });
+};
+
+/**
+ * Getting actual voting data
+ * @param {Object} p
+ * @param {String} p.jsonData — path to json votes data
+ * @param {String} p.language — setting for database output
+ */
+var getVoteData = function(p) {
+    var callback = p.callback || function() {};
+
+    var dataUrl = p.jsonData,
+        cacheNeeded = true;
+
+    //If logged, give latest info
+    if(appData.commonOpts.voting.enabled && localStorage['user']) {
+        dataUrl = '/getAllVotes';
+        cacheNeeded = false
+    }
+
+    //If not logged, give cached latest info
+    $.ajax({
+        cache: cacheNeeded,
+        data: p.language,
+        url: dataUrl,
+            success: function(data) {
+                var votesJSON = data;
+
+                var voteLength = data.length;
+                while(voteLength--) {
+                    voteData[ votesJSON[voteLength]['_id'] ] = votesJSON[voteLength];
+                }
+
+                callback();
+            }
+    })
+
+};
+
 /**
 * Localization module on client
 * Getting articles and voting data for specific language
@@ -703,76 +774,6 @@ var getJsonData = function(p) {
 			}
 		},
 		callback = p.callback || function() {};
-
-    /**
-     * Getting actual articles data
-     * @param {Object} p
-     * @param {Function} p.callback
-     * @param {String} p.jsonData — path to json articles data
-     */
-    var getAllData = function(p) {
-        var callback = p.callback || function() {};
-
-        $.ajax({
-            url: p.jsonData,
-            success: function(data) {
-
-                // TODO: dmitryl: generate right list for suggested tags in SERP and posting form
-
-                totalTagList = $.extend(true, totalTagList, data);
-
-                for (k in data) {
-                    var prop = data[k],
-                        j = prop.length;
-
-                    while (j--) {
-                        searchTagList.push(prop[j]);
-                    }
-                }
-
-                templateEngine.extendingTags();
-
-                callback();
-            }
-        })
-    };
-
-    /**
-     * Getting actual voting data
-     * @param {Object} p
-     * @param {String} p.jsonData — path to json votes data
-     * @param {String} p.language — setting for database output
-     */
-    var getVoteData = function(p) {
-        var callback = p.callback || function() {};
-
-        var dataUrl = p.jsonData,
-            cacheNeeded = true;
-
-        //If logged, give latest info
-        if(appData.commonOpts.voting.enabled && localStorage['user']) {
-            dataUrl = '/getAllVotes';
-            cacheNeeded = false
-        }
-
-        //If not logged, give cached latest info
-        $.ajax({
-            cache: cacheNeeded,
-            data: p.language,
-            url: dataUrl,
-                success: function(data) {
-                    var votesJSON = data;
-
-                    var voteLength = data.length;
-                    while(voteLength--) {
-                        voteData[ votesJSON[voteLength]['_id'] ] = votesJSON[voteLength];
-                    }
-
-                    callback();
-                }
-        })
-
-    };
 
 	// if p.lang not set, it equals to default lang (as set in common options on server)
 	currentLanguage = (languages[p.lang]) ? p.lang : appData.commonOpts.l18n.defaultLang;

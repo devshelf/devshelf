@@ -96,139 +96,144 @@ var addNewArticle = function( p ) {
     //prevent double init
     if ( $(_this).hasClass('js-already-init') ) return false;
 
-    //load all category and tags
-    for (var category in totalTagList ) {
-        if ( totalTagList.hasOwnProperty(category) ) {
+    //Waiting till all data comes
+    $.when(getAllDataDeffered.promise()).then(function(){
 
-            tempSelects += ('<option value="' + category + '">' + category + '</option>');
+        //load all category and tags
+        for (var category in totalTagList ) {
+            if ( totalTagList.hasOwnProperty(category) ) {
 
-            var elem = totalTagList[category],
-                i = elem.length;
+                tempSelects += ('<option value="' + category + '">' + category + '</option>');
 
-            while (i--) {
-                var arr = elem[i].tags,
-                    j = arr.length;
+                var elem = totalTagList[category],
+                    i = elem.length;
 
-                while (j--) {
-                    tempTagsObj[arr[j]] = true;
+                while (i--) {
+                    var arr = elem[i].tags,
+                        j = arr.length;
+
+                    while (j--) {
+                        tempTagsObj[arr[j]] = true;
+                    }
+
                 }
-
             }
         }
-    }
 
-    // filter
-    for (var k in tempTagsObj) tempTags.push(k);
+        // filter
+        for (var k in tempTagsObj) tempTags.push(k);
 
-    $selectCategory
-        .append(tempSelects)
-        .on('change', function(){
-            var selectVal = $(this).val();
+        $selectCategory
+            .append(tempSelects)
+            .on('change', function(){
+                var selectVal = $(this).val();
 
-            if (selectVal != "-1") {
-                $tagsInput.enable();
-            } else {
-                $tagsInput.disable();
-            }
+                if (selectVal != "-1") {
+                    $tagsInput.enable();
+                } else {
+                    $tagsInput.disable();
+                }
+            });
+
+        /**
+         * AutoSuggest for tags input
+         * http://nicolasbize.github.io/magicsuggest/
+        */
+
+        $tagsInput = $('#tags').magicSuggest({
+            resultAsString: true,
+            width: 300,
+            data: tempTags,
+            disabled: true
         });
 
-    /**
-     * AutoSuggest for tags input
-     * http://nicolasbize.github.io/magicsuggest/
-    */
+        $form.on('submit', function( e ){
+            e.preventDefault();
 
-    $tagsInput = $('#tags').magicSuggest({
-        resultAsString: true,
-        width: 300,
-        data: tempTags,
-        disabled: true
-    });
+            var sendData,
+                tagsArray,
+                errorField = $form.find('.form-errors'),
+                successField = $form.find('.form-success'),
+                validate = {
+                    status: true,
+                    errors: []
+                };
 
-    $form.on('submit', function( e ){
-        e.preventDefault();
+            sendData = convertFormToJSON(this);
 
-        var sendData,
-            tagsArray,
-            errorField = $form.find('.form-errors'),
-            successField = $form.find('.form-success'),
-            validate = {
-                status: true,
-                errors: []
-            };
+            var proceedToServer = function(){
+                tagsArray = $tagsInput.getValue();
+                sendData['tags'] = tagsArray;
 
-        sendData = convertFormToJSON(this);
+                postToServer(sendData, function(data){
+                    if (devMode) { console.log('send done', data); }
 
-        var proceedToServer = function(){
-            tagsArray = $tagsInput.getValue();
-            sendData['tags'] = tagsArray;
+                    //if error
+                    if (data.status) {
+                        //show success message
+                        successField.html(' <a href="'+  data.data.html_url +'">' +  appData.records.formSuccess +'</a>').show();
 
-            postToServer(sendData, function(data){
-                if (devMode) { console.log('send done', data); }
-
-                //if error
-                if (data.status) {
-                    //show success message
-                    successField.html(' <a href="'+  data.data.html_url +'">' +  appData.records.formSuccess +'</a>').show();
-
-                    //reset form and input with tags
-                    $tagsInput.disable();
-                    $form[0].reset();
-                    $tagsInput.clear(true);
-                } else {
-                    var message = data.message || appData.records.formFailed;
-
-                    validate.status = false;
-                    validate.errors.push( message );
-                }
-
-            })
-        };
-
-
-        //Check auth
-        if (!appData.auth) {
-            validate.status = false;
-            validate.errors.push('Only authorized users can add articles.');
-        } else {
-            //checking unique title and existing url
-            $.ajax({
-                url: '/validate',
-                data: {
-                    url: sendData['url'],
-                    title: sendData['title']
-                },
-                async: false,
-                success: function(data) {
-
-                    //If validation passed, send data to server
-                    if ( data.status ) {
-                        errorField.hide();
-
-                        proceedToServer();
-
+                        //reset form and input with tags
+                        $tagsInput.disable();
+                        $form[0].reset();
+                        $tagsInput.clear(true);
                     } else {
-                        var message = data.message || "Validation failed";
+                        var message = data.message || appData.records.formFailed;
 
                         validate.status = false;
                         validate.errors.push( message );
                     }
-                },
-                error: function(err) {
-                    if (devMode) { console.log(err); }
 
-                    errorField.html( appData.records.formDisabled ).show();
+                })
+            };
+
+
+            //Check auth
+            if (!appData.auth) {
+                validate.status = false;
+                validate.errors.push('Only authorized users can add articles.');
+            } else {
+                //checking unique title and existing url
+                $.ajax({
+                    url: '/validate',
+                    data: {
+                        url: sendData['url'],
+                        title: sendData['title']
+                    },
+                    async: false,
+                    success: function(data) {
+
+                        //If validation passed, send data to server
+                        if ( data.status ) {
+                            errorField.hide();
+
+                            proceedToServer();
+
+                        } else {
+                            var message = data.message || "Validation failed";
+
+                            validate.status = false;
+                            validate.errors.push( message );
+                        }
+                    },
+                    error: function(err) {
+                        if (devMode) { console.log(err); }
+
+                        errorField.html( appData.records.formDisabled ).show();
+                    }
+                });
+
+                if ( !validate.status ) {
+                    errorField.html( validate.errors.join('<br>')).show();
+                    return false;
                 }
-            });
-
-            if ( !validate.status ) {
-                errorField.html( validate.errors.join('<br>')).show();
-                return false;
             }
-        }
 
+        });
+
+        $(_this).addClass('js-already-init');
     });
 
-    $(_this).addClass('js-already-init');
 };
 
 $(document).ready(function() {
@@ -244,16 +249,11 @@ $(document).ready(function() {
             closeModal();
         });
 
-
-	// Auto-open on title & url parameters was set
-	function getURLParameter(name) {
-		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-	}
-
 	var title = getURLParameter('title'),
 		author = getURLParameter('author'),
 		url = getURLParameter('url');
 
+    // Auto-open on title & url parameters was set
 	if ( (title !== null) && (url !== null)) {
 		addNewArticle({
 			title: title,
