@@ -8,6 +8,15 @@
             "tags": [
                 "yeoman"
             ]
+        },
+        {
+            "url": "http://frontender.info/writing-better-jquery-code/",
+            "title": "Пишем качественный код на jQuery",
+            "author": "Mathew Carella",
+            "author-link": "http://www.mathewdesign.com/",
+            "tags": [
+                "jquery"
+            ]
         }
     ]
 }
