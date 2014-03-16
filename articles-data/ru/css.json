@@ -1,10 +1,11 @@
 {
     "css": [
         {
-            "url": "http://rhr.me",
-            "title": "Русская ссылка",
+            "url": "http://frontender.info/why-sass/",
+            "title": "Почему Sass?",
             "tags": [
-                "box-shadow"
+                "preprocessors",
+                "sass"
             ]
         }
     ]

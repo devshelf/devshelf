@@ -12,19 +12,19 @@
     "copy": "DevShelf.us 2014. Thanks to <a href='http://corp.mail.ru/en/communications/odnoklassniki'>OK.ru</a> front-end development team",
 
     "menu": [{
-        "name":"About",
-        "link": "#!/about"
-    },{
         "name":"Add new articles",
         "link": "addNewUrl"
     },{
         "name":"Bookmarklet",
         "link": "#!/bookmarklet"
+    },{
+        "name":"About",
+        "link": "#!/about"
     }],
 
     "footerSections": [{
         "sectionTitle": "About",
-        "sectionText": "<p>Modern web application made for the community (for us!), by the community, to collect most relevant information about development technologies.</p> <p>With community rating, you will get only the best content existing in the open web.</p>"
+        "sectionText": "<p>DevShelf is a modern web application made for the community (for us!), by the community, to collect most relevant information about development technologies.</p> <p>With community rating, you will get only the best content existing in the open web.</p>"
     },{
         "sectionTitle": "How to support",
         "sectionText": "<p>Project is fully <a href='http://github.com/sourcejs/devshelf'>open source</a>, you can <a href='http://github.com/sourcejs/devshelf/tree/master/articles-data'>contribute links</a> to best articles, ideas and improve web application source code simply by leaving your pull requests.</p> <p>DevShelf is all  <strong>about storing best articles and tools</strong>, not your documentation. For documentation purposes, use <a href='http://devdocs.io'>devdocs.io</a>.</p>"
@@ -55,10 +55,9 @@
         "aboutProject": "About the project",
         "header": "Two Days &mdash; One Project",
         "description": [
-            { "p": "After two extremely challenging days during the Hackaton (plus few commits afterwards), we are happy to introduce&nbsp;our latest project&nbsp;&mdash;&nbsp;<strong>DevShelf.us</strong>. This is modern, cutting-edge web application, which collects only the best and most rated articles about <strong>HTML5</strong> stack of technologies."},
+            { "p": "DevShelf is a modern web application made for the community (for us!), by the community, to collect most relevant information about development technologies."},
             { "p": "We provide search engine intelligence and base for <strong>your <a href='http://github.com/sourcejs/devshelf/tree/master/articles-data'>contributed data</a></strong> inside our application, to present you only best and relevant information about those new technologies, which you are looking for."},
-            { "p": "Project has been developed and now is supported by <a href='http://corp.mail.ru/en/communications/odnoklassniki'>OK.ru</a> front-end development team (creators of <a href='http://sourcejs.com'>Source</a> and <a href='http://operatino.github.io/MCSS/en/'>MCSS</a>), but as we are fully <a href='http://github.com/sourcejs/devshelf/tree/master/articles-data'>open source</a>, everybody can join us and <strong>make web a better place</strong>."},
-            { "p": "Check out our team below."}
+            { "p": "Originally project was developed by <a href='http://corp.mail.ru/communications/odnoklassniki'>OK.ru</a> front-end team at a two-day hackathon, and now fully belogns to the <a href='http://github.com/sourcejs/devshelf'>community</a>."}
         ],
         "aboutTeam": "About the team",
         "theTeam": [
@@ -104,8 +103,8 @@
     	"bookmarkletToolsTitle": "Tools",
     	"bookmarkletMainTitle": "Bookmarklet",
     	"description": [
-    		{ "p": "Trying to make an addition to devshelf easier, we create a small bookmarklet. It helps to choose article's title and author on any page, and sends this data to devshelf's addition form." },
-    		{ "p": "Bookmarklet's code is available in <a href='https://github.com/sourcejs/devshelf'>project github repo</a>. Please, feel free to make it better." }
+    		{ "p": "Making articles contribution easier, we created a small bookmarklet that helps to choose article's title and author on any page and sends data directly to DevShelf posting form." },
+    		{ "p": "Source code is available at <a href='https://github.com/sourcejs/devshelf'>project GitHub repo</a>, and is open for your contributions." }
     	],
     	"bookmarkletUsageTitle": "How to use?",
     	"bookmarkletUsageDesc": "Drag this button to favorits panel:",
