@@ -28,7 +28,7 @@
         "PRtitlePrefix": "Form submit: \"",
         "PRtitlePostfix": "\" to ",
         "commitMessage": "Auto-commit from DevShelf.us submit form",
-        "PRbranch": "new-structure"
+        "PRbranch": "master"
     },
 
     "remoteDBhost": "127.0.0.1",
