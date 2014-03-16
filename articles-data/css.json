@@ -422,6 +422,14 @@
                 "opentype",
                 "fonts"
             ]
+        },
+        {
+            "url": "http://frontender.info/MindBEMding/",
+            "title": "Головокружительное погружение в БЭМ",
+            "author": "Harry Roberts",
+            "tags": [
+                "bem"
+            ]
         }
     ]
 }
