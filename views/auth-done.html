@@ -22,8 +22,8 @@ close();
 
 {{^authDone}}
 <script>
-setTimeout(function (){
+document.getElementsByTagName('img')[0].onload = function(){
     window.location = "/auth/github";
-}, 10);
+};
 </script>
 {{/authDone}}
