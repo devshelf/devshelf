@@ -17,6 +17,15 @@
             "tags": [
                 "jquery"
             ]
+        },
+        {
+            "url": "http://frontender.info/partial-application-in-javascript-using-bind/",
+            "title": "Частичное применение в JavaScript с помощью bind()",
+            "author": "Pascal Hartig",
+            "author-link": "http://passy.me/",
+            "tags": [
+                "bind"
+            ]
         }
     ]
 }
