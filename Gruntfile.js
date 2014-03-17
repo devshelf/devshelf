@@ -65,6 +65,17 @@ module.exports = function(grunt) {
             }
         },
 
+        hashres: {
+            main: {
+                // Files to hash
+                src: [
+                    'public/build/js/all.min.js',
+                    'public/build/css/all.min.css'],
+                // File that refers to above files and needs to be updated with the hashed name
+                dest: 'public/build/index.html'
+            }
+        },
+
         watch: {
             main: {
                 files: [
@@ -72,7 +83,7 @@ module.exports = function(grunt) {
                         'public/templates.html',
                         'public/index.html'
                         ],
-                tasks: ['csso:main','uglify:main','htmlcompressor:main'],
+                tasks: ['csso:main','uglify:main','htmlcompressor:main','hashres:main'],
                 options: {
                     nospawn: true
                 }
@@ -87,8 +98,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-hashres');
 
-    grunt.registerTask('default', ['clean:build','csso:main','uglify:main','htmlcompressor:main','copy:img']);
+    //TODO: process only new files, add modules loader
+
+    grunt.registerTask('default', ['clean:build','csso:main','uglify:main','htmlcompressor:main','copy:img','hashres:main']);
 
     grunt.registerTask('runWatch', ['watch']);
 };
