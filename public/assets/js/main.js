@@ -38,7 +38,10 @@ var templateEngine = (function() {
 
                 var i = tags_l;
                 while (i--) {
-                    if ( qRegExp.test(tags[i]) ) liteResult.push(prop);
+                    if ( qRegExp.test(tags[i]) ) {
+                        liteResult.push(prop);
+                        break;
+                    }
                     else continue;
                 }
             }
@@ -289,6 +292,7 @@ var templateEngine = (function() {
          * @param {Object} p
          * @param {String} p.query — target article's tag
          * @param {Function} p.callback
+§         * @param {Function} p.result   resorted collection with tags
          * @returns {Object} templateEngine
          */
         getCategoryByArticle: function(p) {
