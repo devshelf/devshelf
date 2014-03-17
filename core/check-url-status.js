@@ -1,7 +1,4 @@
-var http = require('http')
-	, parseurl = require('url')
-	;
-
+var request = require('request');
 
 /**
 * Check url on availability
@@ -35,42 +32,15 @@ var checkURLService = function ( req, res ) {
 };
 
 var checkURL = function ( plainUrl, callback ) {
-    var url = parseurl.parse( plainUrl ),
-        firstRequestReady = false;
+    var url = plainUrl;
 
-	var optionsget = {
-		hostname : url.host,
-		port : 80,
-		path : url.path,
-		method : 'GET'
-	};
-
-	// Make http request and check for statusCode — 2xx and 3xx accepted, otherwise fails
-	var getData = function getData() {
-		var reqGet = http.request(optionsget, function(response) {
-
-			response.on('data', function(data) {
-
-                if (!firstRequestReady) {
-                   if ( (response.statusCode.toString().charAt(0) !== '2') && (response.statusCode.toString().charAt(0) !== '3') ) {
-                        callback(false);
-                    } else {
-                        callback(true);
-                    }
-                }
-
-                firstRequestReady = true;
-
-			});
-
-		});
-
-		reqGet.end();
-		reqGet.on('error', function(e) {
-			callback(false);
-		});
-
-	}();
+	request(url, function (error, response) {
+        if (!error && response.statusCode.toString().charAt(0) === '2') {
+            callback(true);
+        } else {
+            callback(false);
+        }
+    });
 };
 
 module.exports = {
