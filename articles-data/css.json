@@ -422,6 +422,56 @@
                 "opentype",
                 "fonts"
             ]
+        },
+        {
+            "url": "http://kizu.ru/issues/new-stylus-features/",
+            "title": "Десять причин нашего перехода с иконочного шрифта на SVG",
+            "tags": [
+                "test"
+            ]
+        },
+        {
+            "url": "http://kizu.ru/issues/new-stylus-features/",
+            "title": "Десять+причин+нашего+перехода+с+иконочного+шрифта+на+SVG",
+            "tags": [
+                "tg"
+            ]
+        },
+        {
+            "url": "http://kizu.ru/issues/new-stylus-features/",
+            "title": "Новые фичи в Стайлусе",
+            "tags": [
+                "dads"
+            ]
+        },
+        {
+            "url": "http://kizu.ru/issues/cursor-pointer/",
+            "title": "ДЕСЯТЬ ПРИЧИН НАШЕГО ПЕРЕХОДА С ИКОНОЧНОГО ШРИФТА НА SVG",
+            "tags": [
+                "sada"
+            ]
+        },
+        {
+            "url": "http://rhr.me",
+            "title": "Front End Ops Conf 2014",
+            "tags": [
+                "tag"
+            ]
+        },
+        {
+            "url": "http://devshelf.us",
+            "title": "Front End Ops Conf 2014",
+            "tags": [
+                "авфа"
+            ],
+            "description": "еуфе"
+        },
+        {
+            "url": "http://devshelf.us",
+            "title": "Десять причин нашего перехода с иконочного шрифта на SVG",
+            "tags": [
+                "tag"
+            ]
         }
     ]
 }
