@@ -429,6 +429,13 @@
             "tags": [
                 "test"
             ]
+        },
+        {
+            "url": "http://kizu.ru/issues/new-stylus-features/",
+            "title": "Десять+причин+нашего+перехода+с+иконочного+шрифта+на+SVG",
+            "tags": [
+                "tg"
+            ]
         }
     ]
 }
