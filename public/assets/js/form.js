@@ -27,7 +27,7 @@ var postToServer = function(sendData, callback){
         var checkEmpty = function(field){
             if(sendData[field].length !== 0) {postData[field] = sendData[field]}
         };
-        var checkEmptyArr = ['author', 'author-mail', 'author-link', 'tags'];
+        var checkEmptyArr = ['author', 'author-mail', 'author-link', 'tags', 'description'];
         for (var i = 0; i < checkEmptyArr.length ; i++) {
             checkEmpty(checkEmptyArr[i]);
         }
@@ -128,7 +128,7 @@ var addNewArticle = function( p ) {
             .on('change', function(){
                 var selectVal = $(this).val();
 
-                if (selectVal != "-1") {
+                if (selectVal != "") {
                     $tagsInput.enable();
                 } else {
                     $tagsInput.disable();
@@ -144,14 +144,15 @@ var addNewArticle = function( p ) {
             resultAsString: true,
             width: 300,
             data: tempTags,
-            disabled: true
+            disabled: true,
+            required: true
         });
 
         $form.on('submit', function( e ){
             e.preventDefault();
 
             var sendData,
-                tagsArray,
+                tagsArray = $tagsInput.getValue(),
                 errorField = $form.find('.form-errors'),
                 successField = $form.find('.form-success'),
                 validate = {
@@ -161,8 +162,9 @@ var addNewArticle = function( p ) {
 
             sendData = convertFormToJSON(this);
 
+
+
             var proceedToServer = function(){
-                tagsArray = $tagsInput.getValue();
                 sendData['tags'] = tagsArray;
 
                 postToServer(sendData, function(data){
@@ -189,11 +191,15 @@ var addNewArticle = function( p ) {
                 })
             };
 
-
             //Check auth
             if (!appData.auth) {
                 validate.status = false;
                 validate.errors.push('Only authorized users can add articles.');
+            } else if ( tagsArray.length == 0 ){
+
+                //checking that tags filed not empty
+                errorField.html( appData.records.formTagsEmptyError ).show();
+                return false;
             } else {
                 //checking unique title and existing url
                 $.ajax({

@@ -41,7 +41,7 @@
 					<span class="popup-close js-popup-close" title="Close me"><i class="fa fa-times-circle"></i></span>
 				</header>
 				<div class="popup-desc popup-padding">
-					<form id="addNewUrlForm" class="pure-form pure-form-aligned">
+					<form id="addNewUrlForm" class="pure-form pure-form-aligned __add-new-article">
                         <fieldset>
                             <div class="pure-control-group">
                                 <label class="pure-input-1-2" for="url">{{formURL}} <sup>*</sup></label>
@@ -56,7 +56,7 @@
                             <div class="pure-control-group">
                                 <label for="category">{{formCategory}} <sup>*</sup></label>
                                 <select name="category" id="category" class="pure-input-1-2" required>
-                                    <option value="-1">-</option>
+                                    <option value="">-</option>
                                 </select>
                             </div>
 
@@ -82,6 +82,11 @@
                                 <label for="author-mail">{{formAuthorMail}}</label>
                                 <input id="author-mail" name="author-mail" type="text" placeholder="{{formAuthorMail}}" class="pure-input-1-2">
                             </div>
+
+							<div class="pure-control-group">
+								<label for="description">{{formDescription}}</label>
+								<textarea id="description" name="description" type="text" placeholder="{{formDescription}}" class="pure-input-1-2"></textarea>
+							</div>
 
                             <div class="pure-control-group">
                                 <label for="tags">{{formTags}} <sup>*</sup></label>

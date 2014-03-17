@@ -16,6 +16,11 @@
 	color: #749E6E;
 	}
 
+	.pure-form.__add-new-article textarea {
+		min-height: 4em;
+		resize: none;
+		}
+
 .spinner {
 	display: none;
 	position: absolute;
