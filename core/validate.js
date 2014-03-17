@@ -1,7 +1,6 @@
 var checkURL = require('./check-url-status'),
     checkTitle = require('./check-title');
 
-
 /**
 * Submit validator
 * @param {Object} req — http request data
@@ -11,10 +10,11 @@ var checkURL = require('./check-url-status'),
 */
 var validateService = function(req, res) {
     var title = req.query.title,
-        url = req.query.url;
+        url = req.query.url,
+        lang = req.query.lang;
 
     if (title && url) {
-        validate(title, url, function(okay, msg){
+        validate(title, url, lang, function(okay, msg){
             if (okay) {
                 res.send({
                     status: true,
@@ -35,8 +35,8 @@ var validateService = function(req, res) {
     }
 };
 
-var validate = function(title, url, callback) {
-    checkTitle.checkTitle(title, function(titleOk, msg){
+var validate = function(title, url, lang, callback) {
+    checkTitle.checkTitle(title, lang, function(titleOk, msg){
         if (titleOk) {
 
             checkURL.checkURL(url, function(urlOK, msg){

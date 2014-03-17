@@ -69,6 +69,7 @@ var addNewArticleRecall; //recalling for after login
 var addNewArticle = function( p ) {
     var $form = $('#addNewUrlForm'),
         $selectCategory = $('#category'),
+        $spinner = $('.spinner'),
         tempSelects = '',
         tempTagsObj = {},
         tempTags = [],
@@ -172,6 +173,8 @@ var addNewArticle = function( p ) {
 
                     //if error
                     if (data.status) {
+                        errorField.hide();
+
                         //show success message
                         successField.html(' <a href="'+  data.data.html_url +'">' +  appData.records.formSuccess +'</a>').show();
 
@@ -206,14 +209,17 @@ var addNewArticle = function( p ) {
                     url: '/validate',
                     data: {
                         url: sendData['url'],
+                        lang: sendData['lang'],
                         title: sendData['title']
                     },
-                    async: false,
+                    timeout: 15000,
+                    beforeSend: function() {
+                        $spinner.show();
+                    },
                     success: function(data) {
 
                         //If validation passed, send data to server
                         if ( data.status ) {
-                            errorField.hide();
 
                             proceedToServer();
 
@@ -223,13 +229,21 @@ var addNewArticle = function( p ) {
                             validate.status = false;
                             validate.errors.push( message );
 
+                            $spinner.hide();
+
                             errorField.html( validate.errors.join('<br>')).show();
                         }
                     },
-                    error: function(err) {
+                    error: function(err, textStatus) {
                         if (devMode) { console.log(err); }
 
-                        errorField.html( appData.records.formDisabled ).show();
+                        $spinner.hide();
+
+                        if (textStatus === 'timeout') {
+                            errorField.html( appData.records.formValidationFailed ).show();
+                        } else {
+                            errorField.html( appData.records.formDisabled ).show();
+                        }
                     }
                 });
             }

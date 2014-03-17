@@ -4,7 +4,7 @@ var github = require('octonode'),
     checkTitle = require('./check-title');
 
 //TODO: if has fork, create a branch in it, merge with latest devshelf and commit
-//TODO: check existance of article in fork
+//TODO: check existance of new article in fork
 
 var postArticle = function(req, res){
     var user = typeof req.session.authCache === 'undefined' ?  undefined : req.session.authCache.github.user.login;
@@ -192,7 +192,7 @@ var validateData = function(data, callback) {
            if (urlAccesible) {
 
                //article is unique
-                checkTitle.checkTitle(data.postData.title, function(uniqueArticle){
+                checkTitle.checkTitle(data.postData.title, data.lang, function(uniqueArticle){
                     if (uniqueArticle) {
 
                         callback(true);

@@ -125,6 +125,7 @@
     "formAuthorMail": "Author mail",
     "formSubmit": "Add article",
     "formFailed": "Submit failed",
+    "formValidationFailed": "Validation failed",
     "formTagsEmptyError": "Please fill 'tags'",
     "formSuccess": "Pull Request created",
     "formDisabled": "Form currently inactive, please leave your Pull Request through GitHub",

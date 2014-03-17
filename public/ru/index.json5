@@ -124,6 +124,7 @@
     "formAuthorMail": "Email автора",
     "formSubmit": "Добавить статью",
     "formFailed": "Ошибка добавления",
+    "formValidationFailed": "Ошибка валидации",
     "formTagsEmptyError": "Не заполнено поле с тегами",
     "formSuccess": "Pull Request создан",
     "formDisabled": "Форма на техническом обслуживании, пожалуйста, оставляйте свои Pull Request вручную",

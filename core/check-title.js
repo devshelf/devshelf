@@ -6,9 +6,10 @@
 */
 
 var checkTitleService = function(req, res) {
-    var title = req.query.title;
+    var title = req.query.title,
+        lang = req.query.lang;
 
-    checkTitle(title, function(okay, msg){
+    checkTitle(title, lang, function(okay, msg){
         if (okay) {
             res.send({
                 status: true,
@@ -23,8 +24,8 @@ var checkTitleService = function(req, res) {
     });
 };
 
-var checkTitle = function(title, callback) {
-	/**
+var checkTitle = function(title, currentLang, callback) {
+    /**
 	* Check for already exists title
 	*/
 	function checkArticleFound( ) {
@@ -87,15 +88,10 @@ var checkTitle = function(title, callback) {
 		// Read all data
 		var summData = [];
 
-		for (var field in global.articlesData) {
-			for (var lang in global.articlesData[field]) {
-				for (var section in global.articlesData[field][lang]) {
-					for (var article = 0; article < global.articlesData[field][lang][section].length; article++ ) {
-						summData.push( global.articlesData[field][lang][section][article].title );
-					}
-				}
-
-			}
+		for (var cat in global.articlesData[currentLang]) {
+			for (var article = 0; article < global.articlesData[currentLang][cat].length; article++ ) {
+                summData.push( global.articlesData[currentLang][cat][article].title );
+            }
 		}
 
 		for (var articleTitle = 0; articleTitle < summData.length; articleTitle++) {
@@ -132,8 +128,8 @@ var checkTitle = function(title, callback) {
 };
 
 module.exports = {
-	checkTitle: function(title, callback) {
-		checkTitle(title, callback);
+	checkTitle: function(title,lang, callback) {
+		checkTitle(title, lang, callback);
 	},
 	checkTitleService: function(req, res) {
 		checkTitleService(req, res)
