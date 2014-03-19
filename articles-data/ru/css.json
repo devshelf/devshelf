@@ -28,6 +28,15 @@
                 "vertical-align",
                 "baseline"
             ]
+        },
+        {
+            "url": "http://html5.by/blog/flexbox/",
+            "title": "Что такое Flexbox?",
+            "author": "Дудин Дмитрий",
+            "tags": [
+                "flexbox"
+            ],
+            "description": "Описание всех css свойств, основные принципы, приимущества и недостатки."
         }
     ]
 }
