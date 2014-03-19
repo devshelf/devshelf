@@ -31,12 +31,11 @@ global.commonOpts = JSON5.parse(fs.readFileSync(__dirname + '/core/options/commo
 * */
 
 global.indexData = {};
-
 global.indexData[global.opts.l18n.defaultLang] = JSON5.parse(fs.readFileSync(__dirname + '/public/index.json5', "utf8"));
 
 //filling lang properties
-global.opts.l18n.additionalLangs.map(function(item) {
-    global.indexData[item] = JSON5.parse(fs.readFileSync(__dirname + '/public/'+item+'/index.json5', "utf8"));
+global.opts.l18n.additionalLangs.map(function(lang) {
+    global.indexData[lang] = JSON5.parse(fs.readFileSync(__dirname + '/public/'+lang+'/index.json5', "utf8"));
 });
 
 
@@ -207,7 +206,10 @@ if (global.opts.voting.enabled) {
 }
 
 // Preparing initial data on start
-voting.generateVotingData();
+voting.generateVotingData(global.opts.l18n.defaultLang);
+global.opts.l18n.additionalLangs.map(function(lang) {
+    voting.generateVotingData(lang);
+});
 
 
 /*

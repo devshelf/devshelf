@@ -308,7 +308,10 @@ if (global.opts.voting.enabled && global.MODE === 'production') {
 
             NOT_RUNNING = false;
 
-            generateVotingData();
+            generateVotingData(global.opts.l18n.defaultLang);
+            global.opts.l18n.additionalLangs.map(function(item) {
+                generateVotingData(item);
+            });
 
             NOT_RUNNING = true;
 
@@ -336,11 +339,7 @@ module.exports = {
         getAllVotes(req, res);
     },
 
-    generateVotingData: function(){
-        generateVotingData();
-
-        global.opts.l18n.additionalLangs.map(function(item) {
-            generateVotingData(item);
-        });
+    generateVotingData: function(lang){
+        generateVotingData(lang);
     }
 };
