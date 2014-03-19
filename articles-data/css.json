@@ -422,6 +422,13 @@
                 "opentype",
                 "fonts"
             ]
+        },
+        {
+            "url": "http://www.sketchingwithcss.com/samplechapter/cheatsheet.html",
+            "title": "The Ultimate Flexbox Cheat Sheet",
+            "tags": [
+                "flexbox"
+            ]
         }
     ]
 }
