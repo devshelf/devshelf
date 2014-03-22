@@ -274,6 +274,15 @@
             "tags": [
                 "constructor"
             ]
+        },
+        {
+            "url": "http://mherman.org/blog/2014/01/29/meteor-dot-js-in-action-create-an-app-test-with-laika/",
+            "title": "Meteor.js in Action: Create an App, Test With Laika",
+            "author": "        Posted by Michael Herman        Jan 29th, 2014            meteor",
+            "tags": [
+                "tutorial",
+                "testing"
+            ]
         }
     ]
 }
