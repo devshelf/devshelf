@@ -274,6 +274,15 @@
             "tags": [
                 "constructor"
             ]
+        },
+        {
+            "url": "http://www.joelhooks.com/blog/2014/02/06/stop-writing-for-loops-start-using-underscorejs/",
+            "title": "Stop writing For loops. Start using underscore.",
+            "tags": [
+                "underscore",
+                "for",
+                "loops"
+            ]
         }
     ]
 }
