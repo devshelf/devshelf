@@ -283,6 +283,17 @@
                 "for",
                 "loops"
             ]
+        },
+        {
+            "url": "http://dailyjs.com/2014/02/20/promises-in-detail/",
+            "title": "JavaScript Promises ... In Wicked Detail",
+            "author": "Matt Greer",
+            "author-mail": "matt.e.greer@gmail.com",
+            "author-link": "http://mattgreer.org/",
+            "tags": [
+                "promise",
+                "tutorial"
+            ]
         }
     ]
 }
