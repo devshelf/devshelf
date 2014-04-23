@@ -1,4 +1,7 @@
 module.exports = function(grunt) {
+    // Load grunt tasks automatically
+    require('load-grunt-tasks')(grunt);
+
     // Tasks
     grunt.initConfig({
         copy: {
@@ -91,18 +94,16 @@ module.exports = function(grunt) {
         }
     });
 
-    // Load plugins installed via npm install
-    grunt.loadNpmTasks('grunt-csso');
-    grunt.loadNpmTasks('grunt-htmlcompressor');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-hashres');
-
     //TODO: process only new files, add modules loader
 
-    grunt.registerTask('default', ['clean:build','csso:main','uglify:main','htmlcompressor:main','copy:img','hashres:main']);
+    grunt.registerTask('default', [
+        'clean:build',
+        'csso:main',
+        'uglify:main',
+        'htmlcompressor:main',
+        'copy:img',
+        'hashres:main'
+    ]);
 
     grunt.registerTask('runWatch', ['watch']);
 };
