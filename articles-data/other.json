@@ -279,7 +279,7 @@
             "author-mail": "r@rhr.me",
             "author-link": "http://rhr.me",
             "tags": [
-                "style guides",
+                "living style guides",
                 "components"
             ],
             "description": "The most powerful tool for documenting web components\r\nand building productive team work."
@@ -290,7 +290,7 @@
             "author": "Rico Sta. Cruz",
             "author-mail": "hi@ricostacruz.com",
             "tags": [
-                "style guides",
+                "living style guides",
                 "markdown",
                 "doc generators"
             ],
@@ -300,7 +300,7 @@
             "url": "http://jacobrask.github.io/styledocco/",
             "title": "StyleDocco",
             "tags": [
-                "style guides",
+                "living style guides",
                 "doc generators"
             ],
             "description": "StyleDocco generates documentation and style guide documents from your stylesheets."
@@ -309,7 +309,7 @@
             "url": "http://github.com/adactio/Pattern-Primer",
             "title": "Pattern Primer",
             "tags": [
-                "style guides"
+                "living style guides"
             ],
             "description": "Create little snippets of markup and save them to the \"patterns folder.\" The pattern primer will generate a list of all the patterns in that folder. You will see the pattern rendered as HTML. You will also get the source displayed in a textarea."
         },
@@ -317,7 +317,7 @@
             "url": "http://hughsk.io/kss-node/",
             "title": "kss-node Styleguide",
             "tags": [
-                "style guides",
+                "living style guides",
                 "doc generators"
             ],
             "description": "Inspired by TomDoc, KSS attempts to provide a methodology for writing maintainable, documented CSS within a team. Specifically, KSS is a documentation specification and styleguide format. It is not a preprocessor, CSS framework, naming convention, or specificity guideline.\r\n\r\nKSS is a set of guidelines to help you produce an HTML styleguide tied to CSS documentation that is nice to read in plain text, yet structured enough to be automatically extracted and processed by a machine."
@@ -326,7 +326,7 @@
             "url": "http://livingstyleguide.org/",
             "title": "The Living Style Guide gem",
             "tags": [
-                "style guides",
+                "living style guides",
                 "doc generators"
             ],
             "description": "The easiest way to create front-end style guides with Sass and Compass"
@@ -335,7 +335,7 @@
             "url": "http://trulia.github.io/hologram/",
             "title": "Hologram",
             "tags": [
-                "style guides",
+                "living style guides",
                 "doc generators"
             ],
             "description": "Hologram is a Ruby gem that parses comments in your CSS and turns them into a beautiful style guide."
@@ -344,7 +344,7 @@
             "url": "http://patternlab.io/",
             "title": "Pattern Lab",
             "tags": [
-                "style guides"
+                "living style guides"
             ],
             "description": "Pattern Lab is a collection of tools to help you create atomic design systems."
         },
@@ -352,7 +352,7 @@
             "url": "http://github.com/nopr/sassdown",
             "title": "Sassdown",
             "tags": [
-                "style guides",
+                "living style guides",
                 "doc generators"
             ],
             "description": "Grunt plugin for building living styleguides with Handlebars from Markdown comments in CSS, SASS and LESS files."
@@ -361,7 +361,7 @@
             "url": "http://github.com/north/generator-style-prototype",
             "title": "Yeoman Generator for Style Prototypes",
             "tags": [
-                "style guides"
+                "living style guides"
             ]
         }
     ]
