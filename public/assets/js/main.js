@@ -107,24 +107,26 @@ var templateEngine = (function() {
 
             if (currentWindowHash[1]) this.query = currentWindowHash[1].split('/')[1];
 
-            if (currentWindowHash.length > 1) {
+            if ( (currentWindowHash.length > 1) && (currentWindowHash[1] !== 'home') ) {
+
 				templateEngine.showSecondaryPage();
 
-                currentWindowHash = currentWindowHash[1];
-                templateEngine.buildHashStruct({
-                    callback: function() {
+				currentWindowHash = currentWindowHash[1];
+				templateEngine.buildHashStruct({
+					callback: function() {
 
-                        /**
-                         * Rendering routine call just after routing tree creation
-                         */
-                        templateEngine.getTemplateByHash({
-                            hash: currentWindowHash,
-                            callback: function(p) {
-                                templateEngine.insertTemplate(p);
-                            }
-                        })
-                    }
-                })
+						/**
+						 * Rendering routine call just after routing tree creation
+						 */
+						templateEngine.getTemplateByHash({
+							hash: currentWindowHash,
+							callback: function(p) {
+								templateEngine.insertTemplate(p);
+							}
+						})
+					}
+				})
+
             } else {
                 /**
                  * There's no any params
@@ -238,6 +240,8 @@ var templateEngine = (function() {
                 }
             });
 
+            templateEngine.liveSearchFocus();
+
             return this;
         },
 
@@ -256,7 +260,8 @@ var templateEngine = (function() {
         insertTemplate: function(p) {
             var target = p.target || TARGET_CONT;
                 $template = $('#'+ p.template),
-                $target = $('#'+ target);
+                $target = $('#'+ target),
+                callback = p.callback || function() {};
 
             var params = $.extend({}, p.params, appData.records[p.template]);
             $target.html( Mustache.to_html( $template.html(), params) );
@@ -278,6 +283,8 @@ var templateEngine = (function() {
                 window.history.pushState(null, actualParams.actualTitle, actualParams.actualUrl);
 
             }
+
+            callback();
 
             //TODO: move to custom callback
 //            if (!isTouch) {
@@ -374,14 +381,28 @@ var templateEngine = (function() {
         },
 
         showMainPage: function() {
+        	var mainPageInputText = $('#main-page .js-search-input').val();
+
         	$('#main-content').hide();
         	$('#main-page').show();
+
+        	$('#main-page .js-search-input')
+        		.focus()
+        		.val(mainPageInputText);
         },
 
         showSecondaryPage: function() {
         	$('#main-content').show();
         	$('#main-page').hide();
-        }
+        },
+
+		liveSearchFocus: function() {
+			var t = $('.js-search-input-interactive').val();
+
+			$('.js-search-input-interactive')
+				.focus()
+				.val( t );
+		}
     }
 })();
 
@@ -447,7 +468,7 @@ var mainApp = function() {
     $('#main-page').on('click', '.js-search-button', function(e) {
          e.preventDefault();
 
-         var searchQuery = $.trim($('.js-search-input').val()),
+         var searchQuery = $.trim($('#main-page .js-search-input').val()),
              resultList = [];
 
         $.extend(true, resultList, templateEngine.fuzzySearch({
@@ -509,7 +530,13 @@ var mainApp = function() {
         })
 
 		templateEngine.showSecondaryPage();
+		templateEngine.liveSearchFocus();
     });
+
+	$('#main-content').on('submit', 'form', function() {
+		window.location.hash = '!/search/' + $('.js-search-input-interactive').val();
+		return false;
+	})
 
     /**
      * Search field on search page
@@ -521,10 +548,10 @@ var mainApp = function() {
     		return false;
     	}
     	if ( e.keyCode == 27 ) {
-    		$('.js-search-input-interactive').blur();
+    		$('#main-content .js-search-input-interactive').blur();
     	}
 
-        var searchQuery = $.trim($('.js-search-input').val()),
+        var searchQuery = $.trim($('#main-content .js-search-input-interactive').val()), /*js-search-input*/
             resultList = [];
 
         $.extend(true, resultList, templateEngine.fuzzySearch({
@@ -816,6 +843,47 @@ var currentLanguage = cookieParser(document.cookie)['lang'] || appData.commonOpt
 
 $(function() {
 
+	/**
+	* Main page autosuggest init
+	*/
+	var prepareAutosuggest = function() {
+		var suggest = [];
+
+		for (var i in appData.catalogue) {
+			suggest.push(i);
+			for (var j = 0; j < appData.catalogue[i].length; j++) {
+				suggest.push(appData.catalogue[i][j].linkTitle);
+			}
+		}
+
+		$('#main-page .js-search-input')
+			.autocomplete({
+				minChars:1,
+				delimiter: /(,|;)\s*/, // regex or character
+				maxHeight:215,
+				width:321,
+				zIndex: 9999,
+				appendTo: '.home-search',
+				deferRequestBy: 0, //miliseconds
+				noCache: false, //default is false, set to true to disable caching
+				onSelect: function() {
+					//window.location.hash = '!/search/' + $(this).val();
+				},
+				lookup: suggest
+			})
+			.off('focus')
+			.on('keyup', function(e) {
+				if (e.keyCode == 13) {
+					window.location.hash = '!/search/' + $(this).val();
+				}
+			})
+
+		$('#main-page').on('click', '.autocomplete-suggestion', function() {
+			window.location.hash = '!/search/' + $(this).text();
+		})
+
+	}
+
     /**
      * Gets templates and starts The App
      */
@@ -839,6 +907,7 @@ $(function() {
     	lang: currentLanguage,
     	callback: function() {
 	    	prepateTemplates();
+	    	prepareAutosuggest();
     	}
     })
 });

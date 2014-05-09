@@ -33,9 +33,6 @@ a {
 #main-content,
 #main-page {
 	padding-bottom: 50px;
-	}
-
-#main-content {
 	display: none;
 	}
 
@@ -48,8 +45,6 @@ a {
 	background: #dadada url(../img/hd-bg.png) repeat;
 	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
 	border-left: 1px solid darkgray;
-
-	height: auto !important;
 	}
 
 .user-login .user-name {
@@ -99,8 +94,15 @@ a {
 	padding-top: 6em;
 	}
 
+.home-search {
+	display: inline-block;
+	text-align: left;
+	position: relative;
+}
+
 .pure-form.home-search .pure-input {
 	font-size: 1em;
+	width: 330px;
 	}
 
 .pure-form.main-search {
@@ -337,4 +339,32 @@ a {
 	border: none;
 	}
 
+
+/* Suggest
+-------------------------------------------------- */
+.autocomplete-suggestions {
+	border: 1px #e7e7e7 solid;
+	box-shadow: 0 15px 20px rgba(0,0,0,0.4);
+	margin-left: 3px;
+	overflow: auto;
+	}
+
+.autocomplete-suggestion {
+	padding: 0 .6em;
+	height: 30px;
+	line-height: 30px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 1em;
+	color: #8e8ed6;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #e7e7e7;
+	cursor: pointer;
+	}
+	.autocomplete-suggestion.autocomplete-selected,
+	.autocomplete-suggestion:hover {
+		background-color: #eee;
+		text-decoration: underline;
+		}
 
