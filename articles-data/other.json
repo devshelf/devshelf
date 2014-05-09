@@ -330,6 +330,15 @@
                 "doc generators"
             ],
             "description": "The easiest way to create front-end style guides with Sass and Compass"
+        },
+        {
+            "url": "http://trulia.github.io/hologram/",
+            "title": "Hologram",
+            "tags": [
+                "style guides",
+                "doc generators"
+            ],
+            "description": "Hologram is a Ruby gem that parses comments in your CSS and turns them into a beautiful style guide."
         }
     ]
 }
