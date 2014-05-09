@@ -108,6 +108,8 @@ var templateEngine = (function() {
             if (currentWindowHash[1]) this.query = currentWindowHash[1].split('/')[1];
 
             if (currentWindowHash.length > 1) {
+				templateEngine.showSecondaryPage();
+
                 currentWindowHash = currentWindowHash[1];
                 templateEngine.buildHashStruct({
                     callback: function() {
@@ -127,10 +129,8 @@ var templateEngine = (function() {
                 /**
                  * There's no any params
                  */
-                templateEngine.insertTemplate( {
-                    template: 'main-page',
-                    target: 'main-content'
-                } );
+
+				templateEngine.showMainPage();
             }
 
             return this;
@@ -371,6 +371,16 @@ var templateEngine = (function() {
             });
 
             return this;
+        },
+
+        showMainPage: function() {
+        	$('#main-content').hide();
+        	$('#main-page').show();
+        },
+
+        showSecondaryPage: function() {
+        	$('#main-content').show();
+        	$('#main-page').hide();
         }
     }
 })();
@@ -381,7 +391,7 @@ var mainApp = function() {
      * Change banner background
      */
 
-    $("#main-content").on('mouseenter', '.pricing-table', function(){
+    $("#main-page").on('mouseenter', '.pricing-table', function(){
         var _this = $(this);
         if (_this.is('[class*=css]')) {
             $(".banner").attr('class','banner __css');
@@ -434,7 +444,7 @@ var mainApp = function() {
     /**
      * Search field on main page
      */
-    $('#main-content').on('click', '.js-search-button', function(e) {
+    $('#main-page').on('click', '.js-search-button', function(e) {
          e.preventDefault();
 
          var searchQuery = $.trim($('.js-search-input').val()),
@@ -498,7 +508,7 @@ var mainApp = function() {
             result: resultList
         })
 
-
+		templateEngine.showSecondaryPage();
     });
 
     /**

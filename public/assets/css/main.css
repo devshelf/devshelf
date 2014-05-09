@@ -30,8 +30,13 @@ a {
 	}
 
 /* sticky footer */
-#main-content {
+#main-content,
+#main-page {
 	padding-bottom: 50px;
+	}
+
+#main-content {
+	display: none;
 	}
 
 /* USER LOGIN PART */
@@ -43,6 +48,8 @@ a {
 	background: #dadada url(../img/hd-bg.png) repeat;
 	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
 	border-left: 1px solid darkgray;
+
+	height: auto !important;
 	}
 
 .user-login .user-name {

@@ -1356,7 +1356,7 @@ this the same font stack that Normalize.css sets for the `body`.
     height: 2.4em;
 }
 
-.pure-menu li a { padding: 5px 20px; }
+.pure-menu li a { padding: 5px 15px; }
 
 .pure-menu-can-have-children > .pure-menu-label:after {
     content: '\25B8';

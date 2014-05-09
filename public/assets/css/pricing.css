@@ -328,7 +328,7 @@ button[type=submit]::before {
 
 	}
 
-@media(max-width: 620px) {
+@media (max-width: 767px) {
 	.banner-inner:hover,
 	.banner-inner {
 		background: rgba(0,0,0,.8);
