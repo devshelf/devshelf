@@ -336,6 +336,15 @@
                 "best practises"
             ],
             "description": "npm's coding style is a bit unconventional. It is not different for difference's sake, but rather a carefully crafted style that is designed to reduce visual clutter and make bugs more apparent."
+        },
+        {
+            "url": "https://github.com/yuanyan/pragmatic-jquery",
+            "title": "Pragmatic jQuery Style",
+            "tags": [
+                "code style guides",
+                "jquery",
+                "best practises"
+            ]
         }
     ]
 }
