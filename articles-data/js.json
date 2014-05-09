@@ -310,6 +310,14 @@
                 "js best practises"
             ],
             "description": "This is a set of coding conventions and rules for use in JavaScript programming. It is inspired by the Sun document Code Conventions for the Java Programming Language. It is heavily modified of course because JavaScript is not Java."
+        },
+        {
+            "url": "https://github.com/styleguide/javascript",
+            "title": "Github JavaScript Styleguide",
+            "tags": [
+                "code style guides",
+                "js best practises"
+            ]
         }
     ]
 }
