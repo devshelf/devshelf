@@ -1,5 +1,18 @@
 {
     "html": [
+		{
+            "url": "http://github.com/necolas/idiomatic-html",
+            "title": "Principles of writing consistent, idiomatic HTML",
+            "description": "The following document outlines a reasonable style guide for HTML development. These guidelines strongly encourage the use of existing, common, sensible patterns. They should be adapted as needed to create your own style guide.",
+            "author": "Nicolas Gallagher",
+            "author-link": "http://nicolasgallagher.com",
+            "author-mail": "nicolas@nicolasgallagher.com",
+            "tags": [
+                "html best practises",
+				"code style guides",
+                "best practises"
+            ]
+        },
         {
             "url": "http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/",
             "title": "The media object saves hundreds of lines of code",

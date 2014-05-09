@@ -1,140 +1,6 @@
 {
     "other": [
         {
-            "url": "http://operatino.github.io/MCSS/en/",
-            "title": "Multilayer CSS",
-            "description": "<p>Multilayer CSS organization methodology is based on <a href='http://bem.info/'>BEM</a> and <a href='http://oocss.org/'>OOCSS</a> principles. It was invented in <a href='http://corp.mail.ru/en/communications/odnoklassniki'>Odnoklassniki.ru</a> (Top 10 world social network) developers team and is recommended for other developers as core for own documentation and team based methodologies.</p>",
-            "author": "Robert Haritonov",
-            "author-link": "http://rhr.me",
-            "author-mail": "r@rhr.me",
-            "id": "mcss",
-            "tags": [
-                "css methodologies",
-                "css",
-                "best practises"
-            ]
-        },
-        {
-            "url": "http://smacss.com/",
-            "title": "Scalable and Modular Architecture for CSS",
-            "description": "SMACSS is a way to examine your design process and as a way to fit those rigid frameworks into a flexible thought process. It is an attempt to document a consistent approach to site development when using CSS.",
-            "author": "Jonathan Snook",
-            "author-link": "http://snook.ca/",
-            "tags": [
-                "css methodologies",
-                "css",
-                "best practises"
-            ]
-        },
-        {
-            "url": "http://github.com/necolas/idiomatic-css",
-            "title": "Principles of writing consistent, idiomatic CSS",
-            "description": "The following document outlines a reasonable style guide for CSS development. These guidelines strongly encourage the use of existing, common, sensible patterns. They should be adapted as needed to create your own style guide.",
-            "author": "Nicolas Gallagher",
-            "author-link": "http://nicolasgallagher.com",
-            "author-mail": "nicolas@nicolasgallagher.com",
-            "tags": [
-                "css best practises",
-                "css",
-                "best practises"
-            ]
-        },
-        {
-            "url": "http://csswizardry.com/2013/07/writing-dryer-vanilla-css/",
-            "title": "Writing DRYer vanilla CSS",
-            "author-link": "http://csswizardry.com",
-            "author-mail": "harry@csswizardry.com",
-            "tags": [
-                "css best practises",
-                "css",
-                "best practises"
-            ]
-        },
-        {
-            "url": "http://csswizardry.com/2013/05/scope-in-css/",
-            "title": "‘Scope’ in CSS",
-            "author-link": "http://csswizardry.com",
-            "author-mail": "harry@csswizardry.com",
-            "tags": [
-                "css best practises",
-                "css",
-                "best practises"
-            ]
-        },
-        {
-            "url": "http://csswizardry.com/2012/11/code-smells-in-css/",
-            "title": "Code smells in CSS",
-            "author-link": "http://csswizardry.com",
-            "author-mail": "harry@csswizardry.com",
-            "tags": [
-                "css best practises",
-                "css",
-                "best practises"
-            ]
-        },
-        {
-            "url": "http://csswizardry.com/2012/07/shoot-to-kill-css-selector-intent/",
-            "title": "Shoot to kill; CSS selector intent",
-            "description": "A great article about writing efficient selectors in CSS.",
-            "author-link": "http://csswizardry.com",
-            "author-mail": "harry@csswizardry.com",
-            "tags": [
-                "css best practises",
-                "css",
-                "best practises"
-            ]
-        },
-        {
-            "url": "http://csswizardry.com/2012/04/the-single-responsibility-principle-applied-to-css/",
-            "title": "The single responsibility principle applied to CSS",
-            "description": "Taking best practises from OO programming.",
-            "author-link": "http://csswizardry.com",
-            "author-mail": "harry@csswizardry.com",
-            "tags": [
-                "css best practises",
-                "css",
-                "best practises"
-            ]
-        },
-        {
-            "url": "http://css-tricks.com/one-two-three/",
-            "title": "One, Two, or Three",
-            "author": "Chris Coyier",
-            "tags": [
-                "css best practises"
-            ]
-        },
-        {
-            "url": "http://coding.smashingmagazine.com/2012/07/13/coding-qa-with-chris-coyier-code-smell-type-grid/",
-            "title": "Coding Q&A With Chris Coyier: Code Smell And Type On A Grid",
-            "author": "Chris Coyier",
-            "tags": [
-                "css best practises"
-            ]
-        },
-        {
-            "url": "http://dbushell.com/2012/04/23/modularity-and-style-guides/",
-            "title": "Modularity and Style Guides",
-            "author": "David Bushell",
-            "tags": [
-                "css best practises",
-                "oocss"
-            ]
-        },
-        {
-            "url": "http://github.com/necolas/idiomatic-html",
-            "title": "Principles of writing consistent, idiomatic HTML",
-            "description": "The following document outlines a reasonable style guide for HTML development. These guidelines strongly encourage the use of existing, common, sensible patterns. They should be adapted as needed to create your own style guide.",
-            "author": "Nicolas Gallagher",
-            "author-link": "http://nicolasgallagher.com",
-            "author-mail": "nicolas@nicolasgallagher.com",
-            "tags": [
-                "html best practises",
-                "html",
-                "best practises"
-            ]
-        },
-        {
             "url": "http://html5boilerplate.com/",
             "title": "HTML5 Boilerplate - The web’s most popular front-end template",
             "description": "HTML5 Boilerplate helps you build fast, robust, and adaptable web apps or sites. Kick-start your project with the combined knowledge and effort of 100s of developers, all in one little package.",
@@ -237,7 +103,7 @@
             "title": "A Beginner’s Guide to Ruby",
             "author": "Marc Gayle",
             "tags": [
-                "Ruby ",
+                "ruby",
                 "guide",
                 "OOP"
             ]
@@ -247,8 +113,7 @@
             "title": "Modern Version Control With Git, Part 2",
             "author": "Tobias Günther",
             "tags": [
-                "Git ",
-                "Version control ",
+                "version control",
                 "guide"
             ]
         },
@@ -257,9 +122,8 @@
             "title": "Getting Started With The PayPal API",
             "author": "Eran Galperin",
             "tags": [
-                "API ",
-                "PayPal ",
-                "PHP "
+                "api",
+                "php"
             ]
         },
         {
@@ -267,8 +131,7 @@
             "title": "Modern Version Control With Git",
             "author": "Tobias Günther",
             "tags": [
-                "Git ",
-                "Version control ",
+                "version control",
                 "guide"
             ]
         },
