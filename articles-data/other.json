@@ -304,6 +304,14 @@
                 "doc generators"
             ],
             "description": "StyleDocco generates documentation and style guide documents from your stylesheets."
+        },
+        {
+            "url": "http://github.com/adactio/Pattern-Primer",
+            "title": "Pattern Primer",
+            "tags": [
+                "style guides"
+            ],
+            "description": "Create little snippets of markup and save them to the \"patterns folder.\" The pattern primer will generate a list of all the patterns in that folder. You will see the pattern rendered as HTML. You will also get the source displayed in a textarea."
         }
     ]
 }
