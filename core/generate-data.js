@@ -89,7 +89,7 @@ var prepareJSON = function(p) {
 
 				//Adding parent cat to tags
 				if (util.isArray(targetTags)) {
-					targetTags.unshift(fileName);
+					targetTags.push(fileName);
 				}
 
                 //Generating email md5 hash
