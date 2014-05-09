@@ -295,6 +295,15 @@
                 "doc generators"
             ],
             "description": "A markdown dialect to help you write CSS styleguides efficiently."
+        },
+        {
+            "url": "http://jacobrask.github.io/styledocco/",
+            "title": "StyleDocco",
+            "tags": [
+                "style guides",
+                "doc generators"
+            ],
+            "description": "StyleDocco generates documentation and style guide documents from your stylesheets."
         }
     ]
 }
