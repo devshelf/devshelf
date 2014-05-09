@@ -283,6 +283,14 @@
                 "for",
                 "loops"
             ]
+        },
+        {
+            "url": "http://github.com/polarmobile/coffeescript-style-guide",
+            "title": "CoffeeScript Style Guide",
+            "tags": [
+                "coffeescript",
+                "code style guides"
+            ]
         }
     ]
 }
