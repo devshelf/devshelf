@@ -271,6 +271,18 @@
                 "Version control ",
                 "guide"
             ]
+        },
+        {
+            "url": "http://sourcejs.com/",
+            "title": "Source",
+            "author": "Robert Haritonov",
+            "author-mail": "r@rhr.me",
+            "author-link": "http://rhr.me",
+            "tags": [
+                "style guides",
+                "components"
+            ],
+            "description": "The most powerful tool for documenting web components\r\nand building productive team work."
         }
     ]
 }
