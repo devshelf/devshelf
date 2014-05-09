@@ -291,6 +291,15 @@
                 "coffeescript",
                 "code style guides"
             ]
+        },
+        {
+            "url": "https://github.com/rwaldron/idiomatic.js/",
+            "title": "Principles of Writing Consistent, Idiomatic JavaScript",
+            "tags": [
+                "best practises",
+                "js best practises",
+                "code style guides"
+            ]
         }
     ]
 }
