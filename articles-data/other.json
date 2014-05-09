@@ -339,6 +339,14 @@
                 "doc generators"
             ],
             "description": "Hologram is a Ruby gem that parses comments in your CSS and turns them into a beautiful style guide."
+        },
+        {
+            "url": "http://patternlab.io/",
+            "title": "Pattern Lab",
+            "tags": [
+                "style guides"
+            ],
+            "description": "Pattern Lab is a collection of tools to help you create atomic design systems."
         }
     ]
 }
