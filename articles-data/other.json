@@ -356,6 +356,13 @@
                 "doc generators"
             ],
             "description": "Grunt plugin for building living styleguides with Handlebars from Markdown comments in CSS, SASS and LESS files."
+        },
+        {
+            "url": "http://github.com/north/generator-style-prototype",
+            "title": "Yeoman Generator for Style Prototypes",
+            "tags": [
+                "style guides"
+            ]
         }
     ]
 }
