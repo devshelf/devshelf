@@ -283,6 +283,16 @@
                 "components"
             ],
             "description": "The most powerful tool for documenting web components\r\nand building productive team work."
+        },
+        {
+            "url": "http://github.com/rstacruz/styledown",
+            "title": "Styledown",
+            "author": "Rico Sta. Cruz",
+            "author-mail": "hi@ricostacruz.com",
+            "tags": [
+                "style guides"
+            ],
+            "description": "A markdown dialect to help you write CSS styleguides efficiently."
         }
     ]
 }
