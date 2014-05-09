@@ -197,7 +197,7 @@ app.get('/', function(req, res) {
 
     //Preparing for client
     var clientIndexJson = {},
-        clientIndexJsonFields = ['commonOpts','auth', 'authToken','records'];
+        clientIndexJsonFields = ['commonOpts','auth', 'authToken','records','catalogue'];
 
     clientIndexJsonFields.map(function(item){
        clientIndexJson[item] = indexJson[item];
