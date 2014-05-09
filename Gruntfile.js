@@ -27,7 +27,13 @@ module.exports = function(grunt) {
           main: {
             files: {
               'public/build/css/all.min.css': [
-                  'public/assets/css/*'
+                  'public/assets/css/pure.css',
+                  'public/assets/css/font-awesome.css',
+                  'public/assets/css/main.css',
+                  'public/assets/css/pricing.css',
+                  'public/assets/css/blog.css',
+                  'public/assets/css/form.css',
+                  'public/assets/css/jquery.autoSuggest.css'
               ]
             }
           }
@@ -37,8 +43,13 @@ module.exports = function(grunt) {
             main: {
               files: {
                 'public/build/js/all.min.js': [
-                    'public/assets/js/*',
-                    '!public/assets/js/jquery-2.0.3.min.js'
+                    'public/assets/js/utils.js',
+                    'public/assets/js/mustache.js',
+                    'public/assets/js/main.js',
+                    'public/assets/js/auth.js',
+                    'public/assets/js/voting.js',
+                    'public/assets/js/jquery.autoSuggest.js',
+                    'public/assets/js/form.js'
                 ]
               }
             }
