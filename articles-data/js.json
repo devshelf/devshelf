@@ -300,6 +300,16 @@
                 "js best practises",
                 "code style guides"
             ]
+        },
+        {
+            "url": "http://javascript.crockford.com/code.html",
+            "title": "Code Conventions for the JavaScript Programming Language",
+            "author": "Douglas Crockford",
+            "tags": [
+                "code style guides",
+                "js best practises"
+            ],
+            "description": "This is a set of coding conventions and rules for use in JavaScript programming. It is inspired by the Sun document Code Conventions for the Java Programming Language. It is heavily modified of course because JavaScript is not Java."
         }
     ]
 }
