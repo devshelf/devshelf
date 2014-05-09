@@ -429,6 +429,18 @@
             "tags": [
                 "flexbox"
             ]
+        },
+        {
+            "url": "https://github.com/csswizardry/CSS-Guidelines",
+            "title": "General CSS notes, advice and guidelines",
+            "author": "Harry Roberts",
+            "author-mail": "harry@csswizardry.com",
+            "author-link": "http://csswizardry.com",
+            "tags": [
+                "code style guides",
+                "css best practises",
+                "best practises"
+            ]
         }
     ]
 }
