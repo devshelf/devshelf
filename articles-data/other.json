@@ -290,7 +290,9 @@
             "author": "Rico Sta. Cruz",
             "author-mail": "hi@ricostacruz.com",
             "tags": [
-                "style guides"
+                "style guides",
+                "markdown",
+                "doc generator"
             ],
             "description": "A markdown dialect to help you write CSS styleguides efficiently."
         }
