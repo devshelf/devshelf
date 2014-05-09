@@ -92,6 +92,17 @@ var prepareJSON = function(p) {
 					targetTags.push(fileName);
 				}
 
+				//normalizing all tags
+				if (util.isArray(targetTags)) {
+					var normolizedTargetTags = [];
+
+					targetTags.forEach(function(item){
+						normolizedTargetTags.push(item.toLowerCase());
+					});
+
+					targetObj["tags"] = normolizedTargetTags;
+				}
+
                 //Generating email md5 hash
                 if(typeof targetEmail === 'string') {
                     var authorMailHash = md5(targetEmail);
