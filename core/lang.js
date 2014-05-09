@@ -6,7 +6,7 @@ module.exports = function (req, res, next) {
 
         var
             opts =  global.opts.l18n,
-            geodata = geoip.lookup('82.200.164.226'),
+            geodata = geoip.lookup(req.ip),
             countryCode = geodata.code,
             lang;
 
@@ -36,7 +36,7 @@ module.exports = function (req, res, next) {
         }
 
         // setting language on first enter
-        lang = getCommonLang(countryCode, opts.langZone);
+        req.session.lang = lang = getCommonLang(countryCode, opts.langZone);
         res.cookie('lang', lang, { maxAge: 3600000, httpOnly: false });
         res.cookie('country', countryCode, { maxAge: 3600000, httpOnly: false });
     }

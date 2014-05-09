@@ -77,8 +77,10 @@ app.use(function (req, res, next) {
 */
 app.use(require('./core/lang'));
 
+//For language switching
 app.post('/lang', function (req, res, next) {
     var currentLang = req.body.lang || global.opts.l18n.defaultLang;
+	req.session.lang = currentLang;
     res.cookie('lang', currentLang, { maxAge: 3600000, httpOnly: false });
 
     res.send();
@@ -153,7 +155,7 @@ app
 
 //main page
 app.get('/', function(req, res) {
-    var lang = req.cookies.lang || global.opts.l18n.defaultLang;
+    var lang = req.session.lang || global.opts.l18n.defaultLang;
 
     //text data
     var indexJson = {records: global.indexData[lang]};
