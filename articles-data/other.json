@@ -292,7 +292,7 @@
             "tags": [
                 "style guides",
                 "markdown",
-                "doc generator"
+                "doc generators"
             ],
             "description": "A markdown dialect to help you write CSS styleguides efficiently."
         }
