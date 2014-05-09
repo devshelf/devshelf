@@ -327,6 +327,15 @@
                 "js best practises",
                 "best practises"
             ]
+        },
+        {
+            "url": "https://www.npmjs.org/doc/coding-style.html",
+            "title": "npm-coding-style",
+            "tags": [
+                "code style guides",
+                "best practises"
+            ],
+            "description": "npm's coding style is a bit unconventional. It is not different for difference's sake, but rather a carefully crafted style that is designed to reduce visual clutter and make bugs more apparent."
         }
     ]
 }
