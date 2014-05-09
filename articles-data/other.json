@@ -321,6 +321,15 @@
                 "doc generators"
             ],
             "description": "Inspired by TomDoc, KSS attempts to provide a methodology for writing maintainable, documented CSS within a team. Specifically, KSS is a documentation specification and styleguide format. It is not a preprocessor, CSS framework, naming convention, or specificity guideline.\r\n\r\nKSS is a set of guidelines to help you produce an HTML styleguide tied to CSS documentation that is nice to read in plain text, yet structured enough to be automatically extracted and processed by a machine."
+        },
+        {
+            "url": "http://livingstyleguide.org/",
+            "title": "The Living Style Guide gem",
+            "tags": [
+                "style guides",
+                "doc generators"
+            ],
+            "description": "The easiest way to create front-end style guides with Sass and Compass"
         }
     ]
 }
