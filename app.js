@@ -1,6 +1,5 @@
 /* Module dependencies */
 var express = require('express')
-	, gzippo = require('gzippo')
     , colors = require('colors')
     , fs = require('fs')
     , mustache = require('mustache')
@@ -40,6 +39,15 @@ global.opts.l18n.additionalLangs.map(function(lang) {
 
 
 /*
+* Express settings
+* */
+
+app.configure('development', function(){
+  app.use(express.errorHandler());
+});
+
+
+/*
 * Update local information from git hub and regenerate all-data.json
 * */
 var articlesJson = require('./core/generate-data');
@@ -52,25 +60,18 @@ articlesJson.generateData();
 /**
 * Session
 */
-app.use(express.bodyParser())
-   .use(express.cookieParser(global.opts.cookieSecret));
-
-app.use(express.session({
-    secret: global.opts.cookieSecret,
-    store: new MongoStore({
-        'db': 'sessions',
-        host: global.opts.remoteDBhost,
-        port: global.opts.remoteDBport
-    })
-}));
-
-app.use(function (req, res, next) {
-    res.cookie('app-mode', global.MODE, { maxAge: 3600000, httpOnly: false });
-
-    // keep executing the router middleware
-    next();
-});
-
+app
+	.use(express.bodyParser())
+	.use(express.cookieParser(global.opts.cookieSecret))
+	.use(express.session({
+		secret: global.opts.cookieSecret,
+		store: new MongoStore({
+			'db': 'sessions',
+			host: global.opts.remoteDBhost,
+			port: global.opts.remoteDBport
+		})
+	}))
+	;
 
 /**
 * Localization & geo-ip service
@@ -149,22 +150,39 @@ if (global.opts.validate.enabled) {
 * */
 // Route for static files
 app.set('route', __dirname + '/public');
+
 app
-	.use(gzippo.staticGzip(app.get('route')))
-	.use(gzippo.compress());
+	.use(function(req, res, next) {
+		var path = req.path.split('/');
+
+		if (path[1] === 'output') {
+			res.setHeader("Cache-Control", "max-age=360000");
+		} else {
+			res.setHeader("Cache-Control", "max-age=3153600000");
+		}
+		return next();
+	})
+	.use(express.compress())
+	.use(express.static(app.get('route')))
+	;
+
 
 //main page
 app.get('/', function(req, res) {
     var lang = req.session.lang || global.opts.l18n.defaultLang;
 
-    //text data
+	//setting cookie with app mode
+	res.cookie('app-mode', global.MODE, { maxAge: 3600000, httpOnly: false });
+
+
+    //text resources data
     var indexJson = {records: global.indexData[lang]};
 
-    //for dynamic options update
-    indexJson.commonOpts = global.commonOpts;
+        //for dynamic options update
+        indexJson.commonOpts = global.commonOpts;
 
-    //link to tags catalogues for main page
-    indexJson.catalogue = global.tagLinks[lang];
+        //link to tags catalogues for main page
+        indexJson.catalogue = global.tagLinks[lang];
 
     //Auth data
     if (req.session.authCache && typeof req.session.authCache.github.user === 'object' || typeof req.user === 'object') {
@@ -196,7 +214,7 @@ app.get('/', function(req, res) {
 
 
 /*
-* voting module (requiring place matters)
+* voting module (requiring order matters)
 * */
 var voting = require('./core/voting');
 

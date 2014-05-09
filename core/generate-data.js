@@ -1,4 +1,5 @@
 var fs = require('fs')
+    , util = require('util')
     , colors = require('colors')
     , path = require('path')
     , md5 = require('MD5')
@@ -73,17 +74,23 @@ var prepareJSON = function(p) {
 
         var jsonFileQueue = 0;
         jsonFilesArr.map(function(file){
-            var fileName = path.basename(file, ".json");
-            var currentFile = JSON5.parse(fs.readFileSync(dir+file, "utf8"));
+            var fileName = path.basename(file, ".json"),
+				currentObj = JSON5.parse(fs.readFileSync(dir+file, "utf8"));
 
             //updating currentFile properties
-            var targetDataArr = currentFile[fileName] || [];
+            var targetDataArr = currentObj[fileName] || [];
 
             var i=0;
             while(i<targetDataArr.length){
                 var targetObj = targetDataArr[i],
                     targetEmail = targetObj["author-mail"],
-                    targetUrl = targetObj["url"];
+                    targetUrl = targetObj["url"],
+                    targetTags = targetObj["tags"];
+
+				//Adding parent cat to tags
+				if (util.isArray(targetTags)) {
+					targetTags.unshift(fileName);
+				}
 
                 //Generating email md5 hash
                 if(typeof targetEmail === 'string') {
@@ -106,7 +113,7 @@ var prepareJSON = function(p) {
                 i++;
             }
 
-            outputJSON = extend(outputJSON, currentFile);
+            outputJSON = extend(outputJSON, currentObj);
             jsonFileQueue++;
 
             //When all files scanned, now heading to writing
