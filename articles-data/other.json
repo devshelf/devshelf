@@ -347,6 +347,15 @@
                 "style guides"
             ],
             "description": "Pattern Lab is a collection of tools to help you create atomic design systems."
+        },
+        {
+            "url": "http://github.com/nopr/sassdown",
+            "title": "Sassdown",
+            "tags": [
+                "style guides",
+                "doc generators"
+            ],
+            "description": "Grunt plugin for building living styleguides with Handlebars from Markdown comments in CSS, SASS and LESS files."
         }
     ]
 }
