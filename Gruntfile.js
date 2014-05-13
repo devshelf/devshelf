@@ -92,7 +92,11 @@ module.exports = function(grunt) {
                     nospawn: true
                 }
             }
-        }
+        },
+
+		casperjs: {
+			files: ['tests/*.js']
+		}
     });
 
     //TODO: process only new files, add modules loader
@@ -107,4 +111,5 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('runWatch', ['watch']);
+    grunt.registerTask('test', ['casperjs']);
 };
