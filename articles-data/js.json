@@ -377,6 +377,101 @@
                 "best practises"
             ],
             "description": "This is a guide for writing consistent and aesthetically pleasing node.js code. It is inspired by what is popular within the community, and flavored with some personal opinions."
+        },
+        {
+            "url": "http://www.goodboydigital.com/to-dom-or-not-to-dom/",
+            "title": "To DOM or not to DOM?",
+            "author": "Mat Groves",
+            "tags": [
+                "dom",
+                "canvas",
+                "js",
+                "webgl",
+                "gamedev"
+            ],
+            "description": "A lot of people swear blind that the DOM is faster than Canvas and vice versa. But which is it?"
+        },
+        {
+            "url": "http://diveintohtml5.info/canvas.html",
+            "title": "Let’s Call It ADraw(ing Surface)",
+            "author": "Mark Pilgrim",
+            "author-mail": "jonathantneal@hotmail.com",
+            "author-link": "https://github.com/diveintomark",
+            "tags": [
+                "canvas",
+                "gamedev"
+            ],
+            "description": "HTML 5 defines the <canvas> element as “a resolution-dependent bitmap canvas which can be used for rendering graphs, game graphics, or other visual images on the fly.” A canvas is a rectangle in your page where you can use JavaScript to draw anything you want."
+        },
+        {
+            "url": "http://www.html5rocks.com/en/tutorials/webaudio/intro/",
+            "title": "Getting Started with Web Audio API",
+            "author": "Boris Smus",
+            "author-link": "http://smus.com/",
+            "tags": [
+                "audio",
+                "gamedev"
+            ],
+            "description": "The Web Audio API is a high-level JavaScript API for processing and synthesizing audio in web applications. The goal of this API is to include capabilities found in modern game audio engines and some of the mixing, processing, and filtering tasks that are found in modern desktop audio production applications. What follows is a gentle introduction to using this powerful API."
+        },
+        {
+            "url": "http://html5doctor.com/taking-web-audio-offline-in-ios-6-safari/",
+            "title": "Taking Web Audio Offline in iOS 6 Safari",
+            "author": "Alex Gibson",
+            "author-mail": "alxgbsn@gmail.com",
+            "author-link": "https://github.com/alexgibson",
+            "tags": [
+                "audio",
+                "gamedev"
+            ],
+            "description": "Playing cached audio for offline use on iOS Safari has long been a challenge that has proved to be mission impossible. But with the advent of the (WebKit-only) Web Audio API, it is now finally achievable — although you still need to jump through a few hoops"
+        },
+        {
+            "url": "http://davidwalsh.name/fullscreen",
+            "title": "Fullscreen API",
+            "author": "David Walsh",
+            "author-mail": "david@davidwalsh.name",
+            "author-link": "https://github.com/darkwing",
+            "tags": [
+                "fullscreen",
+                "gamedev"
+            ],
+            "description": "As we move toward more true web applications, our JavaScript APIs are doing their best to keep up.  One very simple but useful new JavaScript API is the Fullscreen API.  The Fullscreen API provides a programmatic way to request fullscreen display from the user, and exit fullscreen when desired. "
+        },
+        {
+            "url": "http://sealedabstract.com/rants/why-mobile-web-apps-are-slow/",
+            "title": "Why mobile web apps are slow",
+            "author": "Drew Crawford",
+            "author-mail": "drew@sealedabstract.com",
+            "author-link": "http://github.com/drewcrawford",
+            "tags": [
+                "performance",
+                "mobile",
+                "gamedev"
+            ]
+        },
+        {
+            "url": "http://blog.teamtreehouse.com/building-multi-touch-web-applications",
+            "title": "Building Multi-Touch Web Applications",
+            "author": "Matt West",
+            "author-link": "http://mattwest.io/",
+            "tags": [
+                "touch",
+                "gamedev"
+            ],
+            "description": "In this blog post we are going to be focussing on the how we interact with multi-touch displays. You are going to be learning about the APIs that are available for building multi-touch web applications. After a quick bit of initial theory you’ll build a fully-functional multi-touch drawing app that works great on your phone or tablet."
+        },
+        {
+            "url": "http://www.html5rocks.com/en/tutorials/appcache/beginner/",
+            "title": "A Beginner's Guide to Using the Application Cache",
+            "author": "Eric Bidelman",
+            "author-link": "http://ericbidelman.tumblr.com/",
+            "tags": [
+                "offline",
+                "api",
+                "gamedev"
+            ],
+            "description": "It's becoming increasingly important for web-based applications to be accessible offline. Yes, all browsers can cache pages and resources for long periods if told to do so, but the browser can kick individual items out of the cache at any point to make room for other things. HTML5 addresses some of the annoyances of being offline with the ApplicationCache interface."
         }
     ]
 }

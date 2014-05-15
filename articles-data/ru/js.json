@@ -26,6 +26,50 @@
             "tags": [
                 "bind"
             ]
+        },
+        {
+            "url": "http://learn.javascript.ru/js-animation",
+            "title": "JS-анимация ",
+            "author": "Илья Кантор",
+            "author-link": "http://ikantor.moikrug.ru/",
+            "tags": [
+                "js",
+                "animation",
+                "gamedev"
+            ],
+            "description": "В этой главе мы рассмотрим устройство браузерной анимации. Она примерно одинаково реализована во всех фреймворках.\r\nПонимание этого позволит разобраться в происходящем, если что-то вдруг не работает, а также написать сложную анимацию самому."
+        },
+        {
+            "url": "http://html5.by/blog/what-is-requestanimationframe/",
+            "title": "Что такое requestAnimationFrame?",
+            "author": "Nedudi Дудин Дмитрий",
+            "author-link": "https://twitter.com/nedudi",
+            "tags": [
+                "animation",
+                "gamedev"
+            ],
+            "description": "Mozilla (создатели Firefox) предложил функцию requestAnimationFrame, которая впоследствии была принята и усовершенствована командой WebKit (Chrome и Safari). Она обеспечивает встроеный API для запуска любых типов анимации в браузере (DOM элементов, canvas, WebGL и др.)"
+        },
+        {
+            "url": "http://html5.by/blog/audio/",
+            "title": "Web Audio API – новые возможности генерации, обработки и объемного распределения звука в браузере.",
+            "author": "Nedudi Дудин Дмитрий",
+            "author-link": "https://twitter.com/nedudi",
+            "tags": [
+                "audio",
+                "gamedev"
+            ],
+            "description": "Web Audio API – одна из новинок, которая значительно расширяет возможности web приложений при работе со звуком. Это мощнейший инструмент, без которого Вам сложно будет обойтись в будущем при разработке современных игр и интерактивных веб приложений."
+        },
+        {
+            "url": "http://habrahabr.ru/post/151815/",
+            "title": "Application Cache API — новые возможности и проблемы",
+            "author": "VitaZheltyakov",
+            "author-link": "http://habrahabr.ru/users/VitaZheltyakov/",
+            "tags": [
+                "offline", "api", "gamedev"
+            ],
+            "description": "В данной статье рассматривается Application Cache API — совокупность функций, обеспечивающих продвинутое кэширование ресурсов web-приложения, и с помощью которых можно просматривать загруженные ранее сайты без подключения к сети Интернет."
         }
     ]
 }
