@@ -297,6 +297,16 @@
                 "canvas"
             ],
             "description": "HTML 5 defines the <canvas> element as “a resolution-dependent bitmap canvas which can be used for rendering graphs, game graphics, or other visual images on the fly.” A canvas is a rectangle in your page where you can use JavaScript to draw anything you want."
+        },
+        {
+            "url": "http://www.html5rocks.com/en/tutorials/webaudio/intro/",
+            "title": "Getting Started with Web Audio API",
+            "author": "Boris Smus",
+            "author-link": "http://smus.com/",
+            "tags": [
+                "audio"
+            ],
+            "description": "The Web Audio API is a high-level JavaScript API for processing and synthesizing audio in web applications. The goal of this API is to include capabilities found in modern game audio engines and some of the mixing, processing, and filtering tasks that are found in modern desktop audio production applications. What follows is a gentle introduction to using this powerful API."
         }
     ]
 }
