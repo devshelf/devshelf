@@ -340,6 +340,16 @@
                 "performance",
                 "mobile"
             ]
+        },
+        {
+            "url": "http://blog.teamtreehouse.com/building-multi-touch-web-applications",
+            "title": "Building Multi-Touch Web Applications",
+            "author": "Matt West",
+            "author-link": "http://mattwest.io/",
+            "tags": [
+                "touch"
+            ],
+            "description": "In this blog post we are going to be focussing on the how we interact with multi-touch displays. You are going to be learning about the APIs that are available for building multi-touch web applications. After a quick bit of initial theory you’ll build a fully-functional multi-touch drawing app that works great on your phone or tablet."
         }
     ]
 }
