@@ -286,6 +286,17 @@
                 "webgl"
             ],
             "description": "A lot of people swear blind that the DOM is faster than Canvas and vice versa. But which is it?"
+        },
+        {
+            "url": "http://diveintohtml5.info/canvas.html",
+            "title": "Let’s Call It ADraw(ing Surface)",
+            "author": "Mark Pilgrim",
+            "author-mail": "jonathantneal@hotmail.com",
+            "author-link": "https://github.com/diveintomark",
+            "tags": [
+                "canvas"
+            ],
+            "description": "HTML 5 defines the <canvas> element as “a resolution-dependent bitmap canvas which can be used for rendering graphs, game graphics, or other visual images on the fly.” A canvas is a rectangle in your page where you can use JavaScript to draw anything you want."
         }
     ]
 }
