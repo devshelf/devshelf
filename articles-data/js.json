@@ -329,6 +329,17 @@
                 "fullscreen"
             ],
             "description": "As we move toward more true web applications, our JavaScript APIs are doing their best to keep up.  One very simple but useful new JavaScript API is the Fullscreen API.  The Fullscreen API provides a programmatic way to request fullscreen display from the user, and exit fullscreen when desired. "
+        },
+        {
+            "url": "http://sealedabstract.com/rants/why-mobile-web-apps-are-slow/",
+            "title": "Why mobile web apps are slow",
+            "author": "Drew Crawford",
+            "author-mail": "drew@sealedabstract.com",
+            "author-link": "http://github.com/drewcrawford",
+            "tags": [
+                "performance",
+                "mobile"
+            ]
         }
     ]
 }
