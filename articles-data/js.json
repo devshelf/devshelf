@@ -307,6 +307,17 @@
                 "audio"
             ],
             "description": "The Web Audio API is a high-level JavaScript API for processing and synthesizing audio in web applications. The goal of this API is to include capabilities found in modern game audio engines and some of the mixing, processing, and filtering tasks that are found in modern desktop audio production applications. What follows is a gentle introduction to using this powerful API."
+        },
+        {
+            "url": "http://html5doctor.com/taking-web-audio-offline-in-ios-6-safari/",
+            "title": "Taking Web Audio Offline in iOS 6 Safari",
+            "author": "Alex Gibson",
+            "author-mail": "alxgbsn@gmail.com",
+            "author-link": "https://github.com/alexgibson",
+            "tags": [
+                "audio"
+            ],
+            "description": "Playing cached audio for offline use on iOS Safari has long been a challenge that has proved to be mission impossible. But with the advent of the (WebKit-only) Web Audio API, it is now finally achievable — although you still need to jump through a few hoops"
         }
     ]
 }
