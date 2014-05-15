@@ -274,6 +274,18 @@
             "tags": [
                 "constructor"
             ]
+        },
+        {
+            "url": "http://www.goodboydigital.com/to-dom-or-not-to-dom/",
+            "title": "To DOM or not to DOM?",
+            "author": "Mat Groves",
+            "tags": [
+                "dom",
+                "canvas",
+                "js",
+                "webgl"
+            ],
+            "description": "A lot of people swear blind that the DOM is faster than Canvas and vice versa. But which is it?"
         }
     ]
 }
