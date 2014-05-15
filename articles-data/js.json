@@ -318,6 +318,17 @@
                 "audio"
             ],
             "description": "Playing cached audio for offline use on iOS Safari has long been a challenge that has proved to be mission impossible. But with the advent of the (WebKit-only) Web Audio API, it is now finally achievable — although you still need to jump through a few hoops"
+        },
+        {
+            "url": "http://davidwalsh.name/fullscreen",
+            "title": "Fullscreen API",
+            "author": "David Walsh",
+            "author-mail": "david@davidwalsh.name",
+            "author-link": "https://github.com/darkwing",
+            "tags": [
+                "fullscreen"
+            ],
+            "description": "As we move toward more true web applications, our JavaScript APIs are doing their best to keep up.  One very simple but useful new JavaScript API is the Fullscreen API.  The Fullscreen API provides a programmatic way to request fullscreen display from the user, and exit fullscreen when desired. "
         }
     ]
 }
