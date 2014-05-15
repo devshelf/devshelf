@@ -350,6 +350,17 @@
                 "touch"
             ],
             "description": "In this blog post we are going to be focussing on the how we interact with multi-touch displays. You are going to be learning about the APIs that are available for building multi-touch web applications. After a quick bit of initial theory you’ll build a fully-functional multi-touch drawing app that works great on your phone or tablet."
+        },
+        {
+            "url": "http://www.html5rocks.com/en/tutorials/appcache/beginner/",
+            "title": "A Beginner's Guide to Using the Application Cache",
+            "author": "Eric Bidelman",
+            "author-link": "http://ericbidelman.tumblr.com/",
+            "tags": [
+                "offline",
+                "api"
+            ],
+            "description": "It's becoming increasingly important for web-based applications to be accessible offline. Yes, all browsers can cache pages and resources for long periods if told to do so, but the browser can kick individual items out of the cache at any point to make room for other things. HTML5 addresses some of the annoyances of being offline with the ApplicationCache interface."
         }
     ]
 }
