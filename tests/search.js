@@ -1,7 +1,7 @@
 casper.test.begin('Checking search', 3, function suite(test) {
 	casper.start('http://127.0.0.1:8888').then(function() {
 
-		test.assertExists('.js-search-input', 'Search exists');
+		test.assertExists('.js-search-input', 'Search input exists');
 
         this.fillSelectors('form.home-search', {
             '.js-search-input':'css'
@@ -11,7 +11,7 @@ casper.test.begin('Checking search', 3, function suite(test) {
 
     }).then(function() {
 
-        test.assertExists('#posts-output', 'Results exist');
+        test.assertExists('#posts-output', 'Results exist after submit');
 
         test.assertEquals(this.getCurrentUrl(), 'http://127.0.0.1:8888/#!/search/css', 'URL is right')
 
