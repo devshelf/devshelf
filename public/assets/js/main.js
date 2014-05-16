@@ -294,6 +294,13 @@ var templateEngine = (function() {
             return this;
         },
 
+        gotoPage: function (addr) {
+        	addr = addr.replace(/\s/ig, '_');
+			window.location.hash = '!/search/' + addr;
+
+			return this;
+        },
+
         /**
          * Generate links to article of the same categoty
          * @param {Object} p
@@ -534,7 +541,9 @@ var mainApp = function() {
     });
 
 	$('#main-content').on('submit', 'form', function() {
-		window.location.hash = '!/search/' + $('.js-search-input-interactive').val();
+
+		templateEngine.gotoPage( $('.js-search-input-interactive').val() );
+
 		return false;
 	})
 
@@ -864,6 +873,7 @@ $(function() {
 				width:321,
 				zIndex: 9999,
 				appendTo: '.home-search',
+				triggerSelectOnValidInput: false,
 				deferRequestBy: 0, //miliseconds
 				noCache: false, //default is false, set to true to disable caching
 				onSelect: function() {
@@ -874,12 +884,12 @@ $(function() {
 			.off('focus')
 			.on('keyup', function(e) {
 				if (e.keyCode == 13) {
-					window.location.hash = '!/search/' + $(this).val();
+					templateEngine.gotoPage( $(this).val() );
 				}
 			})
 
 		$('#main-page').on('click', '.autocomplete-suggestion', function() {
-			window.location.hash = '!/search/' + $(this).text();
+			templateEngine.gotoPage( $(this).text() );
 		})
 
 	}
