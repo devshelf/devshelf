@@ -207,7 +207,7 @@ var generateTagLinks = function(lang) {
     for (var section in global.articlesData[lang]) {
         var targetArr = global.articlesData[lang][section] || [];
 
-        if (typeof global.tagLinks[lang][section] !== 'object') {
+        if ( !util.isArray(global.tagLinks[lang][section]) ) {
             global.tagLinks[lang][section] = []
         }
 

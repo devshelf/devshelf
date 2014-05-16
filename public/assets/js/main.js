@@ -858,12 +858,18 @@ $(function() {
 	var prepareAutosuggest = function() {
 		var suggest = [];
 
-		for (var i in appData.catalogue) {
-			suggest.push(i);
-			for (var j = 0; j < appData.catalogue[i].length; j++) {
-				suggest.push(appData.catalogue[i][j].linkTitle);
-			}
-		}
+        for (var i=0; i < searchTagList.length; i++ ) {
+            var targetObj = searchTagList[i],
+                tags = targetObj.tags;
+
+            for (var mi=0; mi < tags.length; mi++ ) {
+                var tag = tags[mi];
+
+                if (suggest.indexOf(tag) === -1) {
+                    suggest.push(tag);
+                }
+            }
+        }
 
 		$('#main-page .js-search-input')
 			.autocomplete({
@@ -886,13 +892,13 @@ $(function() {
 				if (e.keyCode == 13) {
 					templateEngine.gotoPage( $(this).val() );
 				}
-			})
+			});
 
 		$('#main-page').on('click', '.autocomplete-suggestion', function() {
 			templateEngine.gotoPage( $(this).text() );
 		})
 
-	}
+	};
 
     /**
      * Gets templates and starts The App

@@ -166,46 +166,48 @@ app
 	.use(express.static(app.get('route')))
 	;
 
-
-//main page
-app.get('/', function(req, res) {
+var preparePageData = function(req){
     var lang = req.session.lang || global.opts.l18n.defaultLang;
 
-	//setting cookie with app mode
-	res.cookie('app-mode', global.MODE, { maxAge: 3600000, httpOnly: false });
-
-
     //text resources data
-    var indexJson = {records: global.indexData[lang]};
+    var data = {records: global.indexData[lang]};
 
-        //for dynamic options update
-        indexJson.commonOpts = global.commonOpts;
+    //for dynamic options update
+    data.commonOpts = global.commonOpts;
 
-        //link to tags catalogues for main page
-        indexJson.catalogue = global.tagLinks[lang];
+    //link to tags catalogues for main page
+    data.catalogue = global.tagLinks[lang];
 
     //Auth data
     if (req.session.authCache && typeof req.session.authCache.github.user === 'object' || typeof req.user === 'object') {
-        indexJson.auth = true;
-        indexJson.authToken = req.session.authCache.github.accessToken;
+        data.auth = true;
+        data.authToken = req.session.authCache.github.accessToken;
     } else {
-        indexJson.auth = false;
+        data.auth = false;
     }
 
     //Production mode in templates
-    if (global.MODE === 'production') { indexJson.production = true; }
+    if (global.MODE === 'production') { data.production = true; }
 
     //Preparing for client
     var clientIndexJson = {},
-        clientIndexJsonFields = ['commonOpts','auth', 'authToken','records','catalogue'];
+        clientIndexJsonSharedFields = ['commonOpts','auth', 'authToken','records'];
 
-    clientIndexJsonFields.map(function(item){
-       clientIndexJson[item] = indexJson[item];
+    clientIndexJsonSharedFields.map(function(item){
+       clientIndexJson[item] = data[item];
     });
 
-    indexJson.appData = JSON5.stringify(clientIndexJson);
+    data.appData = JSON5.stringify(clientIndexJson);
 
+    return data;
+};
 
+// Main page
+app.get('/', function(req, res) {
+	//setting cookie with app mode
+	res.cookie('app-mode', global.MODE, { maxAge: 3600000, httpOnly: false });
+
+    var indexJson = preparePageData(req);
     var indexPage = fs.readFileSync(__dirname + '/public/build/index.html', "utf8");
     var htmlToSend = mustache.to_html(indexPage, indexJson);
 
