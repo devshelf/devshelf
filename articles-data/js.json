@@ -472,6 +472,73 @@
                 "gamedev"
             ],
             "description": "It's becoming increasingly important for web-based applications to be accessible offline. Yes, all browsers can cache pages and resources for long periods if told to do so, but the browser can kick individual items out of the cache at any point to make room for other things. HTML5 addresses some of the annoyances of being offline with the ApplicationCache interface."
+        },
+        {
+            "url": "http://bourbon.io/",
+            "title": "Bourbon",
+            "author": "Thoughtbot",
+            "tags": ["preprocessors"]
+        },
+        {
+            "url": "http://clearleft.github.com/clearless/",
+            "title": "Clearless",
+            "author": "Mark Perkins",
+            "tags": ["snippets"]
+        },
+        {
+            "url": "http://frontender.info/pointer-events-60fps/",
+            "title": "60 кадров в секунду с помощью pointer-events: none; при прокрутке",
+            "author": "ryanseddon",
+            "tags": ["perfomance"]
+        },
+        {
+            "url": "http://css-tricks.com/cross-browser-css-injection/",
+            "title": "Cross Browser CSS Injection",
+            "author": "Shane Osbourne",
+            "tags": [
+                "browser-sync"
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2011/07/07/my-favorite-programming-mistakes/",
+            "title": "My Favorite Programming Mistakes",
+            "author": "Paul Tero",
+            "tags": [
+                "PHP ",
+                "programming"
+            ]
+        },
+        {
+            "url": "http://frontender.info/understanding-the-node-js-event-loop/",
+            "title": "Как работает event loop в Node.js",
+            "author": "mixu",
+            "tags": [
+                "nodejs"
+            ]
+        },
+        {
+            "url": "http://frontender.info/fullscreen/",
+            "title": "Использование полноэкранного режима на мобильных устройствах",
+            "author": "paulkinlan",
+            "tags": ["gestures", "mobile"]
+        },
+        {
+            "url": "http://frontender.info/an-introduction-to-dom-events/",
+            "title": "Введение в события DOM",
+            "author": "wilsonpage",
+            "tags": [
+                "DOM"
+            ]
+        },
+        {
+          "url": "http://coding.smashingmagazine.com/2011/06/30/designing-for-android/",
+          "title": "Designing For Android",
+          "author": "Dan McKenzie",
+          "tags": [
+            "eclipse",
+            "design",
+            "mobile"
+          ]
         }
     ]
 }

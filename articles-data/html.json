@@ -1,6 +1,6 @@
 {
     "html": [
-		{
+        {
             "url": "http://github.com/necolas/idiomatic-html",
             "title": "Principles of writing consistent, idiomatic HTML",
             "description": "The following document outlines a reasonable style guide for HTML development. These guidelines strongly encourage the use of existing, common, sensible patterns. They should be adapted as needed to create your own style guide.",
@@ -9,7 +9,7 @@
             "author-mail": "nicolas@nicolasgallagher.com",
             "tags": [
                 "html best practises",
-				"code style guides",
+                "code style guides",
                 "best practises"
             ]
         },
@@ -285,6 +285,24 @@
             "author": "Derek Johnson",
             "tags": [
                 "semantics"
+            ]
+        },
+        {
+            "url": "http://inspirationalpixels.com/articles/modular-maintainable-reusable-htmlcss",
+            "title": "Modular, Maintainable &amp; Reusable HTML/CSS",
+            "author": "Seb Kay",
+            "tags": [
+                "architecture",
+                "css"
+            ]
+        },
+        {
+            "url": "http://coding.smashingmagazine.com/2011/07/05/how-to-modify-a-default-joomla-1-5-template/",
+            "title": "How To Modify A Default Joomla 1.5 Template",
+            "author": "Kristoffer Sandven",
+            "tags": [
+                "PHP ",
+                "css"
             ]
         }
     ]
