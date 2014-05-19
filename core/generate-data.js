@@ -87,6 +87,12 @@ var prepareJSON = function(p) {
                     targetUrl = targetObj["url"],
                     targetTags = targetObj["tags"];
 
+                if ( !util.isArray(targetTags) ) {
+                    targetObj["tags"] = [];
+
+                    targetTags = targetObj["tags"];
+                }
+
 				//Adding parent cat to tags
 				if (util.isArray(targetTags)) {
 					targetTags.push(fileName);
