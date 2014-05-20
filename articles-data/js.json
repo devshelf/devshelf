@@ -141,6 +141,7 @@
         {
             "url": "http://lvivski.github.com/anima/",
             "title": "Anima.js",
+            "description": "With Anima it's easy to animate over a hundred objects at a time. Each item can have it's mass and viscosity to emulate reallife objects! And it's only 5k when gzipped.",
             "author": "Yehor Lvivski",
             "tags": [
                 "animation"
@@ -149,6 +150,7 @@
         {
             "url": "http://css-tricks.com/controlling-css-animations-transitions-javascript/",
             "title": "Controlling CSS Animations and Transitions with JavaScript",
+            "description": "Coupled with a touch of JavaScript, CSS animations and transitions are able to accomplish hardware-accelerated animations and interactions more efficiently than most JavaScript libraries.",
             "author": "Zach Saucier",
             "tags": [
                 "animation",
@@ -198,6 +200,7 @@
         {
             "url": "http://labs.bigroomstudios.com/libraries/animo-js",
             "title": "animo.js",
+            "description": "The problem with CSS alone is that they're usually fired on page load or a hover event, and you can't stack animations or trigger another when one has completed. That's where JavaScript and animo come in.",
             "author": "Daniel Raftery",
             "tags": [
                 "animation",

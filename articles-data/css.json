@@ -156,6 +156,7 @@
         {
             "url": "http://alistapart.com/article/understanding-css3-transitions/",
             "title": "Understanding CSS3 Transitions",
+            "description": "I like to think of CSS transitions like butter, smoothing out value changes in your stylesheets when triggered by interactions like hovering, clicking, and focusing. Unlike real butter, transitions aren’t fattening—they’re just a few simple rules in your stylesheet to enrich certain events in your designs.",
             "tags": [
                 "transition",
                 "animation"
@@ -173,17 +174,9 @@
             ]
         },
         {
-            "url": "http://www.netmagazine.com/tutorials/create-page-turn-effect",
-            "title": "Create a page turn effect",
-            "author": "Joe Lambert",
-            "tags": [
-                "transition",
-                "animation"
-            ]
-        },
-        {
             "url": "http://www.css3.info/preview/css3-transitions/",
             "title": "An Introduction to CSS3 Transitions",
+            "description": "CSS3 Transitions are a presentational effect which allow property changes in CSS values, such as those that may be defined to occur on :hover or :focus, to occur smoothly over a specified duration – rather than happening instantaneously as is the normal behaviour.",
             "tags": [
                 "transition",
                 "animation"
@@ -192,6 +185,7 @@
         {
             "url": "https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions",
             "title": "Using CSS transitions",
+            "description": "CSS transitions let you decide which properties to animate (by listing them explicitly), when the animation will start (by setting a delay), how long the transition will last (by setting a duration), and how the transition will run (by defining a timing function, e.g. linearly or quick at the beginning, slow at the end).",
             "tags": [
                 "transition",
                 "animation",
@@ -574,6 +568,7 @@
         {
             "url": "http://www.kirupa.com/html5/introduction_to_animation_html.htm",
             "title": "Introduction to Animation in HTML",
+            "description": "In HTML, there isn't just a single animation implementation that you can use. You actually have three flavors of animation to choose from, and each one is specialized for certain kinds of tasks.",
             "author": "Kirupa Chinnathambi",
             "tags": ["animation"]
         },
@@ -625,8 +620,9 @@
             ]
         },
         {
-            "url": "http://http://alistapart.com/article/web-animation-at-work/",
+            "url": "http://alistapart.com/article/web-animation-at-work/",
             "title": "Web Animation at Work",
+            "description": "Just as hierarchy guides users through content, animation guides them through interactions by helping them understand relationships, structure, cause, and effect. Animation shouldn’t be a nice-to-have. It is critical to communication.",
             "author": "Rachel Nabors",
             "tags": [
                 "animation"
@@ -644,6 +640,7 @@
         {
             "url": "http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/",
             "title": "High Performance Animations",
+            "description": "Modern browsers can animate four things really cheaply: position, scale, rotation and opacity. If you animate anything else, the chances are you’re not going to hit a silky smooth 60fps.",
             "author": "Paul Lewis, Paul Irish",
             "tags": [
                 "animation",
@@ -662,6 +659,7 @@
         {
             "url": "http://css-tricks.com/css-animation-tricks/",
             "title": "CSS Animation Tricks: State Jumping, Negative Delays, Animating Origin, and More",
+            "description": "To create the animations as I imagine them using as few elements as possible, I've found some tricks to make CSS do things you might not know it could do. I'd like to share them with you.",
             "author": "Zach Saucier",
             "tags": [
                 "animation"
@@ -670,6 +668,7 @@
         {
             "url": "http://www.beyondkinetic.com/motion-ui-design-principles/",
             "title": "Motion Ui Design Principles",
+            "description": "With the increasing emphasis on motion its important that it is implemented with the same integrity and purpose as all the other aspects of Ui design. With the exclusion of skeuomorphic design there is now a freedom for content to behave in an unrestricted manner.",
             "author": "Grant Liddall",
             "tags": [
                 "animation",
@@ -679,6 +678,7 @@
         {
             "url": "http://alistapart.com/article/ui-animation-and-ux-a-not-so-secret-friendship/",
             "title": "UI Animation and UX: A Not-So-Secret Friendship",
+            "description": "When used as more than just a subtle design detail, animation can provide cues, guide the eye, and soften the sometimes-hard edges of web interactions. It can improve the user experience. And we can do it with CSS.",
             "author": "Val Head",
             "tags": [
                 "animation",
@@ -688,6 +688,7 @@
         {
             "url": "http://css-tricks.com/myth-busting-css-animations-vs-javascript/",
             "title": "Myth Busting: CSS Animations vs. JavaScript",
+            "description": "CSS Animations have been talked about endlessly at conferences where phrases like \"hardware accelerated\" and \"mobile-friendly\" tickle the ears of the audience. JavaScript-based animation was treated as if it was antiquated and \"dirty\". But is it?",
             "author": "Jack Doyle",
             "tags": [
                 "animation",
@@ -697,6 +698,7 @@
         {
             "url": "http://www.smashingmagazine.com/2014/04/15/understanding-css-timing-functions/",
             "title": "Understanding CSS Timing Functions",
+            "description": "The timing function is a bit of a hidden gem when it comes to CSS animation, and you could well be surprised by just how much you can do with it.",
             "author": "Stephen Greig",
             "tags": [
                 "animation",
@@ -706,6 +708,7 @@
         {
             "url": "http://www.smashingmagazine.com/2013/10/23/smart-transitions-in-user-experience-design/",
             "title": "Smart Transitions In User Experience Design",
+            "description": "Some websites outperform others, whether in their content, usability, design, features, etc. Details of interaction design and animation make a fundamental difference on modern websites. We’ll share some lessons drawn from various models and analyze why these simple patterns work so well.",
             "author": "Adrian Zumbrunnen",
             "tags": [
                 "animation",
