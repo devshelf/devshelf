@@ -672,6 +672,15 @@
             "tags": [
                 "animation"
             ]
+        },
+        {
+            "url": "http://alistapart.com/article/ui-animation-and-ux-a-not-so-secret-friendship",
+            "title": "UI Animation and UX: A Not-So-Secret Friendship",
+            "author": "Val Head",
+            "tags": [
+                "animation",
+                "ux"
+            ]
         }
     ]
 }
