@@ -294,6 +294,14 @@
                 "promise",
                 "tutorial"
             ]
+        },
+        {
+            "url": "http://www.funnyant.com/choosing-javascript-mvc-framework/",
+            "title": "Choosing a JavaScript MVC Framework",
+            "author": "Craig McKeachie",
+            "tags": [
+                "mvc"
+            ]
         }
     ]
 }
