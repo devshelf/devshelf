@@ -329,6 +329,16 @@
                 "mvc",
                 "ember"
             ]
+        },
+        {
+            "url": "http://www.sitepoint.com/ember-todomvc-rails/",
+            "title": "Ember and TodoMVC on Rails",
+            "author": "Michal Olah",
+            "author-link": "https://twitter.com/michalolah",
+            "tags": [
+                "mvc",
+                "ember"
+            ]
         }
     ]
 }
