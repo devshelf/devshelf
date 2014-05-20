@@ -681,6 +681,14 @@
                 "animation",
                 "ux"
             ]
+        },
+        {
+            "url": "http://alistapart.com/article/web-animation-at-work",
+            "title": "Web Animation at Work",
+            "author": "Rachel Nabors",
+            "tags": [
+                "animation"
+            ]
         }
     ]
 }
