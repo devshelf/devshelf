@@ -302,6 +302,16 @@
             "tags": [
                 "mvc"
             ]
+        },
+        {
+            "url": "http://code.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660",
+            "title": "Intro to the React Framework",
+            "author": "Pavan Podila",
+            "author-link": "pixelingene.com",
+            "tags": [
+                "mvc",
+                "react"
+            ]
         }
     ]
 }
