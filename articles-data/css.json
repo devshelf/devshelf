@@ -31,14 +31,13 @@
             "author-link": "http://snook.ca/",
             "tags": [
                 "css methodologies",
-
                 "code style guides"
             ]
         },
         {
             "url": "http://csswizardry.com/2013/07/writing-dryer-vanilla-css/",
             "title": "Writing DRYer vanilla CSS",
-			"author": "Harry Roberts",
+            "author": "Harry Roberts",
             "author-link": "http://csswizardry.com",
             "author-mail": "harry@csswizardry.com",
             "tags": [
@@ -60,7 +59,7 @@
         {
             "url": "http://csswizardry.com/2012/11/code-smells-in-css/",
             "title": "Code smells in CSS",
-			"author": "Harry Roberts",
+            "author": "Harry Roberts",
             "author-link": "http://csswizardry.com",
             "author-mail": "harry@csswizardry.com",
             "tags": [
@@ -569,13 +568,17 @@
             "url": "http://designshack.net/articles/css/5-steps-to-drastically-improve-your-css-knowledge-in-24-hours/",
             "title": "5 Steps to Drastically Improve Your CSS Knowledge in 24 Hours",
             "author": "Joshua Johnson",
-            "tags": ["fast learning"]
+            "tags": [
+                "fast learning"
+            ]
         },
         {
             "url": "http://www.kirupa.com/html5/introduction_to_animation_html.htm",
             "title": "Introduction to Animation in HTML",
             "author": "Kirupa Chinnathambi",
-            "tags": ["animation"]
+            "tags": [
+                "animation"
+            ]
         },
         {
             "url": "http://blog.millermedeiros.com/solid-css/",
@@ -592,7 +595,9 @@
             "url": "http://davidwalsh.name/pointer-media-query",
             "title": "Pointer Media Query",
             "author": "David Walsh",
-            "tags": ["media queries"]
+            "tags": [
+                "media queries"
+            ]
         },
         {
             "url": "http://hop.ie/blog/stereoscopic/",
@@ -614,7 +619,9 @@
             "url": "http://www.creativebloq.com/css3/avoid-css-mistakes-10135080",
             "title": "10 CSS mistakes every web designer must avoid",
             "author": "Pam Selle",
-            "tags": ["fast learning"]
+            "tags": [
+                "fast learning"
+            ]
         },
         {
             "url": "http://frontender.info/the-cat-and-the-hat-css-selectors/",
@@ -622,6 +629,15 @@
             "author": "robdodson",
             "tags": [
                 "selectors"
+            ]
+        },
+        {
+            "url": "http://blog.tumult.com/2013/02/28/transform-translate-vs-top-left/",
+            "title": "Myth busting the HTML5 performance of transform:translate vs. top/left",
+            "author": "Jonathan Deutsch",
+            "tags": [
+                "animation",
+                " performance"
             ]
         }
     ]
