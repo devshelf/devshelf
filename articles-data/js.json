@@ -320,6 +320,15 @@
             "tags": [
                 "mvc"
             ]
+        },
+        {
+            "url": "http://frontside.io/blog/2014/02/24/ember-and-the-future-of-the-web.html",
+            "title": "Ember and the future of the web",
+            "author": "Brandon Hays",
+            "tags": [
+                "mvc",
+                "ember"
+            ]
         }
     ]
 }
