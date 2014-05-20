@@ -295,17 +295,17 @@
                 "tutorial"
             ]
         },
-	    {
-		    "url":"http://mherman.org/blog/2014/01/29/meteor-dot-js-in-action-create-an-app-test-with-laika/",
-		    "title":"Meteor.js in Action: Create an App, Test With Laika",
-		    "author":"Michael Herman",
-		    "tags":[
-			    "tutorial",
-			    "meteorjs",
-			    "laika",
-			    "testing"
-		    ]
-	    },
+        {
+            "url": "http://mherman.org/blog/2014/01/29/meteor-dot-js-in-action-create-an-app-test-with-laika/",
+            "title": "Meteor.js in Action: Create an App, Test With Laika",
+            "author": "Michael Herman",
+            "tags": [
+                "tutorial",
+                "meteorjs",
+                "laika",
+                "testing"
+            ]
+        },
         {
             "url": "http://github.com/polarmobile/coffeescript-style-guide",
             "title": "CoffeeScript Style Guide",
@@ -477,19 +477,25 @@
             "url": "http://bourbon.io/",
             "title": "Bourbon",
             "author": "Thoughtbot",
-            "tags": ["preprocessors"]
+            "tags": [
+                "preprocessors"
+            ]
         },
         {
             "url": "http://clearleft.github.com/clearless/",
             "title": "Clearless",
             "author": "Mark Perkins",
-            "tags": ["snippets"]
+            "tags": [
+                "snippets"
+            ]
         },
         {
             "url": "http://frontender.info/pointer-events-60fps/",
             "title": "60 кадров в секунду с помощью pointer-events: none; при прокрутке",
             "author": "ryanseddon",
-            "tags": ["perfomance"]
+            "tags": [
+                "perfomance"
+            ]
         },
         {
             "url": "http://css-tricks.com/cross-browser-css-injection/",
@@ -520,7 +526,10 @@
             "url": "http://frontender.info/fullscreen/",
             "title": "Использование полноэкранного режима на мобильных устройствах",
             "author": "paulkinlan",
-            "tags": ["gestures", "mobile"]
+            "tags": [
+                "gestures",
+                "mobile"
+            ]
         },
         {
             "url": "http://frontender.info/an-introduction-to-dom-events/",
@@ -531,14 +540,22 @@
             ]
         },
         {
-          "url": "http://coding.smashingmagazine.com/2011/06/30/designing-for-android/",
-          "title": "Designing For Android",
-          "author": "Dan McKenzie",
-          "tags": [
-            "eclipse",
-            "design",
-            "mobile"
-          ]
+            "url": "http://coding.smashingmagazine.com/2011/06/30/designing-for-android/",
+            "title": "Designing For Android",
+            "author": "Dan McKenzie",
+            "tags": [
+                "eclipse",
+                "design",
+                "mobile"
+            ]
+        },
+        {
+            "url": "http://www.useragentman.com/blog/2012/09/23/cross-browser-gpu-acceleration-and-requestanimationframe-in-depth/",
+            "title": "Cross Browser GPU Acceleration and requestAnimationFrame in Depth",
+            "author": "Zoltan Hawryluk",
+            "tags": [
+                "animation"
+            ]
         }
     ]
 }
