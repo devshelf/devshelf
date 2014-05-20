@@ -639,6 +639,15 @@
                 "animation",
                 " performance"
             ]
+        },
+        {
+            "url": "http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/",
+            "title": "High Performance Animations",
+            "author": "Paul Irish, Paul Lewis",
+            "tags": [
+                "animation",
+                "performance"
+            ]
         }
     ]
 }
