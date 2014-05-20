@@ -648,6 +648,14 @@
                 "animation",
                 "performance"
             ]
+        },
+        {
+            "url": "http://css-tricks.com/css-animation-tricks/",
+            "title": "CSS Animation Tricks: State Jumping, Negative Delays, Animating Origin, and More",
+            "author": "Zach Saucier",
+            "tags": [
+                "animation"
+            ]
         }
     ]
 }
