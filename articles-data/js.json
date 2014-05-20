@@ -312,6 +312,14 @@
                 "mvc",
                 "react"
             ]
+        },
+        {
+            "url": "http://blog.sourcing.io/mvc-style-guide",
+            "title": "JavaScript MVC Style Guide",
+            "author": "Alex MacCaw",
+            "tags": [
+                "mvc"
+            ]
         }
     ]
 }
