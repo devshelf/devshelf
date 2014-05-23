@@ -339,6 +339,15 @@
                 "mvc",
                 "ember"
             ]
+        },
+        {
+            "url": "http://www.williambrownstreet.net/blog/2014/04/faster-angularjs-rendering-angularjs-and-reactjs/",
+            "title": "Faster AngularJS Rendering (AngularJS and ReactJS)",
+            "author": "Thierry Nicola",
+            "tags": [
+                "angularjs",
+                "reactjs"
+            ]
         }
     ]
 }
