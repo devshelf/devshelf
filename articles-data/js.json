@@ -348,6 +348,14 @@
                 "angularjs",
                 "reactjs"
             ]
+        },
+        {
+            "url": "http://codegeekz.com/react-js-tutorial/",
+            "title": "React js Tutorial: Now is Your Time to Try It, Right in Your Browser",
+            "author": "Totty",
+            "tags": [
+                "reactjs"
+            ]
         }
     ]
 }
