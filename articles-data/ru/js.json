@@ -26,6 +26,15 @@
             "tags": [
                 "bind"
             ]
+        },
+        {
+            "url": "http://habrahabr.ru/post/215607/",
+            "title": "AngularJS и ReactJS или как сделать ваше приложение быстрее",
+            "author": "Стоянов Денис",
+            "tags": [
+                "angularjs",
+                "reactjs"
+            ]
         }
     ]
 }
