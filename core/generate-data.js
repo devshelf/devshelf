@@ -167,7 +167,9 @@ var prepareJSON = function(p) {
                         if (err) {
                             console.log(err);
                         } else {
-                            console.log("Generating Articles data in ".green + dir.green + fileName.green + ": DONE".green);
+                            if (global.MODE === 'development') {
+                                console.log("Generating Articles data in ".green + dir.green + fileName.green + ": DONE".green);
+                            }
                         }
                     });
                 };

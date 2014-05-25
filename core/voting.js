@@ -262,7 +262,9 @@ var generateVotingData = function(lang) {
                     if (err) {
                         console.log(err);
                     } else {
-                        console.log("Generating Voting data in ".green + dir.green + fileName.green + ": DONE".green);
+                        if (global.MODE === 'development') {
+                            console.log("Generating Voting data in ".green + dir.green + fileName.green + ": DONE".green);
+                        }
                     }
                 });
             };
