@@ -8,10 +8,21 @@ module.exports = function(grunt) {
             img: {
                 files: [
                     {
-                    expand: true,
-                    cwd: 'public/assets/img/',
-                    src: '**',
-                    dest: 'public/build/img/'
+                        expand: true,
+                        cwd: 'public/assets/img/',
+                        src: '**',
+                        dest: 'public/build/img/'
+                    }
+                ]
+            },
+
+            html: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'public/',
+                        src: '*.html',
+                        dest: 'public/build/'
                     }
                 ]
             }
@@ -51,6 +62,9 @@ module.exports = function(grunt) {
                     'public/assets/js/jquery.autoSuggest.js',
                     'public/assets/js/jquery.autocomplete.js',
                     'public/assets/js/form.js'
+                ],
+                'public/build/js/jquery-2.0.3.min.js': [
+                    'public/assets/js/jquery-2.0.3.min.js'
                 ]
               }
             }

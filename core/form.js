@@ -3,8 +3,9 @@ var github = require('octonode'),
     checkURL = require('./check-url-status'),
     checkTitle = require('./check-title');
 
-//TODO: if has fork, create a branch in it, merge with latest devshelf and commit
+//TODO: if has fork, create a branch in it, merge with latest devshelf and commit OR refork
 //TODO: check existance of new article in fork
+//TODO: localize errors
 
 var postArticle = function(req, res){
     var user = typeof req.session.authCache === 'undefined' ?  undefined : req.session.authCache.github.user.login;
@@ -37,8 +38,19 @@ var postArticle = function(req, res){
 };
 
 var fork = function(req, res, callback) {
-    var client = github.client(req.query.token),
-        ghme   = client.me();
+    var token = req.query.token || req.session.authCache.github.accessToken,
+        client = github.client(token);
+
+    if (typeof client === "undefined") {
+        res.send({
+            status: false,
+            message: "Unauthorized"
+        });
+
+        return false;
+    }
+
+    var ghme   = client.me();
 
     //Get user repos and start process
     ghme.repos(function(err, data) {
@@ -82,7 +94,8 @@ var fork = function(req, res, callback) {
 
 //Editing file
 var editFile = function(req, res, callback) {
-    var client = github.client(req.query.token),
+    var token = req.query.token || req.session.authCache.github.accessToken,
+        client = github.client(token),
         ghrepo = client.repo(req.query.login+'/'+global.opts.github.repoName),
         lang = req.query.lang === global.opts.l18n.defaultLang ? '' : req.query.lang + '/';
 
@@ -118,7 +131,8 @@ var editFile = function(req, res, callback) {
 };
 
 var pullRequest = function(req, res, callback) {
-    var client = github.client(req.query.token),
+    var token = req.query.token || req.session.authCache.github.accessToken,
+        client = github.client(token),
         ghrepoMaster = client.repo(global.opts.form.masterRepo);
 
 //    console.log('PR start');
@@ -209,7 +223,7 @@ var validateData = function(data, callback) {
 
 //Validating input data
 var GhApiOnErr = function(req, res, err, msg) {
-    var message = msg || 'GitHub error';
+    var message = msg || 'GitHub error: ' + err;
 
     console.log('Error: '+ message, '| JS message: '+err);
 
