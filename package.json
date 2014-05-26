@@ -26,7 +26,8 @@
     "mustache": "~0.7.3",
     "octonode": "~0.5.0",
     "request": "~2.34.0",
-    "shorthash": "0.0.2"
+    "shorthash": "0.0.2",
+    "prerender-node": "~1.0.1"
   },
   "devDependencies": {
     "grunt-casperjs": "^1.4.0"

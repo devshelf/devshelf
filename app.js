@@ -46,6 +46,9 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+app.configure('production', function(){
+    app.use(require('prerender-node').set('prerenderToken', global.opts.prerenderToken));
+});
 
 /*
 * Update local information from git hub and regenerate all-data.json
