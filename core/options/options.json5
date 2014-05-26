@@ -7,8 +7,9 @@
     },
 
     "app": {
-      "port":8080,
-      "devPort":8888
+        "host" : "http://devshelf.us",
+        "port":8080,
+        "devPort":8888
     },
 
     "validate" : {

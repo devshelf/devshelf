@@ -50,6 +50,7 @@ app.configure('production', function(){
     app.use(require('prerender-node').set('prerenderToken', global.opts.prerenderToken));
 });
 
+
 /*
 * Update local information from git hub and regenerate all-data.json
 * */
@@ -217,6 +218,21 @@ app.get('/', function(req, res) {
     res.send(htmlToSend);
 });
 
+// Sitemap
+app.get('/sitemap.xml', function (req, res) {
+
+    if (global.sitemap) {
+
+        global.sitemap.toXML(function (xml) {
+            res.header('Content-Type', 'application/xml');
+            res.send(xml);
+        });
+
+    } else {
+        res.send(404, '404');
+    }
+
+});
 
 /*
 * voting module (requiring order matters)

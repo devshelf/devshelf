@@ -27,7 +27,8 @@
     "octonode": "~0.5.0",
     "request": "~2.34.0",
     "shorthash": "0.0.2",
-    "prerender-node": "~1.0.1"
+    "prerender-node": "~1.0.1",
+    "sitemap": "~0.7.2"
   },
   "devDependencies": {
     "grunt-casperjs": "^1.4.0"

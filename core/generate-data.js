@@ -5,6 +5,7 @@ var fs = require('fs')
     , md5 = require('MD5')
     , JSON5 = require('json5')
     , sh = require('shorthash')
+    , sm = require('sitemap')
     , generateIDs = require('./aticles-ids')
     , extend = require('extend');
 
@@ -152,6 +153,7 @@ var prepareJSON = function(p) {
                 global.articlesData[language] = finalJSON || {};
                 generateIDs.updateIDs(language);
                 generateTagLinks(language);
+                generateSitemap();
                 callback();
 
 
@@ -250,6 +252,40 @@ var generateData = function() {
                 });
             });
         }
+    });
+};
+
+var generateSitemap = function() {
+    var urls = [],
+        data = global.articlesData[global.opts.l18n.defaultLang],
+        getOnlyOne = [];
+
+    for (var section in data) {
+        var targetArr = data[section] || [];
+
+        // serfing through articles
+        targetArr.map(function(article){
+            var tags = article.tags;
+
+            // serfing through tags
+            tags.map(function(tag){
+
+                //writing only one of a king
+                if (getOnlyOne.indexOf(tag) < 0) {
+                    getOnlyOne.push(tag);
+
+                    urls.push({
+                        url: global.opts.app.host + '/#!/search/' + tag
+                    });
+                }
+            });
+        });
+    }
+
+    global.sitemap = sm.createSitemap({
+        hostname: global.opts.app.host,
+        cacheTime: 600000,        // 600 sec - cache purge period
+        urls: urls
     });
 };
 
