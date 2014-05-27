@@ -4,12 +4,18 @@
     //Current file language
     "lang": "ru",
 
-    "title": "DevShelf.us - Community driven reading shelf",
+    "title": "DevShelf.us — Книжная полка разработчика",
+    "shortTitle": "DevShelf.us",
+    "customTitle": {
+        "about" : "О проекте",
+        "bookmarklet" : "Букмарклет"
+    },
     "logo": "DevShelf <sup class='beta'>beta</sup>",
     "bannerText": "Книжная полка разработчика",
+    "description": "Книжная полка разработчика. Коллекция лучших материалов от сообщества для сообщества, с рейтингом от пользователей.",
     "searchBtn": "Найти",
     "searchExample": "Например: box-shadow",
-    "copy": "DevShelf.us 2014. Спасибо команде фронт-енд разработчиков <a href='http://corp.mail.ru/communications/odnoklassniki'>OK.ru</a>",
+    "copy": "DevShelf.us 2014. Спасибо команде фронт-енд разработчиков <a href='http://v.ok.ru'>OK.ru</a>",
 
     "menu": [{
         "name":"Добавить статью",

@@ -294,7 +294,7 @@ var templateEngine = (function() {
             return this;
         },
 
-        gotoPage: function (addr) {
+        gotoSearchPage: function (addr) {
         	addr = addr.replace(/\s/ig, '_');
 			window.location.hash = '!/search/' + addr;
 
@@ -534,18 +534,20 @@ var mainApp = function() {
                 templateEngine.insertTemplate(p);
             },
             result: resultList
-        })
+        });
 
 		templateEngine.showSecondaryPage();
 		templateEngine.liveSearchFocus();
+
+        updateTitle();
     });
 
 	$('#main-content').on('submit', 'form', function() {
 
-		templateEngine.gotoPage( $('.js-search-input-interactive').val() );
+		templateEngine.gotoSearchPage( $('.js-search-input-interactive').val() );
 
 		return false;
-	})
+	});
 
     /**
      * Search field on search page
@@ -690,6 +692,28 @@ var mainApp = function() {
     	}
     });
 };
+
+
+/**
+ * Page title update
+ */
+var updateTitle = function(){
+    var currentWindowHash = window.location.hash.split('#!/'),
+        pageName = currentWindowHash[1],
+        title = appData.records.title,
+        preparedTitle = appData.records.customTitle[pageName];
+
+    if (typeof preparedTitle === 'string') {
+        title = preparedTitle + ' / ' + appData.records.shortTitle;
+    } else if (pageName.split('/')[0] === 'search') {
+        title = pageName.split('/')[1] + ' / ' + appData.records.shortTitle;
+    }
+
+    document.title = title;
+};
+
+window.addEventListener('popstate', updateTitle, false);
+
 
 /**
 * Modal windows
@@ -890,12 +914,12 @@ $(function() {
 			.off('focus')
 			.on('keyup', function(e) {
 				if (e.keyCode == 13) {
-					templateEngine.gotoPage( $(this).val() );
+					templateEngine.gotoSearchPage( $(this).val() );
 				}
 			});
 
 		$('#main-page').on('click', '.autocomplete-suggestion', function() {
-			templateEngine.gotoPage( $(this).text() );
+			templateEngine.gotoSearchPage( $(this).text() );
 		})
 
 	};
@@ -910,11 +934,16 @@ $(function() {
             success: function(data) {
                 $('body').append(data);
                 mainApp();
+
+                // First page visit title update
+                updateTitle();
+
                 checkAuth();
             },
             dataType: 'text'
         })
     };
+
 
     /**
      * Getting data and rendering templates
@@ -925,14 +954,13 @@ $(function() {
 	    	prepateTemplates();
 	    	prepareAutosuggest();
     	}
-    })
-});
+    });
 
-/**
- * Mobile UI: hidden menus togglers
- */
 
-$(function(){
+    /**
+     * Mobile UI: hidden menus togglers
+     */
+
 	//var mobileParts = $('.mobile-menu-part');
 
 	$('.pure-menu, #main-content').on('click', '.mobile-menu-toggle', function(){
@@ -942,5 +970,5 @@ $(function(){
 		_this.parents('div').find('.mobile-menu-part').toggleClass('__active');
 
 	});
-
 });
+

@@ -104,7 +104,7 @@ var prepareJSON = function(p) {
 					var normolizedTargetTags = [];
 
 					targetTags.forEach(function(item){
-						normolizedTargetTags.push(item.toLowerCase());
+						normolizedTargetTags.push(item.toLowerCase().replace(/((\s*\S+)*)\s*/, "$1"));
 					});
 
 					targetObj["tags"] = normolizedTargetTags;
@@ -152,8 +152,7 @@ var prepareJSON = function(p) {
                 // Job is done, next goes some callbacks and writing output to file
                 global.articlesData[language] = finalJSON || {};
                 generateIDs.updateIDs(language);
-                generateTagLinks(language);
-                generateSitemap();
+                processTags(language);
                 callback();
 
 
@@ -208,35 +207,59 @@ var prepareJSON = function(p) {
     });
 };
 
-var generateTagLinks = function(lang) {
+var processTags = function(lang) {
+    var getOnlyOneMain = [],
+        getOnlyOne = [],
+        tagUrls = [],
+        articlesData = global.articlesData[lang];
+
     //cleaning
     global.tagLinks[lang] = {};
+    global.sitemap[lang] = {};
 
-    var getOnlyOne = [];
-
-    for (var section in global.articlesData[lang]) {
-        var targetArr = global.articlesData[lang][section] || [];
+    for (var section in articlesData) {
+        var targetArr = articlesData[section] || [];
 
         if ( !util.isArray(global.tagLinks[lang][section]) ) {
             global.tagLinks[lang][section] = []
         }
 
+        // serfing through articles
         targetArr.map(function(article){
-            var mainTag = article.tags[0];
+            var tags = article.tags,
+                mainTag = tags[0];
 
             //writing only one of a king
-            if (getOnlyOne.indexOf(mainTag) < 0) {
-                getOnlyOne.push(article.tags[0])
+            if (getOnlyOneMain.indexOf(mainTag) < 0) {
+                getOnlyOneMain.push(mainTag)
 
                 global.tagLinks[lang][section].push({
-                    linkTitle: article.tags[0],
-                    linkHref: '/#!/search/' + article.tags[0].replace(/\s+/g, '_')
+                    linkTitle: mainTag,
+                    linkHref: '/#!/search/' + mainTag.replace(/\s+/g, '_')
                 });
             }
+
+            // serfing through tags
+            tags.map(function(tag){
+
+                //writing only one of a king
+                if (getOnlyOne.indexOf(tag) < 0) {
+                    getOnlyOne.push(tag);
+
+                    tagUrls.push({
+                        url: global.opts.app.host + '/#!/search/' + tag.replace(/\s+/g, '_')
+                    });
+                }
+            });
 
         });
     }
 
+    global.sitemap[lang] = sm.createSitemap({
+        hostname: global.opts.app.host,
+        cacheTime: 600000,        // 600 sec - cache purge period
+        urls: tagUrls
+    });
 };
 
 var generateData = function() {
@@ -252,40 +275,6 @@ var generateData = function() {
                 });
             });
         }
-    });
-};
-
-var generateSitemap = function() {
-    var urls = [],
-        data = global.articlesData[global.opts.l18n.defaultLang],
-        getOnlyOne = [];
-
-    for (var section in data) {
-        var targetArr = data[section] || [];
-
-        // serfing through articles
-        targetArr.map(function(article){
-            var tags = article.tags;
-
-            // serfing through tags
-            tags.map(function(tag){
-
-                //writing only one of a king
-                if (getOnlyOne.indexOf(tag) < 0) {
-                    getOnlyOne.push(tag);
-
-                    urls.push({
-                        url: global.opts.app.host + '/#!/search/' + tag
-                    });
-                }
-            });
-        });
-    }
-
-    global.sitemap = sm.createSitemap({
-        hostname: global.opts.app.host,
-        cacheTime: 600000,        // 600 sec - cache purge period
-        urls: urls
     });
 };
 

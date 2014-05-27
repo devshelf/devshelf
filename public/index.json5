@@ -6,11 +6,18 @@
     "lang": "en",
 
     "title": "DevShelf.us - Community driven reading shelf",
+    "shortTitle": "DevShelf.us",
+    "customTitle": {
+        "about" : "About",
+        "bookmarklet" : "Bookmarklet"
+    },
+
     "logo": "DevShelf <sup class='beta'>beta</sup>",
     "bannerText": "Community driven reading shelf",
+    "description": "Community driven reading shelf. A collection of best links for developers by developers. with community rating.",
     "searchBtn": "Search",
     "searchExample": "For example: box-shadow",
-    "copy": "DevShelf.us 2014. Thanks to <a href='http://corp.mail.ru/en/communications/odnoklassniki'>OK.ru</a> front-end development team",
+    "copy": "DevShelf.us 2014. Thanks to <a href='http://v.ok.ru'>OK.ru</a> front-end development team",
 
     "menu": [{
         "name":"Add new articles",

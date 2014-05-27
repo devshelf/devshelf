@@ -15,6 +15,7 @@ var express = require('express')
 global.articlesData = {}; //all-data.json obj with articles by lang (articlesData.en/ru/etc)
 global.articlesIDs = {}; //all-data.json ID lists by lang (articlesIDs.en/ru/etc)
 global.tagLinks = {}; //global object with tag links
+global.sitemap = {}; //global object with sitemap links
 
 global.appDir = path.dirname(require.main.filename); //path to project dir
 
@@ -220,10 +221,11 @@ app.get('/', function(req, res) {
 
 // Sitemap
 app.get('/sitemap.xml', function (req, res) {
+    var lang = req.session.lang || global.opts.l18n.defaultLang;
 
-    if (global.sitemap) {
+    if (global.sitemap[lang]) {
 
-        global.sitemap.toXML(function (xml) {
+        global.sitemap[lang].toXML(function (xml) {
             res.header('Content-Type', 'application/xml');
             res.send(xml);
         });
