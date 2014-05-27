@@ -550,6 +550,69 @@
             "tags": [
                 "animation"
             ]
+        },
+        {
+            "url": "http://www.funnyant.com/choosing-javascript-mvc-framework/",
+            "title": "Choosing a JavaScript MVC Framework",
+            "author": "Craig McKeachie",
+            "tags": [
+                "mvc"
+            ]
+        },
+        {
+            "url": "http://code.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660",
+            "title": "Intro to the React Framework",
+            "author": "Pavan Podila",
+            "author-link": "pixelingene.com",
+            "tags": [
+                "mvc",
+                "react"
+            ]
+        },
+        {
+            "url": "http://blog.sourcing.io/mvc-style-guide",
+            "title": "JavaScript MVC Style Guide",
+            "author": "Alex MacCaw",
+            "tags": [
+                "mvc"
+            ]
+        },
+        {
+            "url": "http://frontside.io/blog/2014/02/24/ember-and-the-future-of-the-web.html",
+            "title": "Ember and the future of the web",
+            "author": "Brandon Hays",
+            "tags": [
+                "mvc",
+                "ember"
+            ]
+        },
+        {
+            "url": "http://www.sitepoint.com/ember-todomvc-rails/",
+            "title": "Ember and TodoMVC on Rails",
+            "author": "Michal Olah",
+            "author-link": "https://twitter.com/michalolah",
+            "tags": [
+                "mvc",
+                "ember"
+            ]
+        },
+        {
+            "url": "http://www.williambrownstreet.net/blog/2014/04/faster-angularjs-rendering-angularjs-and-reactjs/",
+            "title": "Faster AngularJS Rendering (AngularJS and ReactJS)",
+            "author": "Thierry Nicola",
+            "tags": [
+                "angularjs",
+                "reactjs"
+            ]
+        },
+        {
+            "url": "http://codegeekz.com/react-js-tutorial/",
+            "title": "React js Tutorial: Now is Your Time to Try It, Right in Your Browser",
+            "author": "Totty",
+            "tags": [
+                "mvc",
+                "reactjs"
+            ]
         }
     ]
 }
