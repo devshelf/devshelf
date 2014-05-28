@@ -76,13 +76,13 @@ var addNewArticle = function( p ) {
         _this = $('a[href=addNewUrl]'),
         url = (p && p.url) || '',
         title =  (p && p.title) || '',
-        author =  (p && p.author) || '',
+        description =  (p && p.description) || '',
         $tagsInput
         ;
 
     $('#url').val(url);
     $('#title').val(title);
-    $('#author').val(author);
+    $('#description').val(description);
 
     //if user not authorized
     if ( !window.appData.auth ) {
@@ -273,7 +273,7 @@ $(document).ready(function() {
         });
 
 	var title = getURLParameter('title'),
-		author = getURLParameter('author'),
+		description = getURLParameter('description'),
 		url = getURLParameter('url');
 
     // Auto-open on title & url parameters was set
@@ -281,7 +281,7 @@ $(document).ready(function() {
 		addNewArticle({
 			title: title,
 			url: url,
-			author: author
+			description: description
 		})
 	}
 });

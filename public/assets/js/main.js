@@ -306,7 +306,7 @@ var templateEngine = (function() {
          * @param {Object} p
          * @param {String} p.query — target article's tag
          * @param {Function} p.callback
-§         * @param {Function} p.result   resorted collection with tags
+         * @param {Function} p.result   resorted collection with tags
          * @returns {Object} templateEngine
          */
         getCategoryByArticle: function(p) {
