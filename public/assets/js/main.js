@@ -700,13 +700,15 @@ var mainApp = function() {
 var updateTitle = function(){
     var currentWindowHash = window.location.hash.split('#!/'),
         pageName = currentWindowHash[1],
-        title = appData.records.title,
+        title = appData.records.title, //Default title
         preparedTitle = appData.records.customTitle[pageName];
 
-    if (typeof preparedTitle === 'string') {
-        title = preparedTitle + ' / ' + appData.records.shortTitle;
-    } else if (pageName.split('/')[0] === 'search') {
-        title = pageName.split('/')[1] + ' / ' + appData.records.shortTitle;
+    if (typeof pageName !== 'undefined') {
+        if (typeof preparedTitle === 'string') {
+            title = preparedTitle + ' / ' + appData.records.shortTitle;
+        } else if (pageName.split('/')[0] === 'search') {
+            title = pageName.split('/')[1] + ' / ' + appData.records.shortTitle;
+        }
     }
 
     document.title = title;

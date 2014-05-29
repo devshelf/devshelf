@@ -126,7 +126,7 @@
             "title": "Tell CSS that JavaScript is available ASAP",
             "author": "Roger Johansson",
             "tags": [
-                "performace"
+                "performance"
             ]
         },
         {
@@ -492,7 +492,7 @@
             "url": "http://frontender.info/pointer-events-60fps/",
             "title": "60 кадров в секунду с помощью pointer-events: none; при прокрутке",
             "author": "ryanseddon",
-            "tags": ["perfomance"]
+            "tags": ["performance"]
         },
         {
             "url": "http://css-tricks.com/cross-browser-css-injection/",

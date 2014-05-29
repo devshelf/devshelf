@@ -478,7 +478,7 @@
             "title": "CSS Columns",
             "author": "David Walsh",
             "tags": [
-                "undefined"
+                "columns"
             ]
         },
         {
@@ -486,7 +486,7 @@
             "title": "Magazine-like Layout for the Web with CSS Regions and Exclusions",
             "author": "Christian Cantrell",
             "tags": [
-                "undefined"
+                "regions"
             ]
         },
         {
@@ -494,7 +494,7 @@
             "title": "How we learned to leave default font-size alone and embrace the em",
             "author": "Filament Group",
             "tags": [
-                "undefined"
+                "em"
             ]
         },
         {
@@ -728,7 +728,7 @@
             "title": "CSS Paint Times and Page Render Weight",
             "author": "Colt McAnlis",
             "tags": [
-                "perfpmance"
+                "performance"
             ]
         }
     ]
