@@ -226,6 +226,15 @@
             "tags": [
                 "living style guides"
             ]
+        },
+        {
+            "url": "http://updates.html5rocks.com/tag/performance",
+            "title": "Perfomace",
+            "author": "Community",
+            "tags": [
+                "perfomance"
+            ],
+            "description": "All about perfomance"
         }
     ]
 }
