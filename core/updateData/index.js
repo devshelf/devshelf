@@ -23,13 +23,13 @@ var updateData = function() {
 
         console.log("Git pull from reposity...");
 
-        exec('git --work-tree='+ global.appDir +' --git-dir='+ global.appDir +'/.git pull --rebase', callback);
+        exec('git --work-tree='+ global.appDir + global.opts.articles.path +' --git-dir='+ global.appDir + global.opts.articles.path +'/.git pull --rebase', callback);
     }
 };
 
 if (global.MODE === 'production') {
     setInterval(function() {
         updateData();
-    },global.opts.articlesDataCron);
+    }, global.opts.articles.updateInterval);
 }
 

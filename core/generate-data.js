@@ -44,7 +44,7 @@ var prepareJSON = function(p) {
         language = p.lang || langDefault,
         localizationEnabled = language !== langDefault,
 
-        dir = localizationEnabled ? p.targetDir + language + '/' : p.targetDir,
+        dir = localizationEnabled ? p.targetDir+ '/' + language + '/' : p.targetDir + '/',
 
         callback = p.callback || function(){},
 
@@ -292,13 +292,13 @@ var processTags = function(lang) {
 // Init
 var generateData = function() {
     prepareJSON({
-        targetDir: global.appDir + '/articles-data/',
+        targetDir: global.appDir + global.opts.articles.path,
         callback: function(){
             //it's important to process main language data first, because all add. langs are merged with main
 
             global.opts.l18n.additionalLangs.map(function(lang) {
                 prepareJSON({
-                    targetDir:global.appDir + '/articles-data/',
+                    targetDir:global.appDir + global.opts.articles.path,
                     lang: lang
                 });
             });

@@ -4,6 +4,9 @@
 
 node_modules
 
+# Used as a symlink from another repo
+articles-data
+
 public/output
 public/build
 

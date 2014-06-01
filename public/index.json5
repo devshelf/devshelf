@@ -35,7 +35,7 @@
         "sectionText": "<p>DevShelf is a modern web application made for the community (for us!), by the community, to collect most relevant information about development technologies.</p> <p>With community rating, you will get only the best content existing in the open web.</p>"
     },{
         "sectionTitle": "How to support",
-        "sectionText": "<p>Project is fully <a href='http://github.com/sourcejs/devshelf'>open source</a>, you can <a href='http://github.com/sourcejs/devshelf/tree/master/articles-data'>contribute links</a> to best articles, ideas and improve web application source code simply by leaving your pull requests.</p> <p>DevShelf is all  <strong>about storing best articles and tools</strong>, not your documentation. For documentation purposes, use <a href='http://devdocs.io'>devdocs.io</a>.</p>"
+        "sectionText": "<p>Project is fully <a href='http://github.com/sourcejs/devshelf'>open source</a>, you can <a href='https://github.com/devshelf/devshelf-articles'>contribute links</a> to best articles, ideas and improve web application source code simply by leaving your pull requests.</p> <p>DevShelf is all  <strong>about storing best articles and tools</strong>, not your documentation. For documentation purposes, use <a href='http://devdocs.io'>devdocs.io</a>.</p>"
     }],
 
     "authTitle" : "Authorizing...",
@@ -64,7 +64,7 @@
         "header": "Two Days &mdash; One Project",
         "description": [
             { "p": "DevShelf is a modern web application made for the community (for us!), by the community, to collect most relevant information about development technologies."},
-            { "p": "We provide search engine intelligence and base for <strong>your <a href='http://github.com/sourcejs/devshelf/tree/master/articles-data'>contributed data</a></strong> inside our application, to present you only best and relevant information about those new technologies, which you are looking for."},
+            { "p": "We provide search engine intelligence and base for <strong>your <a href='https://github.com/devshelf/devshelf-articles'>contributed data</a></strong> inside our application, to present you only best and relevant information about those new technologies, which you are looking for."},
             { "p": "Originally project was developed by <a href='http://corp.mail.ru/communications/odnoklassniki'>OK.ru</a> front-end team at a two-day hackathon, and now fully belogns to the <a href='http://github.com/sourcejs/devshelf'>community</a>."}
         ],
         "aboutTeam": "About the team",

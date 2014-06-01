@@ -25,7 +25,7 @@
     },
 
     "form" : {
-        "masterRepo": "sourcejs/devshelf",
+        "masterRepo": "devshelf/devshelf-articles",
         "PRdescription": "Automatic pull request from [DevShelf.us](http://devshelf.us)",
         "PRtitlePrefix": "Form submit: \"",
         "PRtitlePostfix": "\" to ",
@@ -39,13 +39,18 @@
     "cookieSecret": "secret",
 
     "dataOutputDir":"/public/output/",
+
+    "articles" : {
+        "repoName": "devshelf-articles",
+        "path": "/articles-data",
+        "updateInterval": 180000
+    },
+
     "articlesDataFile": "all-data.json",
     "articlesVoteFile": "all-votes.json",
 
     "articlesDataLangFile": "pure.json",
     "articlesCleanLangObjPrefix": "pure-",
-
-    "articlesDataCron": "180000",
 
     "github": {
         "repoName": "devshelf",

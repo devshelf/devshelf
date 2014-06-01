@@ -59,7 +59,7 @@ var fork = function(req, res, callback) {
         var hasFork = false;
 
         data.map(function(item){
-           if (item.full_name === req.query.login+'/'+global.opts.github.repoName) {
+           if (item.full_name === req.query.login+'/'+global.opts.articles.repoName) {
                hasFork = true;
            }
         });
@@ -96,10 +96,10 @@ var fork = function(req, res, callback) {
 var editFile = function(req, res, callback) {
     var token = req.query.token || req.session.authCache.github.accessToken,
         client = github.client(token),
-        ghrepo = client.repo(req.query.login+'/'+global.opts.github.repoName),
-        lang = req.query.lang === global.opts.l18n.defaultLang ? '' : req.query.lang + '/';
+        ghrepo = client.repo(req.query.login+'/'+global.opts.articles.repoName),
+        langDir = req.query.lang === global.opts.l18n.defaultLang ? '' : req.query.lang + '/';
 
-    ghrepo.contents('articles-data/'+lang+req.query.cat+'.json', global.opts.form.PRbranch, function(err, currentFile){
+    ghrepo.contents(langDir+req.query.cat+'.json', global.opts.form.PRbranch, function(err, currentFile){
         if (err) { GhApiOnErr(req, res, err, 'Error getting file contents from GitHub'); return; }
 
         //updating data
