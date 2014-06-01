@@ -3,11 +3,10 @@ var fs = require('fs')
     , colors = require('colors')
     , path = require('path')
     , md5 = require('MD5')
-    , JSON5 = require('json5')
     , sh = require('shorthash')
     , sm = require('sitemap')
     , generateIDs = require('./aticles-ids')
-    , extend = require('extend');
+    ;
 
 /**
  * Extend srcInput articles data with extendedInput data (for localization data merge)
@@ -76,62 +75,32 @@ var prepareJSON = function(p) {
         var jsonFileQueue = 0;
         jsonFilesArr.map(function(file){
             var fileName = path.basename(file, ".json"),
-				currentObj = JSON5.parse(fs.readFileSync(dir+file, "utf8"));
+				currentObj = {};
 
-            //updating currentFile properties
-            var targetDataArr = currentObj[fileName] || [];
+            try {
+                currentObj = JSON.parse(fs.readFileSync(dir+file, "utf8"));
+            } catch (e) {
+                var shortDir = dir.replace(global.appDir + '/','');
 
-            var i=0;
-            while(i<targetDataArr.length){
-                var targetObj = targetDataArr[i],
-                    targetEmail = targetObj["author-mail"],
-                    targetUrl = targetObj["url"],
-                    targetTags = targetObj["tags"];
+                console.error('Error parsing articles data at ' + shortDir + file + ':', e);
 
-                if ( !util.isArray(targetTags) ) {
-                    targetObj["tags"] = [];
-
-                    targetTags = targetObj["tags"];
-                }
-
-				//Adding parent cat to tags
-				if (util.isArray(targetTags)) {
-					targetTags.push(fileName);
-				}
-
-				//normalizing all tags
-				if (util.isArray(targetTags)) {
-					var normolizedTargetTags = [];
-
-					targetTags.forEach(function(item){
-						normolizedTargetTags.push(item.toLowerCase().replace(/((\s*\S+)*)\s*/, "$1"));
-					});
-
-					targetObj["tags"] = normolizedTargetTags;
-				}
-
-                //Generating email md5 hash
-                if(typeof targetEmail === 'string') {
-                    var authorMailHash = md5(targetEmail);
-
-                    targetObj["author-mail-hash"] = authorMailHash;
-                }
-
-                //Generating unique ID by hash
-                if(typeof targetUrl === 'string') {
-                    var targetID = targetObj["id"];
-
-                    if (typeof targetID !== 'string') {
-                        var authorUrlHash = sh.unique(targetUrl);
-
-                        targetObj["id"] = authorUrlHash;
-                    }
-                }
-
-                i++;
+                // If something goes wrong, don't update article data at all
+                return false;
             }
 
-            outputJSON = extend(outputJSON, currentObj);
+            if (Object.keys(currentObj).length > 0) {
+                //updating currentFile properties
+                var targetDataArr = currentObj[fileName] || [];
+
+                var i=0;
+                while(i<targetDataArr.length){
+                    targetDataArr[i] = processArticle(targetDataArr[i], fileName);
+
+                    i++;
+                }
+            }
+
+            outputJSON = extendArticlesData(outputJSON, currentObj);
             jsonFileQueue++;
 
             //When all files scanned, now heading to writing
@@ -164,12 +133,14 @@ var prepareJSON = function(p) {
                         JSONformat = 4;
                     }
 
-                    fs.writeFile(dir + fileName, JSON5.stringify(data, null, JSONformat), function (err) {
+                    fs.writeFile(dir + fileName, JSON.stringify(data, null, JSONformat), function (err) {
                         if (err) {
                             console.log(err);
                         } else {
                             if (global.MODE === 'development') {
-                                console.log("Generating Articles data in ".green + dir.green + fileName.green + ": DONE".green);
+                                var shortDir = dir.replace(global.appDir + '/','');
+
+                                console.log("Generating Articles data in ".green + shortDir.green + fileName.green + ": DONE".green);
                             }
                         }
                     });
@@ -207,6 +178,62 @@ var prepareJSON = function(p) {
     });
 };
 
+/**
+ * Process article object for normalization, ID generation and etc
+ * @param {Object} targetObj
+ * @param {String} fileName
+ */
+var processArticle = function(targetObj, fileName) {
+    var workingObj = targetObj,
+        targetEmail = workingObj["author-mail"],
+        targetUrl = workingObj["url"],
+        targetTags = workingObj["tags"];
+
+    if (!util.isArray(targetTags)) {
+        targetTags = workingObj["tags"] = [];
+    }
+
+    //Adding parent cat to tags
+    if (util.isArray(targetTags)) {
+        targetTags.push(fileName);
+    }
+
+    //normalizing all tags
+    if (util.isArray(targetTags)) {
+        var normolizedTargetTags = [];
+
+        targetTags.forEach(function (item) {
+            normolizedTargetTags.push(item.toLowerCase().replace(/((\s*\S+)*)\s*/, "$1"));
+        });
+
+        workingObj["tags"] = normolizedTargetTags;
+    }
+
+    //Generating email md5 hash
+    if (typeof targetEmail === 'string') {
+        var authorMailHash = md5(targetEmail);
+
+        workingObj["author-mail-hash"] = authorMailHash;
+    }
+
+    //Generating unique ID by hash
+    if (typeof targetUrl === 'string') {
+        var targetID = workingObj["id"];
+
+        if (typeof targetID !== 'string') {
+            var authorUrlHash = sh.unique(targetUrl);
+
+            workingObj["id"] = authorUrlHash;
+        }
+    }
+
+    return workingObj;
+};
+
+/**
+ * Process tags for creating sitemap and catalogue link list
+ * @param {String} lang
+ */
 var processTags = function(lang) {
     var getOnlyOneMain = [],
         getOnlyOne = [],
@@ -262,11 +289,12 @@ var processTags = function(lang) {
     });
 };
 
+// Init
 var generateData = function() {
     prepareJSON({
         targetDir: global.appDir + '/articles-data/',
         callback: function(){
-            //it's important to process main language data first
+            //it's important to process main language data first, because all add. langs are merged with main
 
             global.opts.l18n.additionalLangs.map(function(lang) {
                 prepareJSON({

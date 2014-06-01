@@ -263,7 +263,9 @@ var generateVotingData = function(lang) {
                         console.log(err);
                     } else {
                         if (global.MODE === 'development') {
-                            console.log("Generating Voting data in ".green + dir.green + fileName.green + ": DONE".green);
+                            var shortDir = dir.replace(global.appDir + '/','');
+
+                            console.log("Generating Voting data in ".green + shortDir.green + fileName.green + ": DONE".green);
                         }
                     }
                 });
