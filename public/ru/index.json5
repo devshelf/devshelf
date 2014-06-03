@@ -53,6 +53,7 @@
         "resultsLabel": "Результаты",
         "about": "О",
         "underTags": "теги",
+        "by": "От",
         "voteUp": "Голосовать За",
         "voteDown": "Голосовать Против",
         "voteDisabled": "Голосование в данный момент не доступно, мы уже работаем над решением"
@@ -130,10 +131,31 @@
     "formAuthorMail": "Email автора",
     "formSubmit": "Добавить статью",
     "formFailed": "Ошибка добавления",
-    "formValidationFailed": "Ошибка валидации",
     "formTagsEmptyError": "Не заполнено поле с тегами",
     "formSuccess": "Pull Request создан",
     "formDisabled": "Форма на техническом обслуживании, пожалуйста, оставляйте свои Pull Request вручную",
+
+    "formValidate": {
+        "default": "Ошибка валидации",
+        "noData": "Не достаточно вводных данных",
+        "urlFail": "URL не доступен",
+        "urlEmpty": "URL не указан",
+        "titleFail": "Статья с таким заголовком уже существует",
+        "titleEmpty": "Заголовок статьи не указан"
+    },
+
+    "formGithub": {
+        "GHError": "Ошибка с GitHub",
+        "PRError": "Ошибка создания Pull Request",
+        "updateError": "Ошибка добавления статьи в ваш репозиторий",
+        "JSONError": "Ошибка обработки данных",
+        "JSONPushError": "Ошибка обновления данных",
+        "contentsError": "Ошибка получения данных с GitHub",
+        "forkError": "Ошибка создания форка",
+        "unauthorized": "Ошибка авторизации",
+        "validationFailed": "Ошибка валидации",
+        "PRcreated": "Pull Request создан"
+    },
 
     //Authorization
     "authModalTitle": "Пожалуйста авторизируйтесь",

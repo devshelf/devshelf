@@ -18,14 +18,14 @@ var checkURLService = function ( req, res ) {
             } else {
                 res.send({
                     status: false,
-                    message: global.opts.validate.urlFail
+                    message: 'urlFail'
                 });
             }
         });
     } else {
         res.send({
             status: false,
-            message: global.opts.validate.urlEmpty
+            message: 'urlEmpty'
         });
     }
 
@@ -34,7 +34,10 @@ var checkURLService = function ( req, res ) {
 var checkURL = function ( plainUrl, callback ) {
     var url = plainUrl;
 
-	request(url, function (error, response) {
+	request({
+        url: url,
+        timeout: 5000
+    }, function (error, response) {
         if (!error && response.statusCode.toString().charAt(0) === '2') {
             callback(true);
         } else {

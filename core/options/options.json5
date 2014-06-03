@@ -1,23 +1,18 @@
 //Server options
 //http://json5.org/
 
-{
-    "description": {
-        "main": "all basic settigns are stored in options.json, also you can store secure settings in special secure-options.json file that will extend basic settings"
-    },
+/*
 
+All basic settigns are stored in options.json,
+also you can store secure settings in special secure-options.json file that will extend basic settings
+
+ */
+
+{
     "app": {
         "host" : "http://devshelf.us",
         "port":8080,
         "devPort":8888
-    },
-
-    "validate" : {
-        "noData": "Not enough data",
-        "urlFail": "URL not reachable",
-        "urlEmpty": "URL not provided",
-        "titleFail": "Article with this title already exists",
-        "titleEmpty": "No title provided"
     },
 
     "voting" : {

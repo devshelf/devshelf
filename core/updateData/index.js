@@ -3,7 +3,6 @@ var exec = require('child_process').exec,
 
 // for waiting when function finished
 var NOT_RUNNING = true;
-// user who have permissions for git pull from repository;
 
 var updateData = function() {
     if (NOT_RUNNING) {
@@ -27,9 +26,12 @@ var updateData = function() {
     }
 };
 
+// Updating with interval in production mode
 if (global.MODE === 'production') {
     setInterval(function() {
         updateData();
     }, global.opts.articles.updateInterval);
+} else {
+    // Running once in dev mode
+    updateData();
 }
-

@@ -172,10 +172,17 @@ app
 	;
 
 var preparePageData = function(req){
-    var lang = req.session.lang || global.opts.l18n.defaultLang;
+    var lang = req.session.lang || global.opts.l18n.defaultLang,
+        data = {};
 
     //text resources data
-    var data = {records: global.indexData[lang]};
+    if (global.MODE === 'production') {
+        data.records = global.indexData[lang];
+    } else {
+        var langForPath = lang === global.opts.l18n.defaultLang ? '' : lang;
+
+        data.records = JSON5.parse(fs.readFileSync(__dirname + '/public/'+langForPath+'/index.json5', "utf8"));
+    }
 
     //for dynamic options update
     data.commonOpts = global.commonOpts;

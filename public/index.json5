@@ -55,6 +55,7 @@
         "resultsLabel": "Results",
         "about": "About",
         "underTags": "under tags",
+        "by": "By",
         "voteUp": "Vote Up",
         "voteDown": "Vote Down",
         "voteDisabled": "Voting is not available right now, we're working on it!"
@@ -137,6 +138,28 @@
     "formTagsEmptyError": "Please fill 'tags'",
     "formSuccess": "Pull Request created",
     "formDisabled": "Form currently inactive, please leave your Pull Request through GitHub",
+
+    "formValidate": {
+        "default": "Validation failed",
+        "noData": "Not enough data",
+        "urlFail": "URL not reachable",
+        "urlEmpty": "URL not provided",
+        "titleFail": "Article with this title already exists",
+        "titleEmpty": "No title provided"
+    },
+
+    "formGithub": {
+        "GHError": "GitHub error",
+        "PRError": "Error creating Pull Request",
+        "updateError": "Error adding article to your repository",
+        "JSONError": "Data parsing error",
+        "JSONPushError": "Data update error",
+        "contentsError": "Error getting contents from GitHub",
+        "forkError": "Failed to create fork",
+        "unauthorized": "Authorization error",
+        "validationFailed": "Validation failed",
+        "PRcreated": "Pull Request crealted"
+    },
 
     //Authorization
     "authModalTitle": "Authorization required",

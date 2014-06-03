@@ -43,11 +43,11 @@
             <p class="article-meta">
                 {{#author}}
                     {{#author-link}}
-                        By <a href="{{author-link}}" class="article-author" target="_blank">{{author}}</a>,
+                        {{by}} <a href="{{author-link}}" class="article-author" target="_blank">{{author}}</a>,
                     {{/author-link}}
 
                     {{^author-link}}
-                        By {{author}},
+                        {{by}} {{author}},
                     {{/author-link}}
                 {{/author}}
 

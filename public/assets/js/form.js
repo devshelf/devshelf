@@ -10,11 +10,12 @@ var convertFormToJSON = function(form){
 };
 
 var postToServer = function(sendData, callback){
+    var $spinner = $('.spinner');
+
     if (localStorage['user'] && appData.auth) {
         var token = appData.authToken,
             user = JSON.parse( localStorage.getItem('user')),
-            login = user.login,
-            $spinner = $('.spinner');
+            login = user.login;
 
         //Preparing senging data
         var cat = sendData.category;
@@ -47,6 +48,7 @@ var postToServer = function(sendData, callback){
             type: 'get',
             url: '/post-article',
             data: data,
+            timeout: 15000,
             beforeSend: function() {
                 $spinner.show();
             },
@@ -62,6 +64,9 @@ var postToServer = function(sendData, callback){
                 $('#addNewUrlForm').find('.form-errors').html( appData.records.formDisabled ).show();
             }
         });
+    } else {
+        $spinner.hide();
+        showModal('addNewUrlModal');
     }
 };
 
@@ -85,13 +90,13 @@ var addNewArticle = function( p ) {
     $('#description').val(description);
 
     //if user not authorized
-    if ( !window.appData.auth ) {
+    if ( localStorage['user'] && appData.auth ) {
+        addNewArticleRecall = false;
+        showModal('addNewUrlModal');
+    } else {
         addNewArticleRecall = p || true;
         showModal('login-popup');
         return false
-    } else {
-        addNewArticleRecall = false;
-        showModal('addNewUrlModal');
     }
 
     //prevent double init
@@ -163,8 +168,6 @@ var addNewArticle = function( p ) {
 
             sendData = convertFormToJSON(this);
 
-
-
             var proceedToServer = function(){
                 sendData['tags'] = tagsArray;
 
@@ -183,7 +186,13 @@ var addNewArticle = function( p ) {
                         $form[0].reset();
                         $tagsInput.clear(true);
                     } else {
-                        var message = data.message || appData.records.formFailed;
+                        var processingMessage = appData.records.formGithub[data.message];
+
+                        if (devMode) {
+                            processingMessage = appData.records.formGithub[data.message] + ': ' + data.description.message;
+                        }
+
+                        var message = processingMessage || appData.records.formFailed;
 
                         validate.status = false;
                         validate.errors.push( message );
@@ -195,7 +204,7 @@ var addNewArticle = function( p ) {
             };
 
             //Check auth
-            if (!appData.auth) {
+            if ( !(localStorage['user'] && appData.auth) ) {
                 validate.status = false;
                 validate.errors.push('Only authorized users can add articles.');
             } else if ( tagsArray.length == 0 ){
@@ -224,7 +233,7 @@ var addNewArticle = function( p ) {
                             proceedToServer();
 
                         } else {
-                            var message = data.message || "Validation failed";
+                            var message = appData.records.formValidate[data.message] || appData.records.formValidate.default;
 
                             validate.status = false;
                             validate.errors.push( message );
@@ -240,7 +249,7 @@ var addNewArticle = function( p ) {
                         $spinner.hide();
 
                         if (textStatus === 'timeout') {
-                            errorField.html( appData.records.formValidationFailed ).show();
+                            errorField.html( appData.records.formValidate.default ).show();
                         } else {
                             errorField.html( appData.records.formDisabled ).show();
                         }

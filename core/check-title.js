@@ -98,7 +98,7 @@ var checkTitle = function(title, currentLang, callback) {
 			if (title.length < 5) {
 				if (summData[articleTitle].toUpperCase() == title.toUpperCase()) {
 
-                    callback(false, global.opts.validate.titleFail);
+                    callback(false, 'titleFail');
 
 					return;
 				}
@@ -106,7 +106,7 @@ var checkTitle = function(title, currentLang, callback) {
 				// Getting Levenstein  distance for pair "each title — new title"
 				if ( levDist( summData[articleTitle].toUpperCase(), title.toUpperCase() ) < LevenshteinThreshold ) {
 
-                    callback(false, global.opts.validate.titleFail);
+                    callback(false, 'titleFail');
 
 					return;
 				}
@@ -123,7 +123,7 @@ var checkTitle = function(title, currentLang, callback) {
 	if (title) {
 		checkArticleFound();
 	} else {
-        callback(false, global.opts.validate.titleEmpty);
+        callback(false, 'titleEmpty');
 	}
 };
 

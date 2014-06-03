@@ -13,7 +13,7 @@ var postArticle = function(req, res){
     if (user === undefined) {
         res.send({
             status: false,
-            message: "Unauthorized"
+            message: "unauthorized"
         });
     } else {
         validateData(req.query, function(validateStatus){
@@ -23,14 +23,14 @@ var postArticle = function(req, res){
                     //Callback from PR (final step)
                     res.send({
                         status: true,
-                        message: "PR created",
+                        message: "PRcreated",
                         data: data
                     });
                 });
             } else {
                 res.send({
                     status: false,
-                    message: "Validation failed"
+                    message: "validationFailed"
                 });
             }
         });
@@ -44,7 +44,7 @@ var fork = function(req, res, callback) {
     if (typeof client === "undefined") {
         res.send({
             status: false,
-            message: "Unauthorized"
+            message: "unauthorized"
         });
 
         return false;
@@ -82,7 +82,7 @@ var fork = function(req, res, callback) {
 
             //Creating fork
             ghme.fork(global.opts.form.masterRepo, function(err, data){
-                if (err) { GhApiOnErr(req, res, err, 'Fork error'); return; }
+                if (err) { GhApiOnErr(req, res, err, 'forkError'); return; }
 
 //                console.log('fork done');
 
@@ -100,7 +100,7 @@ var editFile = function(req, res, callback) {
         langDir = req.query.lang === global.opts.l18n.defaultLang ? '' : req.query.lang + '/';
 
     ghrepo.contents(langDir+req.query.cat+'.json', global.opts.form.PRbranch, function(err, currentFile){
-        if (err) { GhApiOnErr(req, res, err, 'Error getting file contents from GitHub'); return; }
+        if (err) { GhApiOnErr(req, res, err, 'contentsError'); return; }
 
         //updating data
         try { //trying to parse JSON
@@ -108,7 +108,7 @@ var editFile = function(req, res, callback) {
                 decodedContentObject = JSON5.parse(new Buffer(fileContentInBase64, 'base64').toString('utf8'));
 
         } catch (err) {
-            GhApiOnErr(req, res, err, 'Error parsing current cat JSON'); return;
+            GhApiOnErr(req, res, err, 'JSONError'); return;
         }
 
 
@@ -116,13 +116,13 @@ var editFile = function(req, res, callback) {
             var tagDataArr = decodedContentObject[req.query.cat];
                 tagDataArr.push(req.query.postData);
         } catch (err) {
-            GhApiOnErr(req, res, err, 'Error pushing new object to JSON'); return;
+            GhApiOnErr(req, res, err, 'JSONPushError'); return;
         }
 
 
         //comiting updated data
         ghrepo.updateContents(currentFile.path, global.opts.form.commitMessage, JSON5.stringify(decodedContentObject, false, 4), currentFile.sha, global.opts.form.PRbranch, function(err, data){
-            if (err) { GhApiOnErr(req, res, err, 'Update error'); return; }
+            if (err) { GhApiOnErr(req, res, err, 'updateError'); return; }
 //            console.log('update done');
 
             callback(err, data);
@@ -162,7 +162,7 @@ var pullRequest = function(req, res, callback) {
 
                 //if user don't have PRs, pass erorr
                 if (!hasPR) {
-                    GhApiOnErr(req, res, GHMasterErr, 'PR error'); return;
+                    GhApiOnErr(req, res, GHMasterErr, 'PRError'); return;
                 }
 
             });
@@ -223,14 +223,15 @@ var validateData = function(data, callback) {
 
 //Validating input data
 var GhApiOnErr = function(req, res, err, msg) {
-    var message = msg || 'GitHub error: ' + err;
+    var message = msg || 'GHError';
 
-    console.log('Error: '+ message, '| JS message: '+err);
+    console.log('Form Error: '+ message, '| JS message: '+err);
 
     res.send({
         statusCode: 500,
         status: false,
-        message: message
+        message: message,
+        description: err
     });
 };
 

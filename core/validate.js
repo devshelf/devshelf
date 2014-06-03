@@ -30,7 +30,7 @@ var validateService = function(req, res) {
     } else {
         res.send({
             status: false,
-            message: global.opts.validate.noData
+            message: 'noData'
         });
     }
 };
@@ -43,12 +43,12 @@ var validate = function(title, url, lang, callback) {
                 if (urlOK) {
                     callback(true, 'OK');
                 } else {
-                    callback(false, global.opts.validate.urlFail);
+                    callback(false, 'urlFail');
                 }
             });
 
         } else {
-            callback(false, global.opts.validate.titleFail);
+            callback(false, 'titleFail');
         }
     });
 };
