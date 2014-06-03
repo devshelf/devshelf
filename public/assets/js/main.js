@@ -490,6 +490,8 @@ var mainApp = function() {
 			}
 		}
 
+        window.scrollTo(0, 1);
+
         if (resultList.length) {
             templateEngine.attachVotes(resultList);
         }
@@ -599,6 +601,7 @@ var mainApp = function() {
                 result: resultList
             })
 
+            window.scrollTo(0, 1);
         }
     });
 
