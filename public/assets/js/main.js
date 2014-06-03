@@ -286,11 +286,6 @@ var templateEngine = (function() {
 
             callback();
 
-            //TODO: move to custom callback
-//            if (!isTouch) {
-//                $('.js-search-input').focus();
-//            }
-
             return this;
         },
 
@@ -393,9 +388,8 @@ var templateEngine = (function() {
         	$('#main-content').hide();
         	$('#main-page').show();
 
-        	$('#main-page .js-search-input')
-        		.focus()
-        		.val(mainPageInputText);
+            if (!isTouch) { $('#main-page .js-search-input').focus() }
+            $('#main-page .js-search-input').val(mainPageInputText);
         },
 
         showSecondaryPage: function() {
@@ -406,9 +400,8 @@ var templateEngine = (function() {
 		liveSearchFocus: function() {
 			var t = $('.js-search-input-interactive').val();
 
-			$('.js-search-input-interactive')
-				.focus()
-				.val( t );
+            if (!isTouch) { $('.js-search-input-interactive').focus(); }
+            $('.js-search-input-interactive').val( t );
 		}
     }
 })();
@@ -651,7 +644,9 @@ var mainApp = function() {
     			if (!$target.length) {
     				if ( $current.index('.article-item') == 0 ) {
     					var currentSearchValue = $('.js-search-input-interactive').val();
-    					$('.js-search-input-interactive').focus().val(currentSearchValue);
+
+                        if (!isTouch) {$('.js-search-input-interactive').focus();}
+    					$('.js-search-input-interactive').val(currentSearchValue);
 
     					$current.removeClass('__in-focus');
     				}
