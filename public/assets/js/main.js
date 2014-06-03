@@ -972,5 +972,10 @@ $(function() {
 		_this.parents('div').find('.mobile-menu-part').toggleClass('__active');
 
 	});
+
+    window.addEventListener('popstate', function(e) {
+        $('.mobile-menu-toggle').removeClass('pure-button-active');
+        $('.mobile-menu-toggle').parents('div').find('.mobile-menu-part').removeClass('__active');
+    });
 });
 

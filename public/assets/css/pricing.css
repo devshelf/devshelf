@@ -111,6 +111,13 @@ p {
 	padding-bottom: .55em;
 	}
 
+@media (max-width: 480px) {
+    .home-search .pure-button {
+        padding-left: .5em;
+        padding-right: .5em;
+        }
+    }
+
 /*
 button[type=submit]::before {
     content: '';
@@ -319,7 +326,6 @@ button[type=submit]::before {
 		}
 
 	.pure-form.home-search .pure-input {
-		width:80%;
 		margin-bottom: 1em;
 		}
 	.user-login {
@@ -392,7 +398,7 @@ button[type=submit]::before {
 
 		.pure-menu .mobile-menu-toggle {
 			position: absolute;
-			right: 20px;
+			right: 1.5em;
 			}
 
 	.mobile-menu-part {
@@ -412,6 +418,13 @@ button[type=submit]::before {
 
 	}
 
+@media (max-width: 480px) {
+    .pure-menu .mobile-menu-toggle {
+        right: .5em;
+        }
+    }
+
+
 /*
  * -- PHONE MEDIA QUERIES --
  * On phones, we want to reduce the height and font-size of the banner further
@@ -425,7 +438,8 @@ button[type=submit]::before {
 		}
 
 	.pure-form.home-search .pure-input {
-		width: 90%;
 		margin:0 auto;
+        display: inline-block;
+        width: 215px;
 		}
 	}

@@ -1341,6 +1341,20 @@ this the same font stack that Normalize.css sets for the `body`.
     white-space: nowrap;
 }
 
+@media (max-width: 767px) {
+    .pure-menu a,
+    .pure-menu .pure-menu-heading {
+        padding-left: 1.5em;
+        }
+    }
+
+@media (max-width: 480px) {
+    .pure-menu a,
+    .pure-menu .pure-menu-heading {
+        padding-left: .5em;
+        }
+    }
+
 .pure-menu.pure-menu-horizontal > .pure-menu-heading {
     display: inline-block;
     *display: inline;
@@ -1357,6 +1371,14 @@ this the same font stack that Normalize.css sets for the `body`.
 }
 
 .pure-menu li a { padding: 5px 15px; }
+
+@media (max-width: 767px) {
+    .pure-menu li a { padding: 5px 1.5em; }
+    }
+
+@media (max-width: 480px) {
+    .pure-menu li a { padding: 5px .5em; }
+    }
 
 .pure-menu-can-have-children > .pure-menu-label:after {
     content: '\25B8';

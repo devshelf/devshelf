@@ -21,10 +21,12 @@
 
     "menu": [{
         "name":"Add new articles",
-        "link": "addNewUrl"
+        "link": "addNewUrl",
+        "class": "hide-from-mob"
     },{
         "name":"Bookmarklet",
-        "link": "#!/bookmarklet"
+        "link": "#!/bookmarklet",
+        "class": "hide-from-mob"
     },{
         "name":"About",
         "link": "#!/about"

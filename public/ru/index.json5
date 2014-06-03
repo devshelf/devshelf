@@ -19,10 +19,12 @@
 
     "menu": [{
         "name":"Добавить статью",
-        "link": "addNewUrl"
+        "link": "addNewUrl",
+        "class": "hide-from-mob"
     },{
         "name":"Букмарклет",
-        "link": "#!/bookmarklet"
+        "link": "#!/bookmarklet",
+        "class": "hide-from-mob"
     },{
         "name":"О проекте",
         "link": "#!/about"
@@ -103,7 +105,7 @@
                 "role": "Layout ideas and solutions."
             }
         ],
-        "contactUs": "Оставайтесь на связи"
+        "contactUs": "Пишите!"
     },
     "bookmarklet": {
     	"bookmarkletToolsTitle": "Инструменты",
