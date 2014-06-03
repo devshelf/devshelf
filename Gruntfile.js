@@ -115,8 +115,8 @@ module.exports = function(grunt) {
 
     //TODO: process only new files, add modules loader
 
+    grunt.registerTask('clean', ['clean:build']);
     grunt.registerTask('default', [
-        'clean:build',
         'csso:main',
         'uglify:main',
         'htmlcompressor:main',

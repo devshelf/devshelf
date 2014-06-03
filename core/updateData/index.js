@@ -10,7 +10,9 @@ var updateData = function() {
         NOT_RUNNING = false;
 
         function callback(error, stdout, stderr) {
-            console.log('stdout: ' + stdout);
+            if (global.MODE === 'development') {
+                console.log('stdout: ' + stdout);
+            }
 
             if (error !== null) {
                 console.log('exec error: ' + error);
@@ -20,7 +22,9 @@ var updateData = function() {
             NOT_RUNNING = true;
         }
 
-        console.log("Git pull from reposity...");
+        if (global.MODE === 'development') {
+            console.log("Git pull from reposity...");
+        }
 
         exec('git --work-tree='+ global.appDir + global.opts.articles.path +' --git-dir='+ global.appDir + global.opts.articles.path +'/.git pull --rebase', callback);
     }
@@ -31,7 +35,7 @@ if (global.MODE === 'production') {
     setInterval(function() {
         updateData();
     }, global.opts.articles.updateInterval);
-} else {
-    // Running once in dev mode
-    updateData();
 }
+
+// Running once on first run
+updateData();
