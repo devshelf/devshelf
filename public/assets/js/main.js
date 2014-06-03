@@ -904,6 +904,7 @@ $(function() {
 				maxHeight:215,
 				width:321,
 				zIndex: 9999,
+                lookupLimit: 6,
 				appendTo: '.home-search',
 				triggerSelectOnValidInput: false,
 				deferRequestBy: 0, //miliseconds

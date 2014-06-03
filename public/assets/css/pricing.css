@@ -325,9 +325,6 @@ button[type=submit]::before {
 		margin-bottom: 2em;
 		}
 
-	.pure-form.home-search .pure-input {
-		margin-bottom: 1em;
-		}
 	.user-login {
 		border-bottom: 1px solid darkgray;
 		}
@@ -342,11 +339,12 @@ button[type=submit]::before {
 
 	.pure-menu-fixed {
 		height: 32px;
+        position: relative;
 		}
 
 	.sidebar-header,
     .banner {
-	    margin-top: 32px;
+	    margin-top: 0px;
 	    }
 
 	.banner-inner {

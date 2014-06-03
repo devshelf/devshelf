@@ -294,6 +294,7 @@ a {
     .sidebar-header-title {
         height: 40px;
         padding: 0 1.5em;
+        margin: 0;
         font-size: 1em;
         line-height: 40px;
         }
@@ -399,7 +400,6 @@ a {
 	border: 1px #e7e7e7 solid;
 	box-shadow: 0 15px 20px rgba(0,0,0,0.4);
 	margin-left: 3px;
-	overflow: auto;
 	}
 
 .autocomplete-suggestion {
