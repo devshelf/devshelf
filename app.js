@@ -93,6 +93,21 @@ app.post('/lang', function (req, res, next) {
 });
 
 
+/**
+* www to non www
+*/
+var wwwRedirect = function (req, res, next) {
+    if (req.headers.host.slice(0, 4) === 'www.') {
+        var newHost = req.headers.host.slice(4);
+        return res.redirect(req.protocol + '://' + newHost + req.originalUrl);
+    }
+    next();
+};
+
+app.set('trust proxy', true);
+app.use(wwwRedirect);
+
+
 /*
 * auth module
 * */
