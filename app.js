@@ -96,16 +96,14 @@ app.post('/lang', function (req, res, next) {
 /**
 * www to non www
 */
-var wwwRedirect = function (req, res, next) {
-    if (req.headers.host.slice(0, 4) === 'www.') {
-        var newHost = req.headers.host.slice(4);
-        return res.redirect(req.protocol + '://' + newHost + req.originalUrl);
-    }
-    next();
-};
-
 app.set('trust proxy', true);
-app.use(wwwRedirect);
+app.get('*', function(req, res, next) {
+  if (req.headers && req.headers.host.match(/^www/) !== null ) {
+    res.redirect(req.protocol + '://' + req.headers.host.replace(/^www\./, '') + req.url);
+  } else {
+    next();
+  }
+});
 
 
 /*
