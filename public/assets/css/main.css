@@ -308,12 +308,13 @@ a {
 
 .sidebar {
 	position: fixed;
+    z-index: 1;
 	top: 0;
 	bottom: 0;
 	width: 200px;
 	margin-left: -200px;
 	background: #191818;
-	overflow-y:auto;
+	/*overflow-y:auto; Removing because of Chrome bug with invisible pane on scroll */
 	color: #fff;
 	}
 
