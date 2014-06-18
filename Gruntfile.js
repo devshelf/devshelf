@@ -16,6 +16,17 @@ module.exports = function(grunt) {
                 ]
             },
 
+            favicons: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'public/assets/favicons/',
+                        src: '**',
+                        dest: 'public/build/favicons/'
+                    }
+                ]
+            },
+
             html: {
                 files: [
                     {
@@ -121,6 +132,7 @@ module.exports = function(grunt) {
         'uglify:main',
         'htmlcompressor:main',
         'copy:img',
+        'copy:favicons',
         'hashres:main'
     ]);
 
