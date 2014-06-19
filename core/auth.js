@@ -32,7 +32,7 @@ everyauth.everymodule
 everyauth.github
     .appId(GHappID)
     .appSecret(GHappSecret)
-    .scope('repo')
+    .scope('public_repo')
     .findOrCreateUser( function (sess, accessToken, accessTokenExtra, ghUser) {
         return usersByGhId[ghUser.id] || (usersByGhId[ghUser.id] = addUser('github', ghUser, accessToken));
         })
