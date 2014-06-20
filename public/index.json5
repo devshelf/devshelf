@@ -166,5 +166,67 @@
     //Authorization
     "authModalTitle": "Authorization required",
     "authDescr": "We use your account details to accept the votes and allow you to submit articles through GitHub",
-    "authLoginWelcome": "Please login through "
+    "authLoginWelcome": "Please login through ",
+
+    "featured": {
+        "title" : "Featured",
+        "list": [
+            {
+                "link": "/#!/search/rookie",
+                "title": "Rookie"
+            },
+            {
+                "link": "/#!/search/best_practises",
+                "title": "Development best practises"
+            },
+            {
+                "link": "/#!/search/css_methodologies",
+                "title": "CSS methodologies"
+            },
+            {
+                "link": "/#!/search/living_style_guides",
+                "title": "Living style guides"
+            },
+            {
+                "link": "/#!/search/performance",
+                "title": "Performance"
+            },
+            {
+                "link": "/#!/search/mvc",
+                "title": "MVC in JavaScript"
+            },
+            {
+                "link": "/#!/search/nodejs",
+                "title": "NodeJS"
+            },
+            {
+                "link": "/#!/search/grunt",
+                "title": "Grunt"
+            },
+            {
+                "link": "/#!/search/gulp",
+                "title": "Gulp"
+            },
+            {
+                "link": "/#!/search/tools",
+                "title": "Development tools"
+            },
+            {
+                "link": "/#!/search/animation",
+                "title": "Animations"
+            },
+            {
+                "link": "/#!/search/flexbox",
+                "title": "Flexbox"
+            },
+            {
+                "link": "/#!/search/gamedev",
+                "title": "Web gamedev"
+            },
+            {
+                "link": "/#!/search/ecmascript",
+                "title": "Ecmascript"
+            }
+        ]
+    }
 }

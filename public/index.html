@@ -135,7 +135,17 @@
 
 	<div class="l-content">
 
+        <div class="featured">
+            <div class="pure-u-1">
+                <h2>{{featured.title}}</h2>
 
+                <ul class="featured_ul">
+                    {{#featured.list}}
+                    <li class="featured_li"><a href="{{link}}">{{title}}</a></li>
+                    {{/featured.list}}
+                </ul>
+            </div>
+        </div>
 
 		<div class="pricing-tables pure-g-r">
 

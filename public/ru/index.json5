@@ -162,5 +162,67 @@
     //Authorization
     "authModalTitle": "Пожалуйста авторизируйтесь",
     "authDescr": "Авторизация необходима для того что бы оставлять голоса и добавлять статьи через GitHub.",
-    "authLoginWelcome": "Пожалуйста авторизируйтесь через "
+    "authLoginWelcome": "Пожалуйста авторизируйтесь через ",
+
+    "featured": {
+        "title" : "Последние подборки",
+        "list": [
+            {
+                "link": "/#!/search/rookie",
+                "title": "Материалы для новичков"
+            },
+            {
+                "link": "/#!/search/best_practises",
+                "title": "Лучшие практиви в веб разоработке"
+            },
+            {
+                "link": "/#!/search/css_methodologies",
+                "title": "CSS методоголии"
+            },
+            {
+                "link": "/#!/search/living_style_guides",
+                "title": "Living style guides"
+            },
+            {
+                "link": "/#!/search/performance",
+                "title": "Производительность"
+            },
+            {
+                "link": "/#!/search/mvc",
+                "title": "MVC в JavaScript"
+            },
+            {
+                "link": "/#!/search/nodejs",
+                "title": "NodeJS"
+            },
+            {
+                "link": "/#!/search/grunt",
+                "title": "Grunt"
+            },
+            {
+                "link": "/#!/search/gulp",
+                "title": "Gulp"
+            },
+            {
+                "link": "/#!/search/tools",
+                "title": "Инструменты разработки"
+            },
+            {
+                "link": "/#!/search/animation",
+                "title": "Анимации"
+            },
+            {
+                "link": "/#!/search/flexbox",
+                "title": "Flexbox"
+            },
+            {
+                "link": "/#!/search/gamedev",
+                "title": "Разработка игр для браузера"
+            },
+            {
+                "link": "/#!/search/ecmascript",
+                "title": "Ecmascript"
+            }
+        ]
+    }
 }
