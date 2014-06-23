@@ -160,9 +160,9 @@
     },
 
     //Authorization
-    "authModalTitle": "Пожалуйста авторизируйтесь",
+    "authModalTitle": "Пожалуйста, авторизируйтесь",
     "authDescr": "Авторизация необходима для того что бы оставлять голоса и добавлять статьи через GitHub.",
-    "authLoginWelcome": "Пожалуйста авторизируйтесь через ",
+    "authLoginWelcome": "Пожалуйста, авторизируйтесь через ",
 
     "featured": {
         "title" : "Последние подборки",
@@ -173,11 +173,11 @@
             },
             {
                 "link": "/#!/search/best_practises",
-                "title": "Лучшие практиви в веб разоработке"
+                "title": "Лучшие практики в веб разоработке"
             },
             {
                 "link": "/#!/search/css_methodologies",
-                "title": "CSS методоголии"
+                "title": "CSS методологии"
             },
             {
                 "link": "/#!/search/living_style_guides",
