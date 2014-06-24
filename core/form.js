@@ -5,7 +5,6 @@ var github = require('octonode'),
 
 //TODO: if has fork, create a branch in it, merge with latest devshelf and commit OR refork
 //TODO: check existance of new article in fork
-//TODO: localize errors
 
 var postArticle = function(req, res){
     var user = typeof req.session.authCache === 'undefined' ?  undefined : req.session.authCache.github.user.login;

@@ -121,6 +121,12 @@ var templateEngine = (function() {
 						templateEngine.getTemplateByHash({
 							hash: currentWindowHash,
 							callback: function(p) {
+                                p.callback = function(innerParams) {
+                                    if (innerParams.template === 'main-page') {
+                                        templateEngine.showMainPage();
+                                    }
+                                };
+
 								templateEngine.insertTemplate(p);
 							}
 						})
@@ -147,7 +153,7 @@ var templateEngine = (function() {
          */
         getTemplateByHash: function(p) {
             var targetCont = 'main-page',
-                hash = p.hash,
+                hash = p.hash.replace(/\/$/, ""), //removing last '/' for cleaner hash
                 callback = p.callback || function(p) {},
                 getParams = p.hash.split('/')[1],
                 resultList = [],
@@ -263,6 +269,8 @@ var templateEngine = (function() {
                 $target = $('#'+ target),
                 callback = p.callback || function() {};
 
+            window.scrollTo(0, 1);
+
             var params = $.extend({}, p.params, appData.records[p.template]);
             $target.html( Mustache.to_html( $template.html(), params) );
 
@@ -284,7 +292,7 @@ var templateEngine = (function() {
 
             }
 
-            callback();
+            callback(p);
 
             return this;
         },
@@ -429,7 +437,7 @@ var mainApp = function() {
     templateEngine.checkHash();
 
     /**
-     * On Back/Forward buttons press template render
+     * On url and hash change template render
      */
     window.addEventListener('popstate', function(e) {
     	templateEngine.checkHash();
