@@ -12,3 +12,5 @@ public/build
 
 # Custom options
 core/options/secure-options.json
+
+google*.html
