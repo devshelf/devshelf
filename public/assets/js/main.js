@@ -1,3 +1,6 @@
+// Stoping prerender till page is ready
+window.prerenderReady = false;
+
 var TARGET_CONT = 'main-content';
 var totalTagList = {};
 var searchTagList = [];
@@ -125,6 +128,9 @@ var templateEngine = (function() {
                                     if (innerParams.template === 'main-page') {
                                         templateEngine.showMainPage();
                                     }
+
+                                    // Saying prerender that page is ready
+                                    window.prerenderReady = true;
                                 };
 
 								templateEngine.insertTemplate(p);
@@ -269,7 +275,7 @@ var templateEngine = (function() {
          * @returns {Object} templateEngine
          */
         insertTemplate: function(p) {
-            var target = p.target || TARGET_CONT;
+            var target = p.target || TARGET_CONT,
                 $template = $('#'+ p.template),
                 $target = $('#'+ target),
                 callback = p.callback || function() {};
