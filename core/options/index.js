@@ -1,19 +1,15 @@
-var deepExtend = require('deep-extend'),
-    JSON5 = require('json5'),
-    fs = require('fs');
+var deepExtend = require('deep-extend');
+var requireUncached = function (module) {
+    delete require.cache[require.resolve(module)];
+    return require(module);
+};
 
-var coreSettings = JSON5.parse(fs.readFileSync(__dirname + '/options.json5', "utf8")),
+var coreSettings = requireUncached('./default-options');
+deepExtend(coreSettings, requireUncached('./common-options'));
 
-    secureOptionsFile = "/secure-options.json", //TODO: change to JSON5, after realising l18n DevShelf
-    commonSettingsWithFrontendFile = "/common-options.json5";
+// If secure options exists, merge those on top of our default settings
+try {
+    deepExtend(coreSettings, requireUncached('./secure-options'));
+} catch(e) {}
 
-var commonSettingsWithFrontend = JSON5.parse(fs.readFileSync(__dirname + commonSettingsWithFrontendFile, "utf8"));
-deepExtend(coreSettings, commonSettingsWithFrontend);
-
-if(fs.existsSync(__dirname + secureOptionsFile)) {
-
-    var secureOptions = JSON5.parse(fs.readFileSync(__dirname + secureOptionsFile, "utf8"));
-    deepExtend(coreSettings, secureOptions);
-
-}
 module.exports = coreSettings;

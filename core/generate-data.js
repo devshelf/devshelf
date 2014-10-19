@@ -1,12 +1,19 @@
-var fs = require('fs')
-    , util = require('util')
-    , colors = require('colors')
-    , path = require('path')
-    , md5 = require('MD5')
-    , sh = require('shorthash')
-    , sm = require('sitemap')
-    , generateIDs = require('./aticles-ids')
-    ;
+var fs = require('fs');
+var util = require('util');
+var colors = require('colors');
+var path = require('path');
+var md5 = require('MD5');
+var sh = require('shorthash');
+var sm = require('sitemap');
+var deepExtend = require('deep-extend');
+var generateIDs = require('./aticles-ids');
+
+var tagsDescriptionCache = {};
+
+var requireUncached = function (module) {
+    delete require.cache[require.resolve(module)];
+    return require(module);
+};
 
 /**
  * Extend srcInput articles data with extendedInput data (for localization data merge)
@@ -32,6 +39,32 @@ var extendArticlesData = function(srcInput, extenderInput){
 };
 
 /**
+ * Function for saving JSON files to file system
+ * @param {Object} data - data to write
+ * @param {String} dir - dir path to write
+ * @param {String} fileName - name of the file to write
+ */
+var writeToFile = function(data, dir, fileName) {
+    var JSONformat = null;
+
+    if (global.MODE === 'development') {
+        JSONformat = 4;
+    }
+
+    fs.writeFile(dir + fileName, JSON.stringify(data, null, JSONformat), function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            if (global.MODE === 'development') {
+                var shortDir = dir.replace(global.appDir + '/','');
+
+                console.log("Generating Articles data in ".green + shortDir.green + fileName.green + ": DONE".green);
+            }
+        }
+    });
+};
+
+/**
  * Generate JSON file with all articles data
  * @param {Object} p
  * @param {String} p.targetDir
@@ -48,7 +81,7 @@ var prepareJSON = function(p) {
 
         callback = p.callback || function(){},
 
-        outputJSON = {},
+        allArticlesJSON = {},
 
         dataOutputDir = global.opts.dataOutputDir,
 
@@ -74,8 +107,8 @@ var prepareJSON = function(p) {
 
         var jsonFileQueue = 0;
         jsonFilesArr.map(function(file){
-            var fileName = path.basename(file, ".json"),
-				currentObj = {};
+            var fileName = path.basename(file, ".json");
+            var currentObj = {};
 
             try {
                 currentObj = JSON.parse(fs.readFileSync(dir+file, "utf8"));
@@ -100,12 +133,13 @@ var prepareJSON = function(p) {
                 }
             }
 
-            outputJSON = extendArticlesData(outputJSON, currentObj);
+            allArticlesJSON = extendArticlesData(allArticlesJSON, currentObj);
             jsonFileQueue++;
 
             //When all files scanned, now heading to writing
             if (jsonFileQueue === jsonFileCount) {
-                var finalJSON = outputJSON;
+                var mergedJSON = {};
+                mergedJSON.articles = allArticlesJSON;
 
                 //If localized, merge with main JSON
                 if (localizationEnabled) {
@@ -113,40 +147,21 @@ var prepareJSON = function(p) {
                     var defaultLangJSON = global.articlesData[langDefault];
 
                     //pure data selection, only lang
-                    global.articlesData[global.opts.articlesCleanLangObjPrefix+language] = finalJSON
+                    global.articlesData[global.opts.articlesCleanLangObjPrefix+language] = mergedJSON;
 
-                    finalJSON = extendArticlesData(defaultLangJSON, outputJSON);
+                    mergedJSON.articles = extendArticlesData(defaultLangJSON, allArticlesJSON);
                 }
 
+                mergedJSON.tagsDescription = getTagDescription(language, localizationEnabled);
+
                 // Job is done, next goes some callbacks and writing output to file
-                global.articlesData[language] = finalJSON || {};
+                global.articlesData[language] = mergedJSON.articles || {};
                 generateIDs.updateIDs(language);
                 processTags(language);
                 callback();
 
-
-                // function for write json file
-                var writeToFile = function(data, dir, fileName) {
-                    var JSONformat = null;
-
-                    if (global.MODE === 'development') {
-                        JSONformat = 4;
-                    }
-
-                    fs.writeFile(dir + fileName, JSON.stringify(data, null, JSONformat), function (err) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            if (global.MODE === 'development') {
-                                var shortDir = dir.replace(global.appDir + '/','');
-
-                                console.log("Generating Articles data in ".green + shortDir.green + fileName.green + ": DONE".green);
-                            }
-                        }
-                    });
-                };
-
-                (function(fullJSON, onlyLang) {
+                // Incapsulating current data and sending it to write func
+                (function(mergedJSON, onlyLangJSON) {
                     var outputDir = global.appDir+dataOutputDir;
 
                     if (localizationEnabled) {
@@ -154,10 +169,10 @@ var prepareJSON = function(p) {
                     }
 
                     var processJSON = function(){
-                        writeToFile(fullJSON, outputDir, articlesDataFile);
+                        writeToFile(mergedJSON, outputDir, articlesDataFile);
 
                         if (localizationEnabled) {
-                            writeToFile(onlyLang, outputDir, articlesDataLangFile);
+                            writeToFile(onlyLangJSON, outputDir, articlesDataLangFile);
                         }
                     };
 
@@ -172,7 +187,7 @@ var prepareJSON = function(p) {
                             console.log(e);
                         }
                     });
-                })(finalJSON, outputJSON);
+                })(mergedJSON, allArticlesJSON);
             }
         });
     });
@@ -253,7 +268,7 @@ var processTags = function(lang) {
 
         // serfing through articles
         targetArr.map(function(article){
-            var tags = article.tags,
+            var tags = article.tags || [''],
                 mainTag = tags[0];
 
             //writing only one of a king
@@ -282,6 +297,7 @@ var processTags = function(lang) {
         });
     }
 
+    // Create a sitemap for tag pages
     global.sitemap[lang] = sm.createSitemap({
         hostname: global.opts.app.host,
         cacheTime: 600000,        // 600 sec - cache purge period
@@ -289,16 +305,41 @@ var processTags = function(lang) {
     });
 };
 
+/**
+ * Get tags description text
+ * @param {String} lang
+ */
+var getTagDescription = function(lang, localizationEnabled) {
+    var output = {};
+    var filename = (lang === global.opts.l18n.defaultLang ? 'default' : lang) + '.json';
+    var fullPath = path.join(global.appDir, global.opts.articles.tagDescriptionPath, filename);
+
+    try {
+        tagsDescriptionCache[lang] = output = requireUncached(fullPath);
+    } catch (e) {}
+
+    // If working with localized data, merge it with default data
+    if (localizationEnabled) {
+        var defaultLangData = JSON.parse(JSON.stringify(tagsDescriptionCache[global.opts.l18n.defaultLang]));
+
+        output = deepExtend(defaultLangData, output);
+    }
+
+    return output;
+};
+
 // Init
 var generateData = function() {
+    var articlesPath = path.join(global.appDir, global.opts.articles.path);
+
     prepareJSON({
-        targetDir: global.appDir + global.opts.articles.path,
+        targetDir: articlesPath,
         callback: function(){
-            //it's important to process main language data first, because all add. langs are merged with main
+            // it's important to process main language data first, because all add. langs are merged with main
 
             global.opts.l18n.additionalLangs.map(function(lang) {
                 prepareJSON({
-                    targetDir:global.appDir + global.opts.articles.path,
+                    targetDir:articlesPath,
                     lang: lang
                 });
             });

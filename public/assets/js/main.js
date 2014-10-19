@@ -1,8 +1,8 @@
-var TARGET_CONT = 'main-content',
-    totalTagList = {},
-    searchTagList = [],
-    voteData = {};
-
+var TARGET_CONT = 'main-content';
+var totalTagList = {};
+var searchTagList = [];
+var tagsDescription = {};
+var voteData = {};
 var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
 var devMode = getCookie('app-mode') === 'development' ? true : false;
 
@@ -176,13 +176,15 @@ var templateEngine = (function() {
                 }
             }
 
+            var searchQuery = getParams.replace(/_/g, ' ');
+
             /**
              * Case of search is more complicated than others
              */
             if ((targetCont == 'search') && (!!getParams)) {
             	// Create a local copy of resultList
                 $.extend(true, resultList, templateEngine.fuzzySearch({
-                    q: getParams.replace(/_/g, ' '),
+                    q: searchQuery,
                     allData: searchTagList
                 }));
 
@@ -231,6 +233,8 @@ var templateEngine = (function() {
 
             }
 
+            var queryTagDescription = tagsDescription[searchQuery] ? tagsDescription[searchQuery] : '';
+
             /**
              * Callback trigger final part of template rendering
              */
@@ -242,6 +246,7 @@ var templateEngine = (function() {
                     resultList: resultList,
                     copy: appData.records.copy,
 	                total: resultList.length,
+	                tagDescription: queryTagDescription,
                     votingEnabled: appData.commonOpts.voting.enabled
                 }
             });
@@ -504,6 +509,8 @@ var mainApp = function() {
             templateEngine.attachVotes(resultList);
         }
 
+        var queryTagDescription = tagsDescription[searchQuery] ? tagsDescription[searchQuery] : '';
+
         templateEngine.insertTemplate( {
             template: 'search',
             params: {
@@ -511,6 +518,7 @@ var mainApp = function() {
                 getParams: searchQuery,
                 total: resultList.length,
                 resultList: resultList,
+                tagDescription: queryTagDescription,
                 votingEnabled: appData.commonOpts.voting.enabled
             }
         });
@@ -527,6 +535,7 @@ var mainApp = function() {
                 getParams: searchQuery,
                 total: resultList.length,
                 resultList: resultList,
+                tagDescription: queryTagDescription,
                 votingEnabled: appData.commonOpts.voting.enabled
             }
         });
@@ -542,7 +551,7 @@ var mainApp = function() {
 		templateEngine.showSecondaryPage();
 		templateEngine.liveSearchFocus();
 
-        updateTitle();
+        updateTitleAndDescription();
     });
 
 	$('#main-content').on('submit', 'form', function() {
@@ -587,6 +596,8 @@ var mainApp = function() {
 			}
 		}
 
+        var queryTagDescription = tagsDescription[searchQuery] ? tagsDescription[searchQuery] : '';
+
         if (resultList.length) {
 			templateEngine.attachVotes(resultList);
 
@@ -597,6 +608,7 @@ var mainApp = function() {
                     getParams: searchQuery,
                     total: resultList.length,
                     resultList: resultList,
+                    tagDescription: queryTagDescription,
                     votingEnabled: appData.commonOpts.voting.enabled
                 }
             });
@@ -701,26 +713,52 @@ var mainApp = function() {
 
 
 /**
- * Page title update
+ * Page title and description update
  */
-var updateTitle = function(){
-    var currentWindowHash = window.location.hash.split('#!/'),
-        pageName = currentWindowHash[1],
-        title = appData.records.title, //Default title
-        preparedTitle = appData.records.customTitle[pageName];
+var updateTitleAndDescription = function(){
+    var currentWindowHash = window.location.hash.split('#!/');
+    var fullPageName = currentWindowHash[1];
 
-    if (typeof pageName !== 'undefined') {
+    var getLastPageName = function(){
+        if (typeof fullPageName !== 'undefined') {
+            var fullPageNameSplit = fullPageName.split('/');
+
+            return fullPageNameSplit[fullPageNameSplit.length - 1]
+        } else {
+            return '';
+        }
+    };
+
+    var lastPageName = getLastPageName();
+    var lastPageNameNormalized = lastPageName.replace(/_/g, ' ');
+
+    //Default title
+    var title = appData.records.title;
+    var preparedTitle = appData.records.customTitle[fullPageName];
+    var description = tagsDescription[lastPageNameNormalized] ? tagsDescription[lastPageNameNormalized] : appData.records.description;
+
+    if (typeof fullPageName !== 'undefined') {
+
+        // If we have custom prepared title from resources file
         if (typeof preparedTitle === 'string') {
             title = preparedTitle + ' / ' + appData.records.shortTitle;
-        } else if (pageName.split('/')[0] === 'search') {
-            title = pageName.split('/')[1] + ' / ' + appData.records.shortTitle;
+
+        // Or just set tag name to title
+        } else if (fullPageName.split('/')[0] === 'search') {
+            title = fullPageName.split('/')[1] + ' / ' + appData.records.shortTitle;
         }
     }
 
-    document.title = title;
+    var capitalize = function(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
+    // Updating metas
+    $('meta[name=description]').attr('content', description);
+    document.title = capitalize(title).replace(/_/g, ' ');
 };
 
-window.addEventListener('popstate', updateTitle, false);
+window.addEventListener('popstate', updateTitleAndDescription, false);
 
 
 /**
@@ -780,11 +818,14 @@ var getAllData = function(p) {
     $.ajax({
         url: p.jsonData,
         success: function(data) {
+            var articlesData = data.articles;
+            var tagsData = data.tagsDescription;
 
-            totalTagList = $.extend(true, totalTagList, data);
+            tagsDescription = $.extend(true, tagsDescription, tagsData);
+            totalTagList = $.extend(true, totalTagList, articlesData);
 
-            for (k in data) {
-                var prop = data[k],
+            for (k in articlesData) {
+                var prop = articlesData[k],
                     j = prop.length;
 
                 while (j--) {
@@ -945,7 +986,7 @@ $(function() {
                 mainApp();
 
                 // First page visit title update
-                updateTitle();
+                updateTitleAndDescription();
 
                 checkAuth();
             },

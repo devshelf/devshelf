@@ -1,7 +1,6 @@
-var github = require('octonode'),
-    JSON5 = require('json5'),
-    checkURL = require('./check-url-status'),
-    checkTitle = require('./check-title');
+var github = require('octonode');
+var checkURL = require('./check-url-status');
+var checkTitle = require('./check-title');
 
 //TODO: if has fork, create a branch in it, merge with latest devshelf and commit OR refork
 //TODO: check existance of new article in fork
@@ -103,8 +102,8 @@ var editFile = function(req, res, callback) {
 
         //updating data
         try { //trying to parse JSON
-            var fileContentInBase64 = currentFile.content,
-                decodedContentObject = JSON5.parse(new Buffer(fileContentInBase64, 'base64').toString('utf8'));
+            var fileContentInBase64 = currentFile.content;
+            var decodedContentObject = JSON.parse(new Buffer(fileContentInBase64, 'base64').toString('utf8'));
 
         } catch (err) {
             GhApiOnErr(req, res, err, 'JSONError'); return;
@@ -120,7 +119,7 @@ var editFile = function(req, res, callback) {
 
 
         //comiting updated data
-        ghrepo.updateContents(currentFile.path, global.opts.form.commitMessage, JSON5.stringify(decodedContentObject, false, 4), currentFile.sha, global.opts.form.PRbranch, function(err, data){
+        ghrepo.updateContents(currentFile.path, global.opts.form.commitMessage, JSON.stringify(decodedContentObject, false, 4), currentFile.sha, global.opts.form.PRbranch, function(err, data){
             if (err) { GhApiOnErr(req, res, err, 'updateError'); return; }
 //            console.log('update done');
 

@@ -118,6 +118,11 @@ a {
 	padding-top: 6em;
 	}
 
+.posts_description {
+	margin-top: 0;
+	font-size: 1.2em;
+	}
+
 .home-search {
 	display: inline-block;
 	text-align: left;

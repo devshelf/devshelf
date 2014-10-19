@@ -1,10 +1,13 @@
-var exec = require('child_process').exec,
-    articlesJson = require('../generate-data');
+var exec = require('child_process').exec;
+var path = require('path');
+var articlesJson = require('../generate-data');
 
 // for waiting when function finished
 var NOT_RUNNING = true;
 
 var updateData = function() {
+    var articlesPath = path.join(global.appDir, global.opts.articles.path);
+
     if (NOT_RUNNING) {
 
         NOT_RUNNING = false;
@@ -26,16 +29,18 @@ var updateData = function() {
             console.log("Git pull from reposity...");
         }
 
-        exec('git --work-tree='+ global.appDir + global.opts.articles.path +' --git-dir='+ global.appDir + global.opts.articles.path +'/.git pull --rebase', callback);
+        exec('git --work-tree='+ articlesPath +' --git-dir='+ articlesPath +'/.git pull --rebase', callback);
     }
 };
 
-// Updating with interval in production mode
+
 if (global.MODE === 'production') {
+
+    // Updating with interval in production mode
     setInterval(function() {
         updateData();
     }, global.opts.articles.updateInterval);
-}
 
-// Running once on first run
-updateData();
+    // Running once on first run
+    updateData();
+}

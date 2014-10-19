@@ -1,15 +1,15 @@
-/* Module dependencies */
-var express = require('express')
-    , colors = require('colors')
-    , fs = require('fs')
-    , mustache = require('mustache')
-    , everyauth = require('everyauth')
-    , path = require('path')
-    , JSON5 = require('json5')
-    , MongoStore = require('connect-mongostore')(express)
-    ;
-/* /Module dependencies */
+var express = require('express');
+var colors = require('colors');
+var fs = require('fs');
+var mustache = require('mustache');
+var everyauth = require('everyauth');
+var path = require('path');
+var MongoStore = require('connect-mongostore')(express);
 
+var requireUncached = function (module) {
+    delete require.cache[require.resolve(module)];
+    return require(module);
+};
 
 /* Global vars */
 global.articlesData = {}; //all-data.json obj with articles by lang (articlesData.en/ru/etc)
@@ -22,21 +22,33 @@ global.appDir = path.dirname(require.main.filename); //path to project dir
 global.MODE = process.env.NODE_ENV || 'development';
 
 global.app = express();
-global.opts = require('./core/options/'); //Global options
-global.commonOpts = JSON5.parse(fs.readFileSync(__dirname + '/core/options/common-options.json5', "utf8")); //Common options with Front-end
+
+//Global options
+global.opts = require('./core/options');
+
 /* /Global vars */
+
 
 /*
 * Data
 * */
 
-global.indexData = {};
-global.indexData[global.opts.l18n.defaultLang] = JSON5.parse(fs.readFileSync(__dirname + '/public/index.json5', "utf8"));
+//Common options with Front-end
+var getCommonOpts = function(){
+    return requireUncached('./core/options/common-options');
+};
 
-//filling lang properties
+// Translation resources
+var indexData = {};
+indexData[global.opts.l18n.defaultLang] = require('./public/index.json');
+
+// Filling lang properties
 global.opts.l18n.additionalLangs.map(function(lang) {
-    global.indexData[lang] = JSON5.parse(fs.readFileSync(__dirname + '/public/'+lang+'/index.json5', "utf8"));
+    indexData[lang] = require('./public/'+lang+'/index.json');
 });
+
+
+
 
 
 /*
@@ -117,7 +129,7 @@ var authDoneTpl = fs.readFileSync(__dirname+'/views/auth-done.html', "utf8");
 app.get('/auth/stub', function (req, res) {
     var lang = req.cookies.lang || global.opts.l18n.defaultLang;
 
-    var indexJson = global.indexData[lang];
+    var indexJson = indexData[lang];
 
     indexJson.authDone = false;
 
@@ -132,9 +144,9 @@ app.get('/auth/done', function (req, res) {
     //Creating cachedAuth for keeping auth after app restart
     req.session.authCache = req.session.auth;
 
-    var indexJson = global.indexData[lang];
+    var indexJson = indexData[lang];
 
-    indexJson.user = JSON5.stringify(req.session.authCache.github.user);
+    indexJson.user = JSON.stringify(req.session.authCache.github.user);
     indexJson.authDone = true;
 
     var htmlToSend = mustache.to_html(authDoneTpl, indexJson);
@@ -188,17 +200,19 @@ var preparePageData = function(req){
     var lang = req.session.lang || global.opts.l18n.defaultLang,
         data = {};
 
-    //text resources data
+    // Text resources data. If production take from cache
     if (global.MODE === 'production') {
-        data.records = global.indexData[lang];
+        data.records = indexData[lang];
+
+    // If dev, read from file
     } else {
         var langForPath = lang === global.opts.l18n.defaultLang ? '' : lang;
 
-        data.records = JSON5.parse(fs.readFileSync(__dirname + '/public/'+langForPath+'/index.json5', "utf8"));
+        data.records = requireUncached('./public/'+langForPath+'/index.json');
     }
 
     //for dynamic options update
-    data.commonOpts = global.commonOpts;
+    data.commonOpts = getCommonOpts();
 
     //link to tags catalogues for main page
     data.catalogue = global.tagLinks[lang];
@@ -222,7 +236,7 @@ var preparePageData = function(req){
        clientIndexJson[item] = data[item];
     });
 
-    data.appData = JSON5.stringify(clientIndexJson);
+    data.appData = JSON.stringify(clientIndexJson);
 
     return data;
 };
@@ -276,16 +290,16 @@ global.opts.l18n.additionalLangs.map(function(lang) {
 
 
 /*
-* error hadnling
+* error handling
 * */
 
 if (global.MODE === 'production') {
-    app.use(function(err, req, res, next) {
+    app.use(function(err, req, res) {
         console.log(err);
         res.send(404, '404');
     });
 
-    app.use(function(err, req, res, next) {
+    app.use(function(err, req, res) {
         console.log(err);
         res.send(500, '500');
     });
@@ -295,4 +309,4 @@ var appPort = global.MODE === 'development' ? global.opts.app.devPort : global.o
 
 app.listen(appPort);
 var appPortString = appPort.toString();
-console.log('[DevShelf] is working on '.blue + appPortString.blue + ' port in '.blue + global.MODE.blue + ' mode...'.blue);
+console.log('[DevShelf] is working on http://localhost:'.blue + appPortString.blue + ' port in '.blue + global.MODE.blue + ' mode...'.blue);

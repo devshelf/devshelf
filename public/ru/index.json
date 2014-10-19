@@ -1,7 +1,4 @@
-//http://json5.org/
-
 {
-    //Current file language
     "lang": "ru",
 
     "title": "DevShelf.us — Хаб статей про веб-разработку",
@@ -120,7 +117,6 @@
     	"bookmarkletLinkTitle": "Отправить в DevShelf"
     },
 
-    //Form
     "formModalTitle": "Форма добавления статей",
     "formURL": "URL",
     "formTitle": "Заголовок",
@@ -159,7 +155,6 @@
         "PRcreated": "Pull Request создан"
     },
 
-    //Authorization
     "authModalTitle": "Пожалуйста, авторизируйтесь",
     "authDescr": "Авторизация необходима для того что бы оставлять голоса и добавлять статьи через GitHub.",
     "authLoginWelcome": "Пожалуйста, авторизируйтесь через ",

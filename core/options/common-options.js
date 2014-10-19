@@ -1,7 +1,6 @@
 //Common options for client and server
-//http://json5.org/
 
-{
+module.exports = {
     l18n : {
         additionalLangs: ["ru"],
         langZone: {
@@ -21,4 +20,4 @@
     validate: {
         enabled: true
     }
-}
+};

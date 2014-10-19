@@ -1,8 +1,4 @@
-//Client side options and text resources
-//http://json5.org/
-
 {
-    //Current file language
     "lang": "en",
 
     "title": "DevShelf.us - Community driven reading shelf",
@@ -37,7 +33,7 @@
         "sectionText": "<p>DevShelf is a modern web application made for the community (for us!), by the community, to collect most relevant information about development technologies.</p> <p>With community rating, you will get only the best content existing in the open web.</p>"
     },{
         "sectionTitle": "How to support",
-        "sectionText": "<p>Project is fully <a href='http://github.com/sourcejs/devshelf'>open source</a>, you can <a href='https://github.com/devshelf/devshelf-articles'>contribute links</a> to best articles, ideas and improve web application source code simply by leaving your pull requests.</p> <p>DevShelf is all  <strong>about storing best articles and tools</strong>, not your documentation. For documentation purposes, use <a href='http://devdocs.io'>devdocs.io</a>.</p>"
+        "sectionText": "<p>Project is fully <a href='http://github.com/sourcejs/devshelf'>open source</a>, you can <a href='https://github.com/devshelf/devshelf-articles'>contribute links</a> to best articles, ideas and improve web application source code simply by leaving your pull requests.</p>"
     }],
 
     "authTitle" : "Authorizing...",
@@ -122,8 +118,6 @@
     	"bookmarkletLinkTitle": "Send to DevShelf"
     },
 
-
-    //Form
     "formModalTitle": "Add new articles",
     "formURL": "URL",
     "formTitle": "Title",
@@ -163,7 +157,6 @@
         "PRcreated": "Pull Request created"
     },
 
-    //Authorization
     "authModalTitle": "Authorization required",
     "authDescr": "We use your account details to accept the votes and allow you to submit articles through GitHub",
     "authLoginWelcome": "Please login through ",
