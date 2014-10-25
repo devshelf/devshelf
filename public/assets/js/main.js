@@ -88,7 +88,7 @@ var templateEngine = (function() {
         buildHashStruct: function(p) {
             var callback = p.callback || function() {};
 
-            $('script[type="text/x-jquery-tmpl"][data-url]').each(function() {
+            $('script[type="text/template"][data-url]').each(function() {
                 var dataUrl = $(this).attr('data-url');
 
                 if (dataUrl !== '') {

@@ -81,16 +81,17 @@ module.exports = function(grunt) {
             }
         },
 
-        htmlcompressor: {
+        htmlmin: {
             main: {
-              files: {
-                'public/build/index.html': 'public/index.html',
-                'public/build/templates.html': 'public/templates.html'
-              },
-              options: {
-                type: 'html',
-                preserveServerScript: true
-              }
+                files: {
+                    'public/build/index.html': 'public/index.html',
+                    'public/build/templates.html': 'public/templates.html'
+                },
+                options: {
+                    processScripts: ['text/template'],
+                    removeComments: true,
+                    collapseWhitespace: true
+                }
             }
         },
 
@@ -112,7 +113,7 @@ module.exports = function(grunt) {
                         'public/templates.html',
                         'public/index.html'
                         ],
-                tasks: ['csso:main','uglify:main','htmlcompressor:main','hashres:main'],
+                tasks: ['csso:main','uglify:main','htmlmin:main','hashres:main'],
                 options: {
                     nospawn: true
                 }
@@ -130,7 +131,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'csso:main',
         'uglify:main',
-        'htmlcompressor:main',
+        'htmlmin:main',
         'copy:img',
         'copy:favicons',
         'hashres:main'
