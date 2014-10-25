@@ -2,8 +2,8 @@
 #
 # description: DevShelf service
 # processname: node
-# pidfile: /var/run/devshelf.pid
-# logfile: /var/log/devshelf.log
+# pidfile: /home/user/devshelf.pid
+# logfile: /home/user/devshelf.log
 #
 # Based on https://gist.github.com/jinze/3748766
 #
@@ -13,7 +13,7 @@
 # sudo update-rc.d devshelf defaults
 #
 # Then use commands:
-# service devshelf <command (start|stop|etc)>
+# sudo service devshelf <command (start|stop|etc)>
 
 NAME=devshelf                            # Unique name for the application
 SOUREC_DIR=/home/user/devshelf           # Location of the application source
@@ -22,12 +22,11 @@ SOURCE_NAME=app.js                       # Name os the applcation entry point sc
 USER=user                                # User for process running
 NODE_ENVIROMENT=production               # Node environment
 
-pidfile=/var/run/$NAME.pid
-logfile=/var/log/$NAME.log
+pidfile=/home/user/$NAME.pid
+logfile=/home/user/$NAME.log
 forever=forever
 
 start() {
-    export NODE_ENV=$NODE_ENVIROMENT
     echo "Starting $NAME node instance : "
 
     touch $logfile
@@ -36,7 +35,7 @@ start() {
     touch $pidfile
     chown $USER $pidfile
 
-    sudo -H -u $USER $forever start --pidFile $pidfile -l $logfile -a --sourceDir $SOUREC_DIR -c $COMMAND $SOURCE_NAME
+    sudo -H -u $USER NODE_ENV=$NODE_ENVIROMENT $forever start --pidFile $pidfile -l $logfile -a --sourceDir $SOUREC_DIR -c $COMMAND $SOURCE_NAME
 
     RETVAL=$?
 }
