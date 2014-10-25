@@ -2,7 +2,7 @@ var github = require('octonode');
 var checkURL = require('./check-url-status');
 var checkTitle = require('./check-title');
 
-//TODO: if has fork, create a branch in it, merge with latest devshelf and commit OR refork
+//TODO: if has fork, create a branch in it, merge with latest devshelf and commit PR refork
 //TODO: check existance of new article in fork
 
 var postArticle = function(req, res){
@@ -72,17 +72,17 @@ var fork = function(req, res, callback) {
         };
 
         if (hasFork) {
-//            console.log('he have fork');
+            // console.log('he have fork');
 
             proceedToFileEdit();
         } else {
-//            console.log('no fork');
+            // console.log('no fork');
 
             //Creating fork
             ghme.fork(global.opts.form.masterRepo, function(err, data){
                 if (err) { GhApiOnErr(req, res, err, 'forkError'); return; }
 
-//                console.log('fork done');
+                // console.log('fork done');
 
                 proceedToFileEdit();
             });
@@ -90,18 +90,20 @@ var fork = function(req, res, callback) {
     });
 };
 
-//Editing file
+// Editing file
 var editFile = function(req, res, callback) {
     var token = req.query.token || req.session.authCache.github.accessToken,
         client = github.client(token),
         ghrepo = client.repo(req.query.login+'/'+global.opts.articles.repoName),
         langDir = req.query.lang === global.opts.l18n.defaultLang ? '' : req.query.lang + '/';
 
-    ghrepo.contents(langDir+req.query.cat+'.json', global.opts.form.PRbranch, function(err, currentFile){
+    ghrepo.contents(langDir + req.query.cat+'.json', global.opts.form.PRbranch, function(err, currentFile){
+        var commitMessage = global.opts.form.commitMessage + req.query.postData.title;
+
         if (err) { GhApiOnErr(req, res, err, 'contentsError'); return; }
 
-        //updating data
-        try { //trying to parse JSON
+        // updating data
+        try { // trying to parse JSON
             var fileContentInBase64 = currentFile.content;
             var decodedContentObject = JSON.parse(new Buffer(fileContentInBase64, 'base64').toString('utf8'));
 
@@ -110,18 +112,18 @@ var editFile = function(req, res, callback) {
         }
 
 
-        try { //trying to push new object
-            var tagDataArr = decodedContentObject[req.query.cat];
-                tagDataArr.push(req.query.postData);
+        // trying to push new object
+        try {
+            decodedContentObject[req.query.cat] = mergeNewArticle(decodedContentObject[req.query.cat], req.query.postData);
         } catch (err) {
             GhApiOnErr(req, res, err, 'JSONPushError'); return;
         }
 
 
         //comiting updated data
-        ghrepo.updateContents(currentFile.path, global.opts.form.commitMessage, JSON.stringify(decodedContentObject, false, 4), currentFile.sha, global.opts.form.PRbranch, function(err, data){
+        ghrepo.updateContents(currentFile.path, commitMessage, JSON.stringify(decodedContentObject, false, 4), currentFile.sha, global.opts.form.PRbranch, function(err, data){
             if (err) { GhApiOnErr(req, res, err, 'updateError'); return; }
-//            console.log('update done');
+            // console.log('update done');
 
             callback(err, data);
         });
@@ -133,10 +135,10 @@ var pullRequest = function(req, res, callback) {
         client = github.client(token),
         ghrepoMaster = client.repo(global.opts.form.masterRepo);
 
-//    console.log('PR start');
+    // console.log('PR start');
 
     ghrepoMaster.pr({
-      "title": global.opts.form.PRtitlePrefix+req.query.postData.title+global.opts.form.PRtitlePostfix+req.query.cat,
+      "title": global.opts.form.PRtitlePrefix + req.query.postData.title + global.opts.form.PRtitlePostfix + req.query.cat,
       "body": global.opts.form.PRdescription,
       "head": req.query.login+":"+global.opts.form.PRbranch,
       "base": global.opts.form.PRbranch
@@ -165,7 +167,7 @@ var pullRequest = function(req, res, callback) {
 
             });
         } else {
-//            console.log('PR done');
+            //console.log('PR done');
 
             callback(GHMasterErr, GHMasterData);
         }
@@ -173,7 +175,30 @@ var pullRequest = function(req, res, callback) {
     });
 };
 
-//Validating input data
+/**
+ * Merge new data to articles collection
+ *
+ * @param {Array} originData - original articles collection
+ * @param {Object} newData - new data to merge
+ *
+ * @returns {Array} Return merged array
+ */
+var mergeNewArticle = function(originData, newData){
+    var mergedData = originData;
+
+    // Working only between first indexes
+    var workingIndexMax = mergedData.length - 2;
+    var getRandomInt = function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+    var insertIndex = getRandomInt(0, workingIndexMax);
+
+    mergedData.splice(insertIndex, 0,  newData);
+
+    return mergedData;
+};
+
+// Validating input data
 var validateData = function(data, callback) {
 
     var checkCat = function(){
@@ -219,7 +244,7 @@ var validateData = function(data, callback) {
     } else { callback(false);}
 };
 
-//Validating input data
+// Validating input data
 var GhApiOnErr = function(req, res, err, msg) {
     var message = msg || 'GHError';
 
@@ -233,7 +258,7 @@ var GhApiOnErr = function(req, res, err, msg) {
     });
 };
 
-/* Export */
+// Export
 module.exports = {
     editFile: function(req, res){
         editFile(req, res);

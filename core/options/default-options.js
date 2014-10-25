@@ -23,7 +23,7 @@ module.exports = {
         "PRdescription": "Automatic pull request from [DevShelf.us](http://devshelf.us)",
         "PRtitlePrefix": "Form submit: \"",
         "PRtitlePostfix": "\" to ",
-        "commitMessage": "Auto-commit from DevShelf.us submit form",
+        "commitMessage": "Auto-commit: ",
         "PRbranch": "master"
     },
 

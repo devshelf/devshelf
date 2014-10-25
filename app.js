@@ -309,4 +309,6 @@ var appPort = global.MODE === 'development' ? global.opts.app.devPort : global.o
 
 app.listen(appPort);
 var appPortString = appPort.toString();
-console.log('[DevShelf] is working on http://localhost:'.blue + appPortString.blue + ' port in '.blue + global.MODE.blue + ' mode...'.blue);
+
+// For testing auth locally, you need to have local.host to 127.0.0.1 binding
+console.log('[DevShelf] is working on http://local.host:'.blue + appPortString.blue + ' port in '.blue + global.MODE.blue + ' mode...'.blue);
