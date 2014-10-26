@@ -173,6 +173,10 @@
                 "title": "Development best practises"
             },
             {
+                "link": "/#!/search/svg",
+                "title": "SVG"
+            },
+            {
                 "link": "/#!/search/css_methodologies",
                 "title": "CSS methodologies"
             },
@@ -215,10 +219,6 @@
             {
                 "link": "/#!/search/gamedev",
                 "title": "Web gamedev"
-            },
-            {
-                "link": "/#!/search/ecmascript",
-                "title": "Ecmascript"
             }
         ]
     }
