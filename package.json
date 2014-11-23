@@ -1,6 +1,6 @@
 {
-  "name": "DevCommunityLibrary",
-  "description": "Dev Community Library",
+  "name": "DevShelf",
+  "description": "Community driven reading shelf (articles hub).",
   "version": "0.0.1",
   "dependencies": {
     "MD5": "~1.2.0",
