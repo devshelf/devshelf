@@ -33,12 +33,12 @@ var templateEngine = (function() {
             var j = allData.length;
             while (j--) {
 
-                var prop = allData[j],
-                    tags = prop.tags,
-                    tags_l = tags.length;
+                var prop = allData[j];
+                var tags = prop.tags;
 
-                if (!tags_l) continue;
+                if (!tags) continue;
 
+                var tags_l = tags.length;
                 var i = tags_l;
                 while (i--) {
                     if ( qRegExp.test(tags[i]) ) {
@@ -938,14 +938,16 @@ $(function() {
 		var suggest = [];
 
         for (var i=0; i < searchTagList.length; i++ ) {
-            var targetObj = searchTagList[i],
-                tags = targetObj.tags;
+            var targetObj = searchTagList[i];
+            var tags = targetObj.tags;
 
-            for (var mi=0; mi < tags.length; mi++ ) {
-                var tag = tags[mi];
+            if (tags) {
+                for (var mi=0; mi < tags.length; mi++ ) {
+                    var tag = tags[mi];
 
-                if (suggest.indexOf(tag) === -1) {
-                    suggest.push(tag);
+                    if (suggest.indexOf(tag) === -1) {
+                        suggest.push(tag);
+                    }
                 }
             }
         }
