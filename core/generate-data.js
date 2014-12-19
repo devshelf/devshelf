@@ -98,7 +98,7 @@ var prepareJSON = function(p) {
             fileExtension = fileExtension[fileExtension.length -1];
             fileExtension.toLowerCase();
 
-            if (fileExtension === 'json'){
+            if (file !== 'package.json' && fileExtension === 'json') {
                 jsonFilesArr.push(file);
             }
         });
@@ -339,7 +339,7 @@ var generateData = function() {
 
             global.opts.l18n.additionalLangs.map(function(lang) {
                 prepareJSON({
-                    targetDir:articlesPath,
+                    targetDir: articlesPath,
                     lang: lang
                 });
             });

@@ -90,7 +90,11 @@ var checkTitle = function(title, currentLang, callback) {
 
 		for (var cat in global.articlesData[currentLang]) {
 			for (var article = 0; article < global.articlesData[currentLang][cat].length; article++ ) {
-                summData.push( global.articlesData[currentLang][cat][article].title );
+				var articleTitle = global.articlesData[currentLang][cat][article].title;
+
+				if (articleTitle) {
+                	summData.push(articleTitle);
+				}
             }
 		}
 

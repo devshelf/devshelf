@@ -111,17 +111,18 @@ var addNewArticle = function( p ) {
 
                 tempSelects += ('<option value="' + category + '">' + category + '</option>');
 
-                var elem = totalTagList[category],
-                    i = elem.length;
+                var elem = totalTagList[category];
+                var i = elem.length;
 
                 while (i--) {
-                    var arr = elem[i].tags,
-                        j = arr.length;
+                    if (elem[i].tags) {
+                        var arr = elem[i].tags;
+                        var j = arr.length;
 
-                    while (j--) {
-                        tempTagsObj[arr[j]] = true;
+                        while (j--) {
+                            tempTagsObj[arr[j]] = true;
+                        }
                     }
-
                 }
             }
         }
