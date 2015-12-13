@@ -1,24 +1,5 @@
-var colors = require('colors'),
-    mongoose = require('mongoose');
-
-
-/* Connect to DB */
-var dbAdress = 'mongodb://' + global.opts.remoteDBhost + ':' + global.opts.remoteDBport +'/votes';
-
-mongoose.connection.on("connecting", function() {
-    return console.log("Started connection on " + (dbAdress).cyan + ", waiting for it to open...".grey);
-});
-mongoose.connection.on("open", function() {
-    return console.log("MongoDB connection opened!".green);
-});
-mongoose.connection.on("error", function(err) {
-    console.log("Could not connect to mongo server!".red);
-    return console.log(err.message.red);
-});
-
-mongoose.connect(dbAdress);
-/* /Connect to DB */
-
+var colors = require('colors');
+var mongoose = require('mongoose');
 
 /* Common */
 var notInArray = function(item, array){

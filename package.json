@@ -2,10 +2,14 @@
   "name": "DevShelf",
   "description": "Community driven reading shelf (articles hub).",
   "version": "0.0.1",
+  "scripts": {
+    "start": "node app.js",
+    "build": "grunt default"
+  },
   "dependencies": {
     "MD5": "~1.2.0",
     "colors": "~0.6.2",
-    "connect-mongostore": "0.0.10",
+    "connect-mongostore": "^0.1.4",
     "deep-extend": "~0.2.6",
     "everyauth": "~0.4.5",
     "express": "~3.4.4",
@@ -21,7 +25,7 @@
     "grunt-hashres": "~0.4.1",
     "jade": "~1.2.0",
     "load-grunt-tasks": "~0.4.0",
-    "mongoose": "~3.8.0",
+    "mongoose": "^4.3.1",
     "mustache": "~0.7.3",
     "octonode": "~0.5.0",
     "prerender-node": "~1.0.1",
@@ -30,6 +34,7 @@
     "sitemap": "~0.7.2"
   },
   "devDependencies": {
-    "grunt-casperjs": "^1.4.0"
+    "grunt-casperjs": "^1.4.0",
+    "grunt-cli": "^0.1.13"
   }
 }

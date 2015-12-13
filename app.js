@@ -4,7 +4,8 @@ var fs = require('fs');
 var mustache = require('mustache');
 var everyauth = require('everyauth');
 var path = require('path');
-var MongoStore = require('connect-mongostore')(express);
+var mongoose = require('mongoose');
+var MongoStore = require('connect-MongoStore')(express);
 
 var requireUncached = function (module) {
     delete require.cache[require.resolve(module)];
@@ -27,6 +28,31 @@ global.app = express();
 global.opts = require('./core/options');
 
 /* /Global vars */
+
+
+
+/* Connect to DB */
+var mongoCredentials = '';
+
+if (global.opts.remoteDBuser && global.opts.remoteDBpwd) {
+    mongoCredentials = global.opts.remoteDBuser + ':' + global.opts.remoteDBpwd + '@';
+}
+
+var dbAdress = 'mongodb://' + mongoCredentials + global.opts.remoteDBhost + ':' + global.opts.remoteDBport +'/devshelf';
+
+mongoose.connection.on("connecting", function() {
+    return console.log("Started connection on " + (dbAdress).cyan + ", waiting for it to open...".grey);
+});
+mongoose.connection.on("open", function() {
+    return console.log("MongoDB connection opened!".green);
+});
+mongoose.connection.on("error", function(err) {
+    console.log("Could not connect to mongo server!".red);
+    return console.log(err.message.red);
+});
+
+mongoose.connect(dbAdress);
+/* /Connect to DB */
 
 
 /*
@@ -82,11 +108,7 @@ app
 	.use(express.cookieParser(global.opts.cookieSecret))
 	.use(express.session({
 		secret: global.opts.cookieSecret,
-		store: new MongoStore({
-			'db': 'sessions',
-			host: global.opts.remoteDBhost,
-			port: global.opts.remoteDBport
-		})
+		store: new MongoStore({ mongooseConnection: mongoose.connection })
 	}))
 	;
 

@@ -18,7 +18,13 @@ module.exports = function (req, res, next) {
          * @returns {String}       lang code
          */
         function getCommonLang(code, obj) {
-            code = code.toLowerCase();
+            var k;
+
+            if (typeof code === 'undefined') {
+                return opts.defaultLang;
+            } else {
+                code = code.toLowerCase();
+            }
 
             for (k in obj) {
                 var el = obj[k];
