@@ -23,6 +23,7 @@ var addUser = function (source, sourceUser, token) {
 
 var GHappID = global.MODE === 'production' ? global.opts.github.appID : global.opts.github.devAppID;
 var GHappSecret =  global.MODE === 'production' ? global.opts.github.appSecret : global.opts.github.devAppSecret;
+var port = global.MODE === 'development' ? global.opts.app.devPort : global.opts.app.port;
 
 everyauth.everymodule
   .findUserById( function (id, callback) {
@@ -32,6 +33,7 @@ everyauth.everymodule
 everyauth.github
     .appId(GHappID)
     .appSecret(GHappSecret)
+    .myHostname(process.env.HOSTNAME || 'http://local.host:' + port)
     .scope('public_repo')
     .findOrCreateUser( function (sess, accessToken, accessTokenExtra, ghUser) {
         return usersByGhId[ghUser.id] || (usersByGhId[ghUser.id] = addUser('github', ghUser, accessToken));
