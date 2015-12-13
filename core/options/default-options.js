@@ -9,7 +9,7 @@ You can store secure settings in special secure-options.json file that will exte
 
 module.exports = {
     "app": {
-        "host" : "http://devshelf.us",
+        "host" : "https://devshelf.us",
         "port":8080,
         "devPort":8888
     },

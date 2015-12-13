@@ -4,7 +4,7 @@ Open source platform for collecting best articles and links about web developmen
 
 ___
 
-[DevShelf homepage](http://devshelf.us) || [Contribute interesting articles](https://github.com/devshelf/devshelf-articles)
+[DevShelf homepage](https://devshelf.us) || [Contribute interesting articles](https://github.com/devshelf/devshelf-articles)
 ___
 
 ## Contribute
