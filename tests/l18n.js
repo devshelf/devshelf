@@ -11,10 +11,10 @@ casper.test.begin('Checking localization', 3, function suite(test) {
 
     }).then(function() {
 
-//        this.capture('test.png');
-
-        casper.waitForSelector(".footer", function() {
-            test.assertTextExists('Спасибо команде', 'Russion localization is turning ON');
+        casper.waitForSelector("html[lang='ru']", function() {
+            casper.waitForSelector(".footer", function() {
+              test.assertTextExists('Спасибо команде', 'Russion localization is turning ON');
+          });
         });
 
 	}).run(function() { test.done() }).clear();

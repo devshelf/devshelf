@@ -29,6 +29,8 @@ module.exports = {
 
     "remoteDBhost": "127.0.0.1",
     "remoteDBport": "27017",
+    "remoteDBuser": null,
+    "remoteDBpwd": null,
 
     "cookieSecret": "secret",
 

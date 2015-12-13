@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "start": "node app.js",
-    "build": "grunt default"
+    "build": "grunt default",
+    "test": "grunt test"
   },
   "dependencies": {
     "MD5": "~1.2.0",
@@ -31,10 +32,10 @@
     "prerender-node": "~1.0.1",
     "request": "~2.34.0",
     "shorthash": "0.0.2",
-    "sitemap": "~0.7.2"
+    "sitemap": "~0.7.2",
+    "grunt-cli": "^0.1.13"
   },
   "devDependencies": {
-    "grunt-casperjs": "^1.4.0",
-    "grunt-cli": "^0.1.13"
+    "grunt-casperjs": "^2.1.0"
   }
 }

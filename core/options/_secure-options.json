@@ -4,5 +4,20 @@
             "main": "secure-options.json is used for storing sensitive options, like secret key, db acces and etc",
             "quick-start": "_secure-options.json in a stub file, please copy it to secure-options.json in same folder for using secure options in your project"
         }
+    },
+
+    "cookieSecret": "stub",
+
+    "remoteDBuser": null,
+    "remoteDBpwd": null,
+
+    "prerenderToken": "stub",
+
+    "github": {
+        "devAppID": "stub",
+        "devAppSecret": "stub",
+
+        "appID": "stub",
+        "appSecret": "stub"
     }
 }

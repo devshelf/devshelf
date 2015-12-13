@@ -1,10 +1,23 @@
 # DevShelf.us - Community driven reading shelf
 
+Open source platform for collecting best articles and links about web development. Contribute, group information by tags, and vote for the best content!
+
 ___
+
 [DevShelf homepage](http://devshelf.us) || [Contribute interesting articles](https://github.com/devshelf/devshelf-articles)
 ___
 
-Modern web application made for community, to collect most relevant information about development technologies. With community rating, you'll get only the best content that exists in open web.
+## Contribute
 
-Project is fully open source, you can [contribute links to best articles](http://github.com/devshelf/devshelf-articles), ideas and improve web application source code just leaving your pull requests.
+### Install instructions
+
+1. Clone (this) core repo and [articles repo](https://github.com/devshelf/devshelf-articles)
+2. Symlink `devshelf-articles` to core repo `/articles-data`
+3. Copy `/core/options/_secure-options.json` to `/core/options/secure-options.json` and fill cookie secret, github key for auth, mongodb credentials and prerender token
+4. Prepare your hosts file adding `local.host` as the alias to `localhist` (this is important for GH auth on localhost)
+5. Run `npm run build && npm start` and enjoy
+
+### Tests
+
+To run functional tests, with running app use `npm test`
 
