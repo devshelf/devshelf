@@ -5,7 +5,7 @@ var mustache = require('mustache');
 var everyauth = require('everyauth');
 var path = require('path');
 var mongoose = require('mongoose');
-var MongoStore = require('connect-MongoStore')(express);
+var MongoStore = require('connect-mongostore')(express);
 
 var requireUncached = function (module) {
     delete require.cache[require.resolve(module)];
