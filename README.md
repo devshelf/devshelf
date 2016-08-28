@@ -1,5 +1,8 @@
 # DevShelf.us - Community driven reading shelf
 
+**Project is currently on hold until big rewrite, focusing on other content parsing solutions. If you're willing to support it, please PM [@operatino](https://twitter.com/operatino).**
+___
+
 Open source platform for collecting best articles and links about web development. Contribute, group information by tags, and vote for the best content!
 
 ___
